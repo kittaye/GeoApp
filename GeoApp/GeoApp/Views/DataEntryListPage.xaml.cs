@@ -12,6 +12,7 @@ namespace GeoApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DataEntryListPage : ContentPage
 	{
+
 		public DataEntryListPage()
 		{
 			InitializeComponent ();
