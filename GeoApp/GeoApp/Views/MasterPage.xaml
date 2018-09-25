@@ -10,7 +10,7 @@
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterPageItem}">
                     <local:MasterPageItem Title="Home" TargetType="{x:Type local:HomePage}" />
-                    <local:MasterPageItem Title="New Page" TargetType="{x:Type local:NewPage1}" />
+                    <local:MasterPageItem Title="Data Entries" TargetType="{x:Type local:DataEntryListPage}" />
                 </x:Array>
             </ListView.ItemsSource>
 

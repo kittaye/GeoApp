@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:GeoApp" 
              x:Class="GeoApp.MainPage">
     <MasterDetailPage.Master>
-        <local:MasterPage x:Name="masterPage"/>
+        <local:MasterPage x:Name="masterPage" />
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
