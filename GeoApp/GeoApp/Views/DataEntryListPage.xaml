@@ -7,7 +7,7 @@
             <ToolbarItem.Icon></ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <ListView x:Name="listView" Margin="20">
             <ListView.ItemsSource>
