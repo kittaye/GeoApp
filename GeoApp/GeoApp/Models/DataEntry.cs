@@ -10,6 +10,7 @@ namespace GeoApp
     {
         public string Name { get; set; }
         public DataType Type { get; set; }
+        public string TypeIcon { get; set; }
 
         public DataEntry() {
         }

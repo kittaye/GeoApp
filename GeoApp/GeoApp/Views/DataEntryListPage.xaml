@@ -10,30 +10,35 @@
         <ListView x:Name="listView">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:DataEntry}">
-                    <local:DataEntry Name="X Tree" Type="Point" />
-                    <local:DataEntry Name="Y Plant" Type="Point" />
-                    <local:DataEntry Name="Path between X and Y" Type="Line" />
-                    <local:DataEntry Name="Z Garden" Type="Polygon" />
+                    <local:DataEntry Name="X Tree" Type="Point" TypeIcon="point_icon.png" />
+                    <local:DataEntry Name="Y Plant" Type="Point" TypeIcon="point_icon.png" />
+                    <local:DataEntry Name="Path between X and Y" Type="Line" TypeIcon="line_icon.png" />
+                    <local:DataEntry Name="Z Garden" Type="Polygon" TypeIcon="area_icon.png" />
                 </x:Array>
             </ListView.ItemsSource>
             
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
+                        <!-- Grid Definition of 2x3 -->
                         <Grid 
-                            ColumnSpacing="0" RowSpacing="0" Padding="10,4,10,4">
+                            ColumnSpacing="10" RowSpacing="0" Padding="10,4,10,4">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="24" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="24" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Micro" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <Image Source="edit_icon.png" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                            <!-- A single label is created using the grid layout, with an icon at the front, 2 layered text strings, and an icon at the end. -->
+                            <Image Source="{Binding TypeIcon}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="{Binding Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Micro" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Source="edit_icon.png" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
