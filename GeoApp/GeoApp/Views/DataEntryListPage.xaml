@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListPage" Title="Data Entries">
+             xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListPage" Title="Data Entries" BackgroundColor="#36393F">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+">
-            <ToolbarItem.Icon></ToolbarItem.Icon>
-        </ToolbarItem>
+        <ToolbarItem Icon="add_icon"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView x:Name="listView" Margin="20">
+        <ListView x:Name="listView">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:DataEntry}">
                     <local:DataEntry Name="X Tree" Type="Point" />
@@ -22,10 +20,21 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="20,5,0,0" HorizontalOptions="Start" Orientation="Vertical">
-                            <Label Text="{Binding Name}" HorizontalTextAlignment="Start" FontSize="Small"/>
-                            <Label Text="{Binding Type}" HorizontalTextAlignment="Start" FontSize="Micro" TextColor="DarkCyan"/>
-                        </StackLayout>
+                        <Grid 
+                            ColumnSpacing="0" RowSpacing="0" Padding="10,4,10,4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="24" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Micro" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <Image Source="edit_icon.png" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" HeightRequest="24" WidthRequest="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

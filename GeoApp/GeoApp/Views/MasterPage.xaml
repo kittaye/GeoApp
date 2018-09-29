@@ -5,7 +5,7 @@
              x:Class="GeoApp.MasterPage"
              Title="Master Page">
 
-    <StackLayout BackgroundColor="LightCyan">
+    <StackLayout BackgroundColor="#202225">
         <ListView x:Name="listView" x:FieldModifier="public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterPageItem}">
@@ -23,7 +23,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0"></Image>
-                            <Label Grid.Column="1" Text="{Binding Title}"></Label>
+                            <Label Grid.Column="1" Text="{Binding Title}" TextColor="White"></Label>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -2,13 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GeoApp.HomePage"
-             Title = "Home">
+             Title = "Home"
+             BackgroundColor="#36393F">
     
     <ContentPage.Content>
         <StackLayout>
             <Label Text="I am the home page."
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                   TextColor="White"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
