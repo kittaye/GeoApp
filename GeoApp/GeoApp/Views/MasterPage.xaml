@@ -5,7 +5,7 @@
              x:Class="GeoApp.MasterPage"
              Title="Master Page">
 
-    <StackLayout BackgroundColor="#202225">
+    <StackLayout BackgroundColor="#2F3136">
         <ListView x:Name="listView" x:FieldModifier="public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterPageItem}">
