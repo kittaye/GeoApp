@@ -4,13 +4,13 @@
              xmlns:local="clr-namespace:GeoApp" 
              x:Class="GeoApp.MainPage">
     <MasterDetailPage.Master>
-        <local:MasterPage x:Name="masterPage" />
+        <local:MasterView x:Name="masterView" />
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
         <NavigationPage BarBackgroundColor="#202225">
             <x:Arguments>
-                <local:HomePage/>
+                <local:HomeView/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

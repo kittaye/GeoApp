@@ -9,16 +9,16 @@ namespace GeoApp {
     public partial class MainPage : MasterDetailPage {
         public MainPage() {
             InitializeComponent();
-            masterPage.listView.ItemSelected += OnItemSelected;
+            masterView.listView.ItemSelected += OnItemSelected;
         }
 
         void OnItemSelected(object sender, SelectedItemChangedEventArgs e) {
-            var item = e.SelectedItem as MasterPageItem;
+            var item = e.SelectedItem as MasterViewItem;
             if (item != null) {
                 Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType)) {
                     BarBackgroundColor = Color.FromHex("#202225")
                 };
-                masterPage.listView.SelectedItem = null;
+                masterView.listView.SelectedItem = null;
                 IsPresented = false;
             }
         }

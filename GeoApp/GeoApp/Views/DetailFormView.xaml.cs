@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GeoApp
+namespace GeoApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DataEntryListPage : ContentPage
+	public partial class DetailFormView : ContentPage
 	{
-
-		public DataEntryListPage()
+		public DetailFormView ()
 		{
 			InitializeComponent ();
 		}

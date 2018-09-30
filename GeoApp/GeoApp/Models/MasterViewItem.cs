@@ -4,12 +4,12 @@ using System.Text;
 
 namespace GeoApp
 {
-    class MasterPageItem
+    class MasterViewItem
     {
         public string Title { get; set; }
         public Type TargetType { get; set; }
 
-        public MasterPageItem() {
+        public MasterViewItem() {
         }
     }
 }
