@@ -11,6 +11,7 @@
                 <x:Array Type="{x:Type local:MasterViewItem}">
                     <local:MasterViewItem Title="Home" TargetType="{x:Type local:HomeView}" />
                     <local:MasterViewItem Title="Data Entries" TargetType="{x:Type local:DataEntryListView}" />
+                    <local:MasterViewItem Title="Temporary Form" TargetType="{x:Type local:DetailFormView}" />
                 </x:Array>
             </ListView.ItemsSource>
 
