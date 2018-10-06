@@ -8,7 +8,7 @@ namespace GeoApp {
 
         public App() {
             InitializeComponent();
-            MainPage = new MainPage();
+            MainPage = GeoApp.MainPage.Instance;
         }
 
         protected override void OnStart() {

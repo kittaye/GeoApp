@@ -7,7 +7,17 @@ using Xamarin.Forms;
 
 namespace GeoApp {
     public partial class MainPage : MasterDetailPage {
-        public MainPage() {
+        private static MainPage instance;
+        public static MainPage Instance {
+            get {
+                if(instance == null) {
+                    instance = new MainPage();
+                }
+                return instance;
+            }
+        }
+
+        private MainPage() {
             InitializeComponent();
             masterView.listView.ItemSelected += OnItemSelected;
         }
@@ -21,6 +31,10 @@ namespace GeoApp {
                 masterView.listView.SelectedItem = null;
                 IsPresented = false;
             }
+        }
+
+        public void ShowDetailFormPage() {
+            Detail.Navigation.PushAsync(new DetailFormView());
         }
     }
 }
