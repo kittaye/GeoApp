@@ -8,13 +8,13 @@
 
     <ContentPage.Resources>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="Micro" />
+            <Setter Property="FontSize" Value="Default" />
             <Setter Property="TextColor" Value="White" />
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
         <Style TargetType="Entry">
             <Setter Property="TextColor" Value="Cyan" />
-            <Setter Property="FontSize" Value="Micro" />
+            <Setter Property="FontSize" Value="Default" />
             <Setter Property="WidthRequest" Value="200" />
             <Setter Property="PlaceholderColor" Value="LightGray" />
             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
@@ -24,7 +24,7 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Padding="10,10,10,10">
             <Grid 
-                ColumnSpacing="10" RowSpacing="0">
+                ColumnSpacing="10" RowSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -54,29 +54,35 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
-                <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"/>
 
-                <Label Text="Date"    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
+                <Label Text="Date"    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="11"/>
                 <Entry Placeholder="" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
 
-                <Label Text="Latitude" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="1"/>
-                <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Label Text="Latitude" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="11"/>
+                <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1"/>
 
-                <Label Text="Longitude" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="1"/>
-                <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Label Text="Longitude" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="10"/>
+                <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="1"/>
 
-                <Label Text="Altitude" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="1"/>
-                <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Label Text="Altitude" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="10"/>
+                <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="1"/>
 
-                <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3"/>
+                <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="1"/>
 
             </Grid>
         </StackLayout>

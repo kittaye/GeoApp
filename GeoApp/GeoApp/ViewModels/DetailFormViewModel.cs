@@ -69,10 +69,13 @@ namespace GeoApp {
                 }
             } catch (FeatureNotSupportedException fnsEx) {
                 // Handle not supported on device exception
+                throw fnsEx;
             } catch (PermissionException pEx) {
                 // Handle permission exception
+                throw pEx;
             } catch (Exception ex) {
                 // Unable to get location
+                throw ex;
             }
         }
     }
