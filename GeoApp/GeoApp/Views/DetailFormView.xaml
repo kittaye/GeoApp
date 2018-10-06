@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.DetailFormView"
              Title="New Point" 
              BackgroundColor="#36393F">
@@ -19,7 +20,7 @@
             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
         </Style>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Padding="10,10,10,10">
             <Grid 
@@ -27,7 +28,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    
+
+                    <RowDefinition Height="10"/>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
                     <RowDefinition Height="10"/>
 
                     <RowDefinition Height="Auto"/>
@@ -36,9 +42,20 @@
                     <RowDefinition Height="10"/>
 
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="10"/>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="10"/>
+
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -50,10 +67,19 @@
                 <Label Text="Date"    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
                 <Entry Placeholder="" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
 
-                <Label Text="Location" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="1"/>
-                <Entry Placeholder=""  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Label Text="Latitude" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="1"/>
+                <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                <Label Text="Longitude" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="1"/>
+                <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                <Label Text="Altitude" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="1"/>
+                <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3"/>
+
             </Grid>
         </StackLayout>
     </ContentPage.Content>
-    
+
 </ContentPage>

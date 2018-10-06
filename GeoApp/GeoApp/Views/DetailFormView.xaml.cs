@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GeoApp
-{
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DetailFormView : ContentPage
-	{
-		public DetailFormView ()
-		{
-			InitializeComponent ();
-		}
-	}
+namespace GeoApp {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DetailFormView : ContentPage {
+        public DetailFormView() {
+            InitializeComponent();
+            BindingContext = new DetailFormViewModel();
+        }
+    }
 }
