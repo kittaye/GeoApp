@@ -8,6 +8,7 @@ namespace GeoApp
     {
         public string Title { get; set; }
         public Type TargetType { get; set; }
+        public string TypeIcon { get; set; }
 
         public MasterViewItem() {
         }
