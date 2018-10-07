@@ -49,7 +49,7 @@ namespace GeoApp {
         }
 
         public DetailFormViewModel(string type) {
-            DateEntry = DateTime.Now.ToString();
+            DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command(async () =>  {
                await GetGeoLocation();
             });
