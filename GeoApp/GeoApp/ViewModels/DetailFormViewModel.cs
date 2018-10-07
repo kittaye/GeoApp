@@ -39,7 +39,7 @@ namespace GeoApp {
             }
         }
 
-        public DetailFormViewModel() {
+        public DetailFormViewModel(string type) {
             GetLocationCommand = new Command(async () =>  {
                await GetGeoLocation();
             });

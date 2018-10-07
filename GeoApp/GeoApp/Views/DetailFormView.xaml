@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.DetailFormView"
-             Title="New Point" 
+             Title="" 
              BackgroundColor="#36393F">
 
     <ContentPage.Resources>

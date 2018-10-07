@@ -10,9 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailFormView : ContentPage {
-        public DetailFormView() {
+        public DetailFormView(string type) {
             InitializeComponent();
-            BindingContext = new DetailFormViewModel();
+            Title = $"New {type}";
+            BindingContext = new DetailFormViewModel(type);
+
+            // Add more elements to the page depending on the type
         }
     }
 }
