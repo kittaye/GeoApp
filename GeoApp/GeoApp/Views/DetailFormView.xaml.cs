@@ -12,10 +12,11 @@ namespace GeoApp {
     public partial class DetailFormView : ContentPage {
         public DetailFormView(string type) {
             InitializeComponent();
-            Title = $"New {type}";
+            Title = $"New { type }";
             BindingContext = new DetailFormViewModel(type);
 
-            // Add more elements to the page depending on the type
+
+            // Add more elements to the page depending on the 
         }
     }
 }

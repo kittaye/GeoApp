@@ -21,71 +21,51 @@
         </Style>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="10,10,10,10">
-            <Grid 
-                ColumnSpacing="10" RowSpacing="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+        <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Grid
+                ColumnSpacing="10" RowSpacing="10" Margin="25,25,25,25">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
 
-                    <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <!--<ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />-->
+                    </Grid.ColumnDefinitions>
 
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/> 
+                    <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-                    <RowDefinition Height="10"/>
+                    <Label Text="Date" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1"/>
+                    <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
+                    <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
 
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <Label Text="Latitude" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
+                    <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1"/>
 
-                    <RowDefinition Height="10"/>
+                    <Label Text="Longitude" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1"/>
+                    <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1"/>
 
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <Label Text="Altitude" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1"/>
+                    <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"/>
 
-                    <RowDefinition Height="10"/>
+                    <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <Label Text="Metadata" FontAttributes="Bold" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="1"/>
+                    <Button Text="Add Fields" Command="{Binding AddFields}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-                    <RowDefinition Height="10"/>
 
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
 
-                <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
-                <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"/>
-
-                <Label Text="Date"    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="11"/>
-                <Entry Text="{Binding DateEntry}" Placeholder="" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
-
-                <Label Text="Latitude" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="11"/>
-                <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1"/>
-
-                <Label Text="Longitude" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="10"/>
-                <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="1"/>
-
-                <Label Text="Altitude" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="10"/>
-                <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="1"/>
-
-                <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="1"/>
-
-            </Grid>
-        </StackLayout>
+                </Grid>
+            </StackLayout>
+    </ScrollView>
     </ContentPage.Content>
-
 </ContentPage>
