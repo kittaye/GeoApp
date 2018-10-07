@@ -71,7 +71,7 @@
                 <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"/>
 
                 <Label Text="Date"    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="11"/>
-                <Entry Placeholder="" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Entry Text="{Binding DateEntry}" Placeholder="" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
 
                 <Label Text="Latitude" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="11"/>
                 <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1"/>

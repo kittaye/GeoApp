@@ -13,7 +13,16 @@ namespace GeoApp {
 
         public ICommand GetLocationCommand { get; set; }
 
+        private string _dateEntry;
         private string[] _geoEntry = new string[3];
+
+        public string DateEntry {
+            get { return _dateEntry; }
+            set {
+                _dateEntry = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry"));
+            }
+        }
 
         public string LatEntry {
             get { return _geoEntry[0]; }
@@ -40,6 +49,7 @@ namespace GeoApp {
         }
 
         public DetailFormViewModel(string type) {
+            DateEntry = DateTime.Now.ToString();
             GetLocationCommand = new Command(async () =>  {
                await GetGeoLocation();
             });
