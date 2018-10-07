@@ -8,6 +8,7 @@
     <StackLayout BackgroundColor="#2F3136">
         <StackLayout BackgroundColor="#202225" HeightRequest="150">
             <!--Insert App title and logo here-->
+            <Label Text="GeoAware" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Large"/>
         </StackLayout>
 
 
