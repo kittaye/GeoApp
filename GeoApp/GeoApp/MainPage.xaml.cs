@@ -33,6 +33,9 @@ namespace GeoApp {
             }
         }
 
+
+        //----- Pages to Navigate ----//
+
         /// <summary>
         /// Asynchronously adds DetailFormView to the top of the navigation stack.
         /// </summary>

@@ -13,7 +13,6 @@ namespace GeoApp {
 
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
-
                 await MainPage.Instance.ShowDetailFormOptions();
             });
         }

@@ -12,6 +12,7 @@ namespace GeoApp {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetLocationCommand { get; set; }
+        public ICommand AddPointsCommand { get; set; }
         public ICommand AddFieldsCommand { get; set; }
 
         private string _dateEntry;
@@ -109,9 +110,10 @@ namespace GeoApp {
                await GetGeoLocation();
             });
 
-            GetLocationCommand = new Command(async () => {
-                await AddFields();
+            AddFieldsCommand = new Command(async () => {
+               await AddFields();
             });
+
         }
 
         /// <summary>
@@ -161,7 +163,7 @@ namespace GeoApp {
         }
 
         private async Task AddFields() {
-            
+
         }
     }
 }

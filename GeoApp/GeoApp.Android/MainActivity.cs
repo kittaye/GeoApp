@@ -34,6 +34,7 @@ namespace GeoApp.Droid {
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
     }
 }
 

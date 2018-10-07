@@ -20,8 +20,7 @@
             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
         </Style>
     </ContentPage.Resources>
-
-        <ContentPage.Content>
+    <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <Grid x:Name="form"
@@ -42,12 +41,12 @@
                         <ColumnDefinition Width="Auto" />-->
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/> 
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
                     <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1"/>
                     <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
-                    <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10" />
+                    <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,13" />
                     <Button x:Name="viewbtn" Text="View Points" Command="{Binding ViewPoints}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="False"/>
 
                     <Label Text="Latitude" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
@@ -60,13 +59,15 @@
                     <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"/>
 
                     <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
-                    <Button Text="{Binding AddPointBtnTxt}" Command="{Binding AddPoint}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding AddBtnIsVisble}"/>
+                    <Button Text="{Binding AddPointBtnTxt}" Command="{Binding AddPointsCommand}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding AddBtnIsVisble}"/>
 
                     <Label Text="Metadata" FontAttributes="Bold" Grid.Row="{Binding MetadataGridRow}" Grid.Column="0" Grid.ColumnSpan="1"/>
-                    <Button Text="Add Fields" Command="{Binding AddFields}" Grid.Row="{Binding AddFieldGridRow}" Grid.Column="0" Grid.ColumnSpan="3"/>
-
+                    <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="{Binding AddFieldGridRow}" Grid.Column="0" Grid.ColumnSpan="3"/>
                 </Grid>
+
             </StackLayout>
-    </ScrollView>
+        </ScrollView>
+
+
     </ContentPage.Content>
 </ContentPage>
