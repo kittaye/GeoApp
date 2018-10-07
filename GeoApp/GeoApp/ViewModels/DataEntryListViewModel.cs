@@ -15,9 +15,7 @@ namespace GeoApp {
             ButtonClickedCommand = new Command(async () => {
 
                 await MainPage.Instance.ShowDetailFormOptions();
-                //MainPage.Instance.ShowDetailFormPage();
             });
         }
-
     }
 }

@@ -14,9 +14,6 @@ namespace GeoApp {
             InitializeComponent();
             Title = $"New { type }";
             BindingContext = new DetailFormViewModel(type);
-
-
-            // Add more elements to the page depending on the 
         }
     }
 }

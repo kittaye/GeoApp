@@ -12,8 +12,12 @@ namespace GeoApp {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetLocationCommand { get; set; }
+        public ICommand AddFieldsCommand { get; set; }
 
         private string _dateEntry;
+        private bool _isVisible;
+        private string _btnText;
+        private int[] _gridRow = new int[2];
         private string[] _geoEntry = new string[3];
 
         public string DateEntry {
@@ -48,10 +52,65 @@ namespace GeoApp {
             }
         }
 
+        public string AddPointBtnTxt {
+            get { return _btnText; }
+            set {
+                _btnText = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow"));
+            }
+        }
+
+        public bool AddBtnIsVisble {
+            get { return _isVisible; }
+            set {
+                _isVisible = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddBtnIsVisble"));
+            }
+        }
+
+        public int MetadataGridRow {
+            get { return _gridRow[0]; }
+            set {
+                _gridRow[0] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataGridRow"));
+            }
+        }
+
+        public int AddFieldGridRow {
+            get { return _gridRow[1]; }
+            set {
+                _gridRow[1] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow"));
+            }
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="type"></param>
         public DetailFormViewModel(string type) {
+
+            // UI Changes based on selected type
+            if (type == "Line" || type == "Polygon") {
+
+                AddPointBtnTxt = $"Add to {type}";
+                AddBtnIsVisble = true;
+                // Changes row assignment
+                MetadataGridRow = 7;
+                AddFieldGridRow = 8;
+            } else {
+                AddBtnIsVisble = false;
+                MetadataGridRow = 6;
+                AddFieldGridRow = 7;
+            }
+
             DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command(async () =>  {
                await GetGeoLocation();
+            });
+
+            GetLocationCommand = new Command(async () => {
+                await AddFields();
             });
         }
 
@@ -87,6 +146,22 @@ namespace GeoApp {
                 // Unable to get location
                 throw ex;
             }
+        }
+
+        private async Task ViewPoints() {
+            
+        }
+
+        /// <summary>
+        /// Adds point data to line
+        /// </summary>
+        /// <returns></returns>
+        private async Task AddPoint() {
+            
+        }
+
+        private async Task AddFields() {
+            
         }
     }
 }
