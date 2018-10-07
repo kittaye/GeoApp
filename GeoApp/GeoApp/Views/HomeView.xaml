@@ -9,6 +9,7 @@
         <StackLayout>
             <Label Text="I am the home page."
                    TextColor="White"
+                   FontSize="Medium"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
         </StackLayout>
