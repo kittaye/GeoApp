@@ -7,6 +7,10 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
+using GeoApp.Popups;
+
 namespace GeoApp {
     class DetailFormViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -14,6 +18,8 @@ namespace GeoApp {
         public ICommand GetLocationCommand { get; set; }
         public ICommand AddPointsCommand { get; set; }
         public ICommand AddFieldsCommand { get; set; }
+
+        private DetailFormFieldPopup _detailFormPopup;
 
         private string _dateEntry;
         private bool _isVisible;
@@ -90,6 +96,7 @@ namespace GeoApp {
         /// </summary>
         /// <param name="type"></param>
         public DetailFormViewModel(string type) {
+            _detailFormPopup = new DetailFormFieldPopup();
 
             // UI Changes based on selected type
             if (type == "Line" || type == "Polygon") {
@@ -163,7 +170,7 @@ namespace GeoApp {
         }
 
         private async Task AddFields() {
-
+            await PopupNavigation.Instance.PushAsync(_detailFormPopup);
         }
     }
 }
