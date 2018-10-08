@@ -97,12 +97,12 @@ namespace GeoApp {
                 AddPointBtnTxt = $"Add to {type}";
                 AddBtnIsVisble = true;
                 // Changes row assignment
-                MetadataGridRow = 7;
-                AddFieldGridRow = 8;
+                MetadataGridRow = 1;
+                AddFieldGridRow = 2;
             } else {
                 AddBtnIsVisble = false;
-                MetadataGridRow = 6;
-                AddFieldGridRow = 7;
+                MetadataGridRow = 0;
+                AddFieldGridRow = 1;
             }
 
             DateEntry = DateTime.Now.ToShortDateString();

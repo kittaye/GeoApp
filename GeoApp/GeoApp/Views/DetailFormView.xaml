@@ -19,55 +19,80 @@
             <Setter Property="PlaceholderColor" Value="LightGray" />
             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
         </Style>
+        
+        <ResourceDictionary>
+            <Style x:Key="PanelGrid" TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="10"/>
+                <Setter Property="RowSpacing" Value="10"/>
+                <Setter Property="Margin" Value="15,15,15,15"/>
+            </Style>
+            <Style x:Key="PanelLayout" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#3d4047"/>
+                <Setter Property="Margin" Value="10,10,10,10"/>
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
+        </ResourceDictionary>
     </ContentPage.Resources>
+    
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Grid
-                ColumnSpacing="10" RowSpacing="10" Margin="25,25,25,25">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+            <StackLayout Spacing="0">
+                <StackLayout Style="{StaticResource PanelLayout}">
+                    <Grid Style="{StaticResource PanelGrid}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <!--<ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />-->
-                    </Grid.ColumnDefinitions>
+                        <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
+                        <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-                    <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
-                    <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Label Text="Date" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1"/>
+                        <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
+                    </Grid>
+                </StackLayout>
 
-                    <Label Text="Date" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1"/>
-                    <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
-                    <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,13" />
-                    <Button Text="View Points" Command="{Binding ViewPoints}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="False"/>
+                <StackLayout Style="{StaticResource PanelLayout}">
+                    <Grid Style="{StaticResource PanelGrid}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <Label Text="Latitude" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
-                    <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1"/>
+                        <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,13" />
+                        <Button Text="View Points" Command="{Binding ViewPoints}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="False"/>
 
-                    <Label Text="Longitude" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1"/>
-                    <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1"/>
+                        <Label Text="Latitude" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"/>
+                        <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1"/>
 
-                    <Label Text="Altitude" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1"/>
-                    <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1"/>
+                        <Label Text="Longitude" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1"/>
+                        <Entry Text="{Binding LongEntry}" Placeholder=""  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1"/>
 
-                    <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"/>
-                    <Button Text="{Binding AddPointBtnTxt}" Command="{Binding AddPointsCommand}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding AddBtnIsVisble}"/>
+                        <Label Text="Altitude" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
+                        <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"/>
 
-                    <Label Text="Metadata" FontAttributes="Bold" Grid.Row="{Binding MetadataGridRow}" Grid.Column="0" Grid.ColumnSpan="1"/>
-                    <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="{Binding AddFieldGridRow}" Grid.Column="0" Grid.ColumnSpan="3"/>
-                </Grid>
+                        <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Button Text="{Binding AddPointBtnTxt}" Command="{Binding AddPointsCommand}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding AddBtnIsVisble}"/>
+                    </Grid>
+                </StackLayout>
 
+                <StackLayout Style="{StaticResource PanelLayout}">
+                    <Grid Style="{StaticResource PanelGrid}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="{Binding MetadataGridRow}" Grid.Column="0" Grid.ColumnSpan="1"/>
+                        <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="{Binding AddFieldGridRow}" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    </Grid>
+                </StackLayout>
+                
             </StackLayout>
         </ScrollView>
-
-
     </ContentPage.Content>
 </ContentPage>
