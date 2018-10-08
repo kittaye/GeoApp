@@ -11,7 +11,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView x:Name="listView" HasUnevenRows="True">
+        <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="#515151">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:DataEntry}">
                     <local:DataEntry Name="X Tree" Type="Point" TypeIcon="point_icon.png" />

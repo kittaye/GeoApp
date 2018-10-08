@@ -23,7 +23,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Grid x:Name="form"
+                <Grid
                 ColumnSpacing="10" RowSpacing="10" Margin="25,25,25,25">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -47,7 +47,7 @@
                     <Label Text="Date" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1"/>
                     <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
                     <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,13" />
-                    <Button x:Name="viewbtn" Text="View Points" Command="{Binding ViewPoints}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="False"/>
+                    <Button Text="View Points" Command="{Binding ViewPoints}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1" IsEnabled="False"/>
 
                     <Label Text="Latitude" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1"/>
                     <Entry Text="{Binding LatEntry}" Placeholder=""  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1"/>
