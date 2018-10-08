@@ -31,7 +31,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="0">
@@ -84,12 +84,12 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Label Text="Metadata" FontAttributes="Bold" Grid.Row="{Binding MetadataGridRow}" Grid.Column="0" Grid.ColumnSpan="1"/>
                         <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="{Binding AddFieldGridRow}" Grid.Column="0" Grid.ColumnSpan="3"/>
                     </Grid>
                 </StackLayout>
-                
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
