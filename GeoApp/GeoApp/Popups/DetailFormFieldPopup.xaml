@@ -28,7 +28,7 @@
     </pages:PopupPage.Animation>
     <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
         <AbsoluteLayout>
-            <Frame x:Name="FrameContainer" Margin="15" HorizontalOptions="Center" BackgroundColor="White">
+            <Frame Margin="15" HorizontalOptions="Center" BackgroundColor="White" HeightRequest="-1">
                 <StackLayout IsClippedToBounds="True" Padding="10, 5" Spacing="3">
                     
                     <Label Text="Configure Field Details" FontSize="Large"/>
@@ -43,7 +43,7 @@
                         </Picker.ItemsSource>
                     </Picker>
 
-                    <Button HorizontalOptions="Fill" Clicked="OnLogin" x:Name="AddButton" Text="Add">
+                    <Button HorizontalOptions="Fill" Clicked="OnAdd" x:Name="AddButton" Text="Add">
                         <Button.HeightRequest>
                             <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="15"/>
                         </Button.HeightRequest>

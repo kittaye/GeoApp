@@ -18,8 +18,6 @@ namespace GeoApp.Popups {
         protected override void OnAppearingAnimationBegin() {
             base.OnAppearingAnimationBegin();
 
-            FrameContainer.HeightRequest = -1;
-
             if (!IsAnimationEnabled) {
                 AddButton.Scale = CloseButton.Scale = 1;
                 AddButton.Opacity = CloseButton.Opacity = 1;
@@ -41,32 +39,7 @@ namespace GeoApp.Popups {
                 CloseButton.FadeTo(1));
         }
 
-        //protected override async Task OnDisappearingAnimationBeginAsync() {
-        //    if (!IsAnimationEnabled)
-        //        return;
-
-        //    var taskSource = new TaskCompletionSource<bool>();
-
-        //    var currentHeight = FrameContainer.Height;
-
-        //    await Task.WhenAll(
-        //        AddButton.FadeTo(0),
-        //        CloseButton.FadeTo(0));
-
-        //    FrameContainer.Animate("HideAnimation", d => {
-        //        FrameContainer.HeightRequest = d;
-        //    },
-        //    start: currentHeight,
-        //    end: 170,
-        //    finished: async (d, b) => {
-        //        await Task.Delay(300);
-        //        taskSource.TrySetResult(true);
-        //    });
-
-        //    await taskSource.Task;
-        //}
-
-        private async void OnLogin(object sender, EventArgs e) {
+        private async void OnAdd(object sender, EventArgs e) {
             var loadingPage = new LoadingPopupPage();
             await Navigation.PushPopupAsync(loadingPage);
             await Task.Delay(500);
