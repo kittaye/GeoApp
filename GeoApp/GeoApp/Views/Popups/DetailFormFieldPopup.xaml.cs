@@ -54,6 +54,8 @@ namespace GeoApp.Views.Popups {
                 AddButton.FadeTo(1),
                 CloseButton.ScaleTo(1),
                 CloseButton.FadeTo(1));
+
+            entryTitle.Focus();
         }
 
         private async void OnAdd(object sender, EventArgs e) {
