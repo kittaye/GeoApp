@@ -41,35 +41,35 @@ namespace GeoApp.Popups {
                 CloseButton.FadeTo(1));
         }
 
-        protected override async Task OnDisappearingAnimationBeginAsync() {
-            if (!IsAnimationEnabled)
-                return;
+        //protected override async Task OnDisappearingAnimationBeginAsync() {
+        //    if (!IsAnimationEnabled)
+        //        return;
 
-            var taskSource = new TaskCompletionSource<bool>();
+        //    var taskSource = new TaskCompletionSource<bool>();
 
-            var currentHeight = FrameContainer.Height;
+        //    var currentHeight = FrameContainer.Height;
 
-            await Task.WhenAll(
-                AddButton.FadeTo(0),
-                CloseButton.FadeTo(0));
+        //    await Task.WhenAll(
+        //        AddButton.FadeTo(0),
+        //        CloseButton.FadeTo(0));
 
-            FrameContainer.Animate("HideAnimation", d => {
-                FrameContainer.HeightRequest = d;
-            },
-            start: currentHeight,
-            end: 170,
-            finished: async (d, b) => {
-                await Task.Delay(300);
-                taskSource.TrySetResult(true);
-            });
+        //    FrameContainer.Animate("HideAnimation", d => {
+        //        FrameContainer.HeightRequest = d;
+        //    },
+        //    start: currentHeight,
+        //    end: 170,
+        //    finished: async (d, b) => {
+        //        await Task.Delay(300);
+        //        taskSource.TrySetResult(true);
+        //    });
 
-            await taskSource.Task;
-        }
+        //    await taskSource.Task;
+        //}
 
         private async void OnLogin(object sender, EventArgs e) {
             var loadingPage = new LoadingPopupPage();
             await Navigation.PushPopupAsync(loadingPage);
-            await Task.Delay(2000);
+            await Task.Delay(500);
             await Navigation.RemovePopupPageAsync(loadingPage);
             await Navigation.PushPopupAsync(new DetailFormFieldSuccessPopup());
         }

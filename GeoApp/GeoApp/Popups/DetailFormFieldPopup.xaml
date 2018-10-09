@@ -23,8 +23,8 @@
             PositionOut="Center"
             ScaleIn="1"
             ScaleOut="0.7"
-            DurationIn="700"
-            EasingIn="BounceOut"/>
+            DurationIn="300"
+            EasingIn="Linear"/>
     </pages:PopupPage.Animation>
     <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
         <AbsoluteLayout>
