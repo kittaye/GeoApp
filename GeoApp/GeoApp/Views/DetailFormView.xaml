@@ -85,7 +85,7 @@
                         <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
                     </Grid>
 
-                    <Grid Style="{StaticResource PanelGrid}" Margin="15,0,15,15" IsVisible="False">
+                    <Grid Style="{StaticResource PanelGrid}" Margin="15,0,15,15" IsVisible="{Binding MetadataEntry1Visible}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -100,7 +100,7 @@
                         <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
-                    <Grid Style="{StaticResource PanelGrid}" IsVisible="False">
+                    <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry2Visible}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -115,7 +115,7 @@
                         <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
-                    <Grid Style="{StaticResource PanelGrid}" IsVisible="False">
+                    <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry3Visible}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -130,7 +130,7 @@
                         <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
-                    <Grid Style="{StaticResource PanelGrid}" IsVisible="False">
+                    <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry4Visible}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -145,7 +145,7 @@
                         <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
-                    <Grid Style="{StaticResource PanelGrid}" IsVisible="False">
+                    <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry5Visible}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>

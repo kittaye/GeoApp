@@ -22,10 +22,51 @@ namespace GeoApp {
         private DetailFormFieldPopup _detailFormPopup;
 
         private string _dateEntry;
-        private bool _isVisible;
-        private string _btnText;
+        private bool _isAddBtnVisible;
+        private bool[] _metadataEntriesVisible = new bool[5];
+        private string _addBtnTxt;
         private int[] _gridRow = new int[2];
         private string[] _geoEntry = new string[3];
+
+        public bool MetadataEntry1Visible {
+            get { return _metadataEntriesVisible[0]; }
+            set {
+                _metadataEntriesVisible[0] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Visible"));
+            }
+        }
+
+        public bool MetadataEntry2Visible {
+            get { return _metadataEntriesVisible[1]; }
+            set {
+                _metadataEntriesVisible[1] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Visible"));
+            }
+        }
+
+        public bool MetadataEntry3Visible {
+            get { return _metadataEntriesVisible[2]; }
+            set {
+                _metadataEntriesVisible[2] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Visible"));
+            }
+        }
+
+        public bool MetadataEntry4Visible {
+            get { return _metadataEntriesVisible[3]; }
+            set {
+                _metadataEntriesVisible[3] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Visible"));
+            }
+        }
+
+        public bool MetadataEntry5Visible {
+            get { return _metadataEntriesVisible[4]; }
+            set {
+                _metadataEntriesVisible[4] = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Visible"));
+            }
+        }
 
         public string DateEntry {
             get { return _dateEntry; }
@@ -60,34 +101,18 @@ namespace GeoApp {
         }
 
         public string AddPointBtnTxt {
-            get { return _btnText; }
+            get { return _addBtnTxt; }
             set {
-                _btnText = value;
+                _addBtnTxt = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow"));
             }
         }
 
         public bool AddBtnIsVisble {
-            get { return _isVisible; }
+            get { return _isAddBtnVisible; }
             set {
-                _isVisible = value;
+                _isAddBtnVisible = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddBtnIsVisble"));
-            }
-        }
-
-        public int MetadataGridRow {
-            get { return _gridRow[0]; }
-            set {
-                _gridRow[0] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataGridRow"));
-            }
-        }
-
-        public int AddFieldGridRow {
-            get { return _gridRow[1]; }
-            set {
-                _gridRow[1] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow"));
             }
         }
 
@@ -100,7 +125,6 @@ namespace GeoApp {
 
             // UI Changes based on selected type
             if (type == "Line" || type == "Polygon") {
-
                 AddPointBtnTxt = $"Add to {type}";
                 AddBtnIsVisble = true;
             } else {
