@@ -7,7 +7,7 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
-namespace GeoApp.Popups {
+namespace GeoApp.Views.Popups {
 
     public partial class DetailFormFieldSuccessPopup : PopupPage {
         public DetailFormFieldSuccessPopup() {

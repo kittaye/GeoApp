@@ -23,10 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Popups\DetailFormFieldPopup.xaml">
+    <EmbeddedResource Update="Views\Popups\DetailFormFieldPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Popups\DetailFormFieldSuccessPopup.xaml">
+    <EmbeddedResource Update="Views\Popups\DetailFormFieldSuccessPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DetailFormView.xaml">
@@ -35,7 +35,7 @@
     <EmbeddedResource Update="Views\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Popups\LoadingPopupPage.xaml">
+    <EmbeddedResource Update="Views\Popups\LoadingPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MasterView.xaml">

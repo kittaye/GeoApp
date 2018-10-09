@@ -95,9 +95,9 @@
                             <ColumnDefinition Width="36"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="Label 0" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding MetadataEntry1Label}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                         <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                        <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
+                        <Entry Keyboard="{Binding MetadataEntry1Type}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
                     <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry2Visible}">
@@ -110,9 +110,9 @@
                             <ColumnDefinition Width="36"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="Label 0" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding MetadataEntry2Label}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                         <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                        <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
+                        <Entry Keyboard="{Binding MetadataEntry2Type}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
                     <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry3Visible}">
@@ -125,9 +125,9 @@
                             <ColumnDefinition Width="36"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="Label 0" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding MetadataEntry3Label}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                         <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                        <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
+                        <Entry Keyboard="{Binding MetadataEntry3Type}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
                     <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry4Visible}">
@@ -140,9 +140,9 @@
                             <ColumnDefinition Width="36"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="Label 0" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding MetadataEntry4Label}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                         <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                        <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
+                        <Entry Keyboard="{Binding MetadataEntry4Type}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
                     <Grid Style="{StaticResource PanelGrid}" IsVisible="{Binding MetadataEntry5Visible}">
@@ -155,16 +155,16 @@
                             <ColumnDefinition Width="36"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="Label 0" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                        <Label Text="{Binding MetadataEntry5Label}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                         <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                        <Entry TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
+                        <Entry Keyboard="{Binding MetadataEntry5Type}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
                     </Grid>
 
                     <Grid Style="{StaticResource PanelGrid}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="{Binding AddFieldsBtnEnabled}"/>
                     </Grid>
                 </StackLayout>
                 

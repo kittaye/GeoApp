@@ -8,9 +8,26 @@ using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 
-namespace GeoApp.Popups {
+namespace GeoApp.Views.Popups {
   
     public partial class DetailFormFieldPopup : PopupPage {
+        private TaskCompletionSource<MetadataEntry> tcs;
+
+        public static async Task<MetadataEntry> GetResultAsync() {
+            DetailFormFieldPopup popup = new DetailFormFieldPopup();
+
+            var result = await popup._GetResultAsync();
+            return result;
+        }
+
+        private async Task<MetadataEntry> _GetResultAsync() {
+            tcs = new TaskCompletionSource<MetadataEntry>();
+
+            await this.Navigation.PushPopupAsync(this);
+
+            return await tcs.Task;
+        }
+
         public DetailFormFieldPopup() {
             InitializeComponent();
         }
@@ -45,6 +62,22 @@ namespace GeoApp.Popups {
             await Task.Delay(500);
             await Navigation.RemovePopupPageAsync(loadingPage);
             await Navigation.PushPopupAsync(new DetailFormFieldSuccessPopup());
+
+            if (string.IsNullOrEmpty(entryTitle.Text) == false && picker.SelectedItem != null) {
+                MetadataEntry mle = new MetadataEntry();
+
+                try {
+                    mle.LabelTitle = entryTitle.Text;
+                    mle.EntryType = (MetaDataTypes)Enum.Parse(typeof(MetaDataTypes), picker.SelectedItem.ToString(), true);
+
+                } catch (Exception exception) {
+                    throw exception;
+                }
+
+                tcs.TrySetResult(mle);
+            }
+
+            CloseAllPopup();
         }
 
         private void OnCloseButtonTapped(object sender, EventArgs e) {
@@ -62,6 +95,9 @@ namespace GeoApp.Popups {
         }
 
         private async void CloseAllPopup() {
+            if(tcs.Task.Status != TaskStatus.RanToCompletion) {
+                tcs.TrySetResult(null);
+            }
             await PopupNavigation.Instance.PopAllAsync();
         }
     }
