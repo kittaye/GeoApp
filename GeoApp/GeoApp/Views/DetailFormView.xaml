@@ -78,6 +78,39 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
+                    <!--<ListView>
+                        <ListView.ItemsSource>
+                            <x:Array Type="{x:Type local:MetadataXamlLabel}">
+                                <local:MetadataXamlLabel LabelTitle="Label1" EntryType="String" IsVisible="True" />
+                                <local:MetadataXamlLabel LabelTitle="Label2" EntryType="String" IsVisible="True" />
+                                <local:MetadataXamlLabel LabelTitle="Label3" EntryType="String" IsVisible="True" />
+                                <local:MetadataXamlLabel LabelTitle="Label4" EntryType="String" IsVisible="False" />
+                                <local:MetadataXamlLabel LabelTitle="Label5" EntryType="String" IsVisible="False" />
+                            </x:Array>
+                        </ListView.ItemsSource>
+                        
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource PanelGrid}" Margin="15,0,15,15" IsVisible="{Binding IsVisible}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="36"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                        <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
+                                        <Entry Keyboard="{Binding EntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Small"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>-->
+                    
                     <Grid Style="{StaticResource PanelGrid}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>

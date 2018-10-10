@@ -35,182 +35,118 @@ namespace GeoApp {
 
         private int numCustomFields = 0;
 
+
         #region MetadataEntry Properties
+
         public bool MetadataEntry1Visible {
             get { return _metadataEntriesVisible[0]; }
-            set {
-                _metadataEntriesVisible[0] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Visible"));
-            }
+            set { _metadataEntriesVisible[0] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Visible")); }
         }
 
         public bool MetadataEntry2Visible {
             get { return _metadataEntriesVisible[1]; }
-            set {
-                _metadataEntriesVisible[1] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Visible"));
-            }
+            set { _metadataEntriesVisible[1] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Visible")); }
         }
 
         public bool MetadataEntry3Visible {
             get { return _metadataEntriesVisible[2]; }
-            set {
-                _metadataEntriesVisible[2] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Visible"));
-            }
+            set { _metadataEntriesVisible[2] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Visible")); }
         }
 
         public bool MetadataEntry4Visible {
             get { return _metadataEntriesVisible[3]; }
-            set {
-                _metadataEntriesVisible[3] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Visible"));
-            }
+            set { _metadataEntriesVisible[3] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Visible")); }
         }
 
         public bool MetadataEntry5Visible {
             get { return _metadataEntriesVisible[4]; }
-            set {
-                _metadataEntriesVisible[4] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Visible"));
-            }
+            set { _metadataEntriesVisible[4] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Visible")); }
         }
 
         public string MetadataEntry1Label {
             get { return _metadataEntriesLabel[0]; }
-            set {
-                _metadataEntriesLabel[0] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Label"));
-            }
+            set { _metadataEntriesLabel[0] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Label")); }
         }
 
         public string MetadataEntry2Label {
             get { return _metadataEntriesLabel[1]; }
-            set {
-                _metadataEntriesLabel[1] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Label"));
-            }
+            set { _metadataEntriesLabel[1] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Label")); }
         }
 
         public string MetadataEntry3Label {
             get { return _metadataEntriesLabel[2]; }
-            set {
-                _metadataEntriesLabel[2] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Label"));
-            }
+            set { _metadataEntriesLabel[2] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Label")); }
         }
 
         public string MetadataEntry4Label {
             get { return _metadataEntriesLabel[3]; }
-            set {
-                _metadataEntriesLabel[3] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Label"));
-            }
+            set { _metadataEntriesLabel[3] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Label")); }
         }
 
         public string MetadataEntry5Label {
             get { return _metadataEntriesLabel[4]; }
-            set {
-                _metadataEntriesLabel[4] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Label"));
-            }
+            set { _metadataEntriesLabel[4] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Label")); }
         }
 
         public string MetadataEntry1Type {
             get { return _metadataEntriesType[0]; }
-            set {
-                _metadataEntriesType[0] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Type"));
-            }
+            set { _metadataEntriesType[0] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry1Type")); }
         }
 
         public string MetadataEntry2Type {
             get { return _metadataEntriesType[1]; }
-            set {
-                _metadataEntriesType[1] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Type"));
-            }
+            set { _metadataEntriesType[1] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry2Type")); }
         }
 
         public string MetadataEntry3Type {
             get { return _metadataEntriesType[2]; }
-            set {
-                _metadataEntriesType[2] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Type"));
-            }
+            set { _metadataEntriesType[2] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry3Type")); }
         }
 
         public string MetadataEntry4Type {
             get { return _metadataEntriesType[3]; }
-            set {
-                _metadataEntriesType[3] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Type"));
-            }
+            set { _metadataEntriesType[3] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry4Type")); }
         }
 
         public string MetadataEntry5Type {
             get { return _metadataEntriesType[4]; }
-            set {
-                _metadataEntriesType[4] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Type"));
-            }
+            set { _metadataEntriesType[4] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("MetadataEntry5Type")); }
         }
         #endregion
 
         public string DateEntry {
             get { return _dateEntry; }
-            set {
-                _dateEntry = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry"));
-            }
+            set { _dateEntry = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry")); }
         }
 
         public string LatEntry {
             get { return _geoEntry[0]; }
-            set {
-                _geoEntry[0] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LatEntry"));
-            }
+            set { _geoEntry[0] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LatEntry")); }
         }
 
         public string LongEntry {
             get { return _geoEntry[1]; }
-            set {
-                _geoEntry[1] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LongEntry"));
-            }
+            set { _geoEntry[1] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LongEntry")); }
         }
 
         public string AltEntry {
             get { return _geoEntry[2]; }
-            set {
-                _geoEntry[2] = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AltEntry"));
-            }
+            set { _geoEntry[2] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AltEntry")); }
         }
 
         public string AddPointBtnTxt {
             get { return _addBtnTxt; }
-            set {
-                _addBtnTxt = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow"));
-            }
+            set { _addBtnTxt = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow")); }
         }
 
         public bool AddBtnIsVisble {
             get { return _isAddBtnVisible; }
-            set {
-                _isAddBtnVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddBtnIsVisble"));
-            }
+            set { _isAddBtnVisible = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddBtnIsVisble")); }
         }
 
         public bool AddFieldsBtnEnabled {
             get { return _addFieldsBtnEnabled; }
-            set {
-                _addFieldsBtnEnabled = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldsBtnEnabled"));
-            }
+            set { _addFieldsBtnEnabled = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldsBtnEnabled")); }
         }
 
         /// <summary>
@@ -219,7 +155,6 @@ namespace GeoApp {
         /// <param name="type"></param>
         public DetailFormViewModel(string type) {
             _detailFormPopup = new DetailFormFieldPopup();
-
 
             // UI Changes based on selected type
             if (type == "Line" || type == "Polygon") {
@@ -238,9 +173,8 @@ namespace GeoApp {
             });
 
             AddFieldsCommand = new Command(async () => {
-               await AddFields();
+               await AddMetadataField();
             });
-
         }
 
         /// <summary>
@@ -289,14 +223,14 @@ namespace GeoApp {
             
         }
 
-        private async Task AddFields() {
+        private async Task AddMetadataField() {
             var result = await DetailFormFieldPopup.GetResultAsync();
 
             if(result != null) {
                 numCustomFields++;
 
                 string keyboardType = "Default";
-                if (result.EntryType == MetaDataTypes.Integer || result.EntryType == MetaDataTypes.Float) {
+                if (result.EntryType != MetaDataTypes.String) {
                     keyboardType = "Numeric";
                 }
 
