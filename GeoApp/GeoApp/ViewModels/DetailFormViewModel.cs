@@ -151,9 +151,9 @@ namespace GeoApp {
             if(result != null) {
                 numCustomFields++;
 
-                string keyboardType = "Default";
+                Keyboard keyboardType = Keyboard.Default;
                 if(result.EntryType != MetaDataTypes.String) {
-                    keyboardType = "Numeric";
+                    keyboardType = Keyboard.Numeric;
                 }
 
                 MetadataEntries.Add(new MetadataXamlLabel(result.LabelTitle, keyboardType));
