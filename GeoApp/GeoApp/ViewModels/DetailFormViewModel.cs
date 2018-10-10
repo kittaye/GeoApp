@@ -25,6 +25,7 @@ namespace GeoApp {
         private string _dateEntry;
         private bool _isAddBtnVisible;
 
+        private bool _isListViewVisible;
         private bool _addFieldsBtnEnabled;
         private string _addBtnTxt;
         private int[] _gridRow = new int[2];
@@ -33,6 +34,11 @@ namespace GeoApp {
         private int numCustomFields = 0;
 
         public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
+
+        public bool ListViewIsVisible {
+            get { return _isListViewVisible;  }
+            set { _isListViewVisible = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ListViewIsVisible")); }
+        }
 
         public string DateEntry {
             get { return _dateEntry; }
@@ -88,6 +94,7 @@ namespace GeoApp {
 
             numCustomFields = 0;
             AddFieldsBtnEnabled = true;
+            ListViewIsVisible = false;
 
             DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command(async () =>  {
@@ -157,8 +164,12 @@ namespace GeoApp {
                 }
 
                 MetadataEntries.Add(new MetadataXamlLabel(result.LabelTitle, keyboardType));
-                
-                if(numCustomFields == 5) {
+
+                if (numCustomFields > 0) {
+                    ListViewIsVisible = true;
+                }
+
+                if (numCustomFields == 5) {
                     AddFieldsBtnEnabled = false;
                 }
             }
