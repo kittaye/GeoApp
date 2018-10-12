@@ -17,6 +17,8 @@
                 <x:Array Type="{x:Type local:MasterViewItem}">
                     <local:MasterViewItem Title="Home" TargetType="{x:Type local:HomeView}" TypeIcon="home_icon.png"/>
                     <local:MasterViewItem Title="Data Entries" TargetType="{x:Type local:DataEntryListView}" TypeIcon="data_icon.png" />
+                    <local:MasterViewItem Title="Import" TargetType="{x:Type local:DataEntryListView}" TypeIcon="import_icon.png" />
+                    <local:MasterViewItem Title="Export" TargetType="{x:Type local:DataEntryListView}" TypeIcon="export_icon.png" />
                 </x:Array>
             </ListView.ItemsSource>
 
