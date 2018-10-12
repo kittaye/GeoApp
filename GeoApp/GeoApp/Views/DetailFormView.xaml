@@ -73,7 +73,7 @@
                         <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"/>
 
                         <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"/>
-                        <Button Text="{Binding AddPointBtnTxt}" Command="{Binding AddPointsCommand}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" IsVisible="{Binding AddBtnIsVisble}"/>
+                        <Button x:Name="addPointBtn" Command="{Binding AddPointsCommand}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"/>
                     </Grid>
                 </StackLayout>
 

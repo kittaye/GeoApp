@@ -13,7 +13,12 @@ namespace GeoApp {
         public DetailFormView(string type) {
             InitializeComponent();
             Title = $"New {type}";
-            BindingContext = new DetailFormViewModel(type);
+            if(type == "Line" || type == "Polygon") {
+                addPointBtn.Text = $"Add to {type}";
+                addPointBtn.IsVisible = true;
+            } else {
+                addPointBtn.IsVisible = false;
+            }
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {

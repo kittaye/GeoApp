@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -79,7 +79,7 @@ namespace GeoApp {
         /// Constructor
         /// </summary>
         /// <param name="type"></param>
-        public DetailFormViewModel(string type) {
+        public DetailFormViewModel() {
             _detailFormPopup = new DetailFormFieldPopup();
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
