@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -19,12 +19,12 @@ namespace GeoApp {
         public ICommand GetLocationCommand { get; set; }
         public ICommand AddPointsCommand { get; set; }
         public ICommand AddFieldsCommand { get; set; }
+        public ICommand DeleteFieldCommand { get; set; }
 
         private DetailFormFieldPopup _detailFormPopup;
 
         private string _dateEntry;
         private bool _isAddBtnVisible;
-
         private bool _isListViewVisible;
         private bool _addFieldsBtnEnabled;
         private string _addBtnTxt;
@@ -82,19 +82,14 @@ namespace GeoApp {
         public DetailFormViewModel() {
             _detailFormPopup = new DetailFormFieldPopup();
 
-            MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
-
-            // UI Changes based on selected type
-            if (type == "Line" || type == "Polygon") {
-                AddPointBtnTxt = $"Add to {type}";
-                AddBtnIsVisble = true;
-            } else {
-                AddBtnIsVisble = false;
-            }
+            //// UI Changes based on selected type
+            AddBtnIsVisble = false;
 
             numCustomFields = 0;
             AddFieldsBtnEnabled = true;
             ListViewIsVisible = false;
+
+            MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
 
             DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command(async () =>  {
@@ -104,6 +99,8 @@ namespace GeoApp {
             AddFieldsCommand = new Command(async () => {
                await AddMetadataField();
             });
+
+            DeleteFieldCommand = new Command<MetadataXamlLabel>((item) => DeleteMetadataField(item));
         }
 
         /// <summary>
@@ -172,6 +169,15 @@ namespace GeoApp {
                 if (numCustomFields == 5) {
                     AddFieldsBtnEnabled = false;
                 }
+            }
+        }
+
+        private void DeleteMetadataField(MetadataXamlLabel item) {
+            MetadataEntries.Remove(item);
+
+            numCustomFields--;
+            if (numCustomFields <= 0) {
+                ListViewIsVisible = false;
             }
         }
     }

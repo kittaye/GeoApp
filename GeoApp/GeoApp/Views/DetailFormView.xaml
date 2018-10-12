@@ -1,11 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.DetailFormView"
-             Title="" 
+             Title=""
              
              BackgroundColor="#36393F">
+
+    <ContentPage.BindingContext>
+        <local:DetailFormViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -108,7 +112,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                        <Button Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
+                                        <Button Command="{Binding DeleteFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
                                         <Entry Keyboard="{Binding KeyboardEntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                     </Grid>
                                 </ViewCell>
