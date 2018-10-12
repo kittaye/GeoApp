@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GeoApp"
@@ -93,7 +93,7 @@
                         <Button Text="Add Fields" Command="{Binding AddFieldsCommand}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="{Binding AddFieldsBtnEnabled}"/>
                     </Grid>
 
-                    <ListView ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,15" HeightRequest="530" IsVisible="{Binding ListViewIsVisible}">
+                    <ListView x:Name="listView" ItemTapped="listView_ItemTapped"  ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,15" HeightRequest="530" IsVisible="{Binding ListViewIsVisible}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

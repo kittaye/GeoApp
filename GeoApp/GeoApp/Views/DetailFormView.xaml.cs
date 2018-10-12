@@ -15,5 +15,9 @@ namespace GeoApp {
             Title = $"New {type}";
             BindingContext = new DetailFormViewModel(type);
         }
+
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
+            listView.SelectedItem = null;
+        }
     }
 }
