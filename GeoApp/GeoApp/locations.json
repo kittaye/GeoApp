@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "S601",
+        "float": 0,
+        "int": 1,
+        "string": "Computer lab",
+        "elevation_m": "-3.78179931640625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.02685303627794,
+          -27.477383357498308,
+          -3.78179931640625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "PSM",
+        "float": 0,
+        "int": 2,
+        "string": "",
+        "elevation_m": "13"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.02734886791072,
+          -27.47480313686381,
+          13
+        ]
+      }
+    }
+  ]
+}

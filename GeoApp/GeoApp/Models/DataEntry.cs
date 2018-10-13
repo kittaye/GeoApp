@@ -6,13 +6,33 @@ namespace GeoApp
 {
     public enum DataType { Point, Line, Polygon };
 
-    class DataEntry
+    public class Properties
     {
-        public string Name { get; set; }
-        public DataType Type { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public int @float { get; set; }
+        public int @int { get; set; }
+        public string @string { get; set; }
+        public string elevation_m { get; set; }
         public string TypeIcon { get; set; }
+    }
 
-        public DataEntry() {
-        }
+    public class Geometry
+    {
+        public string type { get; set; }
+        public List<double> coordinates { get; set; }
+    }
+
+    public class Feature
+    {
+        public string type { get; set; }
+        public Properties properties { get; set; }
+        public Geometry geometry { get; set; }
+    }
+
+    public class RootObject
+    {
+        public string type { get; set; }
+        public List<Feature> features { get; set; }
     }
 }

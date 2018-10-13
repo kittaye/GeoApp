@@ -1,3 +1,4 @@
+using GeoApp.Data;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -6,9 +7,12 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp {
     public partial class App : Application {
 
+        public static LocationItemManager LocationManager { get; private set; }
+
         public App() {
             InitializeComponent();
             MainPage = GeoApp.MainPage.Instance;
+            LocationManager = new LocationItemManager(new FileService());
         }
 
         protected override void OnStart() {
