@@ -21,9 +21,11 @@ namespace GeoApp
         {
             base.OnAppearing();
 
-            var locations = await App.LocationManager.GetLocationsAsync();
-           // listView.ItemsSource = locations;
-           // App.LocationManager.CurrentLocations = locations;
+            if(App.LocationManager.CurrentLocations == null) {
+                App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+            }
+
+            listView.ItemsSource = App.LocationManager.CurrentLocations;
         }
     }
 }

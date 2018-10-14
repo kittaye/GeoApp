@@ -10,17 +10,12 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
+    <ContentPage.BindingContext>
+        <local:DataEntryListViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="#515151">
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type local:Properties}">
-                    <!--<local:Properties name="X Tree" Type="Point" TypeIcon="point_icon.png" />
-                    <local:Properties name="Y Plant" Type="Point" TypeIcon="point_icon.png" />
-                    <local:Properties name="Path between X and Y" Type="Line" TypeIcon="line_icon.png" />
-                    <local:Properties name="Z Garden" Type="Polygon" TypeIcon="area_icon.png" /> -->
-                </x:Array>
-            </ListView.ItemsSource>
-
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -39,9 +34,9 @@
                             </Grid.ColumnDefinitions>
                                 
                             <!--Each label is created using the grid layout, with an icon at the front, 2 vertically layered text strings, and an icon at the end.-->
-                            <Image Source="{Binding TypeIcon}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <Label Text="{Binding Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Image Source="{Binding Properties.TypeIcon}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Text="{Binding Properties.Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Geometry.Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
                             <Image Source="edit_icon.png" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Grid>
                     </ViewCell>

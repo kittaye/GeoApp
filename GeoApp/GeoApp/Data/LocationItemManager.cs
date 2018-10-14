@@ -9,14 +9,14 @@ namespace GeoApp.Data
     {
         IDataService restService;
 
-        public List<Properties> CurrentLocations { get; set; }
+        public List<Feature> CurrentLocations { get; set; }
 
         public LocationItemManager(IDataService service)
         {
             restService = service;
         }
 
-        public Task<List<Properties>> GetLocationsAsync()
+        public Task<List<Feature>> GetLocationsAsync()
         {
             return restService.RefreshDataAsync();
         }
@@ -28,7 +28,7 @@ namespace GeoApp.Data
 
         public Task DeleteLocationAsync(Properties location)
         {
-            return restService.DeleteLocationAsync(location.id);
+            return restService.DeleteLocationAsync(location.Id);
         }
     }
 }
