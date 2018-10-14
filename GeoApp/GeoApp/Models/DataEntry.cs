@@ -19,7 +19,7 @@ namespace GeoApp
 
     public class Geometry
     {
-        public string type { get; set; }
+        public DataType type { get; set; }
         public List<double> coordinates { get; set; }
     }
 
@@ -33,6 +33,6 @@ namespace GeoApp
     public class RootObject
     {
         public string type { get; set; }
-        public List<Feature> features { get; set; }
+        public Feature[] features { get; set; }
     }
 }

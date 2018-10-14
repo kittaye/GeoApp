@@ -28,10 +28,10 @@ namespace GeoApp
             throw new NotImplementedException();
         }
 
-        public Task<List<Properties>> RefreshDataAsync()
+        public Task<List<Feature>> RefreshDataAsync()
         {
             return Task.Run(() => {
-                Properties[] locations = { };
+                Feature[] features = { };
                 string json;
 
                 if (hasBeenUpdated == false)
@@ -54,28 +54,28 @@ namespace GeoApp
                 {
                     var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
                     Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
-                    locations = null;
-                //    locations = rootobject.features;
-                //    Debug.WriteLine("HELLO:::::::::::::              {0}", locations);
+                    //locations = null;
+                    features = rootobject.features;
+                    //locations[0] = rootobject;
+                    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.features[0].properties.name, rootobject.features[0].type);
                 }
-                return null;
-                return locations.ToList();
+                return features.ToList();
             });
         }
 
-        public Task SaveLocationAsync(Properties location)
+        public Task SaveLocationAsync(RootObject location)
         {
             return Task.Run(() =>
             {
-                List<Properties> locations = App.LocationManager.CurrentLocations;
+                List<RootObject> locations = App.LocationManager.CurrentLocations;
 
-            //    if (locations.Id == null)
-            //    {
-            //        locations.Id = DateTime.Now.GetHashCode();
-            //        locations.Add(item);
-            //    }
+                //    if (locations.Id == null)
+                //    {
+                //        locations.Id = DateTime.Now.GetHashCode();
+                //        locations.Add(item);
+                //    }
 
-                Properties[] locationsArr = locations.ToArray<Properties>();
+                RootObject[] locationsArr = locations.ToArray<RootObject>();
                 RootObject rootobject = new RootObject();
             //    rootobject.features[].properties = locationsArr;
                 var json = JsonConvert.SerializeObject(rootobject);

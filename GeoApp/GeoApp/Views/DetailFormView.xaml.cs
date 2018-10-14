@@ -27,13 +27,13 @@ namespace GeoApp {
 
         async void OnSaveUpdateActivated(object sender, EventArgs e)
         {
-            var location = (Properties)BindingContext;
+            var location = (RootObject)BindingContext;
 
-            if (location.name == null)
+            if (location.features[0].properties.name == null)
             {
                 await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
             }
-            else if (location.name.Trim() == "")
+            else if (location.features[0].properties.name.Trim() == "")
             {
                 await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
             }
