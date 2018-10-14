@@ -9,7 +9,7 @@ namespace GeoApp.Data
     {
         IDataService restService;
 
-        public List<RootObject> CurrentLocations { get; set; }
+        public List<Feature> CurrentLocations { get; set; }
 
         public LocationItemManager(IDataService service)
         {
@@ -21,7 +21,7 @@ namespace GeoApp.Data
             return restService.RefreshDataAsync();
         }
 
-        public Task SaveLocationAsync(RootObject location)
+        public Task SaveLocationAsync(Feature location)
         {
             return restService.SaveLocationAsync(location);
         }

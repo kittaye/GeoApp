@@ -1,19 +1,16 @@
 {
-  "type": "FeatureCollection",
-  "features": [
+  "Type": "FeatureCollection",
+  "Features": [
     {
-      "type": "Feature",
-      "properties": {
-        "id": 1,
-        "name": "S601",
-        "float": 0,
-        "int": 1,
-        "string": "Computer lab",
-        "elevation_m": "-3.78179931640625"
+      "Type": "Feature",
+      "Properties": {
+        "Id": 1,
+        "Name": "S601",
+        "TypeIcon": "point_icon.png"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
+      "Geometry": {
+        "Type": "Point",
+        "Coordinates": [
           153.02685303627794,
           -27.477383357498308,
           -3.78179931640625
@@ -21,18 +18,15 @@
       }
     },
     {
-      "type": "Feature",
-      "properties": {
-        "id": 2,
-        "name": "PSM",
-        "float": 0,
-        "int": 2,
-        "string": "",
-        "elevation_m": "13"
+      "Type": "Feature",
+      "Properties": {
+        "Id": 2,
+        "Name": "PSM",
+        "TypeIcon": "point_icon.png"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
+      "Geometry": {
+        "Type": "Point",
+        "Coordinates": [
           153.02734886791072,
           -27.47480313686381,
           13

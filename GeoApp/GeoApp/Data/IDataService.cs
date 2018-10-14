@@ -7,7 +7,7 @@ namespace GeoApp
     {
         Task<List<Feature>> RefreshDataAsync();
 
-        Task SaveLocationAsync(RootObject location);
+        Task SaveLocationAsync(Feature location);
 
         Task DeleteLocationAsync(string Name);
         Task DeleteLocationAsync(int id);

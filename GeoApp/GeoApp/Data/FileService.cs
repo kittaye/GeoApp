@@ -31,7 +31,9 @@ namespace GeoApp
         public Task<List<Feature>> RefreshDataAsync()
         {
             return Task.Run(() => {
+
                 Feature[] features = { };
+
                 string json;
 
                 if (hasBeenUpdated == false)
@@ -60,14 +62,15 @@ namespace GeoApp
                     Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.features[0].properties.name, rootobject.features[0].type);
                 }
                 return features.ToList();
+
             });
         }
 
-        public Task SaveLocationAsync(RootObject location)
+        public Task SaveLocationAsync(Feature location)
         {
             return Task.Run(() =>
             {
-                List<RootObject> locations = App.LocationManager.CurrentLocations;
+                List<Feature> locations = App.LocationManager.CurrentLocations;
 
                 //    if (locations.Id == null)
                 //    {
@@ -75,13 +78,25 @@ namespace GeoApp
                 //        locations.Add(item);
                 //    }
 
-                RootObject[] locationsArr = locations.ToArray<RootObject>();
-                RootObject rootobject = new RootObject();
+                Feature[] locationsArr = locations.ToArray<Feature>();
+                Feature rootobject = new Feature();
             //    rootobject.features[].properties = locationsArr;
                 var json = JsonConvert.SerializeObject(rootobject);
+            //    List<Properties> locations = App.LocationManager.CurrentLocations;
 
-                File.WriteAllText(fileName, json);
-                hasBeenUpdated = true;
+            ////    if (locations.Id == null)
+            ////    {
+            ////        locations.Id = DateTime.Now.GetHashCode();
+            ////        locations.Add(item);
+            ////    }
+
+            //    Properties[] locationsArr = locations.ToArray<Properties>();
+            //    RootObject rootobject = new RootObject();
+            ////    rootobject.features[].properties = locationsArr;
+            //    var json = JsonConvert.SerializeObject(rootobject);
+
+            //    File.WriteAllText(fileName, json);
+            //    hasBeenUpdated = true;
             });
         }
     }

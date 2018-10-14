@@ -10,11 +10,7 @@ namespace GeoApp
     {
         public int id { get; set; }
         public string name { get; set; }
-        public int @float { get; set; }
-        public int @int { get; set; }
-        public string @string { get; set; }
-        public string elevation_m { get; set; }
-        public string TypeIcon { get; set; }
+        public string typeIcon { get; set; }
     }
 
     public class Geometry
@@ -34,5 +30,6 @@ namespace GeoApp
     {
         public string type { get; set; }
         public Feature[] features { get; set; }
+
     }
 }

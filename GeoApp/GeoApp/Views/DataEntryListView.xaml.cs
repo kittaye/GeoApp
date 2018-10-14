@@ -15,15 +15,24 @@ namespace GeoApp
 		public DataEntryListView()
 		{
 			InitializeComponent ();
-		}
+            loadingList.IsVisible = false;
+            loadingList.Color = Color.White;
+            loadingList.Margin = new Thickness(0, 10, 0, 0);
+        }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            var locations = await App.LocationManager.GetLocationsAsync();
-           // listView.ItemsSource = locations;
-           // App.LocationManager.CurrentLocations = locations;
+            if(App.LocationManager.CurrentLocations == null) {
+                loadingList.IsRunning = true;
+                loadingList.IsVisible = true;
+                App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+                loadingList.IsRunning = false;
+                loadingList.IsVisible = false;
+            }
+
+            listView.ItemsSource = App.LocationManager.CurrentLocations;
         }
     }
 }

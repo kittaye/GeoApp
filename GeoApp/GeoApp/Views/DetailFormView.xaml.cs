@@ -9,31 +9,37 @@ using Xamarin.Forms.Xaml;
 
 namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DetailFormView : ContentPage {
-        public DetailFormView(string type) {
+    public partial class DetailFormView : ContentPage
+    {
+        public DetailFormView(string type)
+        {
             InitializeComponent();
             Title = $"New {type}";
-            if(type == "Line" || type == "Polygon") {
+            if (type == "Line" || type == "Polygon")
+            {
                 addPointBtn.Text = $"Add to {type}";
                 addPointBtn.IsVisible = true;
-            } else {
+            }
+            else
+            {
                 addPointBtn.IsVisible = false;
             }
         }
 
-        private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
             listView.SelectedItem = null;
         }
 
         async void OnSaveUpdateActivated(object sender, EventArgs e)
         {
-            var location = (RootObject)BindingContext;
+            var location = (Feature)BindingContext;
 
-            if (location.features[0].properties.name == null)
+            if (location.properties.name == null)
             {
                 await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
             }
-            else if (location.features[0].properties.name.Trim() == "")
+            else if (location.properties.name.Trim() == "")
             {
                 await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
             }
@@ -42,6 +48,24 @@ namespace GeoApp {
                 await App.LocationManager.SaveLocationAsync(location);
                 await Navigation.PopAsync();
 
+                //async void OnSaveUpdateActivated(object sender, EventArgs e)
+                //{
+                //    var location = (Properties)BindingContext;
+
+                //    if (location.name == null)
+                //    {
+                //        await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+                //    }
+                //    else if (location.name.Trim() == "")
+                //    {
+                //        await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+                //    }
+                //    else
+                //    {
+                //        await App.LocationManager.SaveLocationAsync(location);
+                //        await Navigation.PopAsync();
+
+                //    }
             }
         }
     }
