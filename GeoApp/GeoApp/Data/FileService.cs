@@ -57,9 +57,9 @@ namespace GeoApp
                     var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
                     Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
                     //locations = null;
-                    features = rootobject.features;
+                    features = rootobject.Features;
                     //locations[0] = rootobject;
-                    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.features[0].properties.name, rootobject.features[0].type);
+                    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[0].Type);
                 }
                 return features.ToList();
 

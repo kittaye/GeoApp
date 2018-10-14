@@ -35,11 +35,11 @@ namespace GeoApp {
         {
             var location = (Feature)BindingContext;
 
-            if (location.properties.name == null)
+            if (location.Properties.Name == null)
             {
                 await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
             }
-            else if (location.properties.name.Trim() == "")
+            else if (location.Properties.Name.Trim() == "")
             {
                 await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
             }
