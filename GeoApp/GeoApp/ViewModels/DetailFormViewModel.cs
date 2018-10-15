@@ -28,7 +28,6 @@ namespace GeoApp {
 
         private string _dateEntry;
         private bool _isAddBtnVisible;
-        private bool _isListViewVisible;
         private bool _addFieldsBtnEnabled;
         private string _addBtnTxt;
         private int[] _gridRow = new int[2];
@@ -38,11 +37,6 @@ namespace GeoApp {
 
         public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
-
-        public bool ListViewIsVisible {
-            get { return _isListViewVisible;  }
-            set { _isListViewVisible = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ListViewIsVisible")); }
-        }
 
         public string DateEntry {
             get { return _dateEntry; }
@@ -82,7 +76,6 @@ namespace GeoApp {
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="type"></param>
         public DetailFormViewModel() {
             _detailFormPopup = new DetailFormFieldPopup();
 
@@ -94,6 +87,7 @@ namespace GeoApp {
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
             GeolocationPoints = new ObservableCollection<Point>();
+            GeolocationPoints.Add(new Point(0, 0, 0));
 
             DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command<Point>(async (point) =>  {
@@ -159,10 +153,6 @@ namespace GeoApp {
 
                 MetadataEntries.Add(new MetadataXamlLabel(result.LabelTitle, keyboardType));
 
-                if (numCustomFields > 0) {
-                    ListViewIsVisible = true;
-                }
-
                 if (numCustomFields == 5) {
                     AddFieldsBtnEnabled = false;
                 }
@@ -173,6 +163,9 @@ namespace GeoApp {
             MetadataEntries.Remove(item);
 
             numCustomFields--;
+            if (numCustomFields < 5) {
+                AddFieldsBtnEnabled = true;
+            }
         }
 
         private void DeletePoint(Point item) {
