@@ -92,8 +92,8 @@ namespace GeoApp {
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
 
             DateEntry = DateTime.Now.ToShortDateString();
-            GetLocationCommand = new Command(async () =>  {
-               await GetGeoLocation();
+            GetLocationCommand = new Command<Point>(async (point) =>  {
+               await GetGeoLocation(point);
             });
 
             AddFieldsCommand = new Command(async () => {
@@ -106,12 +106,8 @@ namespace GeoApp {
         /// <summary>
         /// Queries the current device's location coordinates
         /// </summary>
-        private async Task GetGeoLocation() {
+        private async Task GetGeoLocation(Point point) {
             try {
-                LatEntry = string.Empty;
-                LongEntry = string.Empty;
-                AltEntry = string.Empty;
-
                 // Gets last known location of device (LESS ACCURATE, but faster)
                 var location = await Geolocation.GetLastKnownLocationAsync();
 
@@ -120,10 +116,9 @@ namespace GeoApp {
                 //var location = await Geolocation.GetLocationAsync(request);
 
                 if (location != null) {
-                    LatEntry = $"{location.Latitude}";
-                    LongEntry = $"{location.Longitude}";
-                    AltEntry = $"{location.Altitude}";
-
+                    point.Latitude = location.Latitude;
+                    point.Longitude = location.Longitude;
+                    point.Altitude = (double)location.Altitude;
                 }
             } catch (FeatureNotSupportedException fnsEx) {
                 // Handle not supported on device exception

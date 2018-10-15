@@ -13,6 +13,18 @@ namespace GeoApp
         public string TypeIcon { get; set; }
     }
 
+    public class Point {
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Altitude { get; set; }
+
+        public Point(double lat, double lng, double alt) {
+            this.Latitude = lat;
+            this.Longitude = lng;
+            this.Altitude = alt;
+        }
+    }
+
     public class Geometry
     {
         public DataType Type { get; set; }
@@ -30,6 +42,5 @@ namespace GeoApp
     {
         public string Type { get; set; }
         public Feature[] Features { get; set; }
-
     }
 }
