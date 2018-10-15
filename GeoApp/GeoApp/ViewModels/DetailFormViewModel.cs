@@ -27,11 +27,7 @@ namespace GeoApp {
         private DetailFormFieldPopup _detailFormPopup;
 
         private string _dateEntry;
-        private bool _isAddBtnVisible;
-        private bool _addFieldsBtnEnabled;
-        private string _addBtnTxt;
-        private int[] _gridRow = new int[2];
-        private string[] _geoEntry = new string[3];
+        private bool _addMetadataFieldsBtnEnabled;
 
         private int numCustomFields = 0;
 
@@ -43,34 +39,9 @@ namespace GeoApp {
             set { _dateEntry = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry")); }
         }
 
-        public string LatEntry {
-            get { return _geoEntry[0]; }
-            set { _geoEntry[0] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LatEntry")); }
-        }
-
-        public string LongEntry {
-            get { return _geoEntry[1]; }
-            set { _geoEntry[1] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LongEntry")); }
-        }
-
-        public string AltEntry {
-            get { return _geoEntry[2]; }
-            set { _geoEntry[2] = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AltEntry")); }
-        }
-
-        public string AddPointBtnTxt {
-            get { return _addBtnTxt; }
-            set { _addBtnTxt = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldGridRow")); }
-        }
-
-        public bool AddBtnIsVisble {
-            get { return _isAddBtnVisible; }
-            set { _isAddBtnVisible = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddBtnIsVisble")); }
-        }
-
-        public bool AddFieldsBtnEnabled {
-            get { return _addFieldsBtnEnabled; }
-            set { _addFieldsBtnEnabled = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldsBtnEnabled")); }
+        public bool AddMetadataFieldsBtnEnabled {
+            get { return _addMetadataFieldsBtnEnabled; }
+            set { _addMetadataFieldsBtnEnabled = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldsBtnEnabled")); }
         }
 
         /// <summary>
@@ -79,11 +50,8 @@ namespace GeoApp {
         public DetailFormViewModel() {
             _detailFormPopup = new DetailFormFieldPopup();
 
-            //// UI Changes based on selected type
-            AddBtnIsVisble = false;
-
             numCustomFields = 0;
-            AddFieldsBtnEnabled = true;
+            AddMetadataFieldsBtnEnabled = true;
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
             GeolocationPoints = new ObservableCollection<Point>();
@@ -154,7 +122,7 @@ namespace GeoApp {
                 MetadataEntries.Add(new MetadataXamlLabel(result.LabelTitle, keyboardType));
 
                 if (numCustomFields == 5) {
-                    AddFieldsBtnEnabled = false;
+                    AddMetadataFieldsBtnEnabled = false;
                 }
             }
         }
@@ -164,7 +132,7 @@ namespace GeoApp {
 
             numCustomFields--;
             if (numCustomFields < 5) {
-                AddFieldsBtnEnabled = true;
+                AddMetadataFieldsBtnEnabled = true;
             }
         }
 
