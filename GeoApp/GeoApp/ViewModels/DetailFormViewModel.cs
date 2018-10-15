@@ -17,9 +17,12 @@ namespace GeoApp {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetLocationCommand { get; set; }
-        public ICommand AddPointsCommand { get; set; }
-        public ICommand AddFieldsCommand { get; set; }
-        public ICommand DeleteFieldCommand { get; set; }
+
+        public ICommand AddPointCommand { get; set; }
+        public ICommand DeletePointCommand { get; set; }
+
+        public ICommand AddMetadataFieldCommand { get; set; }
+        public ICommand DeleteMetadataFieldCommand { get; set; }
 
         private DetailFormFieldPopup _detailFormPopup;
 
@@ -34,6 +37,7 @@ namespace GeoApp {
         private int numCustomFields = 0;
 
         public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
+        public ObservableCollection<Point> GeolocationPoints { get; set; }
 
         public bool ListViewIsVisible {
             get { return _isListViewVisible;  }
@@ -87,20 +91,22 @@ namespace GeoApp {
 
             numCustomFields = 0;
             AddFieldsBtnEnabled = true;
-            ListViewIsVisible = false;
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
+            GeolocationPoints = new ObservableCollection<Point>();
 
             DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command<Point>(async (point) =>  {
                await GetGeoLocation(point);
             });
 
-            AddFieldsCommand = new Command(async () => {
+            AddMetadataFieldCommand = new Command(async () => {
                await AddMetadataField();
             });
 
-            DeleteFieldCommand = new Command<MetadataXamlLabel>((item) => DeleteMetadataField(item));
+            AddPointCommand = new Command(() => AddPoint());
+            DeleteMetadataFieldCommand = new Command<MetadataXamlLabel>((item) => DeleteMetadataField(item));
+            DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
         }
 
         /// <summary>
@@ -132,16 +138,12 @@ namespace GeoApp {
             }
         }
 
-        private async Task ViewPoints() {
-            
-        }
-
         /// <summary>
         /// Adds point data to line
         /// </summary>
         /// <returns></returns>
-        private async Task AddPoint() {
-            
+        private void AddPoint() {
+            GeolocationPoints.Add(new Point(0, 0, 0));
         }
 
         private async Task AddMetadataField() {
@@ -171,9 +173,10 @@ namespace GeoApp {
             MetadataEntries.Remove(item);
 
             numCustomFields--;
-            if (numCustomFields <= 0) {
-                ListViewIsVisible = false;
-            }
+        }
+
+        private void DeletePoint(Point item) {
+            GeolocationPoints.Remove(item);
         }
     }
 }

@@ -17,11 +17,6 @@ namespace GeoApp {
             InitializeComponent();
             Title = $"New {type}";
 
-            geolocationListView.ItemsSource = new ObservableCollection<Point>() {
-                new Point(0,0,0),
-                new Point(0,0,0)
-            };
-
             if (type == "Line" || type == "Polygon")
             {
                 addPointBtn.Text = $"Add to {type}";

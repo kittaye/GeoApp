@@ -59,10 +59,10 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                    <Button x:Name="addPointBtn" Command="{Binding AddPointsCommand}" Grid.Row="0" Grid.Column="1"/>
+                    <Button x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171"  Margin="15,0,15,10" HeightRequest="150">
+                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171"  Margin="15,0,15,10" HeightRequest="150">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -88,7 +88,7 @@
                                         <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Margin="0, 9"/>
                                         <Entry Text="{Binding Altitude}" Placeholder=""  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
 
-                                        <Button Command="{Binding DeleteFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36"/>
+                                        <Button Command="{Binding DeletePointCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36"/>
                                         <Button Command="{Binding GetLocationCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
                                     </Grid>
                                 </ViewCell>
@@ -103,7 +103,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                        <Button Text="Add Field" Command="{Binding AddFieldsCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddFieldsBtnEnabled}"/>
+                        <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddFieldsBtnEnabled}"/>
                     </Grid>
                     
                     <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
@@ -121,7 +121,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                        <Button Command="{Binding DeleteFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
+                                        <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
                                         <Entry Keyboard="{Binding KeyboardEntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                     </Grid>
                                 </ViewCell>
