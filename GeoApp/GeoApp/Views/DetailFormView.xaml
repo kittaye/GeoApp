@@ -103,7 +103,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                        <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddFieldsBtnEnabled}"/>
+                        <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
                     </Grid>
                     
                     <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">

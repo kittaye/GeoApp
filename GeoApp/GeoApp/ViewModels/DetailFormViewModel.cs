@@ -29,8 +29,6 @@ namespace GeoApp {
         private string _dateEntry;
         private bool _addMetadataFieldsBtnEnabled;
 
-        private int numCustomFields = 0;
-
         public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
@@ -41,7 +39,7 @@ namespace GeoApp {
 
         public bool AddMetadataFieldsBtnEnabled {
             get { return _addMetadataFieldsBtnEnabled; }
-            set { _addMetadataFieldsBtnEnabled = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddFieldsBtnEnabled")); }
+            set { _addMetadataFieldsBtnEnabled = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddMetadataFieldsBtnEnabled")); }
         }
 
         /// <summary>
@@ -50,12 +48,11 @@ namespace GeoApp {
         public DetailFormViewModel() {
             _detailFormPopup = new DetailFormFieldPopup();
 
-            numCustomFields = 0;
             AddMetadataFieldsBtnEnabled = true;
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
             GeolocationPoints = new ObservableCollection<Point>();
-            GeolocationPoints.Add(new Point(0, 0, 0));
+            AddPoint();
 
             DateEntry = DateTime.Now.ToShortDateString();
             GetLocationCommand = new Command<Point>(async (point) =>  {
@@ -112,16 +109,13 @@ namespace GeoApp {
             var result = await DetailFormFieldPopup.GetResultAsync();
 
             if(result != null) {
-                numCustomFields++;
-
                 Keyboard keyboardType = Keyboard.Default;
                 if(result.EntryType != MetaDataTypes.String) {
                     keyboardType = Keyboard.Numeric;
                 }
 
                 MetadataEntries.Add(new MetadataXamlLabel(result.LabelTitle, keyboardType));
-
-                if (numCustomFields == 5) {
+                if (MetadataEntries.Count == 5) {
                     AddMetadataFieldsBtnEnabled = false;
                 }
             }
@@ -129,9 +123,7 @@ namespace GeoApp {
 
         private void DeleteMetadataField(MetadataXamlLabel item) {
             MetadataEntries.Remove(item);
-
-            numCustomFields--;
-            if (numCustomFields < 5) {
+            if (MetadataEntries.Count < 5) {
                 AddMetadataFieldsBtnEnabled = true;
             }
         }
