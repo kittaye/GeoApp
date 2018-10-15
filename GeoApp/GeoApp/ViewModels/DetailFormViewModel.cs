@@ -29,12 +29,24 @@ namespace GeoApp {
         private string _dateEntry;
         private bool _addMetadataFieldsBtnEnabled;
 
+        public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
+
+        private int _numPointFields;
+
         public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
         public string DateEntry {
             get { return _dateEntry; }
             set { _dateEntry = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry")); }
+        }
+
+        public int NumPointFields {
+            get { return _numPointFields; }
+            set { _numPointFields = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumPointFields"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowPointDeleteBtn"));
+            }
         }
 
         public bool AddMetadataFieldsBtnEnabled {
@@ -49,6 +61,7 @@ namespace GeoApp {
             _detailFormPopup = new DetailFormFieldPopup();
 
             AddMetadataFieldsBtnEnabled = true;
+            NumPointFields = 0;
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
             GeolocationPoints = new ObservableCollection<Point>();
@@ -103,6 +116,12 @@ namespace GeoApp {
         /// <returns></returns>
         private void AddPoint() {
             GeolocationPoints.Add(new Point(0, 0, 0));
+            NumPointFields++;
+        }
+
+        private void DeletePoint(Point item) {
+            GeolocationPoints.Remove(item);
+            NumPointFields--;
         }
 
         private async Task AddMetadataField() {
@@ -126,10 +145,6 @@ namespace GeoApp {
             if (MetadataEntries.Count < 5) {
                 AddMetadataFieldsBtnEnabled = true;
             }
-        }
-
-        private void DeletePoint(Point item) {
-            GeolocationPoints.Remove(item);
         }
     }
 }
