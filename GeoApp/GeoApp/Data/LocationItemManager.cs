@@ -28,7 +28,7 @@ namespace GeoApp.Data
 
         public Task DeleteLocationAsync(RootObject location)
         {
-            return restService.DeleteLocationAsync(location.Features[0].Properties.Id);
+            return restService.DeleteLocationAsync(location.features[0].Properties.Id);
         }
     }
 }

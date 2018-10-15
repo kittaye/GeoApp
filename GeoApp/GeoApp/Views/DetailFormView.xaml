@@ -77,7 +77,7 @@
                         <Entry Text="{Binding AltEntry}" Placeholder=""  Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="1"/>
 
                         <Button Text="Get Current Location" Command="{Binding GetLocationCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"/>
-                        <Button x:Name="addPointBtn" Command="{Binding AddPointsCommand}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Button x:Name="addPointBtn" Command="{Binding SaveToFile}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"/>
                     </Grid>
                 </StackLayout>
 
@@ -95,6 +95,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Button Text="Add Field" Command="{Binding AddFieldsCommand}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="{Binding AddFieldsBtnEnabled}"/>
+                        <Button Text="Save (TEST BUTTON - ik its a horrible place)" Command="{Binding AddFieldsCommand}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
                     </Grid>
 
                     <ListView x:Name="listView" ItemTapped="listView_ItemTapped"  ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,15" HeightRequest="530" IsVisible="{Binding ListViewIsVisible}">

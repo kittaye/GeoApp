@@ -180,5 +180,12 @@ namespace GeoApp {
                 ListViewIsVisible = false;
             }
         }
+
+        private async Task SaveToFile()
+        {
+            Feature[] newFeature = { };
+            var result = await DetailFormView.
+            newFeature[0].Properties.Name = "";
+        }
     }
 }
