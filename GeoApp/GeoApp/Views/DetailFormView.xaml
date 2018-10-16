@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.DetailFormView"
              Title=""
-             
              BackgroundColor="#36393F">
 
     <ContentPage.BindingContext>
@@ -24,7 +23,7 @@
             <Setter Property="PlaceholderColor" Value="LightGray" />
             <Setter Property="HorizontalOptions" Value="StartAndExpand" />
         </Style>
-        
+
         <ResourceDictionary>
             <Style x:Key="PanelGrid" TargetType="Grid">
                 <Setter Property="ColumnSpacing" Value="10"/>
@@ -38,98 +37,100 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-            <StackLayout Spacing="0">
-                <StackLayout Style="{StaticResource PanelLayout}" Margin="10,10,10,10">
-                    <Grid Style="{StaticResource PanelGrid}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+        <StackLayout Spacing="0">
+            <StackLayout Style="{StaticResource PanelLayout}" Margin="10,10,10,10">
+                <Grid Style="{StaticResource PanelGrid}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                        <Label Text="Name" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"/>
-                        <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
+                    <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
-                        <Label Text="Date" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1"/>
-                        <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
-                    </Grid>
-                </StackLayout>
+                    <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
+                    <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2"/>
+                </Grid>
+            </StackLayout>
 
-                <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
+            <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
                 <Grid Style="{StaticResource PanelGrid}" Margin="15,6,15,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    
                     <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                     <Button x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171"  Margin="15,0,15,10" HeightRequest="150">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Style="{StaticResource PanelGrid}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Margin="15,5,15,5">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="36"/>
-                                        </Grid.ColumnDefinitions>
+                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Style="{StaticResource PanelGrid}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Margin="15,5,15,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="36"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0, 9"/>
-                                        <Entry Text="{Binding Latitude}" Placeholder=""  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"/>
+                                    <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                                    <Entry Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0"/>
 
-                                        <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Margin="0, 9"/>
-                                        <Entry Text="{Binding Longitude}" Placeholder=""  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1"/>
+                                    <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
+                                    <Entry Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1"/>
 
-                                        <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Margin="0, 9"/>
-                                        <Entry Text="{Binding Altitude}" Placeholder=""  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"/>
+                                    <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
+                                    <Entry Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2"/>
 
                                     <Button Command="{Binding DeletePointCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding ShowPointDeleteBtn, Source={x:Reference Name=viewModel}}"/>
                                     <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding LoadingIconActive, Source={x:Reference Name=viewModel}}" IsVisible="{Binding LoadingIconActive, Source={x:Reference Name=viewModel}}"/>
                                     <Button Command="{Binding GetLocationCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-
-                <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
-                    <Grid Style="{StaticResource PanelGrid}" Margin="15,6,15,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                        <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
-                    </Grid>
-                    
-                    <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Style="{StaticResource PanelGrid}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="36"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                        <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                                        <Entry Keyboard="{Binding KeyboardEntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
+
+            <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
+                <Grid Style="{StaticResource PanelGrid}" Margin="15,6,15,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                    <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
+                </Grid>
+
+                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Style="{StaticResource PanelGrid}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="36"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
+                                    <Entry Keyboard="{Binding KeyboardEntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
