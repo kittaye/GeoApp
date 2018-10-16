@@ -17,10 +17,8 @@ namespace GeoApp {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetLocationCommand { get; set; }
-
         public ICommand AddPointCommand { get; set; }
         public ICommand DeletePointCommand { get; set; }
-
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
 
@@ -34,7 +32,7 @@ namespace GeoApp {
 
         public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
 
-        public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
+        public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
         public string DateEntry {
@@ -84,7 +82,7 @@ namespace GeoApp {
             LoadingIconActive = false;
             NumPointFields = 0;
 
-            MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
+            MetadataEntries = new ObservableCollection<MetadataEntry>();
             GeolocationPoints = new ObservableCollection<Point>();
             AddPoint();
 
@@ -98,7 +96,7 @@ namespace GeoApp {
             });
 
             AddPointCommand = new Command(() => AddPoint());
-            DeleteMetadataFieldCommand = new Command<MetadataXamlLabel>((item) => DeleteMetadataField(item));
+            DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
             DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
         }
 
@@ -154,19 +152,14 @@ namespace GeoApp {
             var result = await DetailFormFieldPopup.GetResultAsync();
 
             if(result != null) {
-                Keyboard keyboardType = Keyboard.Default;
-                if(result.EntryType != MetaDataTypes.String) {
-                    keyboardType = Keyboard.Numeric;
-                }
-
-                MetadataEntries.Add(new MetadataXamlLabel(result.LabelTitle, keyboardType));
+                MetadataEntries.Add(result);
                 if (MetadataEntries.Count == 5) {
                     AddMetadataFieldsBtnEnabled = false;
                 }
             }
         }
 
-        private void DeleteMetadataField(MetadataXamlLabel item) {
+        private void DeleteMetadataField(MetadataEntry item) {
             MetadataEntries.Remove(item);
             if (MetadataEntries.Count < 5) {
                 AddMetadataFieldsBtnEnabled = true;
