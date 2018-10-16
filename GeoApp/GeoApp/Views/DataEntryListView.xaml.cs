@@ -27,12 +27,18 @@ namespace GeoApp
             if(App.LocationManager.CurrentLocations == null) {
                 loadingList.IsRunning = true;
                 loadingList.IsVisible = true;
-                App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+                App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
                 loadingList.IsRunning = false;
                 loadingList.IsVisible = false;
             }
 
             listView.ItemsSource = App.LocationManager.CurrentLocations;
+        }
+
+        protected override void OnDisappearing() {
+            loadingList.IsRunning = false;
+            loadingList.IsVisible = false;
+            base.OnDisappearing();
         }
     }
 }
