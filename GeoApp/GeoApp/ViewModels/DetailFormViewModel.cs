@@ -94,9 +94,12 @@ namespace GeoApp {
                 //var location = await Geolocation.GetLocationAsync(request);
 
                 if (location != null) {
-                    point.Latitude = location.Latitude;
-                    point.Longitude = location.Longitude;
-                    point.Altitude = (double)location.Altitude;
+                    GeolocationPoints[GeolocationPoints.IndexOf(point)].Latitude = location.Latitude;
+                    GeolocationPoints[GeolocationPoints.IndexOf(point)].Longitude = location.Longitude;
+                    GeolocationPoints[GeolocationPoints.IndexOf(point)].Altitude = (double)location.Altitude;
+                    //point.Latitude = location.Latitude;
+                    //point.Longitude = location.Longitude;
+                    //point.Altitude = (double)location.Altitude;
                 }
             } catch (FeatureNotSupportedException fnsEx) {
                 // Handle not supported on device exception
