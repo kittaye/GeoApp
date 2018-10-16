@@ -16,7 +16,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator x:Name="loadingList"/>
+            <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="White" Margin="0,15"/>
 
             <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="#515151">
                 <ListView.ItemTemplate>
