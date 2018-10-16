@@ -29,6 +29,7 @@ namespace GeoApp {
         private string _dateEntry;
         private bool _addMetadataFieldsBtnEnabled;
         private int _numPointFields;
+        private bool _loadingIconActive;
 
         public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
 
@@ -37,7 +38,16 @@ namespace GeoApp {
 
         public string DateEntry {
             get { return _dateEntry; }
-            set { _dateEntry = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry")); }
+            set { _dateEntry = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry"));
+            }
+        }
+
+        public bool LoadingIconActive {
+            get { return _loadingIconActive; }
+            set { _loadingIconActive = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoadingIconActive"));
+            }
         }
 
         public int NumPointFields {
@@ -50,7 +60,9 @@ namespace GeoApp {
 
         public bool AddMetadataFieldsBtnEnabled {
             get { return _addMetadataFieldsBtnEnabled; }
-            set { _addMetadataFieldsBtnEnabled = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddMetadataFieldsBtnEnabled")); }
+            set { _addMetadataFieldsBtnEnabled = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddMetadataFieldsBtnEnabled"));
+            }
         }
 
         /// <summary>
@@ -60,6 +72,7 @@ namespace GeoApp {
             _detailFormPopup = new DetailFormFieldPopup();
 
             AddMetadataFieldsBtnEnabled = true;
+            LoadingIconActive = false;
             NumPointFields = 0;
 
             MetadataEntries = new ObservableCollection<MetadataXamlLabel>();
@@ -86,7 +99,13 @@ namespace GeoApp {
         private async Task GetGeoLocation(Point point) {
             try {
                 // Gets last known location of device (LESS ACCURATE, but faster)
+<<<<<<< Updated upstream
                 //var location = await Geolocation.GetLastKnownLocationAsync();
+=======
+                LoadingIconActive = true;
+                var location = await Geolocation.GetLastKnownLocationAsync();
+                LoadingIconActive = false;
+>>>>>>> Stashed changes
 
                 // Gets current location of device (MORE ACCURATE, but slower)
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
