@@ -30,6 +30,7 @@ namespace GeoApp {
         private bool _addMetadataFieldsBtnEnabled;
         private int _numPointFields;
         private bool _loadingIconActive;
+        private bool _geolocationEntryEnabled;
 
         public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
 
@@ -47,6 +48,13 @@ namespace GeoApp {
             get { return _loadingIconActive; }
             set { _loadingIconActive = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoadingIconActive"));
+            }
+        }
+
+        public bool GeolocationEntryEnabled {
+            get { return _geolocationEntryEnabled; }
+            set { _geolocationEntryEnabled = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GeolocationEntryEnabled"));
             }
         }
 
@@ -72,6 +80,7 @@ namespace GeoApp {
             _detailFormPopup = new DetailFormFieldPopup();
 
             AddMetadataFieldsBtnEnabled = true;
+            GeolocationEntryEnabled = true;
             LoadingIconActive = false;
             NumPointFields = 0;
 
@@ -100,12 +109,15 @@ namespace GeoApp {
             try {
                 // Gets last known location of device (LESS ACCURATE, but faster)
                 //var location = await Geolocation.GetLastKnownLocationAsync();
-
+                GeolocationEntryEnabled = false;
                 LoadingIconActive = true;
+
                 // Gets current location of device (MORE ACCURATE, but slower)
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 var location = await Geolocation.GetLocationAsync(request);
+
                 LoadingIconActive = false;
+                GeolocationEntryEnabled = true;
 
                 if (location != null) {
                     point.Latitude = location.Latitude;
