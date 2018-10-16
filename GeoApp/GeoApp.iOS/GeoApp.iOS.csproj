@@ -27,6 +27,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -48,9 +49,10 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>iOS Team Provisioning Profile: com.companyname.GeoApp</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -139,6 +141,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Media.xcassets\Contents.json" />
+    <ImageAsset Include="Media.xcassets\Image.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon.png" />
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\home_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\home_icon.imageset\home_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -158,8 +166,13 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\GeoApp\GeoApp.csproj">
-      <Project>{584A27A7-45EC-4E36-98C4-C4D562C4CAE9}</Project>
+      <Project>{E610A925-2B87-48CE-A0CB-45BB375BDEBC}</Project>
       <Name>GeoApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\.dataset\" />
+    <Folder Include="Assets.xcassets\add_icon.imageset\" />
+    <Folder Include="Assets.xcassets\home_icon.imageset\" />
   </ItemGroup>
 </Project>
