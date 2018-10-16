@@ -99,17 +99,13 @@ namespace GeoApp {
         private async Task GetGeoLocation(Point point) {
             try {
                 // Gets last known location of device (LESS ACCURATE, but faster)
-<<<<<<< Updated upstream
                 //var location = await Geolocation.GetLastKnownLocationAsync();
-=======
-                LoadingIconActive = true;
-                var location = await Geolocation.GetLastKnownLocationAsync();
-                LoadingIconActive = false;
->>>>>>> Stashed changes
 
+                LoadingIconActive = true;
                 // Gets current location of device (MORE ACCURATE, but slower)
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 var location = await Geolocation.GetLocationAsync(request);
+                LoadingIconActive = false;
 
                 if (location != null) {
                     point.Latitude = location.Latitude;
