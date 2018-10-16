@@ -28,10 +28,9 @@ namespace GeoApp {
 
         private string _dateEntry;
         private bool _addMetadataFieldsBtnEnabled;
+        private int _numPointFields;
 
         public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
-
-        private int _numPointFields;
 
         public ObservableCollection<MetadataXamlLabel> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
@@ -94,12 +93,9 @@ namespace GeoApp {
                 //var location = await Geolocation.GetLocationAsync(request);
 
                 if (location != null) {
-                    GeolocationPoints[GeolocationPoints.IndexOf(point)].Latitude = location.Latitude;
-                    GeolocationPoints[GeolocationPoints.IndexOf(point)].Longitude = location.Longitude;
-                    GeolocationPoints[GeolocationPoints.IndexOf(point)].Altitude = (double)location.Altitude;
-                    //point.Latitude = location.Latitude;
-                    //point.Longitude = location.Longitude;
-                    //point.Altitude = (double)location.Altitude;
+                    point.Latitude = location.Latitude;
+                    point.Longitude = location.Longitude;
+                    point.Altitude = (double)location.Altitude;
                 }
             } catch (FeatureNotSupportedException fnsEx) {
                 // Handle not supported on device exception
