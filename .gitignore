@@ -334,3 +334,9 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+GeoApp/GeoApp.Android/Resources/.DS_Store
+GeoApp/GeoApp.Android/Resources/drawable/.DS_Store
+GeoApp/GeoApp.Android/Resources/.DS_Store
+GeoApp/.DS_Store
+GeoApp/GeoApp.iOS/Assets.xcassets/.DS_Store
+GeoApp/GeoApp.iOS/.DS_Store
