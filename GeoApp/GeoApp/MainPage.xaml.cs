@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +33,6 @@ namespace GeoApp {
             }
         }
 
-
         //----- Pages to Navigate ----//
 
         /// <summary>
@@ -44,10 +43,9 @@ namespace GeoApp {
             Detail.Navigation.PushAsync(new NewDetailFormView(type));
         }
 
-        private void ShowExistingDetailFormPage(string type) {
-            Detail.Navigation.PushAsync(new DetailFormView(type));
+        private void ShowExistingDetailFormPage(string name) {
+            Detail.Navigation.PushAsync(new ExistingDetailFormView(name));
         }
-
 
         /// <summary>
         /// Displays a pop-up user interface to navigate to different data entry types
