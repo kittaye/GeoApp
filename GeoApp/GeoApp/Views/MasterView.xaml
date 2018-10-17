@@ -11,7 +11,6 @@
             <Label Text="GeoAware" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="Large"/>
         </StackLayout>
 
-
         <ListView x:Name="listView" x:FieldModifier="public" HasUnevenRows="True">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterViewItem}">
