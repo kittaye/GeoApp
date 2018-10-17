@@ -70,11 +70,8 @@ namespace GeoApp.Views.Popups {
 
                 try {
                     mle.LabelTitle = entryTitle.Text;
-                    if(picker.SelectedItem.ToString() != "String") {
-                        mle.EntryType = Keyboard.Numeric;
-                    } else {
-                        mle.EntryType = Keyboard.Default;
-                    }
+                    mle.EntryType = (MetaDataTypes)Enum.Parse(typeof(MetaDataTypes), picker.SelectedItem.ToString(), true);
+
                 } catch (Exception exception) {
                     throw exception;
                 }

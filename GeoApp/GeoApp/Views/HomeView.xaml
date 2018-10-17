@@ -4,7 +4,7 @@
              x:Class="GeoApp.HomeView"
              Title = "Home"
              BackgroundColor="#36393F">
-
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="I am the home page."
