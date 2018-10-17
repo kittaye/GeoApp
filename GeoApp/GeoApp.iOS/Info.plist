@@ -20,10 +20,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access location when open.</string>
 	<key>MinimumOSVersion</key>
-	<string>11.3</string>
+	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>GeoApp</string>
 	<key>CFBundleIdentifier</key>
@@ -36,7 +34,5 @@
 	<string>GeoApp</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
 </dict>
 </plist>

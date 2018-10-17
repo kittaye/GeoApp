@@ -141,6 +141,15 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Media.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\Image.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\add_icon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -150,11 +159,6 @@
     <ImageAsset Include="Assets.xcassets\home_icon.imageset\home_icon.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon.png" />
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\area_icon.png" />
-    <ImageAsset Include="Assets.xcassets\data_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -182,7 +186,5 @@
     <Folder Include="Assets.xcassets\.dataset\" />
     <Folder Include="Assets.xcassets\add_icon.imageset\" />
     <Folder Include="Assets.xcassets\home_icon.imageset\" />
-    <Folder Include="Assets.xcassets\area_icon.imageset\" />
-    <Folder Include="Assets.xcassets\data_icon.imageset\" />
   </ItemGroup>
 </Project>

@@ -12,27 +12,34 @@ namespace GeoApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DataEntryListView : ContentPage
 	{
+        bool isFetchingData;
 		public DataEntryListView()
 		{
 			InitializeComponent ();
-            loadingList.IsVisible = false;
-            loadingList.Color = Color.White;
-            loadingList.Margin = new Thickness(0, 10, 0, 0);
+            isFetchingData = false;
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            if(App.LocationManager.CurrentLocations == null) {
+
+            if (App.LocationManager.CurrentLocations == null && isFetchingData == false) {
+                isFetchingData = true;
                 loadingList.IsRunning = true;
                 loadingList.IsVisible = true;
-                App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+                App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
                 loadingList.IsRunning = false;
                 loadingList.IsVisible = false;
             }
 
             listView.ItemsSource = App.LocationManager.CurrentLocations;
+        }
+
+        protected override void OnDisappearing() {
+            loadingList.IsRunning = false;
+            loadingList.IsVisible = false;
+            base.OnDisappearing();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace GeoApp
@@ -29,7 +30,6 @@ namespace GeoApp
     public class RootObject
     {
         public string Type { get; set; }
-        public Feature[] features { get; set; }
-
+        public Feature[] Features { get; set; }
     }
 }
