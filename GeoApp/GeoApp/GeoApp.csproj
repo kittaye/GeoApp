@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\HomePage.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Views\MasterView.xaml.cs">
       <DependentUpon>MasterView.xaml</DependentUpon>
     </Compile>
