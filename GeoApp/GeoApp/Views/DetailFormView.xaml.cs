@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +15,6 @@ namespace GeoApp {
         {
             InitializeComponent();
             Title = $"New {type}";
-
             if (type == "Line" || type == "Polygon")
             {
                 addPointBtn.Text = $"Add to {type}";
@@ -30,7 +28,6 @@ namespace GeoApp {
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            geolocationListView.SelectedItem = null;
             listView.SelectedItem = null;
         }
 
