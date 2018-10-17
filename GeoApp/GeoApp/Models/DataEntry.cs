@@ -30,7 +30,6 @@ namespace GeoApp
     public class RootObject
     {
         public string Type { get; set; }
-
-        public Feature[] features { get; set; }
+        public Feature[] Features { get; set; }
     }
 }

@@ -10,10 +10,9 @@ namespace GeoApp {
         private static MainPage instance;
         public static MainPage Instance {
             get {
-                if(instance == null && App.device == Device.Android) {
+                if(instance == null) {
                     instance = new MainPage();
                 }
-                else new NavigationPage(new MainTabbedPage());
                 return instance;
             }
         }
