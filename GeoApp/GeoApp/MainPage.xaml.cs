@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,9 +40,14 @@ namespace GeoApp {
         /// Asynchronously adds DetailFormView to the top of the navigation stack.
         /// </summary>
         /// <param name="type">Data entry type</param>
-        private void ShowDetailFormPage(string type) {
+        private void ShowNewDetailFormPage(string type) {
+            Detail.Navigation.PushAsync(new NewDetailFormView(type));
+        }
+
+        private void ShowExistingDetailFormPage(string type) {
             Detail.Navigation.PushAsync(new DetailFormView(type));
         }
+
 
         /// <summary>
         /// Displays a pop-up user interface to navigate to different data entry types
@@ -52,13 +57,13 @@ namespace GeoApp {
             var action = await DisplayActionSheet("Select a Data Type", "Cancel", null, "Point", "Line", "Polygon");
             switch (action) {
                 case "Point":
-                    ShowDetailFormPage("Point");
+                    ShowNewDetailFormPage("Point");
                     break;
                 case "Line":
-                    ShowDetailFormPage("Line");
+                    ShowNewDetailFormPage("Line");
                     break;
                 case "Polygon":
-                    ShowDetailFormPage("Polygon");
+                    ShowNewDetailFormPage("Polygon");
                     break;
                 default:
                     break;
