@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HomeView : ContentPage
+	public partial class ExportView : ContentPage
 	{
-		public HomeView ()
+		public ExportView()
 		{
 			InitializeComponent ();
 		}

@@ -11,13 +11,7 @@ namespace GeoApp {
 
         public App() {
             InitializeComponent();
-            if (Device.Android == Device.RuntimePlatform){
-                MainPage = GeoApp.MainPage.Instance;
-            }
-            else{
-                MainPage = new GeoApp.HomePage ();
-            }
-
+            MainPage = GeoApp.HomePage.Instance;
             LocationManager = new LocationItemManager(new FileService());
         }
 

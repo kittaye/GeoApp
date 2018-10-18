@@ -7,13 +7,12 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
-    class DataEntryListViewModel : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
+    class DataEntryListViewModel {
         public ICommand ButtonClickedCommand { set; get; }
 
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
-                await MainPage.Instance.ShowDetailFormOptions();
+                await HomePage.Instance.ShowDetailFormOptions();
             });
         }
     }

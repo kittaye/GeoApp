@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" BarBackgroundColor="#202225" BarTextColor="White"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="GeoApp.HomePage">
-    <TabbedPage.Content>
-    </TabbedPage.Content>
 </TabbedPage>

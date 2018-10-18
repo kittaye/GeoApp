@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MasterView : ContentPage
+	public partial class ImportView : ContentPage
 	{
-		public MasterView ()
+		public ImportView()
 		{
 			InitializeComponent ();
 		}
