@@ -11,7 +11,7 @@ namespace GeoApp {
 
         public App() {
             InitializeComponent();
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new NavigationPage(HomePage.Instance);
             LocationManager = new LocationItemManager(new FileService());
         }
 
