@@ -131,5 +131,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\export_icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\drawable\profile_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
