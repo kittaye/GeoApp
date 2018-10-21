@@ -160,16 +160,22 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\export_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon.png" />
     <ImageAsset Include="Assets.xcassets\import_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon.png" />
     <ImageAsset Include="Assets.xcassets\line_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\edit_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\edit_icon.imageset\edit_icon.png" />
     <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon.png" />
-    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\data_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png" />
+    <ImageAsset Include="Assets.xcassets\export_icon.imageset\ezgif.com-gif-maker-2.png" />
+    <ImageAsset Include="Assets.xcassets\export_icon.imageset\ezgif.com-gif-maker.png" />
+    <ImageAsset Include="Assets.xcassets\data_icon.imageset\ezgif.com-gif-maker-5.png" />
+    <ImageAsset Include="Assets.xcassets\data_icon.imageset\ezgif.com-gif-maker-6.png" />
+    <ImageAsset Include="Assets.xcassets\import_icon.imageset\ezgif.com-gif-maker-7.png" />
+    <ImageAsset Include="Assets.xcassets\import_icon.imageset\ezgif.com-gif-maker-8.png" />
+    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\ezgif.com-gif-maker-10.png" />
+    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\ezgif.com-gif-maker-9.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -202,5 +208,6 @@
     <Folder Include="Assets.xcassets\line_icon.imageset\" />
     <Folder Include="Assets.xcassets\edit_icon.imageset\" />
     <Folder Include="Assets.xcassets\data_icon.imageset\" />
+    <Folder Include="Assets.xcassets\profile_icon.imageset\" />
   </ItemGroup>
 </Project>
