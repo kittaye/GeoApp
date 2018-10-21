@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" BarBackgroundColor="#FFFFFF" Title="My GeoData" BarTextColor="Black"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" Title = "GeoAware"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarBackgroundColor="#202225"
             android:TabbedPage.BarSelectedItemColor="White"
+            android:TabbedPage.BarTextColor="White"
             xmlns:local="clr-namespace:GeoApp;assembly=GeoApp"
             x:Class="GeoApp.HomePage">
             <local:DataEntryListView Icon="data_icon"/>
