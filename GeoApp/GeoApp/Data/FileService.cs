@@ -12,7 +12,7 @@ namespace GeoApp
     public class FileService : IDataService
     {
         bool hasBeenUpdated = false;
-        string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "locations.json");
+        string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GALocations.txt");
 
         public FileService()
         {
@@ -36,16 +36,24 @@ namespace GeoApp
 
                 string json;
 
-                if (hasBeenUpdated == false)
-                {
+                if (hasBeenUpdated == false) {
                     string[] res = this.GetType().Assembly.GetManifestResourceNames();
                     var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                    Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                    Stream stream = assembly.GetManifestResourceStream(fileName);
+                    Debug.WriteLine("HELLO:::::::::::::              {0}", stream);
 
+                    if (stream == null)
+                    {
+                        stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                    }
+                    Debug.WriteLine("HELLO2:::::::::::::              {0}", stream);
                     using (var reader = new System.IO.StreamReader(stream))
                     {
+                        
+
                         json = reader.ReadToEnd();
                     }
+                    Debug.WriteLine("HELLO3");
                 }
                 else
                 {
@@ -59,7 +67,7 @@ namespace GeoApp
                     //locations = null;
                     features = rootobject.Features;
                     //locations[0] = rootobject;
-                    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[0].Type);
+                    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
                 }
                 return features.ToList();
 
@@ -68,35 +76,22 @@ namespace GeoApp
 
         public Task SaveLocationAsync(Feature location)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
-                List<Feature> locations = App.LocationManager.CurrentLocations;
+                
 
-                //    if (locations.Id == null)
-                //    {
-                //        locations.Id = DateTime.Now.GetHashCode();
-                //        locations.Add(item);
-                //    }
+                // List<Feature> locations = App.LocationManager.CurrentLocations;
+                List<Feature> locations = await App.LocationManager.GetLocationsAsync();
+                locations[0].Properties.Id = DateTime.Now.GetHashCode();
 
-                Feature[] locationsArr = locations.ToArray<Feature>();
+                
                 Feature rootobject = new Feature();
-            //    rootobject.features[].properties = locationsArr;
+
+                rootobject = locations[0];
                 var json = JsonConvert.SerializeObject(rootobject);
-            //    List<Properties> locations = App.LocationManager.CurrentLocations;
-
-            ////    if (locations.Id == null)
-            ////    {
-            ////        locations.Id = DateTime.Now.GetHashCode();
-            ////        locations.Add(item);
-            ////    }
-
-            //    Properties[] locationsArr = locations.ToArray<Properties>();
-            //    RootObject rootobject = new RootObject();
-            ////    rootobject.features[].properties = locationsArr;
-            //    var json = JsonConvert.SerializeObject(rootobject);
-
-            //    File.WriteAllText(fileName, json);
-            //    hasBeenUpdated = true;
+                Debug.WriteLine("HELLO:::::::::::::              {0},{1}", json, json.ToString());
+                File.WriteAllText(fileName, json);
+                hasBeenUpdated = true;
             });
         }
     }

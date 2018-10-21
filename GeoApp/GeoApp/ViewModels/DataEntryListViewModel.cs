@@ -21,7 +21,6 @@ namespace GeoApp {
 
         async void OnSaveUpdateActivated(Feature e)
         {
-            Debug.WriteLine("HELLO:::::::::::::              Saving now--------------------------------------------------------------");
             await App.LocationManager.SaveLocationAsync(e);
 
         }

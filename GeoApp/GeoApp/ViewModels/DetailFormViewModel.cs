@@ -24,7 +24,6 @@ namespace GeoApp
         public ICommand DeletePointCommand { get; set; }
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
-        public ICommand ButtonSaveCommand { get; set; }
 
         private DetailFormFieldPopup _detailFormPopup;
 

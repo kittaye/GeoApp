@@ -1,16 +1,19 @@
 {
-  "Type": "FeatureCollection",
-  "Features": [
+  "type": "FeatureCollection",
+  "features": [
     {
-      "Type": "Feature",
-      "Properties": {
-        "Id": 1,
-        "Name": "S601",
-        "TypeIcon": "point_icon.png"
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "S601",
+        "float": 0,
+        "int": 1,
+        "string": "Computer lab",
+        "elevation_m": "-3.78179931640625"
       },
-      "Geometry": {
-        "Type": "Point",
-        "Coordinates": [
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           153.02685303627794,
           -27.477383357498308,
           -3.78179931640625
@@ -18,18 +21,1104 @@
       }
     },
     {
-      "Type": "Feature",
-      "Properties": {
-        "Id": 2,
-        "Name": "PSM",
-        "TypeIcon": "point_icon.png"
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "PSM",
+        "float": 0,
+        "int": 2,
+        "string": "",
+        "elevation_m": "13"
       },
-      "Geometry": {
-        "Type": "Point",
-        "Coordinates": [
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           153.02734886791072,
           -27.47480313686381,
           13
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "name": "Ame",
+        "float": 2,
+        "int": 3,
+        "string": "Rubbish bins",
+        "elevation_m": "5.97650146484375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0316468143398,
+          -27.476864350053926,
+          5.97650146484375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "name": "Ame",
+        "float": 1,
+        "int": 4,
+        "string": "Table",
+        "elevation_m": "2.8031005859375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0314353389228,
+          -27.4768941477197,
+          2.8031005859375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "name": "Inf",
+        "float": 1,
+        "int": 7,
+        "string": "Bubbler & tap",
+        "elevation_m": "13.20245361328125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03142326898222,
+          -27.47732992286559,
+          13.20245361328125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "name": "Inf",
+        "float": 1,
+        "int": 8,
+        "string": "Sprinkler",
+        "elevation_m": "6.49652099609375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03132260232513,
+          -27.477310770216842,
+          6.49652099609375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "name": "Inf",
+        "float": 1,
+        "int": 9,
+        "string": "Light pole",
+        "elevation_m": "9.7144775390625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03117969087606,
+          -27.477063797439893,
+          9.7144775390625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "name": "Veg",
+        "float": 14,
+        "int": 1,
+        "string": "Proteaceae, Grevillea hiliana, White Silky Oak",
+        "elevation_m": "1.402587890625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03123937002664,
+          -27.47631336564894,
+          1.402587890625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "name": "Veg",
+        "float": 25,
+        "int": 2,
+        "string": "Celastraceae, Cassine quadrangulata ",
+        "elevation_m": "0.91851806640625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03134355708306,
+          -27.476528780560454,
+          0.91851806640625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "name": "Veg",
+        "float": 20,
+        "int": 3,
+        "string": "Cupressaceae, Cupressus funebris, Funeral Cypress",
+        "elevation_m": "1.4342041015625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0313376059318,
+          -27.47666004116412,
+          1.4342041015625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "name": "Veg",
+        "float": 20,
+        "int": 4,
+        "string": "Myrtaceae, Melaleuca bracteata, Black Titree",
+        "elevation_m": "-0.43365478515625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0315157213742,
+          -27.47676900590535,
+          -0.43365478515625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "name": "Inf",
+        "float": 1,
+        "int": 5,
+        "string": "Tap",
+        "elevation_m": "0.06536865234375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03147967919057,
+          -27.476868582915028,
+          0.06536865234375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "name": "Veg",
+        "float": 35,
+        "int": 6,
+        "string": "Moraceae, Ficus benjamina, Weeping Fig",
+        "elevation_m": "-1.0845947265625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03163507967537,
+          -27.476697759728392,
+          -1.0845947265625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "name": "Inf",
+        "float": 1,
+        "int": 7,
+        "string": "Tap",
+        "elevation_m": "-4.03582763671875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03149065948372,
+          -27.476436286258952,
+          -4.03582763671875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "name": "Inf",
+        "float": 1,
+        "int": 8,
+        "string": "Fire hydrant ",
+        "elevation_m": "-5.0223388671875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03125764257555,
+          -27.47663292570736,
+          -5.0223388671875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "name": "Inf",
+        "float": 1,
+        "int": 9,
+        "string": "Fire hydrant",
+        "elevation_m": "-5.065673828125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03124766811078,
+          -27.47673631648298,
+          -5.065673828125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20,
+        "name": "Inf",
+        "float": 1,
+        "int": 10,
+        "string": "Sprinkler",
+        "elevation_m": "-4.4439697265625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03135084933882,
+          -27.476861625935395,
+          -4.4439697265625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21,
+        "name": "Inf",
+        "float": 1,
+        "int": 11,
+        "string": "Light",
+        "elevation_m": "-0.43096923828125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03141161813681,
+          -27.47701375747796,
+          -0.43096923828125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22,
+        "name": "Inf",
+        "float": 1,
+        "int": 12,
+        "string": "Distribution Board -R4",
+        "elevation_m": "2.2232666015625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03147909245735,
+          -27.477134834069272,
+          2.2232666015625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23,
+        "name": "Inf",
+        "float": 1,
+        "int": 13,
+        "string": "Public Information board",
+        "elevation_m": "-3.4073486328125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03147406331544,
+          -27.4771885620686,
+          -3.4073486328125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24,
+        "name": "Inf",
+        "float": 1,
+        "int": 14,
+        "string": "Sprinkler",
+        "elevation_m": "-4.3291015625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03146358593648,
+          -27.477223221238216,
+          -4.3291015625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25,
+        "name": "Inf",
+        "float": 1,
+        "int": 15,
+        "string": "BCC Sign",
+        "elevation_m": "-2.2452392578125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03141404888873,
+          -27.477303184594472,
+          -2.2452392578125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26,
+        "name": "Inf",
+        "float": 3,
+        "int": 16,
+        "string": "Bubbler & Tap combo",
+        "elevation_m": "0.3704833984375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03139141775017,
+          -27.477326444375773,
+          0.3704833984375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27,
+        "name": "Inf",
+        "float": 1,
+        "int": 17,
+        "string": "Sprinkler",
+        "elevation_m": "-0.76312255859375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03130751489942,
+          -27.47739387678679,
+          -0.76312255859375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28,
+        "name": "Veg",
+        "float": 25,
+        "int": 18,
+        "string": "Fig, Castanospermum, Australia, Black bean",
+        "elevation_m": "2.446533203125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03129234365468,
+          -27.477282020288964,
+          2.446533203125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29,
+        "name": "Veg",
+        "float": 4,
+        "int": 19,
+        "string": "Arecaceae, Syagrus romanzoffiana, Queen Palm, ",
+        "elevation_m": "-0.24365234375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0311224424774,
+          -27.477218653100987,
+          -0.24365234375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30,
+        "name": "Veg",
+        "float": 1,
+        "int": 20,
+        "string": "Arecaceae, Syagrus romanzoffiana, Queen palm ",
+        "elevation_m": "-0.9207763671875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03113057292347,
+          -27.477219197924693,
+          -0.9207763671875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31,
+        "name": "Veg",
+        "float": 20,
+        "int": 21,
+        "string": "Arecaceae, Syagrus romanzoffiana, Queen palm ",
+        "elevation_m": "-1.02734375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03108531064635,
+          -27.4772033561277,
+          -1.02734375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32,
+        "name": "Veg",
+        "float": 12,
+        "int": 22,
+        "string": "Arecaceae, Hyophorbe verschaffeltii, spindle palm",
+        "elevation_m": "-2.759521484375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03111623986905,
+          -27.477181688908,
+          -2.759521484375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33,
+        "name": "Inf",
+        "float": 1,
+        "int": 23,
+        "string": "Sprinkler",
+        "elevation_m": "17.0791015625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03113895482664,
+          -27.477266220401486,
+          17.0791015625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 34,
+        "name": "Inf",
+        "float": 1,
+        "int": 24,
+        "string": "Tap",
+        "elevation_m": "23.02142333984375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03114851019626,
+          -27.47723935640182,
+          23.02142333984375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35,
+        "name": "Inf",
+        "float": 1,
+        "int": 25,
+        "string": "Light",
+        "elevation_m": "17.88140869140625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0311911740834,
+          -27.4772403622302,
+          17.88140869140625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 36,
+        "name": "Veg",
+        "float": 2,
+        "int": 26,
+        "string": "Cycad, Lepidozamia peroffskyanna, Burrawang",
+        "elevation_m": "9.07269287109375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03113333895152,
+          -27.47736470776375,
+          9.07269287109375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 37,
+        "name": "Inf",
+        "float": 1,
+        "int": 27,
+        "string": "Light",
+        "elevation_m": "6.42584228515625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03112437031513,
+          -27.477426817666252,
+          6.42584228515625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 38,
+        "name": "Inf",
+        "float": 1,
+        "int": 28,
+        "string": "Light",
+        "elevation_m": "0.911865234375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0309977197582,
+          -27.47740234250899,
+          0.911865234375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39,
+        "name": "Inf",
+        "float": 1,
+        "int": 29,
+        "string": "Light",
+        "elevation_m": "1.71142578125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03088925793116,
+          -27.47743352318879,
+          1.71142578125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40,
+        "name": "Veg",
+        "float": 15,
+        "int": 1,
+        "string": "Fabaceae, Myroxylon Bala summer, balsam of Peru",
+        "elevation_m": "44.246826171875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0306963903392,
+          -27.47748046184655,
+          44.246826171875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 41,
+        "name": "Inf",
+        "float": 1,
+        "int": 2,
+        "string": "Light ",
+        "elevation_m": "7.70379638671875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03086126237457,
+          -27.4775244668382,
+          7.70379638671875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 42,
+        "name": "Inf",
+        "float": 1,
+        "int": 3,
+        "string": "Sprinkler",
+        "elevation_m": "8.02325439453125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03086126237457,
+          -27.4775244668382,
+          8.02325439453125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 43,
+        "name": "Inf",
+        "float": 1,
+        "int": 4,
+        "string": "Light",
+        "elevation_m": "8.02215576171875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03089956767207,
+          -27.477603675823172,
+          8.02215576171875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 44,
+        "name": "Veg",
+        "float": 10,
+        "int": 5,
+        "string": "Arecaceae, Thrinax excelsa, A Thatch Palm",
+        "elevation_m": "6.24688720703125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03092680885737,
+          -27.477660421307643,
+          6.24688720703125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 45,
+        "name": "Inf",
+        "float": 1,
+        "int": 6,
+        "string": "Sprinkler",
+        "elevation_m": "5.15008544921875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03105765036588,
+          -27.47768573465522,
+          5.15008544921875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 46,
+        "name": "Inf",
+        "float": 1,
+        "int": 7,
+        "string": "Light",
+        "elevation_m": "4.82220458984375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03105765036588,
+          -27.47768573465522,
+          4.82220458984375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 47,
+        "name": "Veg",
+        "float": 25,
+        "int": 8,
+        "string": "Proteaceae, Alloyxlon flammeum, Native waratah",
+        "elevation_m": "-0.3143310546875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0309842248941,
+          -27.477561556759735,
+          -0.3143310546875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 48,
+        "name": "Veg",
+        "float": 12,
+        "int": 9,
+        "string": "Cactaceae, Pereskia grandifolia",
+        "elevation_m": "-5.467041015625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0310360250557,
+          -27.47756981293436,
+          -5.467041015625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 49,
+        "name": "Inf",
+        "float": 1,
+        "int": 10,
+        "string": "Sprinkler",
+        "elevation_m": "-5.61199951171875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03100333563333,
+          -27.477593030806144,
+          -5.61199951171875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 50,
+        "name": "Veg",
+        "float": 30,
+        "int": 11,
+        "string": "Arecaceae, Syagrus romanzoffiana, Queen palm ",
+        "elevation_m": "-2.703369140625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03101087934618,
+          -27.477575847904642,
+          -2.703369140625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 51,
+        "name": "Inf",
+        "float": 1,
+        "int": 12,
+        "string": "Sprinkler ",
+        "elevation_m": "2.138671875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0312500988627,
+          -27.477776259209474,
+          2.138671875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 52,
+        "name": "Inf",
+        "float": 2,
+        "int": 13,
+        "string": "BCC signs",
+        "elevation_m": "-5.6226806640625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0312725623632,
+          -27.47771955563452,
+          -5.6226806640625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 53,
+        "name": "Veg",
+        "float": 20,
+        "int": 14,
+        "string": "Proteaceae, Macadamia, intergrifolia, dauplenut",
+        "elevation_m": "-7.14544677734375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03118715076988,
+          -27.47771884317275,
+          -7.14544677734375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 54,
+        "name": "Veg",
+        "float": 40,
+        "int": 15,
+        "string": "Meliaceae, Swietenia, Mahoganii, Mahogany",
+        "elevation_m": "-7.65350341796875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0312548765475,
+          -27.477617422144373,
+          -7.65350341796875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 55,
+        "name": "Inf",
+        "float": 1,
+        "int": 16,
+        "string": "Sprinkler ",
+        "elevation_m": "-7.4896240234375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.031242974245,
+          -27.47758054177042,
+          -7.4896240234375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 56,
+        "name": "Veg",
+        "float": 35,
+        "int": 17,
+        "string": "Podocarpacea, Podocarpus, Brown Pine",
+        "elevation_m": "-8.07464599609375"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03121715798324,
+          -27.477511810164412,
+          -8.07464599609375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 57,
+        "name": "Inf",
+        "float": 1,
+        "int": 18,
+        "string": "Sprinkler ",
+        "elevation_m": "-5.21636962890625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03121129065102,
+          -27.477497812386115,
+          -5.21636962890625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 58,
+        "name": "Veg",
+        "float": 22,
+        "int": 19,
+        "string": "Proteaceae, Macadamia, tetrapods, macadamia",
+        "elevation_m": "-1.56329345703125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03120927899425,
+          -27.477381262022515,
+          -1.56329345703125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 59,
+        "name": "Inf",
+        "float": 1,
+        "int": 20,
+        "string": "Light ",
+        "elevation_m": "14.2236328125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03140700809007,
+          -27.477698936152716,
+          14.2236328125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 60,
+        "name": "Inf",
+        "float": 1,
+        "int": 21,
+        "string": "Sprinkler ",
+        "elevation_m": "15.2457275390625"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.0314144679839,
+          -27.477652123223503,
+          15.2457275390625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 61,
+        "name": "Veg",
+        "float": 20,
+        "int": 22,
+        "string": "Bignoniaceae, Spathodea campanulata, West African Tulip Tree",
+        "elevation_m": "12.1766357421875"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03140608608072,
+          -27.47764608825322,
+          12.1766357421875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 62,
+        "name": "Inf",
+        "float": 1,
+        "int": 23,
+        "string": "Sprinkler ",
+        "elevation_m": "8.7139892578125"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          153.03139485433047,
+          -27.477659289750715,
+          8.7139892578125
         ]
       }
     }
