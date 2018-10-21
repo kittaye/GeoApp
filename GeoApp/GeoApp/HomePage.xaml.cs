@@ -19,18 +19,7 @@ namespace GeoApp {
 
         public HomePage() {
             InitializeComponent();
-          //  var navigationPage = new NavigationPage(new DataEntryListView());
-          //  navigationPage.Icon = "appIcon";
-          //  navigationPage.Title = "Test";
-          //  tab1 = new UIViewController();
-		  //
-          //  Children.Add(new DataEntryListView());
-          //  Children.Add(new ImportView());
-          //  Children.Add(new ExportView());
-          //  Children.Add(new ProfileView());
         }
-
-        //----- Pages to Navigate ----//
 
         /// <summary>
         /// Asynchronously adds DetailFormView to the top of the navigation stack.

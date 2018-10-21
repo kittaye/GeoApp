@@ -11,7 +11,7 @@ namespace GeoApp {
 
         public App() {
             InitializeComponent();
-            MainPage = new NavigationPage(HomePage.Instance);
+            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.FromHex("202225") };
             LocationManager = new LocationItemManager(new FileService());
         }
 
