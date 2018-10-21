@@ -159,6 +159,17 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Geoapp120.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\export_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon.png" />
+    <ImageAsset Include="Assets.xcassets\import_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon.png" />
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\edit_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\edit_icon.imageset\edit_icon.png" />
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon.png" />
+    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\data_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -186,5 +197,10 @@
     <Folder Include="Assets.xcassets\.dataset\" />
     <Folder Include="Assets.xcassets\add_icon.imageset\" />
     <Folder Include="Assets.xcassets\home_icon.imageset\" />
+    <Folder Include="Assets.xcassets\export_icon.imageset\" />
+    <Folder Include="Assets.xcassets\import_icon.imageset\" />
+    <Folder Include="Assets.xcassets\line_icon.imageset\" />
+    <Folder Include="Assets.xcassets\edit_icon.imageset\" />
+    <Folder Include="Assets.xcassets\data_icon.imageset\" />
   </ItemGroup>
 </Project>

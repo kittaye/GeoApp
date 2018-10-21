@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" BarBackgroundColor="#202225" BarTextColor="White"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" BarBackgroundColor="#FFFFFF" BarTextColor="Black"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:GeoApp;assembly=GeoApp"
             x:Class="GeoApp.HomePage">
+            <local:DataEntryListView Icon="data_icon"/>
+            <local:ImportView Icon="import_icon"/>
+            <local:ExportView Icon="export_icon"/>
+            <local:ProfileView Icon="profile_icon"/>
 </TabbedPage>
