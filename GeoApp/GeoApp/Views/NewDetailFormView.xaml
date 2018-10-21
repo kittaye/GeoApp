@@ -5,7 +5,15 @@
              x:Class="GeoApp.NewDetailFormView"
              Title=""
              BackgroundColor="#36393F">
-
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add_icon" Command="{Binding ButtonSaveCommand}">
+            <ToolbarItem.BindingContext>
+                <local:DataEntryListViewModel/>
+            </ToolbarItem.BindingContext>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.BindingContext>
         <local:DetailFormViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>

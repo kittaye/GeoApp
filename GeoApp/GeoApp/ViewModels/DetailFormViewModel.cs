@@ -11,9 +11,12 @@ using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
 using GeoApp.Views.Popups;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
-namespace GeoApp {
-    class DetailFormViewModel : INotifyPropertyChanged {
+namespace GeoApp
+{
+    class DetailFormViewModel : INotifyPropertyChanged
+    {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetLocationCommand { get; set; }
@@ -21,6 +24,7 @@ namespace GeoApp {
         public ICommand DeletePointCommand { get; set; }
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
+        public ICommand ButtonSaveCommand { get; set; }
 
         private DetailFormFieldPopup _detailFormPopup;
 
@@ -37,28 +41,32 @@ namespace GeoApp {
 
         public string DateEntry {
             get { return _dateEntry; }
-            set { _dateEntry = value;
+            set {
+                _dateEntry = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry"));
             }
         }
 
         public bool LoadingIconActive {
             get { return _loadingIconActive; }
-            set { _loadingIconActive = value;
+            set {
+                _loadingIconActive = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoadingIconActive"));
             }
         }
 
         public bool GeolocationEntryEnabled {
             get { return _geolocationEntryEnabled; }
-            set { _geolocationEntryEnabled = value;
+            set {
+                _geolocationEntryEnabled = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GeolocationEntryEnabled"));
             }
         }
 
         public int NumPointFields {
             get { return _numPointFields; }
-            set { _numPointFields = value;
+            set {
+                _numPointFields = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumPointFields"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowPointDeleteBtn"));
             }
@@ -66,7 +74,8 @@ namespace GeoApp {
 
         public bool AddMetadataFieldsBtnEnabled {
             get { return _addMetadataFieldsBtnEnabled; }
-            set { _addMetadataFieldsBtnEnabled = value;
+            set {
+                _addMetadataFieldsBtnEnabled = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddMetadataFieldsBtnEnabled"));
             }
         }
@@ -74,7 +83,8 @@ namespace GeoApp {
         /// <summary>
         /// Constructor
         /// </summary>
-        public DetailFormViewModel() {
+        public DetailFormViewModel()
+        {
             _detailFormPopup = new DetailFormFieldPopup();
 
             AddMetadataFieldsBtnEnabled = true;
@@ -87,24 +97,29 @@ namespace GeoApp {
             AddPoint();
 
             DateEntry = DateTime.Now.ToShortDateString();
-            GetLocationCommand = new Command<Point>(async (point) =>  {
-               await GetGeoLocation(point);
+            GetLocationCommand = new Command<Point>(async (point) =>
+            {
+                await GetGeoLocation(point);
             });
 
-            AddMetadataFieldCommand = new Command(async () => {
-               await AddMetadataField();
+            AddMetadataFieldCommand = new Command(async () =>
+            {
+                await AddMetadataField();
             });
 
             AddPointCommand = new Command(() => AddPoint());
             DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
             DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
+
         }
 
         /// <summary>
         /// Queries the current device's location coordinates
         /// </summary>
-        private async Task GetGeoLocation(Point point) {
-            try {
+        private async Task GetGeoLocation(Point point)
+        {
+            try
+            {
                 // Gets last known location of device (LESS ACCURATE, but faster)
                 //var location = await Geolocation.GetLastKnownLocationAsync();
                 GeolocationEntryEnabled = false;
@@ -117,18 +132,25 @@ namespace GeoApp {
                 LoadingIconActive = false;
                 GeolocationEntryEnabled = true;
 
-                if (location != null) {
+                if (location != null)
+                {
                     point.Latitude = location.Latitude;
                     point.Longitude = location.Longitude;
                     point.Altitude = (double)location.Altitude;
                 }
-            } catch (FeatureNotSupportedException fnsEx) {
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
                 // Handle not supported on device exception
                 throw fnsEx;
-            } catch (PermissionException pEx) {
+            }
+            catch (PermissionException pEx)
+            {
                 // Handle permission exception
                 throw pEx;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 // Unable to get location
                 throw ex;
             }
@@ -138,32 +160,41 @@ namespace GeoApp {
         /// Adds point data to line
         /// </summary>
         /// <returns></returns>
-        private void AddPoint() {
+        private void AddPoint()
+        {
             GeolocationPoints.Add(new Point(0, 0, 0));
             NumPointFields++;
         }
 
-        private void DeletePoint(Point item) {
+        private void DeletePoint(Point item)
+        {
             GeolocationPoints.Remove(item);
             NumPointFields--;
         }
 
-        private async Task AddMetadataField() {
+        private async Task AddMetadataField()
+        {
             var result = await DetailFormFieldPopup.GetResultAsync();
 
-            if(result != null) {
+            if (result != null)
+            {
                 MetadataEntries.Add(result);
-                if (MetadataEntries.Count == 5) {
+                if (MetadataEntries.Count == 5)
+                {
                     AddMetadataFieldsBtnEnabled = false;
                 }
             }
         }
 
-        private void DeleteMetadataField(MetadataEntry item) {
+        private void DeleteMetadataField(MetadataEntry item)
+        {
             MetadataEntries.Remove(item);
-            if (MetadataEntries.Count < 5) {
+            if (MetadataEntries.Count < 5)
+            {
                 AddMetadataFieldsBtnEnabled = true;
             }
         }
+
+
     }
 }
