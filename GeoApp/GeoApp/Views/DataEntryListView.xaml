@@ -18,7 +18,7 @@
         <StackLayout>
             <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="White" Margin="0,15"/>
 
-            <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="#515151">
+            <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="Gray">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -38,8 +38,22 @@
 
                                 <!--Each label is created using the grid layout, with an icon at the front, 2 vertically layered text strings, and an icon at the end.-->
                                 <Image Source="{Binding Properties.TypeIcon}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Text="{Binding Properties.Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
-                                <Label Text="{Binding Geometry.Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Properties.Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                                    <Label.TextColor>
+                                        <OnPlatform x:TypeArguments="Color">
+                                            <OnPlatform.iOS>Black</OnPlatform.iOS>
+                                            <OnPlatform.Android>White</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.TextColor>
+                                    </Label>
+                                <Label Text="{Binding Geometry.Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                                    <Label.TextColor>
+                                        <OnPlatform x:TypeArguments="Color">
+                                            <OnPlatform.iOS>Gray</OnPlatform.iOS>
+                                            <OnPlatform.Android>Cyan</OnPlatform.Android>
+                                        </OnPlatform>
+                                    </Label.TextColor>
+                                    </Label>
                                 <Image Source="edit_icon.png" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
                             </Grid>
                         </ViewCell>

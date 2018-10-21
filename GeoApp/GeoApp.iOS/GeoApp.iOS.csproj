@@ -176,6 +176,10 @@
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\ezgif.com-gif-maker-10.png" />
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\ezgif.com-gif-maker-9.png" />
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\ezgif.com-gif-maker-5.png" />
+    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image.imageset\area_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -209,5 +213,6 @@
     <Folder Include="Assets.xcassets\edit_icon.imageset\" />
     <Folder Include="Assets.xcassets\data_icon.imageset\" />
     <Folder Include="Assets.xcassets\profile_icon.imageset\" />
+    <Folder Include="Assets.xcassets\point_icon.imageset\" />
   </ItemGroup>
 </Project>
