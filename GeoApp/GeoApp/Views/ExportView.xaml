@@ -12,6 +12,8 @@
                    FontSize="Medium"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
+
+            <Button Margin="0,20,0,0" x:Name="ButtonShare" Text="Share"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
