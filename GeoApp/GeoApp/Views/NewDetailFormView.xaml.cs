@@ -38,6 +38,8 @@ namespace GeoApp {
 
         async void OnSaveUpdateActivated(object sender, EventArgs e)
         {
+            Debug.WriteLine("HELLO:::::::::::::              {0},{1}", BindingContext, "i");
+            
             var feature = (Feature)BindingContext;
 
             if (feature.Properties.Name == null)

@@ -7,6 +7,13 @@ namespace GeoApp
 {
     public enum DataType { Point, Line, Polygon };
 
+    public class Feature
+    {
+        public DataType Type { get; set; }
+        public Properties Properties { get; set; }
+        public Geometry Geometry { get; set; }
+    }
+
     public class Properties
     {
         public int Id { get; set; }
@@ -20,16 +27,10 @@ namespace GeoApp
         public List<double> Coordinates { get; set; }
     }
 
-    public class Feature
-    {
-        public string Type { get; set; }
-        public Properties Properties { get; set; }
-        public Geometry Geometry { get; set; }
-    }
+
 
     public class RootObject
     {
-        public string Type { get; set; }
         public Feature[] Features { get; set; }
     }
 }
