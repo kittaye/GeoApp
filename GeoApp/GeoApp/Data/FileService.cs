@@ -7,78 +7,74 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace GeoApp
-{
-    public class FileService : IDataService
-    {
+namespace GeoApp {
+    public class FileService : IDataService {
         bool hasBeenUpdated = false;
         string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GALocations.txt");
 
-        public FileService()
-        {
+        public FileService() {
         }
 
-        public Task DeleteLocationAsync(string Name)
-        {
+        public Task DeleteLocationAsync(string Name) {
             throw new NotImplementedException();
         }
 
-        public Task DeleteLocationAsync(int id)
-        {
+        public Task DeleteLocationAsync(int id) {
             throw new NotImplementedException();
         }
 
-        public Task<List<Feature>> RefreshDataAsync()
-        {
+        public Task<List<Feature>> RefreshDataAsync() {
+
             return Task.Run(() => {
 
-                Feature[] features = { };
+                // Exception handling for file service
+                try {
+                    Feature[] features = { };
 
-                string json;
+                    string json;
 
-                if (hasBeenUpdated == false) {
-                    string[] res = this.GetType().Assembly.GetManifestResourceNames();
-                    var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                    Stream stream = assembly.GetManifestResourceStream(fileName);
-                    Debug.WriteLine("HELLO:::::::::::::              {0}", stream);
 
-                    if (stream == null)
-                    {
-                        stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                    if (hasBeenUpdated == false) {
+                        string[] res = this.GetType().Assembly.GetManifestResourceNames();
+                        var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
+                        Stream stream = assembly.GetManifestResourceStream(fileName);
+                        Debug.WriteLine("HELLO:::::::::::::              {0}", stream);
+
+                        if (stream == null) {
+                            stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                        }
+                        Debug.WriteLine("HELLO2:::::::::::::              {0}", stream);
+                        using (var reader = new System.IO.StreamReader(stream)) {
+
+
+                            json = reader.ReadToEnd();
+                        }
+                        Debug.WriteLine("HELLO3");
+                    } else {
+                        // temporarily commented out reading functionality
+                        //json = File.ReadAllText(fileName);
                     }
-                    Debug.WriteLine("HELLO2:::::::::::::              {0}", stream);
-                    using (var reader = new System.IO.StreamReader(stream))
-                    {
-                        
+                    // temporarily commented out reading functionality
+                    //if (json != null) {
+                    //    var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
+                    //    Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
+                    //    //locations = null;
+                    //    features = rootobject.Features;
+                    //    //locations[0] = rootobject;
+                    //    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
+                    //}
 
-                        json = reader.ReadToEnd();
-                    }
-                    Debug.WriteLine("HELLO3");
+                    return features.ToList();
+                } catch (Exception e) {
+                    Debug.WriteLine(e);
+                    throw e;
                 }
-                else
-                {
-                    json = File.ReadAllText(fileName);
-                }
-
-                if (json != null)
-                {
-                    var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                    Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
-                    //locations = null;
-                    features = rootobject.Features;
-                    //locations[0] = rootobject;
-                    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
-                }
-                return features.ToList();
-
             });
         }
 
-        public Task SaveLocationAsync(Feature location)
-        {
-            return Task.Run(async () =>
-            {
-                
+        public Task SaveLocationAsync(Feature location) {
+            return Task.Run(async () => {
+
                 List<Feature> locations = await App.LocationManager.GetLocationsAsync();
                 locations[0].Properties.Id = DateTime.Now.GetHashCode();
                 Feature[] locationsArr = locations.ToArray<Feature>();
