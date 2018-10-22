@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,27 @@ namespace GeoApp {
         {
             geolocationListView.SelectedItem = null;
             listView.SelectedItem = null;
+        }
+
+
+        async void OnSaveUpdateActivated(object sender, EventArgs e)
+        {
+            var feature = (Feature)BindingContext;
+
+            if (feature.Properties.Name == null)
+            {
+                await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+            }
+            else if (feature.Properties.Name.Trim() == "")
+            {
+                await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+            }
+            else
+            {
+                await App.LocationManager.SaveLocationAsync(feature);
+                await Navigation.PopAsync();
+            }
+
         }
     }
 }

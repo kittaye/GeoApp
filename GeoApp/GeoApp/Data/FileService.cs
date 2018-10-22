@@ -79,17 +79,13 @@ namespace GeoApp
             return Task.Run(async () =>
             {
                 
-
-                // List<Feature> locations = App.LocationManager.CurrentLocations;
                 List<Feature> locations = await App.LocationManager.GetLocationsAsync();
                 locations[0].Properties.Id = DateTime.Now.GetHashCode();
-
-                
-                Feature rootobject = new Feature();
-
-                rootobject = locations[0];
+                Feature[] locationsArr = locations.ToArray<Feature>();
+                RootObject rootobject = new RootObject();
+                rootobject.Features = locationsArr;
                 var json = JsonConvert.SerializeObject(rootobject);
-                Debug.WriteLine("HELLO:::::::::::::              {0},{1}", json, json.ToString());
+
                 File.WriteAllText(fileName, json);
                 hasBeenUpdated = true;
             });

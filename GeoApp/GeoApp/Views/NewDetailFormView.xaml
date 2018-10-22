@@ -7,11 +7,7 @@
              BackgroundColor="#36393F">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="add_icon" Command="{Binding ButtonSaveCommand}">
-            <ToolbarItem.BindingContext>
-                <local:DataEntryListViewModel/>
-            </ToolbarItem.BindingContext>
-        </ToolbarItem>
+        <ToolbarItem Icon="add_icon" Clicked="OnSaveUpdateActivated"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.BindingContext>

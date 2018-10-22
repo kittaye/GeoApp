@@ -16,13 +16,9 @@ namespace GeoApp {
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
             });
-            ButtonSaveCommand = new Command<Feature>((item) => OnSaveUpdateActivated(item));
+            
         }
 
-        async void OnSaveUpdateActivated(Feature e)
-        {
-            await App.LocationManager.SaveLocationAsync(e);
 
-        }
     }
 }
