@@ -23,7 +23,6 @@ namespace GeoApp
         {
             base.OnAppearing();
 
-
             if (App.LocationManager.CurrentLocations == null && isFetchingData == false) {
                 isFetchingData = true;
                 loadingList.IsRunning = true;

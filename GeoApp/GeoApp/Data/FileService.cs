@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,7 +33,6 @@ namespace GeoApp {
 
                     string json;
 
-
                     if (hasBeenUpdated == false) {
                         string[] res = this.GetType().Assembly.GetManifestResourceNames();
                         var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
@@ -50,8 +49,8 @@ namespace GeoApp {
                             json = reader.ReadToEnd();
                         }
                         Debug.WriteLine("HELLO3");
-                    } else {
 
+                    } else {
                         json = File.ReadAllText(fileName);
                     }
 
@@ -62,6 +61,25 @@ namespace GeoApp {
                         features = rootobject.Features;
                         //locations[0] = rootobject;
                         Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
+                    }
+
+                    // Determine the icon used for each feature based on it's geometry type.
+                    foreach (var feature in features) {
+                        switch (feature.Geometry.Type) {
+                            case DataType.Point:
+                                feature.Properties.TypeIconPath = "point_icon.png";
+                                break;
+                            case DataType.Line:
+                                feature.Properties.TypeIconPath = "line_icon.png";
+                                break;
+                            case DataType.Polygon:
+                                feature.Properties.TypeIconPath = "area_icon.png";
+                                break;
+                            default:
+                                Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
+                                feature.Properties.TypeIconPath = "point_icon.png";
+                                break;
+                        }
                     }
 
                     return features.ToList();

@@ -6,10 +6,11 @@
       "properties": {
         "id": 1,
         "name": "S601",
-        "float": 0,
-        "int": 1,
-        "string": "Computer lab",
-        "elevation_m": "-3.78179931640625"
+        "metadataFields": {
+          "myDescription": "Computer lab",
+          "myIntField": 1,
+          "myFloatField": 5.1262
+        }
       },
       "geometry": {
         "type": "Point",
@@ -31,7 +32,7 @@
         "elevation_m": "13"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.02734886791072,
           -27.47480313686381,
@@ -107,7 +108,7 @@
         "elevation_m": "6.49652099609375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03132260232513,
           -27.477310770216842,
@@ -126,7 +127,7 @@
         "elevation_m": "9.7144775390625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03117969087606,
           -27.477063797439893,
@@ -221,7 +222,7 @@
         "elevation_m": "0.06536865234375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03147967919057,
           -27.476868582915028,
@@ -278,7 +279,7 @@
         "elevation_m": "-5.0223388671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03125764257555,
           -27.47663292570736,
@@ -297,7 +298,7 @@
         "elevation_m": "-5.065673828125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03124766811078,
           -27.47673631648298,
@@ -316,7 +317,7 @@
         "elevation_m": "-4.4439697265625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03135084933882,
           -27.476861625935395,
@@ -411,7 +412,7 @@
         "elevation_m": "-2.2452392578125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03141404888873,
           -27.477303184594472,
@@ -430,7 +431,7 @@
         "elevation_m": "0.3704833984375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03139141775017,
           -27.477326444375773,
@@ -506,7 +507,7 @@
         "elevation_m": "-0.9207763671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03113057292347,
           -27.477219197924693,
@@ -544,7 +545,7 @@
         "elevation_m": "-2.759521484375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03111623986905,
           -27.477181688908,
@@ -563,7 +564,7 @@
         "elevation_m": "17.0791015625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03113895482664,
           -27.477266220401486,
@@ -620,7 +621,7 @@
         "elevation_m": "9.07269287109375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03113333895152,
           -27.47736470776375,
@@ -658,7 +659,7 @@
         "elevation_m": "0.911865234375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0309977197582,
           -27.47740234250899,
@@ -677,7 +678,7 @@
         "elevation_m": "1.71142578125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03088925793116,
           -27.47743352318879,
@@ -696,7 +697,7 @@
         "elevation_m": "44.246826171875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.0306963903392,
           -27.47748046184655,
@@ -715,7 +716,7 @@
         "elevation_m": "7.70379638671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03086126237457,
           -27.4775244668382,
@@ -734,7 +735,7 @@
         "elevation_m": "8.02325439453125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03086126237457,
           -27.4775244668382,
@@ -791,7 +792,7 @@
         "elevation_m": "5.15008544921875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03105765036588,
           -27.47768573465522,
@@ -810,7 +811,7 @@
         "elevation_m": "4.82220458984375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03105765036588,
           -27.47768573465522,
@@ -867,7 +868,7 @@
         "elevation_m": "-5.61199951171875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03100333563333,
           -27.477593030806144,
@@ -886,7 +887,7 @@
         "elevation_m": "-2.703369140625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03101087934618,
           -27.477575847904642,
@@ -905,7 +906,7 @@
         "elevation_m": "2.138671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0312500988627,
           -27.477776259209474,
@@ -924,7 +925,7 @@
         "elevation_m": "-5.6226806640625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0312725623632,
           -27.47771955563452,
@@ -981,7 +982,7 @@
         "elevation_m": "-7.4896240234375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.031242974245,
           -27.47758054177042,
@@ -1000,7 +1001,7 @@
         "elevation_m": "-8.07464599609375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03121715798324,
           -27.477511810164412,
@@ -1057,7 +1058,7 @@
         "elevation_m": "14.2236328125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03140700809007,
           -27.477698936152716,
@@ -1076,7 +1077,7 @@
         "elevation_m": "15.2457275390625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0314144679839,
           -27.477652123223503,
