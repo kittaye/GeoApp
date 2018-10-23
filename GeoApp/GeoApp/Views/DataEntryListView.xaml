@@ -14,11 +14,20 @@
         <local:DataEntryListViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ItemTappedEventArgsToItemTappedConverter x:Key="TappedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="White" Margin="0,15"/>
 
             <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="Gray">
+                <ListView.Behaviors>
+                    <local:ListViewItemTappedBehaviour Command="{Binding TestCommand}" Converter="{StaticResource TappedItemConverter}" />
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
