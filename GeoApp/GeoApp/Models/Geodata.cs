@@ -5,6 +5,8 @@ using System.Text;
 
 namespace GeoApp
 {
+    //Geodata.cs defines the models for geoJSON data to deserialize into.
+
     public enum DataType { Point, Line, Polygon };
 
     public class Feature
