@@ -10,7 +10,7 @@ namespace GeoApp {
         private static HomePage instance;
         public static HomePage Instance {
             get {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new HomePage();
                 }
                 return instance;
@@ -29,9 +29,9 @@ namespace GeoApp {
             Navigation.PushAsync(new NewDetailFormView(type));
         }
 
-        private void ShowExistingDetailFormPage(string name) {
-            Navigation.PushAsync(new ExistingDetailFormView(name));
-        }
+        //public async Task ShowExistingDetailFormPage(string name) {
+        //    await Navigation.PushAsync(new ExistingDetailFormView(name));
+        //}
 
         /// <summary>
         /// Displays a pop-up user interface to navigate to different data entry types
