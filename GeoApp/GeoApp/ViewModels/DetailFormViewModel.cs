@@ -15,6 +15,7 @@ using System.Diagnostics;
 
 namespace GeoApp
 {
+    // View-model for the page that shows a data entry's details as a form.
     class DetailFormViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,19 +27,16 @@ namespace GeoApp
         public ICommand DeleteMetadataFieldCommand { get; set; }
         public ICommand OnSaveUpdatedCommand { get; set; }
 
+        // Popup used for creating new metadata fields.
         private DetailFormFieldPopup _detailFormPopup;
 
-        private string _dateEntry;
-        private bool _addMetadataFieldsBtnEnabled;
-        private int _numPointFields;
-        private bool _loadingIconActive;
-        private bool _geolocationEntryEnabled;
-
+        // Property binding to determine if the delete button for metadata fields is visible.
         public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
 
         public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
+        private string _dateEntry;
         public string DateEntry {
             get { return _dateEntry; }
             set {
@@ -47,6 +45,7 @@ namespace GeoApp
             }
         }
 
+        private bool _loadingIconActive;
         public bool LoadingIconActive {
             get { return _loadingIconActive; }
             set {
@@ -55,6 +54,7 @@ namespace GeoApp
             }
         }
 
+        private bool _geolocationEntryEnabled;
         public bool GeolocationEntryEnabled {
             get { return _geolocationEntryEnabled; }
             set {
@@ -63,6 +63,7 @@ namespace GeoApp
             }
         }
 
+        private int _numPointFields;
         public int NumPointFields {
             get { return _numPointFields; }
             set {
@@ -72,6 +73,7 @@ namespace GeoApp
             }
         }
 
+        private bool _addMetadataFieldsBtnEnabled;
         public bool AddMetadataFieldsBtnEnabled {
             get { return _addMetadataFieldsBtnEnabled; }
             set {
@@ -81,48 +83,51 @@ namespace GeoApp
         }
 
         /// <summary>
-        /// Constructor
+        /// View-model Constructor
         /// </summary>
         public DetailFormViewModel()
         {
-            _detailFormPopup = new DetailFormFieldPopup();
+            // Initialise fields.
+            {
+                DateEntry = DateTime.Now.ToShortDateString();
 
-            AddMetadataFieldsBtnEnabled = true;
-            GeolocationEntryEnabled = true;
-            LoadingIconActive = false;
-            NumPointFields = 0;
+                _detailFormPopup = new DetailFormFieldPopup();
+                MetadataEntries = new ObservableCollection<MetadataEntry>();
+                GeolocationPoints = new ObservableCollection<Point>();
 
-            MetadataEntries = new ObservableCollection<MetadataEntry>();
-            GeolocationPoints = new ObservableCollection<Point>();
+                AddMetadataFieldsBtnEnabled = true;
+                GeolocationEntryEnabled = true;
+                LoadingIconActive = false;
+
+                NumPointFields = 0;
+            }
+
+            // Add one geolocation point to the list of points as there must be at least one.
             AddPoint();
 
-            DateEntry = DateTime.Now.ToShortDateString();
-            GetLocationCommand = new Command<Point>(async (point) =>
+            // Initialise command bindings.
             {
-                await GetGeoLocation(point);
-            });
+                GetLocationCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
 
-            AddMetadataFieldCommand = new Command(async () =>
-            {
-                await AddMetadataField();
-            });
+                AddMetadataFieldCommand = new Command(async () => { await AddMetadataField(); });
+                DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
 
-            AddPointCommand = new Command(() => AddPoint());
-            DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
-            DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
-            OnSaveUpdatedCommand = new Command<Feature>((item) => OnSaveUpdateActivated(item));
+                AddPointCommand = new Command(() => AddPoint());
+                DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
 
+                OnSaveUpdatedCommand = new Command<Feature>((item) => OnSaveUpdateActivated(item));
+            }
         }
 
         /// <summary>
         /// Queries the current device's location coordinates
         /// </summary>
+        /// <param name="point">Point to set GPS data to.</param>
         private async Task GetGeoLocation(Point point)
         {
             try
             {
-                // Gets last known location of device (LESS ACCURATE, but faster)
-                //var location = await Geolocation.GetLastKnownLocationAsync();
+                // Disable interaction with entries to prevent errors.
                 GeolocationEntryEnabled = false;
                 LoadingIconActive = true;
 
@@ -130,6 +135,7 @@ namespace GeoApp
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                 var location = await Geolocation.GetLocationAsync(request);
 
+                // Re-enable interaction.
                 LoadingIconActive = false;
                 GeolocationEntryEnabled = true;
 
@@ -142,23 +148,20 @@ namespace GeoApp
             }
             catch (FeatureNotSupportedException fnsEx)
             {
-                // Handle not supported on device exception
                 throw fnsEx;
             }
             catch (PermissionException pEx)
             {
-                // Handle permission exception
                 throw pEx;
             }
             catch (Exception ex)
             {
-                // Unable to get location
                 throw ex;
             }
         }
 
         /// <summary>
-        /// Adds point data to line
+        /// Adds a new geolocation point to the list for line or polygon data types.
         /// </summary>
         /// <returns></returns>
         private void AddPoint()
@@ -167,19 +170,30 @@ namespace GeoApp
             NumPointFields++;
         }
 
+        /// <summary>
+        /// Deletes a geolocation point from the list.
+        /// </summary>
+        /// <param name="item">Item to delete</param>
         private void DeletePoint(Point item)
         {
             GeolocationPoints.Remove(item);
             NumPointFields--;
         }
 
+        /// <summary>
+        /// Adds a new metadata field to the list.
+        /// </summary>
+        /// <returns></returns>
         private async Task AddMetadataField()
         {
+            // Waits for the user to fill in a popup form describing the metadata field.
             var result = await DetailFormFieldPopup.GetResultAsync();
 
             if (result != null)
             {
                 MetadataEntries.Add(result);
+
+                // Maximum of 5 metadata entries.
                 if (MetadataEntries.Count == 5)
                 {
                     AddMetadataFieldsBtnEnabled = false;
@@ -187,6 +201,10 @@ namespace GeoApp
             }
         }
 
+        /// <summary>
+        /// Deletes a metadata entry from the list.
+        /// </summary>
+        /// <param name="item">Item to delete.</param>
         private void DeleteMetadataField(MetadataEntry item)
         {
             MetadataEntries.Remove(item);
