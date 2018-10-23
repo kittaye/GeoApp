@@ -11,7 +11,6 @@ namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DataEntryListView : ContentPage {
         private bool isFetchingData;
-        private Feature _data;
 
         public DataEntryListView() {
             InitializeComponent();
@@ -39,10 +38,9 @@ namespace GeoApp {
             base.OnDisappearing();
         }
 
-
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
             listView.SelectedItem = null;
-            _data = (Feature) e.Item;
+            Feature _data = (Feature)e.Item;
             await Navigation.PushAsync(new ExistingDetailFormView(_data));
         }
     }
