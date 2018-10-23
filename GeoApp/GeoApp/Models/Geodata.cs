@@ -17,6 +17,7 @@ namespace GeoApp
     public class Properties
     {
         public int Id { get; set; }
+        //public object[] MetadataFields { get; set; } = new object[5];
         public string Name { get; set; }
         public string TypeIcon { get; set; }
     }
@@ -26,8 +27,6 @@ namespace GeoApp
         public DataType Type { get; set; }
         public List<double> Coordinates { get; set; }
     }
-
-
 
     public class RootObject
     {

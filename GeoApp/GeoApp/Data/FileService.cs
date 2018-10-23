@@ -72,14 +72,27 @@ namespace GeoApp {
             });
         }
 
-        public Task SaveLocationAsync(Feature location) {
-            return Task.Run(async () => {
+        public Task SaveLocationAsync(Feature location)
+        {
+            return Task.Run(async () =>
+            {
+                List<Feature> existingLocations = await App.LocationManager.GetLocationsAsync();
 
-                List<Feature> locations = await App.LocationManager.GetLocationsAsync();
-                locations[0].Properties.Id = DateTime.Now.GetHashCode();
-                Feature[] locationsArr = locations.ToArray<Feature>();
+                bool isEdit = false;
+                for (int i = 0; i < existingLocations.Count; i++) {
+                    if(existingLocations[i].Properties.Id == location.Properties.Id) {
+                        existingLocations[i] = location;
+                        isEdit = true;
+                        break;
+                    }
+                }
+
+                if (isEdit == false) {
+                    location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
+                }
+
                 RootObject rootobject = new RootObject();
-                rootobject.Features = locationsArr;
+                rootobject.Features = existingLocations.ToArray<Feature>();
                 var json = JsonConvert.SerializeObject(rootobject);
 
                 File.WriteAllText(fileName, json);
