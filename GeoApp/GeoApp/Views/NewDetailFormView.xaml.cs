@@ -36,25 +36,5 @@ namespace GeoApp {
         }
 
 
-        async void OnSaveUpdateActivated(object sender, EventArgs e)
-        {
-            Debug.WriteLine("HELLO:::::::::::::              {0},{1}", BindingContext, "i");
-            
-            var feature = (Feature)BindingContext;
-
-            if (feature.Properties.Name == null)
-            {
-                await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
-            }
-            else if (feature.Properties.Name.Trim() == "")
-            {
-                await DisplayAlert("Alert", "Location name cannot be empty!", "OK");
-            }
-            else
-            {
-                await App.LocationManager.SaveLocationAsync(feature);
-                await Navigation.PopAsync();
-            }
-        }
     }
 }
