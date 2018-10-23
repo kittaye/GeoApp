@@ -19,9 +19,6 @@
             <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="White" Margin="0,15"/>
 
             <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="Gray" ItemTapped="listView_ItemTapped">
-                <ListView.Behaviors>
-                    <
-                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
