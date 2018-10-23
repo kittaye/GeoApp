@@ -10,7 +10,6 @@ using Xamarin.Forms;
 namespace GeoApp {
     class DataEntryListViewModel {
         public ICommand ButtonClickedCommand { set; get; }
-        public ICommand ButtonSaveCommand { set; get; }
 
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
@@ -18,7 +17,5 @@ namespace GeoApp {
             });
             
         }
-
-
     }
 }

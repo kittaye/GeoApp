@@ -35,7 +35,6 @@ namespace GeoApp {
             listView.SelectedItem = null;
         }
 
-
         async void OnSaveUpdateActivated(object sender, EventArgs e)
         {
             Debug.WriteLine("HELLO:::::::::::::              {0},{1}", BindingContext, "i");
@@ -55,7 +54,6 @@ namespace GeoApp {
                 await App.LocationManager.SaveLocationAsync(feature);
                 await Navigation.PopAsync();
             }
-
         }
     }
 }
