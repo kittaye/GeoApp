@@ -25,7 +25,7 @@ namespace GeoApp
     public class Geometry
     {
         public DataType Type { get; set; }
-        public List<double> Coordinates { get; set; }
+        public List<Point> Coordinates { get; set; }
     }
 
     public class RootObject

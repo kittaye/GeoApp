@@ -51,18 +51,18 @@ namespace GeoApp {
                         }
                         Debug.WriteLine("HELLO3");
                     } else {
-                        // temporarily commented out reading functionality
-                        //json = File.ReadAllText(fileName);
+
+                        json = File.ReadAllText(fileName);
                     }
-                    // temporarily commented out reading functionality
-                    //if (json != null) {
-                    //    var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                    //    Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
-                    //    //locations = null;
-                    //    features = rootobject.Features;
-                    //    //locations[0] = rootobject;
-                    //    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
-                    //}
+
+                    if (json != null) {
+                        var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
+                        Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
+                        //locations = null;
+                        features = rootobject.Features;
+                        //locations[0] = rootobject;
+                        Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
+                    }
 
                     return features.ToList();
                 } catch (Exception e) {

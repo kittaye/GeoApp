@@ -24,6 +24,7 @@ namespace GeoApp
         public ICommand DeletePointCommand { get; set; }
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
+        public ICommand OnSaveUpdatedCommand { get; set; }
 
         private DetailFormFieldPopup _detailFormPopup;
 
@@ -109,6 +110,7 @@ namespace GeoApp
             AddPointCommand = new Command(() => AddPoint());
             DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
             DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
+            OnSaveUpdatedCommand = new Command<Feature>((item) => OnSaveUpdateActivated(item));
 
         }
 
@@ -194,6 +196,29 @@ namespace GeoApp
             }
         }
 
+        async void OnSaveUpdateActivated(Feature item)
+        {
+            Debug.WriteLine("HELLO:::::::::::::              {0},{1}", item, "i");
+
+            var feature = (Feature)item;
+            item.Geometry.Coordinates[0] = GeolocationPoints[0];
+
+
+            if (feature.Properties.Name == null)
+            {
+                await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+            }
+            else if (feature.Properties.Name.Trim() == "")
+            {
+                await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+            }
+            else
+            {
+                await App.LocationManager.SaveLocationAsync(feature);
+                await HomePage.Instance.Navigation.PopAsync();
+            }
+
+        }
 
     }
 }
