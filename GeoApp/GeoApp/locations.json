@@ -6,10 +6,11 @@
       "properties": {
         "id": 1,
         "name": "S601",
-        "float": 0,
-        "int": 1,
-        "string": "Computer lab",
-        "elevation_m": "-3.78179931640625"
+        "metadataFields": {
+          "myDescription": "Computer lab",
+          "myIntField": 1,
+          "myFloatField": 5.1262
+        }
       },
       "geometry": {
         "type": "Point",

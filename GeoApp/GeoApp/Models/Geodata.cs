@@ -17,7 +17,7 @@ namespace GeoApp
     public class Properties
     {
         public int Id { get; set; }
-        //public object[] MetadataFields { get; set; } = new object[5];
+        public Dictionary<string, object> MetadataFields { get; set; }
         public string Name { get; set; }
         public string TypeIconPath { get; set; }
     }
