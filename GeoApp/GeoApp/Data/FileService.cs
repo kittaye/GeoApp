@@ -38,9 +38,11 @@ namespace GeoApp {
                         var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                         Stream stream = assembly.GetManifestResourceStream(fileName);
 
-                        if (stream == null) {
-                            stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
-                        }
+
+                        //The App craches without this check
+                        //if (stream == null) {
+                            //stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                        //}
                         using (var reader = new System.IO.StreamReader(stream)) {
 
 
@@ -110,5 +112,26 @@ namespace GeoApp {
                 hasBeenUpdated = true;
             });
         }
+
+        //Method to load contents of locations.json to GALocations
+        public Task CreateFile()
+        {
+            return Task.Run(() =>
+            {
+                Debug.WriteLine("####################################### 3 Save");
+                var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
+                var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                string json;
+
+                using (var reader = new System.IO.StreamReader(stream))
+                {
+                    json = reader.ReadToEnd();
+                }
+                Debug.WriteLine(json);
+                File.WriteAllText(fileName, json);
+
+            });
+        }
+
     }
 }
