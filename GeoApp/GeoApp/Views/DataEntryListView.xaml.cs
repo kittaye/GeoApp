@@ -38,10 +38,10 @@ namespace GeoApp {
             base.OnDisappearing();
         }
 
-        private async void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
-            listView.SelectedItem = null;
-            Feature _data = (Feature)e.Item;
-            await Navigation.PushAsync(new ExistingDetailFormView(_data));
-        }
+        //private async void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
+        //    listView.SelectedItem = null;
+        //    Feature _data = (Feature)e.Item;
+        //    await Navigation.PushAsync(new ExistingDetailFormView(_data));
+        //}
     }
 }
