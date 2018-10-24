@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace GeoApp {
     public class FileService : IDataService {
         bool hasBeenUpdated = false;
-        string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GALocations.txt");
+        string GAStorage = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GALocations.txt");
+        //string fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "GALocations.txt");
 
         public FileService() {
         }
@@ -36,21 +37,22 @@ namespace GeoApp {
                     if (hasBeenUpdated == false) {
                         string[] res = this.GetType().Assembly.GetManifestResourceNames();
                         var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                        Stream stream = assembly.GetManifestResourceStream(fileName);
+                        Stream stream = assembly.GetManifestResourceStream(GAStorage);
 
 
                         //The App craches without this check
                         if (stream == null) {
                             CreateFile();
-                            stream = assembly.GetManifestResourceStream(fileName);
+                            stream = assembly.GetManifestResourceStream(GAStorage);
                             Debug.WriteLine(stream.Length);
+
                         }
                         using (var reader = new System.IO.StreamReader(stream)) {
                             json = reader.ReadToEnd();
                         }
 
                     } else {
-                        json = File.ReadAllText(fileName);
+                        json = File.ReadAllText(GAStorage);
                     }
 
                     if (string.IsNullOrEmpty(json) == false) {
@@ -108,7 +110,7 @@ namespace GeoApp {
                 rootobject.Features = existingLocations.ToArray<Feature>();
                 var json = JsonConvert.SerializeObject(rootobject);
 
-                File.WriteAllText(fileName, json);
+                File.WriteAllText(GAStorage, json);
                 hasBeenUpdated = true;
             });
         }
@@ -116,17 +118,23 @@ namespace GeoApp {
         //Method to load contents of locations.json to GALocations
         public void CreateFile()
         {
-                Debug.WriteLine("####################################### 3 Save");
-                var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
-                string json;
+            Debug.WriteLine("####################################### 3 Save");
+            var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
+            var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+            string json;
 
-                using (var reader = new System.IO.StreamReader(stream))
+
+            //File.WriteAllText(GAStorage, "Write this text into a file");
+
+
+
+            using (var reader = new System.IO.StreamReader(stream))
                 {
                     json = reader.ReadToEnd();
                 }
+                //System.IO.File.Create(GAStorage);
                 Debug.WriteLine(json);
-                File.WriteAllText(fileName, json);
+                File.WriteAllText(GAStorage, json);
         }
 
     }
