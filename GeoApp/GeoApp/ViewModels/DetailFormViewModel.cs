@@ -257,21 +257,32 @@ namespace GeoApp
                 feature.Properties = new Properties();
                 feature.Properties.Name = NameEntry;
                 feature.Properties.Date = DateTime.Parse(DateEntry);
+                feature.Properties.MetadataFields = new Dictionary<string, object>();
                 foreach (var metadataField in MetadataEntries) {
                     feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);
                 }
+
                 feature.Geometry = new Geometry();
-                //if(EntryType == "Point") {
-                    feature.Geometry.Coordinates = new List<object>() { GeolocationPoints[0].Latitude, GeolocationPoints[0].Longitude, GeolocationPoints[0].Altitude };
-                //}
-                //feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
-                feature.Geometry.Type = DataType.Point;
+                feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
+                if (EntryType == "Point") {
+                    feature.Geometry.Coordinates = new List<object>() {
+                        GeolocationPoints[0].Latitude,
+                        GeolocationPoints[0].Longitude,
+                        GeolocationPoints[0].Altitude };
+                } else {
+                    feature.Geometry.Coordinates = new List<object>(GeolocationPoints.Count);
+                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                        feature.Geometry.Coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
+                            GeolocationPoints[i].Latitude,
+                            GeolocationPoints[i].Longitude,
+                            GeolocationPoints[i].Altitude }));
+                    } 
+                }
             }
 
             // Save the feature and go back to the entry list page.
             await App.LocationManager.SaveLocationAsync(feature);
             await HomePage.Instance.Navigation.PopAsync();
         }
-
     }
 }
