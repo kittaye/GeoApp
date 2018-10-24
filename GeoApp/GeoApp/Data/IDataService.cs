@@ -6,7 +6,6 @@ namespace GeoApp
     public interface IDataService
     {
         Task<List<Feature>> RefreshDataAsync();
-
         Task SaveLocationAsync(Feature location);
 
         Task DeleteLocationAsync(string Name);

@@ -7,22 +7,18 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GeoApp
-{
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DataEntryListView : ContentPage
-	{
-        bool isFetchingData;
-		public DataEntryListView()
-		{
-			InitializeComponent ();
+namespace GeoApp {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DataEntryListView : ContentPage {
+        private bool isFetchingData;
+
+        public DataEntryListView() {
+            InitializeComponent();
             isFetchingData = false;
         }
 
-        protected async override void OnAppearing()
-        {
+        protected async override void OnAppearing() {
             base.OnAppearing();
-
 
             if (App.LocationManager.CurrentLocations == null && isFetchingData == false) {
                 isFetchingData = true;

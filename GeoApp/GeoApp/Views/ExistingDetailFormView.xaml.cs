@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +11,20 @@ using Xamarin.Forms.Xaml;
 
 namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ExistingDetailFormView : ContentPage
-    {
-        public ExistingDetailFormView(string name)
-        {
+    public partial class ExistingDetailFormView : ContentPage {
+        public ExistingDetailFormView(Feature data) {
             InitializeComponent();
-            Title = $"{name}";
+            Title = $"View {data.Geometry.Type}";
+            itemName.Text = data.Properties.Name;
+            dateEntry.Text = data.Properties.Date.ToShortDateString();
+
+            // fill in geo-location data
+            //geolocationListView.ItemsSource = data.Geometry.Coordinates;
+            // assign metadatefileds as itemsource
+            listView.ItemsSource = data.Properties.MetadataFields;
         }
 
-        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
             geolocationListView.SelectedItem = null;
             listView.SelectedItem = null;
         }

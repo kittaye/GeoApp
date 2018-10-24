@@ -10,7 +10,7 @@ namespace GeoApp {
         private static HomePage instance;
         public static HomePage Instance {
             get {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new HomePage();
                 }
                 return instance;
@@ -29,8 +29,8 @@ namespace GeoApp {
             Navigation.PushAsync(new NewDetailFormView(type));
         }
 
-        private void ShowExistingDetailFormPage(string name) {
-            Navigation.PushAsync(new ExistingDetailFormView(name));
+        public async Task ShowExistingDetailFormPage(Feature data) {
+            await Navigation.PushAsync(new ExistingDetailFormView(data));
         }
 
         /// <summary>

@@ -3,13 +3,14 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/28/2018",
         "id": 1,
         "name": "S601",
-        "float": 0,
-        "int": 1,
-        "string": "Computer lab",
-        "elevation_m": "-3.78179931640625"
+        "metadataFields": {
+          "myDescription": "Computer lab",
+          "myIntField": 1,
+          "myFloatField": 5.1262
+        }
       },
       "geometry": {
         "type": "Point",
@@ -22,7 +23,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 2,
         "name": "PSM",
         "float": 0,
@@ -31,7 +32,7 @@
         "elevation_m": "13"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.02734886791072,
           -27.47480313686381,
@@ -41,7 +42,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 4,
         "name": "Ame",
         "float": 2,
@@ -60,7 +61,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 5,
         "name": "Ame",
         "float": 1,
@@ -79,7 +80,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 8,
         "name": "Inf",
         "float": 1,
@@ -98,7 +99,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 9,
         "name": "Inf",
         "float": 1,
@@ -107,7 +108,7 @@
         "elevation_m": "6.49652099609375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03132260232513,
           -27.477310770216842,
@@ -117,7 +118,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 10,
         "name": "Inf",
         "float": 1,
@@ -126,7 +127,7 @@
         "elevation_m": "9.7144775390625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03117969087606,
           -27.477063797439893,
@@ -136,7 +137,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 11,
         "name": "Veg",
         "float": 14,
@@ -155,7 +156,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 12,
         "name": "Veg",
         "float": 25,
@@ -174,7 +175,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 13,
         "name": "Veg",
         "float": 20,
@@ -193,7 +194,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 14,
         "name": "Veg",
         "float": 20,
@@ -212,7 +213,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 15,
         "name": "Inf",
         "float": 1,
@@ -221,7 +222,7 @@
         "elevation_m": "0.06536865234375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03147967919057,
           -27.476868582915028,
@@ -231,7 +232,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 16,
         "name": "Veg",
         "float": 35,
@@ -250,7 +251,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 17,
         "name": "Inf",
         "float": 1,
@@ -269,7 +270,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 18,
         "name": "Inf",
         "float": 1,
@@ -278,7 +279,7 @@
         "elevation_m": "-5.0223388671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03125764257555,
           -27.47663292570736,
@@ -288,7 +289,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 19,
         "name": "Inf",
         "float": 1,
@@ -297,7 +298,7 @@
         "elevation_m": "-5.065673828125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03124766811078,
           -27.47673631648298,
@@ -307,7 +308,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 20,
         "name": "Inf",
         "float": 1,
@@ -316,7 +317,7 @@
         "elevation_m": "-4.4439697265625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03135084933882,
           -27.476861625935395,
@@ -326,7 +327,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 21,
         "name": "Inf",
         "float": 1,
@@ -345,7 +346,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 22,
         "name": "Inf",
         "float": 1,
@@ -364,7 +365,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 23,
         "name": "Inf",
         "float": 1,
@@ -383,7 +384,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 24,
         "name": "Inf",
         "float": 1,
@@ -402,7 +403,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 25,
         "name": "Inf",
         "float": 1,
@@ -411,7 +412,7 @@
         "elevation_m": "-2.2452392578125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03141404888873,
           -27.477303184594472,
@@ -421,7 +422,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 26,
         "name": "Inf",
         "float": 3,
@@ -430,7 +431,7 @@
         "elevation_m": "0.3704833984375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03139141775017,
           -27.477326444375773,
@@ -440,7 +441,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 27,
         "name": "Inf",
         "float": 1,
@@ -459,7 +460,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 28,
         "name": "Veg",
         "float": 25,
@@ -478,7 +479,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 29,
         "name": "Veg",
         "float": 4,
@@ -497,7 +498,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 30,
         "name": "Veg",
         "float": 1,
@@ -506,7 +507,7 @@
         "elevation_m": "-0.9207763671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03113057292347,
           -27.477219197924693,
@@ -516,7 +517,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 31,
         "name": "Veg",
         "float": 20,
@@ -535,7 +536,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 32,
         "name": "Veg",
         "float": 12,
@@ -544,7 +545,7 @@
         "elevation_m": "-2.759521484375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03111623986905,
           -27.477181688908,
@@ -554,7 +555,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 33,
         "name": "Inf",
         "float": 1,
@@ -563,7 +564,7 @@
         "elevation_m": "17.0791015625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03113895482664,
           -27.477266220401486,
@@ -573,7 +574,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 34,
         "name": "Inf",
         "float": 1,
@@ -592,7 +593,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 35,
         "name": "Inf",
         "float": 1,
@@ -611,7 +612,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 36,
         "name": "Veg",
         "float": 2,
@@ -620,7 +621,7 @@
         "elevation_m": "9.07269287109375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03113333895152,
           -27.47736470776375,
@@ -630,7 +631,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 37,
         "name": "Inf",
         "float": 1,
@@ -649,7 +650,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 38,
         "name": "Inf",
         "float": 1,
@@ -658,7 +659,7 @@
         "elevation_m": "0.911865234375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0309977197582,
           -27.47740234250899,
@@ -668,7 +669,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 39,
         "name": "Inf",
         "float": 1,
@@ -677,7 +678,7 @@
         "elevation_m": "1.71142578125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03088925793116,
           -27.47743352318879,
@@ -687,7 +688,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 40,
         "name": "Veg",
         "float": 15,
@@ -696,7 +697,7 @@
         "elevation_m": "44.246826171875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.0306963903392,
           -27.47748046184655,
@@ -706,7 +707,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 41,
         "name": "Inf",
         "float": 1,
@@ -715,7 +716,7 @@
         "elevation_m": "7.70379638671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03086126237457,
           -27.4775244668382,
@@ -725,7 +726,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 42,
         "name": "Inf",
         "float": 1,
@@ -734,7 +735,7 @@
         "elevation_m": "8.02325439453125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03086126237457,
           -27.4775244668382,
@@ -744,7 +745,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 43,
         "name": "Inf",
         "float": 1,
@@ -763,7 +764,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 44,
         "name": "Veg",
         "float": 10,
@@ -782,7 +783,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 45,
         "name": "Inf",
         "float": 1,
@@ -791,7 +792,7 @@
         "elevation_m": "5.15008544921875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03105765036588,
           -27.47768573465522,
@@ -801,7 +802,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 46,
         "name": "Inf",
         "float": 1,
@@ -810,7 +811,7 @@
         "elevation_m": "4.82220458984375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03105765036588,
           -27.47768573465522,
@@ -820,7 +821,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 47,
         "name": "Veg",
         "float": 25,
@@ -839,7 +840,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 48,
         "name": "Veg",
         "float": 12,
@@ -858,7 +859,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 49,
         "name": "Inf",
         "float": 1,
@@ -867,7 +868,7 @@
         "elevation_m": "-5.61199951171875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03100333563333,
           -27.477593030806144,
@@ -877,7 +878,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 50,
         "name": "Veg",
         "float": 30,
@@ -886,7 +887,7 @@
         "elevation_m": "-2.703369140625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03101087934618,
           -27.477575847904642,
@@ -896,7 +897,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 51,
         "name": "Inf",
         "float": 1,
@@ -905,7 +906,7 @@
         "elevation_m": "2.138671875"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0312500988627,
           -27.477776259209474,
@@ -915,7 +916,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 52,
         "name": "Inf",
         "float": 2,
@@ -924,7 +925,7 @@
         "elevation_m": "-5.6226806640625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0312725623632,
           -27.47771955563452,
@@ -934,7 +935,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 53,
         "name": "Veg",
         "float": 20,
@@ -953,7 +954,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 54,
         "name": "Veg",
         "float": 40,
@@ -972,7 +973,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 55,
         "name": "Inf",
         "float": 1,
@@ -981,7 +982,7 @@
         "elevation_m": "-7.4896240234375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.031242974245,
           -27.47758054177042,
@@ -991,7 +992,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 56,
         "name": "Veg",
         "float": 35,
@@ -1000,7 +1001,7 @@
         "elevation_m": "-8.07464599609375"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
           153.03121715798324,
           -27.477511810164412,
@@ -1010,7 +1011,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 57,
         "name": "Inf",
         "float": 1,
@@ -1029,7 +1030,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 58,
         "name": "Veg",
         "float": 22,
@@ -1048,7 +1049,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 59,
         "name": "Inf",
         "float": 1,
@@ -1057,7 +1058,7 @@
         "elevation_m": "14.2236328125"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.03140700809007,
           -27.477698936152716,
@@ -1067,7 +1068,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 60,
         "name": "Inf",
         "float": 1,
@@ -1076,7 +1077,7 @@
         "elevation_m": "15.2457275390625"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Line",
         "coordinates": [
           153.0314144679839,
           -27.477652123223503,
@@ -1086,7 +1087,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 61,
         "name": "Veg",
         "float": 20,
@@ -1105,7 +1106,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 62,
         "name": "Inf",
         "float": 1,

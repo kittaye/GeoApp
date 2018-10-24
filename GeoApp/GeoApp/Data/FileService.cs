@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 namespace GeoApp {
     public class FileService : IDataService {
         bool hasBeenUpdated = false;
-        string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GALocations.txt");
+        bool fileEmpty = true;
+        string GAStorage = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GALocations.txt");
+        //string fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "GALocations.txt");
 
         public FileService() {
         }
@@ -29,42 +31,50 @@ namespace GeoApp {
 
                 // Exception handling for file service
                 try {
-                    Feature[] features = { };
+                    List<Feature> features = new List<Feature>();
 
                     string json;
 
-
                     if (hasBeenUpdated == false) {
-                        string[] res = this.GetType().Assembly.GetManifestResourceNames();
-                        var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                        Stream stream = assembly.GetManifestResourceStream(fileName);
-                        Debug.WriteLine("HELLO:::::::::::::              {0}", stream);
+                        if (fileEmpty) {
+                            CreateFile();
+                            fileEmpty = false;
 
-                        if (stream == null) {
-                            stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
                         }
-                        Debug.WriteLine("HELLO2:::::::::::::              {0}", stream);
-                        using (var reader = new System.IO.StreamReader(stream)) {
 
-
+                        using (var reader = new System.IO.StreamReader(GAStorage)) {
                             json = reader.ReadToEnd();
                         }
-                        Debug.WriteLine("HELLO3");
-                    } else {
-                        // temporarily commented out reading functionality
-                        //json = File.ReadAllText(fileName);
-                    }
-                    // temporarily commented out reading functionality
-                    //if (json != null) {
-                    //    var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                    //    Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
-                    //    //locations = null;
-                    //    features = rootobject.Features;
-                    //    //locations[0] = rootobject;
-                    //    Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
-                    //}
 
-                    return features.ToList();
+                    } else {
+                        json = File.ReadAllText(GAStorage);
+                    }
+
+                    if (string.IsNullOrEmpty(json) == false) {
+                        var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
+                        features = rootobject.Features.ToList();
+
+                        // Determine the icon used for each feature based on it's geometry type.
+                        foreach (var feature in features) {
+                            switch (feature.Geometry.Type) {
+                                case DataType.Point:
+                                    feature.Properties.TypeIconPath = "point_icon.png";
+                                    break;
+                                case DataType.Line:
+                                    feature.Properties.TypeIconPath = "line_icon.png";
+                                    break;
+                                case DataType.Polygon:
+                                    feature.Properties.TypeIconPath = "area_icon.png";
+                                    break;
+                                default:
+                                    Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
+                                    feature.Properties.TypeIconPath = "point_icon.png";
+                                    break;
+                            }
+                        }
+                    }
+
+                    return features;
                 } catch (Exception e) {
                     Debug.WriteLine(e);
                     throw e;
@@ -72,19 +82,48 @@ namespace GeoApp {
             });
         }
 
-        public Task SaveLocationAsync(Feature location) {
-            return Task.Run(async () => {
+        public Task SaveLocationAsync(Feature location)
+        {
+            return Task.Run(async () =>
+            {
+                List<Feature> existingLocations = await App.LocationManager.GetLocationsAsync();
 
-                List<Feature> locations = await App.LocationManager.GetLocationsAsync();
-                locations[0].Properties.Id = DateTime.Now.GetHashCode();
-                Feature[] locationsArr = locations.ToArray<Feature>();
-                RootObject rootobject = new RootObject();
-                rootobject.Features = locationsArr;
+                bool isEdit = false;
+                for (int i = 0; i < existingLocations.Count; i++) {
+                    if(existingLocations[i].Properties.Id == location.Properties.Id) {
+                        existingLocations[i] = location;
+                        isEdit = true;
+                        break;
+                    }
+                }
+
+                if (isEdit == false) {
+                    location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
+                }
+
+                RootObject rootobject = new RootObject
+                {
+                    Features = existingLocations.ToArray<Feature>()
+                };
                 var json = JsonConvert.SerializeObject(rootobject);
 
-                File.WriteAllText(fileName, json);
+                File.WriteAllText(GAStorage, json);
                 hasBeenUpdated = true;
             });
         }
+
+        //Method to load contents of locations.json to GALocations
+        public void CreateFile()
+        {
+            var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
+            var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+            string json;
+            using (var reader = new System.IO.StreamReader(stream))
+                {
+                    json = reader.ReadToEnd();
+                }
+            File.WriteAllText(GAStorage, json);
+        }
+
     }
 }
