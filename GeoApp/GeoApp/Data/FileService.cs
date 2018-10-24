@@ -5,15 +5,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using PCLStorage;
 using System.Threading.Tasks;
 
 namespace GeoApp {
     public class FileService : IDataService {
-        bool hasBeenUpdated = false;
-        bool fileEmpty = true;
-        string GAStorage = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GALocations.txt");
-        //string fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "GALocations.txt");
-
         public FileService() {
         }
 
@@ -26,76 +22,50 @@ namespace GeoApp {
         }
 
         public Task<List<Feature>> RefreshDataAsync() {
+            return Task.Run(async () => {
+                List<Feature> features = new List<Feature>();
 
-            return Task.Run(() => {
+                IFile locations = await GetLocationsFile();
 
-                // Exception handling for file service
-                try {
-                    List<Feature> features = new List<Feature>();
+                var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
+                features = rootobject.Features;
 
-                    string json;
+                // Determine the icon used for each feature based on it's geometry type.
+                // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
+                foreach (var feature in features) {
+                    feature.Geometry.XamarinCoordinates = new List<Point>();
 
-                    if (hasBeenUpdated == false) {
-                        if (fileEmpty) {
-                            CreateFile();
-                            fileEmpty = false;
+                    switch (feature.Geometry.Type) {
+                        case DataType.Point:
+                            feature.Properties.TypeIconPath = "point_icon.png";
+                            break;
+                        case DataType.Line:
+                            feature.Properties.TypeIconPath = "line_icon.png";
+                            break;
+                        case DataType.Polygon:
+                            feature.Properties.TypeIconPath = "area_icon.png";
+                            break;
+                        default:
+                            Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
+                            feature.Properties.TypeIconPath = "point_icon.png";
+                            break;
+                    }
 
-                        }
-
-                        using (var reader = new System.IO.StreamReader(GAStorage)) {
-                            json = reader.ReadToEnd();
-                        }
-
+                    if (feature.Geometry.Type == DataType.Point) {
+                        feature.Geometry.XamarinCoordinates.Add(new Point(
+                            (double)feature.Geometry.Coordinates[0],
+                            (double)feature.Geometry.Coordinates[1],
+                            (double)feature.Geometry.Coordinates[2]));
                     } else {
-                        json = File.ReadAllText(GAStorage);
-                    }
-
-                    if (string.IsNullOrEmpty(json) == false) {
-                        var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                        features = rootobject.Features;
-
-                        // Determine the icon used for each feature based on it's geometry type.
-                        // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
-                        foreach (var feature in features) {
-                            feature.Geometry.XamarinCoordinates = new List<Point>();
-
-                            switch (feature.Geometry.Type) {
-                                case DataType.Point:
-                                    feature.Properties.TypeIconPath = "point_icon.png";
-                                    break;
-                                case DataType.Line:
-                                    feature.Properties.TypeIconPath = "line_icon.png";
-                                    break;
-                                case DataType.Polygon:
-                                    feature.Properties.TypeIconPath = "area_icon.png";
-                                    break;
-                                default:
-                                    Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
-                                    feature.Properties.TypeIconPath = "point_icon.png";
-                                    break;
-                            }
-
-                            if(feature.Geometry.Type == DataType.Point) {
-                                feature.Geometry.XamarinCoordinates.Add(new Point(
-                                    (double)feature.Geometry.Coordinates[0],
-                                    (double)feature.Geometry.Coordinates[1],
-                                    (double)feature.Geometry.Coordinates[2]));
-                            } else {
-                                for (int i = 0; i < feature.Geometry.Coordinates.Count; i++) {
-                                    feature.Geometry.XamarinCoordinates.Add(new Point(
-                                        (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[0]),
-                                        (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[1]),
-                                        (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[2])));
-                                }
-                            }
+                        for (int i = 0; i < feature.Geometry.Coordinates.Count; i++) {
+                            feature.Geometry.XamarinCoordinates.Add(new Point(
+                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[0]),
+                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[1]),
+                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[2])));
                         }
                     }
-
-                    return features;
-                } catch (Exception e) {
-                    Debug.WriteLine(e);
-                    throw e;
                 }
+                return features;
             });
         }
 
@@ -123,23 +93,35 @@ namespace GeoApp {
                 }
 
                 var json = JsonConvert.SerializeObject(rootobject);
-                File.WriteAllText(GAStorage, json);
-                hasBeenUpdated = true;
+
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFile locations = await GetLocationsFile();
+                await locations.WriteAllTextAsync(json);
             });
         }
 
-        //Method to load contents of locations.json to GALocations
-        public void CreateFile()
+        public async Task<IFile> GetLocationsFile()
         {
-            var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-            var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
-            string json;
-            using (var reader = new System.IO.StreamReader(stream))
-                {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations2.json");
+            if(result != ExistenceCheckResult.FileExists) {
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations2.json", CreationCollisionOption.ReplaceExisting);
+
+                var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
+                Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                string json;
+                using (var reader = new System.IO.StreamReader(stream)) {
                     json = reader.ReadToEnd();
                 }
-            File.WriteAllText(GAStorage, json);
-        }
 
+                await locationsFile.WriteAllTextAsync(json);
+                return locationsFile;
+
+            } else {
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations2.json", CreationCollisionOption.OpenIfExists);
+                return locationsFile;
+            }
+        }
     }
 }

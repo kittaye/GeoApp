@@ -261,8 +261,9 @@ namespace GeoApp
                     feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);
                 }
                 feature.Geometry = new Geometry();
-                feature.Geometry.Coordinates = new List<object>();
-                feature.Geometry.Coordinates.AddRange(GeolocationPoints);
+                //if(EntryType == "Point") {
+                    feature.Geometry.Coordinates = new List<object>() { GeolocationPoints[0].Latitude, GeolocationPoints[0].Longitude, GeolocationPoints[0].Altitude };
+                //}
                 //feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
                 feature.Geometry.Type = DataType.Point;
             }
