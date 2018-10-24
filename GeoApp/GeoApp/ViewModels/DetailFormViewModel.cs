@@ -31,7 +31,9 @@ namespace GeoApp
         private DetailFormFieldPopup _detailFormPopup;
 
         // Property binding to determine if the delete button for metadata fields is visible.
-        public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
+        public bool ShowPointDeleteBtn { get { return _numPointFields > minPoints; } }
+
+        private int minPoints = 1;
 
         public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
@@ -122,6 +124,14 @@ namespace GeoApp
 
             // Add one geolocation point to the list of points as there must be at least one.
             AddPoint();
+            if (EntryType == "Line") {
+                minPoints = 2;
+                AddPoint();
+            } else if (EntryType == "Polygon") {
+                minPoints = 3;
+                AddPoint();
+                AddPoint();
+            }
 
             // Initialise command bindings.
             {
@@ -133,7 +143,7 @@ namespace GeoApp
                 AddPointCommand = new Command(() => AddPoint());
                 DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
 
-                OnSaveUpdatedCommand = new Command<Feature>((item) => OnSaveUpdateActivated(item));
+                OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
             }
         }
 
@@ -232,37 +242,34 @@ namespace GeoApp
             }
         }
 
-        async void OnSaveUpdateActivated(Feature sfd)
+        async void OnSaveUpdateActivated()
         {
+            // Do validation checks here.
+            if (string.IsNullOrEmpty(NameEntry)) {
+                await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+                return;
+            }
 
+            // Create the feature object based on the view-model data of the entry.
             Feature feature = new Feature();
-            feature.Properties = new Properties();
-            feature.Geometry = new Geometry();
-            //feature.Geometry.Coordinates = new List<double>();
-            //feature.Geometry.Type = DataType.Line;
-            //feature.Geometry.Coordinates.
-            //feature.Geometry.Coordinates[0] = 1;//GeolocationPoints;
-            //feature.Geometry.Coordinates[1] = 2;//GeolocationPoints[0].Latitude;
-            //feature.Geometry.Coordinates[2] = 3;//GeolocationPoints[0].Altitude;
-
-            feature.Properties.Name = "test";
-            //feature.Properties.MetadataFields = MetadataEntries;
-            //item.Geometry.Coordinates[0] = GeolocationPoints[0];
-
-            if (feature.Properties.Name == null)
             {
-                await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
-            }
-            else if (feature.Properties.Name.Trim() == "")
-            {
-                await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
-            }
-            else
-            {
-                await App.LocationManager.SaveLocationAsync(feature);
-                await HomePage.Instance.Navigation.PopAsync();
+                feature.Type = "Feature";
+                feature.Properties = new Properties();
+                feature.Properties.Name = NameEntry;
+                feature.Properties.Date = DateTime.Parse(DateEntry);
+                foreach (var metadataField in MetadataEntries) {
+                    feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);
+                }
+                feature.Geometry = new Geometry();
+                feature.Geometry.Coordinates = new List<object>();
+                feature.Geometry.Coordinates.AddRange(GeolocationPoints);
+                //feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
+                feature.Geometry.Type = DataType.Point;
             }
 
+            // Save the feature and go back to the entry list page.
+            await App.LocationManager.SaveLocationAsync(feature);
+            await HomePage.Instance.Navigation.PopAsync();
         }
 
     }

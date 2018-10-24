@@ -20,7 +20,6 @@ namespace GeoApp
         public int Id { get; set; }
         public Dictionary<string, object> MetadataFields { get; set; }
         public string Name { get; set; }
-        public string Details { get; set; }
         public string TypeIconPath { get; set; }
         public DateTime Date { get; set; }
     }
