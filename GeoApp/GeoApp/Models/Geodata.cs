@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GeoApp
 {
-    public enum DataType { Point, Line, Polygon };
+    public enum DataType { Point, Line, Polygon }; //Change Line to LineString? Also potential for Multipart Gemoetries: MultiPoint, MultiLineString and MultiPolygon.
 
     public class Feature
     {
@@ -18,13 +18,14 @@ namespace GeoApp
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string TypeIcon { get; set; }
+        public string Details { get; set; }
+       // public string TypeIcon { get; set; }
     }
 
     public class Geometry
     {
         public DataType Type { get; set; }
-        public List<double> Coordinates { get; set; }
+        public List<double> Coordinates { get; set; } //Longtitute, Latitude, Elevation
     }
 
 
