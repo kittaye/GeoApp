@@ -104,9 +104,9 @@ namespace GeoApp {
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
 
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations2.json");
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations3.json");
             if(result != ExistenceCheckResult.FileExists) {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations2.json", CreationCollisionOption.ReplaceExisting);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations3.json", CreationCollisionOption.ReplaceExisting);
 
                 var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
@@ -119,7 +119,7 @@ namespace GeoApp {
                 return locationsFile;
 
             } else {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations2.json", CreationCollisionOption.OpenIfExists);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations3.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
             }
         }

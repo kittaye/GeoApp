@@ -10,26 +10,22 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DataEntryListView : ContentPage {
-        private bool isFetchingData;
 
         public DataEntryListView() {
             InitializeComponent();
-            isFetchingData = false;
         }
 
         protected async override void OnAppearing() {
             base.OnAppearing();
 
-            if (App.LocationManager.CurrentLocations == null && isFetchingData == false) {
-                isFetchingData = true;
-                loadingList.IsRunning = true;
-                loadingList.IsVisible = true;
-                App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
-                loadingList.IsRunning = false;
-                loadingList.IsVisible = false;
-            }
-
-            listView.ItemsSource = App.LocationManager.CurrentLocations;
+            //if (App.LocationManager.CurrentLocations == null) {
+            //    loadingList.IsRunning = true;
+            //    loadingList.IsVisible = true;
+            //    App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
+            //    loadingList.IsRunning = false;
+            //    loadingList.IsVisible = false;
+            //    listView.ItemsSource = App.LocationManager.CurrentLocations;
+            //}
         }
 
         protected override void OnDisappearing() {
