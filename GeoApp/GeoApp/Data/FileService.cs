@@ -101,8 +101,10 @@ namespace GeoApp {
                     location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
                 }
 
-                RootObject rootobject = new RootObject();
-                rootobject.Features = existingLocations.ToArray<Feature>();
+                RootObject rootobject = new RootObject
+                {
+                    Features = existingLocations.ToArray<Feature>()
+                };
                 var json = JsonConvert.SerializeObject(rootobject);
 
                 File.WriteAllText(GAStorage, json);
@@ -113,32 +115,14 @@ namespace GeoApp {
         //Method to load contents of locations.json to GALocations
         public void CreateFile()
         {
-            Debug.WriteLine("####################################### 3 Save");
             var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
             var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
             string json;
-
-
-            //File.WriteAllText(GAStorage, "Write this text into a file");
-
-
-
             using (var reader = new System.IO.StreamReader(stream))
                 {
                     json = reader.ReadToEnd();
                 }
-            //System.IO.File.Create(GAStorage);
-            var text = File.ReadAllText(GAStorage);
-            Console.WriteLine(text);
-            Console.WriteLine("==============");
-
-            Debug.WriteLine(json);
-
-            Console.WriteLine("==============");
             File.WriteAllText(GAStorage, json);
-            text = File.ReadAllText(GAStorage);
-            Console.WriteLine(text);
-            Console.WriteLine("==============");
         }
 
     }
