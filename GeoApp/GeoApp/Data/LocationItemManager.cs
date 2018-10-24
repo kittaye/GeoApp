@@ -20,6 +20,10 @@ namespace GeoApp.Data
         {
             return restService.RefreshDataAsync();
         }
+        public Task CreateFile()
+        {
+            return restService.CreateFile();
+        }
 
         public Task SaveLocationAsync(Feature location)
         {

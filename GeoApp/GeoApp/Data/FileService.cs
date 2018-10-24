@@ -29,7 +29,7 @@ namespace GeoApp {
 
                 // Exception handling for file service
                 try {
-                    Feature[] features = { };
+                    List<Feature> features = new List<Feature>();
 
                     string json;
 
@@ -38,9 +38,11 @@ namespace GeoApp {
                         var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                         Stream stream = assembly.GetManifestResourceStream(fileName);
 
-                        if (stream == null) {
-                            stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
-                        }
+
+                        //The App craches without this check
+                        //if (stream == null) {
+                            //stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                        //}
                         using (var reader = new System.IO.StreamReader(stream)) {
 
 
@@ -51,31 +53,31 @@ namespace GeoApp {
                         json = File.ReadAllText(fileName);
                     }
 
-                    if (json != null) {
+                    if (string.IsNullOrEmpty(json) == false) {
                         var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                        features = rootobject.Features;
-                    }
+                        features = rootobject.Features.ToList();
 
-                    // Determine the icon used for each feature based on it's geometry type.
-                    foreach (var feature in features) {
-                        switch (feature.Geometry.Type) {
-                            case DataType.Point:
-                                feature.Properties.TypeIconPath = "point_icon.png";
-                                break;
-                            case DataType.Line:
-                                feature.Properties.TypeIconPath = "line_icon.png";
-                                break;
-                            case DataType.Polygon:
-                                feature.Properties.TypeIconPath = "area_icon.png";
-                                break;
-                            default:
-                                Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
-                                feature.Properties.TypeIconPath = "point_icon.png";
-                                break;
+                        // Determine the icon used for each feature based on it's geometry type.
+                        foreach (var feature in features) {
+                            switch (feature.Geometry.Type) {
+                                case DataType.Point:
+                                    feature.Properties.TypeIconPath = "point_icon.png";
+                                    break;
+                                case DataType.Line:
+                                    feature.Properties.TypeIconPath = "line_icon.png";
+                                    break;
+                                case DataType.Polygon:
+                                    feature.Properties.TypeIconPath = "area_icon.png";
+                                    break;
+                                default:
+                                    Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
+                                    feature.Properties.TypeIconPath = "point_icon.png";
+                                    break;
+                            }
                         }
                     }
 
-                    return features.ToList();
+                    return features;
                 } catch (Exception e) {
                     Debug.WriteLine(e);
                     throw e;
@@ -110,5 +112,26 @@ namespace GeoApp {
                 hasBeenUpdated = true;
             });
         }
+
+        //Method to load contents of locations.json to GALocations
+        public Task CreateFile()
+        {
+            return Task.Run(() =>
+            {
+                Debug.WriteLine("####################################### 3 Save");
+                var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
+                var stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                string json;
+
+                using (var reader = new System.IO.StreamReader(stream))
+                {
+                    json = reader.ReadToEnd();
+                }
+                Debug.WriteLine(json);
+                File.WriteAllText(fileName, json);
+
+            });
+        }
+
     }
 }
