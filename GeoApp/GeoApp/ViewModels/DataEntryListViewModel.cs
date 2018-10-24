@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -14,14 +15,39 @@ namespace GeoApp {
 
         public ICommand ButtonClickedCommand { set; get; }
         public ICommand ItemTappedCommand { set; get; }
+        public ICommand RefreshListCommand { set; get; }
+
+        private List<Feature> entryListSource;
+        public List<Feature> EntryListSource {
+            get { return entryListSource; }
+            set {
+                entryListSource = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryListSource"));
+            }
+        }
+
+        private bool isRefreshing;
+        public bool IsRefreshing {
+            get { return isRefreshing; }
+            set {
+                isRefreshing = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRefreshing"));
+            }
+        }
 
         public DataEntryListViewModel() {
+            EntryListSource = new List<Feature>();
+
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
             });
 
             ItemTappedCommand = new Command<Feature> (async (data) => {
                 await HomePage.Instance.ShowExistingDetailFormPage(data);
+            });
+
+            RefreshListCommand = new Command(() => {
+                ExecuteRefreshListCommand();
             });
         }
 
@@ -30,6 +56,18 @@ namespace GeoApp {
             if (changed != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        private void ExecuteRefreshListCommand() {
+            IsRefreshing = true;
+
+            EntryListSource.Clear();
+            Device.BeginInvokeOnMainThread(async () => {
+                App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
+                EntryListSource = App.LocationManager.CurrentLocations;
+            });
+
+            IsRefreshing = false;
         }
     }
 }
