@@ -196,13 +196,22 @@ namespace GeoApp
             }
         }
 
-        async void OnSaveUpdateActivated(Feature item)
+        async void OnSaveUpdateActivated(Feature sfd)
         {
-            Debug.WriteLine("HELLO:::::::::::::              {0},{1}", item, "i");
+            Debug.WriteLine("HELLO:::::::::::::              {0}", GeolocationPoints[0].Latitude);
 
-            var feature = (Feature)item;
-            item.Geometry.Coordinates[0] = GeolocationPoints[0];
+            Feature feature = new Feature();
+            feature.Properties = new Properties();
+            feature.Geometry = new Geometry();
+            //feature.Geometry.Coordinates = new List<double>();
+            feature.Geometry.Type = DataType.Line;
+            feature.Geometry.Coordinates
+            //feature.Geometry.Coordinates[0] = 1;//GeolocationPoints;
+            //feature.Geometry.Coordinates[1] = 2;//GeolocationPoints[0].Latitude;
+            //feature.Geometry.Coordinates[2] = 3;//GeolocationPoints[0].Altitude;
 
+            feature.Properties.Name = "test";
+            //feature.Properties.MetadataFields = MetadataEntries;
 
             if (feature.Properties.Name == null)
             {

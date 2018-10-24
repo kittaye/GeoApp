@@ -7,7 +7,7 @@
              BackgroundColor="#36393F">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="add_icon" Command="{Binding OnSaveUpdated}"/>
+        <ToolbarItem Icon="add_icon" Command="{Binding OnSaveUpdatedCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.BindingContext>

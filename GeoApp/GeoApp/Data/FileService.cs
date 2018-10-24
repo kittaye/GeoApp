@@ -37,18 +37,15 @@ namespace GeoApp {
                         string[] res = this.GetType().Assembly.GetManifestResourceNames();
                         var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                         Stream stream = assembly.GetManifestResourceStream(fileName);
-                        Debug.WriteLine("HELLO:::::::::::::              {0}", stream);
 
                         if (stream == null) {
                             stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
                         }
-                        Debug.WriteLine("HELLO2:::::::::::::              {0}", stream);
                         using (var reader = new System.IO.StreamReader(stream)) {
 
 
                             json = reader.ReadToEnd();
                         }
-                        Debug.WriteLine("HELLO3");
 
                     } else {
                         json = File.ReadAllText(fileName);
@@ -56,11 +53,7 @@ namespace GeoApp {
 
                     if (json != null) {
                         var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                        Debug.WriteLine("HELLO:::::::::::::              {0}", rootobject);
-                        //locations = null;
                         features = rootobject.Features;
-                        //locations[0] = rootobject;
-                        Debug.WriteLine("HELLO:::::::::::::              {0},{1}", rootobject.Features[0].Properties.Name, rootobject.Features[1].Properties.Name);
                     }
 
                     // Determine the icon used for each feature based on it's geometry type.
