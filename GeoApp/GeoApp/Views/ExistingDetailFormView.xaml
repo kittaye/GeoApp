@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.ExistingDetailFormView"
              Title=""
-             BackgroundColor="#36393F">
+             BackgroundColor="Default">
 
     <ContentPage.BindingContext>
         <local:DetailFormViewModel x:Name="viewModel"/>

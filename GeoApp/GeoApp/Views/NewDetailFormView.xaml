@@ -4,10 +4,10 @@
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.NewDetailFormView"
              Title=""
-             BackgroundColor="#36393F">
+             BackgroundColor="Default">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="add_icon" Command="{Binding OnSaveUpdatedCommand}"/>
+        <ToolbarItem Icon="save_icon" Command="{Binding OnSaveUpdatedCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.BindingContext>
@@ -35,7 +35,7 @@
                 <Setter Property="Margin" Value="15,15,15,15"/>
             </Style>
             <Style x:Key="PanelLayout" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="#3d4047"/>
+                <Setter Property="BackgroundColor" Value="Gray"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

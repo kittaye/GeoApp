@@ -4,7 +4,7 @@
              x:Class="GeoApp.ExportView"
              xmlns:local="clr-namespace:GeoApp"
              Title = "Export"
-             BackgroundColor="#36393F">
+             BackgroundColor="Default">
     
     <ContentPage.BindingContext>
         <local:ExportViewModel x:Name="viewModel"/>
@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="I am the export page."
-                   TextColor="White"
+                   TextColor="Black"
                    FontSize="Medium"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
