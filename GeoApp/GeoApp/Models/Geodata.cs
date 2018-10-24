@@ -25,24 +25,14 @@ namespace GeoApp
         public DateTime Date { get; set; }
     }
 
-    public class Geometry
-    {
+    public class Geometry {
         public DataType Type { get; set; }
-        public IEnumerable<object> Coordinates { get; internal set; }
-    }
-
-    class PointCoordinates : Geometry
-    {
-        public List<double> Coordinates { get; set; } //Longtitute, Latitude, Elevation
-    }
-
-    class OtherCoordinates : Geometry
-    {
-        public List<List<double>> Coordinates { get; set; } //Longtitute, Latitude, Elevation+
+        public List<object> Coordinates { get; set; }
+        public List<Point> XamarinCoordinates { get; set; }
     }
 
     public class RootObject
     {
-        public Feature[] Features { get; set; }
+        public List<Feature> Features { get; set; }
     }
 }

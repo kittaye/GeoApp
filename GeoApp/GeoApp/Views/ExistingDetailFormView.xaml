@@ -70,7 +70,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Style="{StaticResource PanelGrid}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Margin="15,5,15,5">
+                                <Grid Style="{StaticResource PanelGrid}" Margin="15,5,15,5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>

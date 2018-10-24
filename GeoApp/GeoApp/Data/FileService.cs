@@ -52,10 +52,13 @@ namespace GeoApp {
 
                     if (string.IsNullOrEmpty(json) == false) {
                         var rootobject = JsonConvert.DeserializeObject<RootObject>(json);
-                        features = rootobject.Features.ToList();
+                        features = rootobject.Features;
 
                         // Determine the icon used for each feature based on it's geometry type.
+                        // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
                         foreach (var feature in features) {
+                            feature.Geometry.XamarinCoordinates = new List<Point>();
+
                             switch (feature.Geometry.Type) {
                                 case DataType.Point:
                                     feature.Properties.TypeIconPath = "point_icon.png";
@@ -70,6 +73,20 @@ namespace GeoApp {
                                     Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
                                     feature.Properties.TypeIconPath = "point_icon.png";
                                     break;
+                            }
+
+                            if(feature.Geometry.Type == DataType.Point) {
+                                feature.Geometry.XamarinCoordinates.Add(new Point(
+                                    (double)feature.Geometry.Coordinates[0],
+                                    (double)feature.Geometry.Coordinates[1],
+                                    (double)feature.Geometry.Coordinates[2]));
+                            } else {
+                                for (int i = 0; i < feature.Geometry.Coordinates.Count; i++) {
+                                    feature.Geometry.XamarinCoordinates.Add(new Point(
+                                        (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[0]),
+                                        (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[1]),
+                                        (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[2])));
+                                }
                             }
                         }
                     }
@@ -101,10 +118,8 @@ namespace GeoApp {
                     location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
                 }
 
-                RootObject rootobject = new RootObject
-                {
-                    Features = existingLocations.ToArray<Feature>()
-                };
+                RootObject rootobject = new RootObject();
+                rootobject.Features = existingLocations;
                 var json = JsonConvert.SerializeObject(rootobject);
 
                 File.WriteAllText(GAStorage, json);
