@@ -9,6 +9,7 @@ using Android.OS;
 using Xamarin.Essentials;
 
 using Debug = System.Diagnostics.Debug;
+using Plugin.Permissions;
 
 namespace GeoApp.Droid {
     [Activity(Label = "GeoApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
@@ -34,7 +35,7 @@ namespace GeoApp.Droid {
         /// <param name="grantResults"></param>
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults) {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
@@ -45,7 +46,6 @@ namespace GeoApp.Droid {
                 Debug.WriteLine("Android back button: There are not any pages in the PopupStack");
             }
         }
-
     }
 }
 
