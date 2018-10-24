@@ -18,7 +18,7 @@
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
-            <Button Margin="0,20,0,0" x:Name="ButtonShare" Text="Share" Command="{Binding ButtonClickCommand}"/>
+            <Button Margin="0,20,0,0" Text="Share" Command="{Binding ButtonClickCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
