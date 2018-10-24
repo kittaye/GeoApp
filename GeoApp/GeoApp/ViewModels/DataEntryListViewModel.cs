@@ -13,15 +13,15 @@ namespace GeoApp {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand ButtonClickedCommand { set; get; }
-        public ICommand TestCommand { set; get; }
+        public ICommand ItemTappedCommand { set; get; }
 
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
             });
 
-            TestCommand = new Command (() => {
-                Debug.WriteLine("test");
+            ItemTappedCommand = new Command<Feature> (async (data) => {
+                await HomePage.Instance.ShowExistingDetailFormPage(data);
             });
         }
 
