@@ -23,7 +23,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access location when open.</string>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>11.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>GeoApp</string>
 	<key>CFBundleIdentifier</key>
