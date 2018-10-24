@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 
 namespace GeoApp {
+    // Defines the model used by listviews to present geolocational data.
     public class Point : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,6 +32,5 @@ namespace GeoApp {
             this.Longitude = lng;
             this.Altitude = alt;
         }
-
     }
 }

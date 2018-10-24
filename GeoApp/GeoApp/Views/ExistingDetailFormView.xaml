@@ -10,6 +10,11 @@
         <local:DetailFormViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="edit_icon"/>
+        <ToolbarItem Icon="trash_icon"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="Default" />

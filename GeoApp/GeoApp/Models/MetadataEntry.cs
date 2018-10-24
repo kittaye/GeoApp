@@ -5,6 +5,7 @@ using Xamarin.Forms;
 
 namespace GeoApp
 {
+    //Defines the model for metadata entries in a listview.
     public class MetadataEntry
     {
         public string LabelTitle { get; set; }
