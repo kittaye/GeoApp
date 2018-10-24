@@ -8,8 +8,6 @@ namespace GeoApp
 {
     public enum DataType { Point, Line, Polygon }; //Change Line to LineString? Also potential for Multipart Gemoetries: MultiPoint, MultiLineString and MultiPolygon.
 
-    public enum DataType { Point, Line, Polygon };
-
     public class Feature
     {
         public string Type { get; set; }
@@ -24,7 +22,7 @@ namespace GeoApp
         public string Name { get; set; }
         public string Details { get; set; }
         public string TypeIconPath { get; set; }
-
+    }
 
     public class Geometry
     {
