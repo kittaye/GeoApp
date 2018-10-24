@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/28/2018",
         "id": 1,
         "name": "S601",
         "metadataFields": {
@@ -23,7 +23,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 2,
         "name": "PSM",
         "float": 0,
@@ -42,7 +42,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 4,
         "name": "Ame",
         "float": 2,
@@ -61,7 +61,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 5,
         "name": "Ame",
         "float": 1,
@@ -80,7 +80,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 8,
         "name": "Inf",
         "float": 1,
@@ -99,7 +99,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 9,
         "name": "Inf",
         "float": 1,
@@ -118,7 +118,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 10,
         "name": "Inf",
         "float": 1,
@@ -137,7 +137,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 11,
         "name": "Veg",
         "float": 14,
@@ -156,7 +156,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 12,
         "name": "Veg",
         "float": 25,
@@ -175,7 +175,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 13,
         "name": "Veg",
         "float": 20,
@@ -194,7 +194,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 14,
         "name": "Veg",
         "float": 20,
@@ -213,7 +213,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 15,
         "name": "Inf",
         "float": 1,
@@ -232,7 +232,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 16,
         "name": "Veg",
         "float": 35,
@@ -251,7 +251,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 17,
         "name": "Inf",
         "float": 1,
@@ -270,7 +270,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 18,
         "name": "Inf",
         "float": 1,
@@ -289,7 +289,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 19,
         "name": "Inf",
         "float": 1,
@@ -308,7 +308,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 20,
         "name": "Inf",
         "float": 1,
@@ -327,7 +327,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 21,
         "name": "Inf",
         "float": 1,
@@ -346,7 +346,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 22,
         "name": "Inf",
         "float": 1,
@@ -365,7 +365,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 23,
         "name": "Inf",
         "float": 1,
@@ -384,7 +384,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 24,
         "name": "Inf",
         "float": 1,
@@ -403,7 +403,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 25,
         "name": "Inf",
         "float": 1,
@@ -422,7 +422,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 26,
         "name": "Inf",
         "float": 3,
@@ -441,7 +441,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 27,
         "name": "Inf",
         "float": 1,
@@ -460,7 +460,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 28,
         "name": "Veg",
         "float": 25,
@@ -479,7 +479,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 29,
         "name": "Veg",
         "float": 4,
@@ -498,7 +498,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 30,
         "name": "Veg",
         "float": 1,
@@ -517,7 +517,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 31,
         "name": "Veg",
         "float": 20,
@@ -536,7 +536,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 32,
         "name": "Veg",
         "float": 12,
@@ -555,7 +555,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 33,
         "name": "Inf",
         "float": 1,
@@ -574,7 +574,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 34,
         "name": "Inf",
         "float": 1,
@@ -593,7 +593,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 35,
         "name": "Inf",
         "float": 1,
@@ -612,7 +612,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 36,
         "name": "Veg",
         "float": 2,
@@ -631,7 +631,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 37,
         "name": "Inf",
         "float": 1,
@@ -650,7 +650,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 38,
         "name": "Inf",
         "float": 1,
@@ -669,7 +669,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 39,
         "name": "Inf",
         "float": 1,
@@ -688,7 +688,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 40,
         "name": "Veg",
         "float": 15,
@@ -707,7 +707,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 41,
         "name": "Inf",
         "float": 1,
@@ -726,7 +726,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 42,
         "name": "Inf",
         "float": 1,
@@ -745,7 +745,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 43,
         "name": "Inf",
         "float": 1,
@@ -764,7 +764,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 44,
         "name": "Veg",
         "float": 10,
@@ -783,7 +783,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 45,
         "name": "Inf",
         "float": 1,
@@ -802,7 +802,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 46,
         "name": "Inf",
         "float": 1,
@@ -821,7 +821,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 47,
         "name": "Veg",
         "float": 25,
@@ -840,7 +840,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 48,
         "name": "Veg",
         "float": 12,
@@ -859,7 +859,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 49,
         "name": "Inf",
         "float": 1,
@@ -878,7 +878,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 50,
         "name": "Veg",
         "float": 30,
@@ -897,7 +897,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 51,
         "name": "Inf",
         "float": 1,
@@ -916,7 +916,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 52,
         "name": "Inf",
         "float": 2,
@@ -935,7 +935,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 53,
         "name": "Veg",
         "float": 20,
@@ -954,7 +954,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 54,
         "name": "Veg",
         "float": 40,
@@ -973,7 +973,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 55,
         "name": "Inf",
         "float": 1,
@@ -992,7 +992,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 56,
         "name": "Veg",
         "float": 35,
@@ -1011,7 +1011,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 57,
         "name": "Inf",
         "float": 1,
@@ -1030,7 +1030,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 58,
         "name": "Veg",
         "float": 22,
@@ -1049,7 +1049,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 59,
         "name": "Inf",
         "float": 1,
@@ -1068,7 +1068,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 60,
         "name": "Inf",
         "float": 1,
@@ -1087,7 +1087,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 61,
         "name": "Veg",
         "float": 20,
@@ -1106,7 +1106,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
+      "properties": { "date": "10/24/2018",
         "id": 62,
         "name": "Inf",
         "float": 1,

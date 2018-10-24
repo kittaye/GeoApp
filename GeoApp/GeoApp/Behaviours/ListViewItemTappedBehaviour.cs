@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -32,7 +33,7 @@ namespace GeoApp {
             base.OnAttachedTo(bindable);
             AssociatedObject = bindable;
             bindable.BindingContextChanged += OnBindingContextChanged;
-            bindable.ItemTapped += OnListViewItemSelected;
+            bindable.ItemTapped += OnListViewItemTapped;
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace GeoApp {
         protected override void OnDetachingFrom(ListView bindable) {
             base.OnDetachingFrom(bindable);
             bindable.BindingContextChanged -= OnBindingContextChanged;
-            bindable.ItemTapped -= OnListViewItemSelected;
+            bindable.ItemTapped -= OnListViewItemTapped;
             AssociatedObject = null;
         }
 
@@ -50,12 +51,14 @@ namespace GeoApp {
             OnBindingContextChanged();
         }
 
-        void OnListViewItemSelected(object sender, ItemTappedEventArgs e) {
+        void OnListViewItemTapped(object sender, ItemTappedEventArgs e) {
             if (Command == null) {
                 return;
             }
+            AssociatedObject.SelectedItem = null;
 
             object parameter = Converter.Convert(e, typeof(object), null, null);
+
             if (Command.CanExecute(parameter)) {
                 Command.Execute(parameter);
             }

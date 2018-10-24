@@ -52,7 +52,7 @@
                     <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
-                    <Entry Text="{Binding DateEntry}" Placeholder="DD/MM/YYYY" Grid.Row="1" Grid.Column="2"/>
+                    <DatePicker Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Cyan"/>
                 </Grid>
             </StackLayout>
 

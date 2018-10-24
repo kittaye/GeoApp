@@ -29,9 +29,9 @@ namespace GeoApp {
             Navigation.PushAsync(new NewDetailFormView(type));
         }
 
-        //public async Task ShowExistingDetailFormPage(string name) {
-        //    await Navigation.PushAsync(new ExistingDetailFormView(name));
-        //}
+        public async Task ShowExistingDetailFormPage(Feature data) {
+            await Navigation.PushAsync(new ExistingDetailFormView(data));
+        }
 
         /// <summary>
         /// Displays a pop-up user interface to navigate to different data entry types

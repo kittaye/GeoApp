@@ -26,7 +26,7 @@
 
             <ListView x:Name="listView" HasUnevenRows="True" SeparatorColor="Gray">
                 <ListView.Behaviors>
-                    <local:ListViewItemTappedBehaviour Command="{Binding TestCommand}" Converter="{StaticResource TappedItemConverter}" />
+                    <local:ListViewItemTappedBehaviour Command="{Binding ItemTappedCommand}" Converter="{StaticResource TappedItemConverter}" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
