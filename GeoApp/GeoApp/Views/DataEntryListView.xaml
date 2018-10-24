@@ -50,7 +50,7 @@
                                     <Label.TextColor>
                                         <OnPlatform x:TypeArguments="Color">
                                             <OnPlatform.iOS>Black</OnPlatform.iOS>
-                                            <OnPlatform.Android>White</OnPlatform.Android>
+                                            <OnPlatform.Android>Black</OnPlatform.Android>
                                         </OnPlatform>
                                     </Label.TextColor>
                                 </Label>
