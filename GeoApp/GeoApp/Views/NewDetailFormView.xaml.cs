@@ -18,6 +18,10 @@ namespace GeoApp {
             InitializeComponent();
             Title = $"New {type}";
 
+            Label label = new Label();
+            label.SetBinding(Label.TextProperty, "EntryType");
+            label.Text = type;
+            
             if (type == "Line" || type == "Polygon")
             {
                 addPointBtn.Text = $"Add to {type}";

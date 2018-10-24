@@ -9,6 +9,7 @@ namespace GeoApp
     public class MetadataEntry
     {
         public string LabelTitle { get; set; }
+        public string LabelData { get; set; }
         public Keyboard EntryType { get; set; }
 
         public MetadataEntry() { }

@@ -49,7 +49,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
-                    <Entry Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Entry Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
                     <DatePicker Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Cyan"/>
@@ -128,7 +128,7 @@
 
                                     <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                                     <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                                    <Entry Keyboard="{Binding EntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
+                                    <Entry Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

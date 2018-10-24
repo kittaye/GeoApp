@@ -114,14 +114,15 @@ namespace GeoApp {
                     }
                 }
 
-                if (isEdit == false) {
-                    location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
-                }
-
                 RootObject rootobject = new RootObject();
                 rootobject.Features = existingLocations;
-                var json = JsonConvert.SerializeObject(rootobject);
 
+                if (isEdit == false) {
+                    location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
+                    rootobject.Features.Add(location);
+                }
+
+                var json = JsonConvert.SerializeObject(rootobject);
                 File.WriteAllText(GAStorage, json);
                 hasBeenUpdated = true;
             });
