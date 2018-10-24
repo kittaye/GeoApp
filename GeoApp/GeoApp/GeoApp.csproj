@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="Xamarin.Essentials" Version="0.9.1-preview" />
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
@@ -32,8 +33,8 @@
     <Compile Update="Views\ImportView.xaml.cs">
       <DependentUpon>ImportView.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ProfileView.xaml.cs">
-      <DependentUpon>ProfileView.xaml</DependentUpon>
+    <Compile Update="Views\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

@@ -8,17 +8,14 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
+    // View-model for the page that shows the list of data entries.
     class DataEntryListViewModel {
         public ICommand ButtonClickedCommand { set; get; }
-        public ICommand ButtonSaveCommand { set; get; }
 
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
             });
-            
         }
-
-
     }
 }
