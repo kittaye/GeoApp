@@ -14,12 +14,6 @@ namespace GeoApp {
         public ExportView() {
             InitializeComponent();
 
-            ButtonShare.Clicked += delegate {
-                CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage {
-                    Text = "my clipboard",
-                    Title = "Share"
-                });
-            };
         }
     }
 }

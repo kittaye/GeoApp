@@ -2,9 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GeoApp.ExportView"
+             xmlns:local="clr-namespace:GeoApp"
              Title = "Export"
              BackgroundColor="#36393F">
-
+    
+    <ContentPage.BindingContext>
+        <local:ExportViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="I am the export page."
@@ -13,7 +18,7 @@
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
-            <Button Margin="0,20,0,0" x:Name="ButtonShare" Text="Share"/>
+            <Button Margin="0,20,0,0" x:Name="ButtonShare" Text="Share" Command="{Binding ButtonClickCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
