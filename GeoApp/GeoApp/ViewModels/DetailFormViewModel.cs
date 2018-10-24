@@ -221,17 +221,14 @@ namespace GeoApp
             feature.Properties = new Properties();
             feature.Geometry = new Geometry();
             //feature.Geometry.Coordinates = new List<double>();
-            feature.Geometry.Type = DataType.Line;
-            feature.Geometry.Coordinates
+            //feature.Geometry.Type = DataType.Line;
+            //feature.Geometry.Coordinates.
             //feature.Geometry.Coordinates[0] = 1;//GeolocationPoints;
             //feature.Geometry.Coordinates[1] = 2;//GeolocationPoints[0].Latitude;
             //feature.Geometry.Coordinates[2] = 3;//GeolocationPoints[0].Altitude;
 
             feature.Properties.Name = "test";
             //feature.Properties.MetadataFields = MetadataEntries;
-            Debug.WriteLine("HELLO:::::::::::::              {0},{1}", item, "i");
-
-            var feature = (Feature)item;
             //item.Geometry.Coordinates[0] = GeolocationPoints[0];
 
             if (feature.Properties.Name == null)
