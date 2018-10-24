@@ -45,6 +45,24 @@ namespace GeoApp
             }
         }
 
+        private string _nameEntry;
+        public string NameEntry {
+            get { return _nameEntry; }
+            set {
+                _nameEntry = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NameEntry"));
+            }
+        }
+
+        private string _entryType;
+        public string EntryType {
+            get { return _entryType; }
+            set {
+                _entryType = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryType"));
+            }
+        }
+
         private bool _loadingIconActive;
         public bool LoadingIconActive {
             get { return _loadingIconActive; }
