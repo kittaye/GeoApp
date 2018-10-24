@@ -15,17 +15,12 @@ namespace GeoApp {
             InitializeComponent();
         }
 
-        protected async override void OnAppearing() {
+        protected override void OnAppearing() {
             base.OnAppearing();
 
-            //if (App.LocationManager.CurrentLocations == null) {
-            //    loadingList.IsRunning = true;
-            //    loadingList.IsVisible = true;
-            //    App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
-            //    loadingList.IsRunning = false;
-            //    loadingList.IsVisible = false;
-            //    listView.ItemsSource = App.LocationManager.CurrentLocations;
-            //}
+            if (((DataEntryListViewModel)BindingContext).RefreshListCommand.CanExecute(null)){
+                ((DataEntryListViewModel)BindingContext).RefreshListCommand.Execute(null);
+            }
         }
 
         protected override void OnDisappearing() {
