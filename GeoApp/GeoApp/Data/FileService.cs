@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace GeoApp {
     public class FileService : IDataService {
         bool hasBeenUpdated = false;
+        bool fileEmpty = true;
         string GAStorage = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GALocations.txt");
         //string fileName = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "GALocations.txt");
 
@@ -35,19 +36,13 @@ namespace GeoApp {
                     string json;
 
                     if (hasBeenUpdated == false) {
-                        string[] res = this.GetType().Assembly.GetManifestResourceNames();
-                        var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                        Stream stream = assembly.GetManifestResourceStream(GAStorage);
-
-
-                        //The App craches without this check
-                        if (stream == null) {
+                        if (fileEmpty) {
                             CreateFile();
-                            stream = assembly.GetManifestResourceStream(GAStorage);
-                            
+                            fileEmpty = false;
 
                         }
-                        using (var reader = new System.IO.StreamReader(stream)) {
+
+                        using (var reader = new System.IO.StreamReader(GAStorage)) {
                             json = reader.ReadToEnd();
                         }
 
