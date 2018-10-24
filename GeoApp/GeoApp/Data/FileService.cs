@@ -44,7 +44,7 @@ namespace GeoApp {
                         if (stream == null) {
                             CreateFile();
                             stream = assembly.GetManifestResourceStream(GAStorage);
-                            Debug.WriteLine(stream.Length);
+                            
 
                         }
                         using (var reader = new System.IO.StreamReader(stream)) {
@@ -132,9 +132,18 @@ namespace GeoApp {
                 {
                     json = reader.ReadToEnd();
                 }
-                //System.IO.File.Create(GAStorage);
-                Debug.WriteLine(json);
-                File.WriteAllText(GAStorage, json);
+            //System.IO.File.Create(GAStorage);
+            var text = File.ReadAllText(GAStorage);
+            Console.WriteLine(text);
+            Console.WriteLine("==============");
+
+            Debug.WriteLine(json);
+
+            Console.WriteLine("==============");
+            File.WriteAllText(GAStorage, json);
+            text = File.ReadAllText(GAStorage);
+            Console.WriteLine(text);
+            Console.WriteLine("==============");
         }
 
     }

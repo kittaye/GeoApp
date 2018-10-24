@@ -28,7 +28,17 @@ namespace GeoApp
     public class Geometry
     {
         public DataType Type { get; set; }
+        public IEnumerable<object> Coordinates { get; internal set; }
+    }
+
+    class PointCoordinates : Geometry
+    {
         public List<double> Coordinates { get; set; } //Longtitute, Latitude, Elevation
+    }
+
+    class OtherCoordinates : Geometry
+    {
+        public List<List<double>> Coordinates { get; set; } //Longtitute, Latitude, Elevation+
     }
 
     public class RootObject
