@@ -22,6 +22,7 @@ namespace GeoApp
         public string Name { get; set; }
         public string Details { get; set; }
         public string TypeIconPath { get; set; }
+        public DateTime Date { get; set; }
     }
 
     public class Geometry
