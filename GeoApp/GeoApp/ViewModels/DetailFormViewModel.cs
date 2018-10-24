@@ -219,7 +219,7 @@ namespace GeoApp
             Debug.WriteLine("HELLO:::::::::::::              {0},{1}", item, "i");
 
             var feature = (Feature)item;
-            item.Geometry.Coordinates[0] = GeolocationPoints[0];
+            //item.Geometry.Coordinates[0] = GeolocationPoints[0];
 
 
             if (feature.Properties.Name == null)
