@@ -14,14 +14,14 @@ namespace GeoApp {
     public partial class ExistingDetailFormView : ContentPage {
         public ExistingDetailFormView(Feature data) {
             InitializeComponent();
-            Title = "test";
+            Title = $"View {data.Geometry.Type}";
+            itemName.Text = data.Properties.Name;
+            dateEntry.Text = data.Properties.Date.ToShortDateString();
 
-            // auto fill fields...
-            foreach (var item in data.Geometry.Coordinates) {
-                Debug.WriteLine(item);
-            }
- 
-
+            // fill in geo-location data
+            //geolocationListView.ItemsSource = data.Geometry.Coordinates;
+            // assign metadatefileds as itemsource
+            listView.ItemsSource = data.Properties.MetadataFields;
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {

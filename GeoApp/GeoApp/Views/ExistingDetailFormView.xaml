@@ -22,7 +22,7 @@
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="Cyan" />
+            <Setter Property="TextColor" Value="LightGray" />
             <Setter Property="FontSize" Value="Default" />
             <Setter Property="WidthRequest" Value="200" />
             <Setter Property="PlaceholderColor" Value="LightGray" />
@@ -50,10 +50,10 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
-                    <Label Text="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Label x:Name="itemName" Text="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
-                    <Label Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="2"/>
+                    <Label x:Name="dateEntry" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
@@ -66,7 +66,7 @@
                     <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                 </Grid>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
+                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -83,13 +83,13 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                    <Entry Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0"/>
+                                    <Label Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
 
                                     <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                    <Entry Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1"/>
+                                    <Label Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
 
                                     <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                    <Entry Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2"/>
+                                    <Label Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
@@ -106,7 +106,7 @@
                     <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                 </Grid>
 
-                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
+                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -119,8 +119,8 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                    <Label Text="{Binding EntryType}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
+                                    <Label Text="{Binding Path=Key}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Entry Text="{Binding Path=Value}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
