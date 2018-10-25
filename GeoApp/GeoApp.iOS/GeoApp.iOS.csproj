@@ -225,6 +225,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Geoapp80v2.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -271,6 +273,7 @@
     <Folder Include="Assets.xcassets\line_icon.imageset\" />
     <Folder Include="Assets.xcassets\point_icon.imageset\" />
     <Folder Include="Assets.xcassets\profile_icon.imageset\" />
+    <Folder Include="Assets.xcassets\save_icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ezgif.com-gif-maker-5.png" />
