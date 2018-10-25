@@ -10,5 +10,6 @@ namespace GeoApp
 
         Task DeleteLocationAsync(string Name);
         Task DeleteLocationAsync(int id);
+        void AddLocationsFromFile(string path);
     }
 }

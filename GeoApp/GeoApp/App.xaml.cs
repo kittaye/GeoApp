@@ -2,6 +2,7 @@ using GeoApp.Data;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GeoApp {
@@ -26,5 +27,6 @@ namespace GeoApp {
         protected override void OnResume() {
             // Handle when your app resumes
         }
+
     }
 }

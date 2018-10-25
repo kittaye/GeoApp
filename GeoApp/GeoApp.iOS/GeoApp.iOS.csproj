@@ -272,4 +272,8 @@
     <Folder Include="Assets.xcassets\point_icon.imageset\" />
     <Folder Include="Assets.xcassets\profile_icon.imageset\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ezgif.com-gif-maker-5.png" />
+    <BundleResource Include="Resources\ezgif.com-gif-maker-11.png" />
+  </ItemGroup>
 </Project>

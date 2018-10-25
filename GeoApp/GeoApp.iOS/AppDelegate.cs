@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 using Foundation;
 using UIKit;
@@ -18,12 +19,21 @@ namespace GeoApp.iOS {
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+        App mainForms;
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             global::Xamarin.Forms.Forms.Init();
             Rg.Plugins.Popup.Popup.Init();
+            mainForms = new App();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            Debug.WriteLine("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            App.LocationManager.AddLocationShare(url.Path);
+            return true;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 //Geodata.cs defines the models for geoJSON data to deserialize into.
 namespace GeoApp
 {
-    public enum DataType { Point, Line, Polygon }; //Change Line to LineString? Also potential for Multipart Gemoetries: MultiPoint, MultiLineString and MultiPolygon.
+    public enum DataType { Point, LineString, Polygon }; //Change Line to LineString? Also potential for Multipart Gemoetries: MultiPoint, MultiLineString and MultiPolygon.
 
     public class Feature
     {

@@ -39,7 +39,7 @@ namespace GeoApp {
                         case DataType.Point:
                             feature.Properties.TypeIconPath = "point_icon.png";
                             break;
-                        case DataType.Line:
+                        case DataType.LineString:
                             feature.Properties.TypeIconPath = "line_icon.png";
                             break;
                         case DataType.Polygon:
@@ -121,6 +121,20 @@ namespace GeoApp {
             } else {
                 IFile locationsFile = await rootFolder.CreateFileAsync("locations3.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
+            }
+        }
+
+        public void AddLocationsFromFile(string path)
+        {
+            Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            List<Feature> features = new List<Feature>();
+            String text = File.ReadAllText(path);
+            var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
+            features = rootobject.Features;
+
+             foreach (var feature in features)
+            {
+                SaveLocationAsync(feature);
             }
         }
     }

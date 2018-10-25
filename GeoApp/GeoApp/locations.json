@@ -32,7 +32,7 @@
         "elevation_m": "13"
       },
       "geometry": {
-        "type": "Line",
+        "type": "LineString",
         "coordinates": [
           [
             153.03132260232513,

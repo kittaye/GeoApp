@@ -38,5 +38,32 @@
 	<string>GeoApp</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>GeoJSON</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.file.geojson</string>
+			</array>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>ezgif.com-gif-maker-5</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Text</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>ezgif.com-gif-maker-11</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

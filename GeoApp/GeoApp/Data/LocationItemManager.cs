@@ -30,6 +30,11 @@ namespace GeoApp.Data
         {
             return restService.DeleteLocationAsync(location.Features[0].Properties.Id);
         }
+
+        public void AddLocationShare(string path)
+        {
+            restService.AddLocationsFromFile(path);
+        }
     }
 }
 
