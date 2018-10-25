@@ -47,22 +47,13 @@ namespace GeoApp {
                         feature.properties.metadatafields = new Dictionary<string, object>();
                     }
 
-                    Console.WriteLine(feature.properties.date);
-
-                    switch (Enum.Parse(typeof(DataType), feature.geometry.type)) {
-                        case DataType.Point:
-                            feature.properties.typeIconPath = "point_icon.png";
-                            break;
-                        case DataType.LineString:
-                            feature.properties.typeIconPath = "line_icon.png";
-                            break;
-                        case DataType.Polygon:
-                            feature.properties.typeIconPath = "area_icon.png";
-                            break;
-                        default:
-                            Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.geometry.type}");
-                            feature.properties.typeIconPath = "point_icon.png";
-                            break;
+                    if(feature.geometry.type == "Point") {
+                        feature.properties.typeIconPath = "point_icon.png";
+                    } else if (feature.geometry.type == "LineString") {
+                        feature.geometry.type = "Line";
+                        feature.properties.typeIconPath = "line_icon.png";
+                    } else {
+                        feature.properties.typeIconPath = "area_icon.png";
                     }
 
                     if (feature.geometry.type == "Point") {
@@ -95,17 +86,12 @@ namespace GeoApp {
 
                 if(indexToEdit != -1) {
                     App.LocationManager.CurrentLocations[indexToEdit] = location;
-                    //App.LocationManager.CurrentLocations[indexToEdit].Properties.Name = location.Properties.Name;
-                    //App.LocationManager.CurrentLocations[indexToEdit].Geometry.XamarinCoordinates = location.Geometry.XamarinCoordinates;
                 }
 
                 RootObject rootobject = new RootObject();
                 rootobject.features = App.LocationManager.CurrentLocations;
 
-                var json = JsonConvert.SerializeObject(rootobject);
-                IFolder rootFolder = FileSystem.Current.LocalStorage;
-                IFile locations = await GetLocationsFile();
-                await locations.WriteAllTextAsync(json);
+                await SaveToFile(rootobject);
             });
         }
 
@@ -121,12 +107,9 @@ namespace GeoApp {
                 location.properties.id = DateTime.Now.Millisecond.GetHashCode();
                 rootobject.features.Add(location);
 
-                var json = JsonConvert.SerializeObject(rootobject);
                 App.LocationManager.CurrentLocations = rootobject.features;
 
-                IFolder rootFolder = FileSystem.Current.LocalStorage;
-                IFile locations = await GetLocationsFile();
-                await locations.WriteAllTextAsync(json);
+                await SaveToFile(rootobject);
             });
         }
 
@@ -155,9 +138,20 @@ namespace GeoApp {
             }
         }
 
+        private async Task SaveToFile(RootObject objToSave) {
+            foreach (var feature in objToSave.features) {
+                if(feature.geometry.type == "Line") {
+                    feature.geometry.type = "LineString";
+                }
+            }
+
+            var json = JsonConvert.SerializeObject(objToSave);
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFile locations = await GetLocationsFile();
+            await locations.WriteAllTextAsync(json);
+        }
+
         public async Task AddLocationsFromFile(string path) {
-
-
             try
             {
                 List<Feature> features = new List<Feature>();
@@ -170,11 +164,7 @@ namespace GeoApp {
                 App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
                 importedRootObject.features = App.LocationManager.CurrentLocations;
 
-                var json = JsonConvert.SerializeObject(importedRootObject);
-
-                IFolder rootFolder = FileSystem.Current.LocalStorage;
-                IFile locations = await GetLocationsFile();
-                await locations.WriteAllTextAsync(json);
+                await SaveToFile(importedRootObject);
             }
             catch (Exception ex)
             {
@@ -195,11 +185,7 @@ namespace GeoApp {
                 App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
                 importedRootObject.features = App.LocationManager.CurrentLocations;
 
-                var json = JsonConvert.SerializeObject(importedRootObject);
-
-                IFolder rootFolder = FileSystem.Current.LocalStorage;
-                IFile locations = await GetLocationsFile();
-                await locations.WriteAllTextAsync(json);
+                await SaveToFile(importedRootObject);
             } catch (Exception ex) {
                 await HomePage.Instance.DisplayAlert("Invalid File Contents!", "Please make sure your GeoJSON is formatted correctly.", "OK");
                 Debug.WriteLine(ex);

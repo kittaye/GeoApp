@@ -36,7 +36,7 @@ namespace GeoApp {
             // assign metadatefileds as itemsource
             //listView.ItemsSource = data.Properties.MetadataFields;
 
-            if (data.geometry.type.ToString() == "LineString" || data.geometry.type.ToString() == "Polygon") {
+            if (data.geometry.type == "Line" || data.geometry.type == "Polygon") {
                 addPointBtn.Text = $"Add to {data.geometry.type.ToString()}";
                 addPointBtn.IsVisible = true;
             } else {
