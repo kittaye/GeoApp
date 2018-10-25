@@ -111,6 +111,7 @@ namespace GeoApp {
         public async Task<IFile> GetLocationsFile() {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             Debug.Write(rootFolder);
+            rootFolder.Path.Replace("/../Library", " ");
 
             ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations4.json");
             if (result != ExistenceCheckResult.FileExists) {
