@@ -60,6 +60,12 @@ namespace GeoApp.Views.Popups {
 
         private async void OnAdd(object sender, EventArgs e) {
             var loadingPage = new LoadingPopupPage();
+
+            if (string.IsNullOrWhiteSpace(entryTitle.Text) || entryTitle.Text.Trim().Contains(" ")) {
+                await HomePage.Instance.DisplayAlert("Alert", "Title must not have spaces!", "OK");
+                return;
+            }
+
             await Navigation.PushPopupAsync(loadingPage);
             await Task.Delay(500);
             await Navigation.RemovePopupPageAsync(loadingPage);
@@ -69,8 +75,8 @@ namespace GeoApp.Views.Popups {
                 MetadataEntry mle = new MetadataEntry();
 
                 try {
-                    mle.LabelTitle = entryTitle.Text;
-                    if(picker.SelectedItem.ToString() != "String") {
+                    mle.LabelTitle = entryTitle.Text.Trim();
+                    if (picker.SelectedItem.ToString() != "String") {
                         mle.EntryType = Keyboard.Numeric;
                     } else {
                         mle.EntryType = Keyboard.Default;

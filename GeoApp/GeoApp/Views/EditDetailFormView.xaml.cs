@@ -23,7 +23,7 @@ namespace GeoApp {
             }
 
             foreach (var item in data.properties.metadatafields) {
-                ((EditDetailFormViewModel)BindingContext).MetadataEntries.Add(new MetadataEntry(item.Key, item.Value.ToString(), Keyboard.Default));
+                ((EditDetailFormViewModel)BindingContext).MetadataEntries.Add(new MetadataEntry(item.Key, item.Value?.ToString(), Keyboard.Default));
             }
 
             Title = $"Editing {data.properties.name}";

@@ -260,8 +260,16 @@ namespace GeoApp
                 return;
             }
 
+            foreach (var item in MetadataEntries) {
+                item.LabelTitle = item.LabelTitle.Trim();
+                if (item.LabelTitle.Contains(" ")) {
+                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces!", "OK");
+                    return;
+                }
+            }
+
             // Create the feature object based on the view-model data of the entry.
-                Feature feature = new Feature();
+            Feature feature = new Feature();
                 {
                     feature.type = "Feature";
                     feature.properties = new Properties();

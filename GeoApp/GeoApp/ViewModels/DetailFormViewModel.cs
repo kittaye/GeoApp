@@ -256,8 +256,16 @@ namespace GeoApp {
         async void OnSaveUpdateActivated() {
             // Do validation checks here.
             if (string.IsNullOrEmpty(NameEntry)) {
-                await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
+                await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty!", "OK");
                 return;
+            }
+
+            foreach (var item in MetadataEntries) {
+                item.LabelTitle = item.LabelTitle.Trim();
+                if(item.LabelTitle.Contains(" ")) {
+                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces!", "OK");
+                    return;
+                }
             }
 
             // Create the feature object based on the view-model data of the entry.
