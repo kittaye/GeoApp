@@ -126,7 +126,7 @@
                                         <ColumnDefinition Width="36"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                                     <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
                                     <Entry Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                 </Grid>
