@@ -263,26 +263,26 @@ namespace GeoApp
             // Create the feature object based on the view-model data of the entry.
                 Feature feature = new Feature();
                 {
-                    feature.Type = "Feature";
-                    feature.Properties = new Properties();
-                    feature.Properties.Name = NameEntry;
-                    feature.Properties.Date = DateEntry;
-                    feature.Properties.MetadataFields = new Dictionary<string, object>();
+                    feature.type = "Feature";
+                    feature.properties = new Properties();
+                    feature.properties.name = NameEntry;
+                    feature.properties.date = DateEntry;
+                    feature.properties.metadatafields = new Dictionary<string, object>();
                     foreach (var metadataField in MetadataEntries) {
-                        feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);
+                        feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
                     }
 
-                    feature.Geometry = new Geometry();
-                    feature.Geometry.Type = EntryType;
+                    feature.geometry = new Geometry();
+                    feature.geometry.type = EntryType;
                     if (EntryType == "Point") {
-                        feature.Geometry.Coordinates = new List<object>() {
+                        feature.geometry.coordinates = new List<object>() {
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Altitude };
                     } else {
-                        feature.Geometry.Coordinates = new List<object>(GeolocationPoints.Count);
+                        feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
                         for (int i = 0; i < GeolocationPoints.Count; i++) {
-                            feature.Geometry.Coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
+                            feature.geometry.coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
@@ -295,7 +295,7 @@ namespace GeoApp
                 await App.LocationManager.SaveLocationAsync(feature);
 
             } else {
-                feature.Properties.Id = EntryID;
+                feature.properties.id = EntryID;
                 await App.LocationManager.EditSaveLocationAsync(feature);
             }
 
