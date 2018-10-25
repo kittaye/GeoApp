@@ -28,17 +28,15 @@ namespace GeoApp {
 
                     if (status == PermissionStatus.Granted) {
                         FileData fileData = await CrossFilePicker.Current.PickFile();
-                        if (fileData == null)
+                        if (fileData == null) {
                             return; // user canceled file picking
-
-                        string fileName = fileData.FileName;
-                        string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray); // TODO: NEED TO PROPERLY EXTRACT DATA FROM FILE
-
-                        Debug.WriteLine("File name chosen: " + fileName);
-                        Debug.WriteLine("File data: " + contents);
+                        }
+                        string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
+                        await App.LocationManager.ImportLocationsAsync(contents);
                     }
                 } catch (Exception ex) {
                     Debug.WriteLine("Exception choosing file: " + ex.ToString());
+                    throw ex;
                 }
             });
         }
