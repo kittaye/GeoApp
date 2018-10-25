@@ -45,6 +45,9 @@ namespace GeoApp {
                 // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
                 foreach (var feature in features) {
                     feature.Properties.XamarinCoordinates = new List<Point>();
+                    if (feature.Properties.MetadataFields == null || feature.Properties.MetadataFields.Count == 0) {
+                        feature.Properties.MetadataFields = new Dictionary<string, object>();
+                    }
 
                     switch (Enum.Parse(typeof(DataType), feature.Geometry.Type)) {
                         case DataType.Point:
@@ -132,9 +135,9 @@ namespace GeoApp {
             Debug.Write(rootFolder);
             rootFolder.Path.Replace("/../Library", " ");
 
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations5.json");
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations7.json");
             if (result != ExistenceCheckResult.FileExists) {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations5.json", CreationCollisionOption.ReplaceExisting);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations7.json", CreationCollisionOption.ReplaceExisting);
 
                 var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
@@ -147,7 +150,7 @@ namespace GeoApp {
                 return locationsFile;
 
             } else {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations5.json", CreationCollisionOption.OpenIfExists);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations7.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
             }
         }

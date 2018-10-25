@@ -225,8 +225,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Geoapp80v2.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\save_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon.png" />
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

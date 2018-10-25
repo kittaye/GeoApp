@@ -17,11 +17,11 @@
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="Default" />
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="Cyan" />
+            <Setter Property="TextColor" Value="Gray" />
             <Setter Property="FontSize" Value="Default" />
             <Setter Property="WidthRequest" Value="200" />
             <Setter Property="PlaceholderColor" Value="LightGray" />
@@ -35,7 +35,7 @@
                 <Setter Property="Margin" Value="15,15,15,15"/>
             </Style>
             <Style x:Key="PanelLayout" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="Gray"/>
+                <Setter Property="BackgroundColor" Value="#efefef"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -52,7 +52,7 @@
                     <Entry x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
-                    <DatePicker x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Cyan"/>
+                    <DatePicker x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
@@ -66,7 +66,7 @@
                     <Button x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
                 </Grid>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
+                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -112,7 +112,7 @@
                     <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
                 </Grid>
 
-                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
+                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -128,7 +128,7 @@
 
                                     <Label Text="{Binding Path=Key}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                                     <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                                    <Entry Keyboard="{Binding EntryType}" Text="{Binding Path=Value}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
+                                    <Entry Keyboard="{Binding EntryType}" Text="{Binding Path=Value}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

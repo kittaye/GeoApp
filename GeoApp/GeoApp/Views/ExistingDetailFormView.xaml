@@ -17,11 +17,11 @@
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="FontSize" Value="Default" />
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="Black" />
             <Setter Property="HorizontalOptions" Value="Start" />
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="LightGray" />
+            <Setter Property="TextColor" Value="Gray" />
             <Setter Property="FontSize" Value="Default" />
             <Setter Property="WidthRequest" Value="200" />
             <Setter Property="PlaceholderColor" Value="LightGray" />
@@ -35,7 +35,7 @@
                 <Setter Property="Margin" Value="15,15,15,15"/>
             </Style>
             <Style x:Key="PanelLayout" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="#3d4047"/>
+                <Setter Property="BackgroundColor" Value="#efefef"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -65,7 +65,7 @@
                     <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                 </Grid>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
+                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -105,7 +105,7 @@
                     <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                 </Grid>
 
-                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#41454c"  Margin="15,0,15,10" HeightRequest="170">
+                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -119,7 +119,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Text="{Binding Path=Key}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                    <Entry Text="{Binding Path=Value}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
+                                    <Entry Text="{Binding Path=Value}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
