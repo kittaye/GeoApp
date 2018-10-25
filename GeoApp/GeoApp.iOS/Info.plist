@@ -22,6 +22,8 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access location when open.</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>MinimumOSVersion</key>
 	<string>11.0</string>
 	<key>CFBundleDisplayName</key>
