@@ -11,10 +11,8 @@ using Xamarin.Forms.Xaml;
 
 namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewDetailFormView : ContentPage
-    {
-        public NewDetailFormView(string type)
-        {
+    public partial class NewDetailFormView : ContentPage {
+        public NewDetailFormView(string type) {
             InitializeComponent();
             ((DetailFormViewModel)BindingContext).EntryType = type;
 
@@ -24,15 +22,12 @@ namespace GeoApp {
             {
                 addPointBtn.Text = $"Add to {type}";
                 addPointBtn.IsVisible = true;
-            }
-            else
-            {
+            } else {
                 addPointBtn.IsVisible = false;
             }
         }
 
-        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
             geolocationListView.SelectedItem = null;
             listView.SelectedItem = null;
         }
