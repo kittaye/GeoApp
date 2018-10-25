@@ -13,11 +13,9 @@ using GeoApp.Views.Popups;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace GeoApp
-{
+namespace GeoApp {
     // View-model for the page that shows a data entry's details as a form.
-    class DetailFormViewModel : INotifyPropertyChanged
-    {
+    class DetailFormViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand GetLocationCommand { get; set; }
@@ -116,8 +114,7 @@ namespace GeoApp
         /// <summary>
         /// View-model Constructor
         /// </summary>
-        public DetailFormViewModel()
-        {
+        public DetailFormViewModel() {
             // Initialise fields.
             {
                 DateEntry = DateTime.Now.ToShortDateString();
@@ -167,10 +164,8 @@ namespace GeoApp
         /// Queries the current device's location coordinates
         /// </summary>
         /// <param name="point">Point to set GPS data to.</param>
-        private async Task GetGeoLocation(Point point)
-        {
-            try
-            {
+        private async Task GetGeoLocation(Point point) {
+            try {
                 // Disable interaction with entries to prevent errors.
                 GeolocationEntryEnabled = false;
                 LoadingIconActive = true;
@@ -183,23 +178,22 @@ namespace GeoApp
                 LoadingIconActive = false;
                 GeolocationEntryEnabled = true;
 
-                if (location != null)
-                {
+                if (location != null) {
                     point.Latitude = location.Latitude;
                     point.Longitude = location.Longitude;
-                    point.Altitude = (double)location.Altitude;
+
+                    if (location.Altitude == null) {
+                        point.Altitude = 0;
+                    } else {
+                        point.Altitude = (double)location.Altitude;
+                    }
+
                 }
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
+            } catch (FeatureNotSupportedException fnsEx) {
                 throw fnsEx;
-            }
-            catch (PermissionException pEx)
-            {
+            } catch (PermissionException pEx) {
                 throw pEx;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw ex;
             }
         }
@@ -208,8 +202,7 @@ namespace GeoApp
         /// Adds a new geolocation point to the list for line or polygon data types.
         /// </summary>
         /// <returns></returns>
-        private void AddPoint()
-        {
+        private void AddPoint() {
             GeolocationPoints.Add(new Point(0, 0, 0));
             NumPointFields++;
         }
@@ -218,8 +211,7 @@ namespace GeoApp
         /// Deletes a geolocation point from the list.
         /// </summary>
         /// <param name="item">Item to delete</param>
-        private void DeletePoint(Point item)
-        {
+        private void DeletePoint(Point item) {
             GeolocationPoints.Remove(item);
             NumPointFields--;
         }
@@ -228,18 +220,15 @@ namespace GeoApp
         /// Adds a new metadata field to the list.
         /// </summary>
         /// <returns></returns>
-        private async Task AddMetadataField()
-        {
+        private async Task AddMetadataField() {
             // Waits for the user to fill in a popup form describing the metadata field.
             var result = await DetailFormFieldPopup.GetResultAsync();
 
-            if (result != null)
-            {
+            if (result != null) {
                 MetadataEntries.Add(result);
 
                 // Maximum of 5 metadata entries.
-                if (MetadataEntries.Count == 5)
-                {
+                if (MetadataEntries.Count == 5) {
                     AddMetadataFieldsBtnEnabled = false;
                 }
             }
@@ -249,11 +238,9 @@ namespace GeoApp
         /// Deletes a metadata entry from the list.
         /// </summary>
         /// <param name="item">Item to delete.</param>
-        private void DeleteMetadataField(MetadataEntry item)
-        {
+        private void DeleteMetadataField(MetadataEntry item) {
             MetadataEntries.Remove(item);
-            if (MetadataEntries.Count < 5)
-            {
+            if (MetadataEntries.Count < 5) {
                 AddMetadataFieldsBtnEnabled = true;
             }
         }
@@ -266,8 +253,7 @@ namespace GeoApp
             }
         }
 
-        async void OnSaveUpdateActivated()
-        {
+        async void OnSaveUpdateActivated() {
             // Do validation checks here.
             if (string.IsNullOrEmpty(NameEntry)) {
                 await HomePage.Instance.DisplayAlert("Alert", "Location name cannot be empty!", "OK");
@@ -275,34 +261,34 @@ namespace GeoApp
             }
 
             // Create the feature object based on the view-model data of the entry.
-                Feature feature = new Feature();
-                {
-                    feature.type = "Feature";
-                    feature.properties = new Properties();
-                    feature.properties.name = NameEntry;
-                    feature.properties.date = DateEntry;
-                    feature.properties.metadatafields = new Dictionary<string, object>();
-                    foreach (var metadataField in MetadataEntries) {
-                        feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
-                    }
+            Feature feature = new Feature();
+            {
+                feature.type = "Feature";
+                feature.properties = new Properties();
+                feature.properties.name = NameEntry;
+                feature.properties.date = DateEntry;
+                feature.properties.metadatafields = new Dictionary<string, object>();
+                foreach (var metadataField in MetadataEntries) {
+                    feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
+                }
 
-                    feature.geometry = new Geometry();
-                    feature.geometry.type = EntryType;
-                    if (EntryType == "Point") {
-                        feature.geometry.coordinates = new List<object>() {
+                feature.geometry = new Geometry();
+                feature.geometry.type = EntryType;
+                if (EntryType == "Point") {
+                    feature.geometry.coordinates = new List<object>() {
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Altitude };
-                    } else {
-                        feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                        for (int i = 0; i < GeolocationPoints.Count; i++) {
-                            feature.geometry.coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
+                } else {
+                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                        feature.geometry.coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
-                        }
                     }
                 }
+            }
 
             if (EntryID == 0) {
                 // Save the feature and go back to the entry list page.
