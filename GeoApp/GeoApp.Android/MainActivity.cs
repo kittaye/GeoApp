@@ -23,6 +23,7 @@ namespace GeoApp.Droid {
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.Essentials.Platform.Init(this, bundle); // initialise xamarin essentials
             Rg.Plugins.Popup.Popup.Init(this, bundle);
+            Xamarin.FormsMaps.Init(this, bundle);
             LoadApplication(new App());
         }
 

@@ -3,5 +3,8 @@
 	<uses-sdk android:targetSdkVersion="27" android:minSdkVersion="15" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<application android:label="GeoApp.Android" android:icon="@drawable/icon"></application>
+	<application android:label="GeoApp.Android" android:icon="@drawable/icon">
+    <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyA6PDaiU2iZkRlgLwDCRP4CzsmBhgcfzqU" />
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    </application>
 </manifest>
