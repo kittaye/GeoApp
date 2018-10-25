@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using PCLStorage;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace GeoApp {
     public class FileService : IDataService {
@@ -185,6 +186,24 @@ namespace GeoApp {
                 throw ex;
             }
 
+        }
+
+        public async Task<string> ExportLocationsAsync() {
+            try {
+                var storedLocations = await App.LocationManager.GetLocationsAsync();
+
+                // export object model that matches geojson standard
+                List<ExportModel> exportObject = new List<ExportModel> {
+                    new ExportModel{ Type = "FeatureCollection", Features = storedLocations }
+                };
+
+                var json = JsonConvert.SerializeObject(exportObject);
+
+                return json;
+            } catch (Exception ex) {
+                Debug.WriteLine(ex);
+                throw ex;
+            }
         }
     }
 }

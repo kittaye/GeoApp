@@ -9,5 +9,6 @@ namespace GeoApp {
         Task<bool> DeleteLocationAsync(int id);
         void AddLocationsFromFile(string path);
         Task ImportLocationsAsync(string fileContents);
+        Task<string> ExportLocationsAsync();
     }
 }

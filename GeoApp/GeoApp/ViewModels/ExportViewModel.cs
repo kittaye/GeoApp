@@ -1,6 +1,9 @@
-﻿using Plugin.Share;
+﻿using Newtonsoft.Json;
+using Plugin.Share;
+using Plugin.Share.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,15 +13,15 @@ namespace GeoApp {
         public ICommand ButtonClickCommand { set; get; }
 
         public ExportViewModel() {
+            if (!CrossShare.IsSupported)
+                return;
 
-            ButtonClickCommand = new Command(() => {
-                CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage {
-                    Text = "my clipboard",
+            ButtonClickCommand = new Command(async () => {
+                await CrossShare.Current.Share(new ShareMessage {
+                    Text = await App.LocationManager.ExportLocationsAsync(),
                     Title = "Share"
                 });
             });
         }
     }
-
-
 }

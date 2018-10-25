@@ -39,4 +39,9 @@ namespace GeoApp
     {
         public List<Feature> Features { get; set; }
     }
+
+    public class ExportModel {
+        public string Type { get; set; }
+        public List<Feature> Features { get; set; }
+    }
 }

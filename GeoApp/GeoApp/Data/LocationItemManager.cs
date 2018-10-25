@@ -37,6 +37,10 @@ namespace GeoApp.Data {
         public async Task ImportLocationsAsync(string fileContents) {
             await restService.ImportLocationsAsync(fileContents);
         }
+
+        public async Task<string> ExportLocationsAsync() {
+            return await restService.ExportLocationsAsync();
+        }
     }
 }
 
