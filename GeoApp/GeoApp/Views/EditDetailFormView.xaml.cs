@@ -15,8 +15,16 @@ namespace GeoApp {
     {
         public EditDetailFormView(Feature data) {
             InitializeComponent();
-            ((DetailFormViewModel)BindingContext).EntryType = data.geometry.type.ToString();
-            ((DetailFormViewModel)BindingContext).EntryID = data.properties.id;
+            ((EditDetailFormViewModel)BindingContext).EntryType = data.geometry.type.ToString();
+            ((EditDetailFormViewModel)BindingContext).EntryID = data.properties.id;
+
+            foreach (var item in data.properties.xamarincoordinates) {
+                ((EditDetailFormViewModel)BindingContext).GeolocationPoints.Add(item);
+            }
+
+            foreach (var item in data.properties.metadatafields) {
+                ((EditDetailFormViewModel)BindingContext).MetadataEntries.Add(new MetadataEntry(item.Key, item.Value.ToString(), Keyboard.Default));
+            }
 
             Title = $"Editing {data.properties.name}";
 
@@ -24,9 +32,9 @@ namespace GeoApp {
             dateEntry.Date = DateTime.Parse(data.properties.date);
 
             // fill in geo-location data
-            geolocationListView.ItemsSource = data.properties.xamarincoordinates;
+            //geolocationListView.ItemsSource = data.Properties.XamarinCoordinates;
             // assign metadatefileds as itemsource
-            listView.ItemsSource = data.properties.metadatafields;
+            //listView.ItemsSource = data.Properties.MetadataFields;
 
             if (data.geometry.type.ToString() == "LineString" || data.geometry.type.ToString() == "Polygon") {
                 addPointBtn.Text = $"Add to {data.geometry.type.ToString()}";

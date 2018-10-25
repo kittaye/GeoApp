@@ -27,8 +27,9 @@ namespace GeoApp
 
         public MetadataEntry() { }
 
-        public MetadataEntry(string labelTitle, Keyboard entryType) {
+        public MetadataEntry(string labelTitle, string labelData, Keyboard entryType) {
             this.LabelTitle = labelTitle;
+            this.LabelData = labelData;
             this.EntryType = entryType;
         }
     }
