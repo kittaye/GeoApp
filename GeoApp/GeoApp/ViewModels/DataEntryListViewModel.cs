@@ -36,7 +36,7 @@ namespace GeoApp {
         }
 
         public DataEntryListViewModel() {
-            EntryListSource = new List<Feature>();
+            ExecuteRefreshListCommand();
 
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
@@ -60,8 +60,6 @@ namespace GeoApp {
 
         private void ExecuteRefreshListCommand() {
             IsRefreshing = true;
-
-            EntryListSource.Clear();
             Device.BeginInvokeOnMainThread(async () => {
                 App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
                 EntryListSource = App.LocationManager.CurrentLocations;

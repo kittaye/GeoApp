@@ -9,7 +9,7 @@ namespace GeoApp.Data
     {
         IDataService restService;
 
-        public List<Feature> CurrentLocations { get; set; }
+        public List<Feature> CurrentLocations { get; set; } = new List<Feature>();
 
         public LocationItemManager(IDataService service)
         {
