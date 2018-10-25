@@ -63,7 +63,7 @@
                                         </OnPlatform>
                                     </Label.TextColor>
                                 </Label>
-                                <Button Image="edit_icon.png" Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Button Image="edit_icon.png" Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" BorderRadius="2" BackgroundColor="Transparent" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="StartAndExpand"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
