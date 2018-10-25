@@ -155,25 +155,27 @@ namespace GeoApp {
             }
         }
 
-        public void AddLocationsFromFile(string path) {
-            Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            List<Feature> features = new List<Feature>();
+        public async Task AddLocationsFromFile(string path) {
             String text = File.ReadAllText(path);
             Debug.WriteLine(text);
-            var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
-            features = rootobject.features;
 
-            foreach (var feature in features) {
-                SaveLocationAsync(feature);
-            }
+            var importedRootObject = JsonConvert.DeserializeObject<RootObject>(text);
+
+            App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+            App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
+            importedRootObject.features = App.LocationManager.CurrentLocations;
+
+            var json = JsonConvert.SerializeObject(importedRootObject);
+
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFile locations = await GetLocationsFile();
+            await locations.WriteAllTextAsync(json);
         }
 
         public async Task ImportLocationsAsync(string fileContents) {
             // add feature list range to current locations
             try {
-                List<Feature> features = new List<Feature>();
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
-                features = importedRootObject.features;
                 App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
 
                 App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
