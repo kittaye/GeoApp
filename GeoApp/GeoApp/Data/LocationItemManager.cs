@@ -21,7 +21,12 @@ namespace GeoApp.Data {
             return restService.SaveLocationAsync(location);
         }
 
-        public Task<bool> DeleteLocationAsync(int id) {
+        public Task EditSaveLocationAsync(Feature location) {
+            return restService.EditSaveLocationAsync(location);
+        }
+
+        public Task<bool> DeleteLocationAsync(int id)
+        {
             return restService.DeleteLocationAsync(id);
         }
 

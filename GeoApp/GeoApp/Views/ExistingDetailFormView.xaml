@@ -11,7 +11,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="edit_icon"/>
+        <ToolbarItem Icon="edit_icon" Command="{Binding EditEntryCommand}"/>
         <ToolbarItem Icon="trash_icon" Command="{Binding DeleteEntryCommand}"/>
     </ContentPage.ToolbarItems>
 

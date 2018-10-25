@@ -78,26 +78,41 @@ namespace GeoApp {
             });
         }
 
-        public Task SaveLocationAsync(Feature location) {
+        public Task EditSaveLocationAsync(Feature location) {
             return Task.Run(async () => {
-                List<Feature> existingLocations = await App.LocationManager.GetLocationsAsync();
-
-                bool isEdit = false;
-                for (int i = 0; i < existingLocations.Count; i++) {
-                    if (existingLocations[i].Properties.Id == location.Properties.Id) {
-                        existingLocations[i] = location;
-                        isEdit = true;
+                int indexToEdit = -1;
+                for (int i = 0; i < App.LocationManager.CurrentLocations.Count; i++) {
+                    if (App.LocationManager.CurrentLocations[i].Properties.Id == location.Properties.Id) {
+                        indexToEdit = i;
                         break;
                     }
                 }
 
+                if(indexToEdit != -1) {
+                    App.LocationManager.CurrentLocations[indexToEdit] = location;
+                }
+
+                RootObject rootobject = new RootObject();
+                rootobject.Features = App.LocationManager.CurrentLocations;
+
+                var json = JsonConvert.SerializeObject(rootobject);
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFile locations = await GetLocationsFile();
+                await locations.WriteAllTextAsync(json);
+            });
+        }
+
+        public Task SaveLocationAsync(Feature location)
+        {
+            return Task.Run(async () =>
+            {
+                List<Feature> existingLocations = await App.LocationManager.GetLocationsAsync();
+
                 RootObject rootobject = new RootObject();
                 rootobject.Features = existingLocations;
 
-                if (isEdit == false) {
-                    location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
-                    rootobject.Features.Add(location);
-                }
+                location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
+                rootobject.Features.Add(location);
 
                 var json = JsonConvert.SerializeObject(rootobject);
                 App.LocationManager.CurrentLocations = rootobject.Features;

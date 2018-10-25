@@ -29,6 +29,10 @@ namespace GeoApp {
             Navigation.PushAsync(new NewDetailFormView(type));
         }
 
+        public void ShowEditDetailFormPage(Feature entryToEdit) {
+            Navigation.PushAsync(new EditDetailFormView(entryToEdit));
+        }
+
         public async Task ShowExistingDetailFormPage(Feature data) {
             await Navigation.PushAsync(new ExistingDetailFormView(data));
         }

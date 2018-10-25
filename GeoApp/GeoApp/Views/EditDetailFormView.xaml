@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GeoApp"
-             x:Class="GeoApp.NewDetailFormView"
+             x:Class="GeoApp.EditDetailFormView"
              Title=""
              BackgroundColor="Default">
     
@@ -126,9 +126,9 @@
                                         <ColumnDefinition Width="36"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding Path=LabelTitle}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding Path=Key}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                                     <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                                    <Entry Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
+                                    <Entry Keyboard="{Binding EntryType}" Text="{Binding Path=Value}" TextColor="Cyan" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

@@ -20,7 +20,7 @@ namespace GeoApp {
 
             Title = $"New {type}";
 
-            if (type == "Line" || type == "Polygon")
+            if (type == "LineString" || type == "Polygon")
             {
                 addPointBtn.Text = $"Add to {type}";
                 addPointBtn.IsVisible = true;
