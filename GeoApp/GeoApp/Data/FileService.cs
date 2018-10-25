@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using PCLStorage;
 using System.Threading.Tasks;
@@ -15,7 +14,7 @@ namespace GeoApp {
 
         public async Task<bool> DeleteLocationAsync(int id) {
             foreach (var feature in App.LocationManager.CurrentLocations) {
-                if(feature.Properties.Id == id) {
+                if (feature.Properties.Id == id) {
                     App.LocationManager.CurrentLocations.Remove(feature);
 
                     RootObject rootobject = new RootObject();
@@ -79,15 +78,13 @@ namespace GeoApp {
             });
         }
 
-        public Task SaveLocationAsync(Feature location)
-        {
-            return Task.Run(async () =>
-            {
+        public Task SaveLocationAsync(Feature location) {
+            return Task.Run(async () => {
                 List<Feature> existingLocations = await App.LocationManager.GetLocationsAsync();
 
                 bool isEdit = false;
                 for (int i = 0; i < existingLocations.Count; i++) {
-                    if(existingLocations[i].Properties.Id == location.Properties.Id) {
+                    if (existingLocations[i].Properties.Id == location.Properties.Id) {
                         existingLocations[i] = location;
                         isEdit = true;
                         break;
@@ -111,13 +108,12 @@ namespace GeoApp {
             });
         }
 
-        public async Task<IFile> GetLocationsFile()
-        {
+        public async Task<IFile> GetLocationsFile() {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
 
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations3.json");
-            if(result != ExistenceCheckResult.FileExists) {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations3.json", CreationCollisionOption.ReplaceExisting);
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations4.json");
+            if (result != ExistenceCheckResult.FileExists) {
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations4.json", CreationCollisionOption.ReplaceExisting);
 
                 var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
@@ -130,23 +126,45 @@ namespace GeoApp {
                 return locationsFile;
 
             } else {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations3.json", CreationCollisionOption.OpenIfExists);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations4.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
             }
         }
 
-        public void AddLocationsFromFile(string path)
-        {
+        public void AddLocationsFromFile(string path) {
             Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             List<Feature> features = new List<Feature>();
             String text = File.ReadAllText(path);
             var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
             features = rootobject.Features;
 
-             foreach (var feature in features)
-            {
+            foreach (var feature in features) {
                 SaveLocationAsync(feature);
             }
+        }
+
+        public async Task ImportLocationsAsync(string fileContents) {
+            // add feature list range to current locations
+            try {
+                List<Feature> features = new List<Feature>();
+                var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
+                features = importedRootObject.Features;
+                App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+
+                App.LocationManager.CurrentLocations.AddRange(importedRootObject.Features);
+                importedRootObject.Features = App.LocationManager.CurrentLocations;
+
+                var json = JsonConvert.SerializeObject(importedRootObject);
+
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFile locations = await GetLocationsFile();
+                await locations.WriteAllTextAsync(json);
+            } catch (Exception ex) {
+                await HomePage.Instance.DisplayAlert("Invalid File Contents!", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                Debug.WriteLine(ex);
+                throw ex;
+            }
+
         }
     }
 }
