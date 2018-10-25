@@ -39,6 +39,9 @@
     <Compile Update="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\EditDetailFormView.xaml.cs">
+      <DependentUpon>EditDetailFormView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
