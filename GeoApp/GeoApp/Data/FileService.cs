@@ -155,7 +155,7 @@ namespace GeoApp {
             }
         }
 
-        public void AddLocationsFromFile(string path) {
+        public async Task AddLocationsFromFile(string path) {
             Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             List<Feature> features = new List<Feature>();
             String text = File.ReadAllText(path);
@@ -163,9 +163,13 @@ namespace GeoApp {
             var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
             features = rootobject.features;
 
-            foreach (var feature in features) {
-                SaveLocationAsync(feature);
-            }
+            App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+
+            App.LocationManager.CurrentLocations.AddRange(features);
+
+            //foreach (var feature in features) {
+             //   SaveLocationAsync(feature);
+            //}
         }
 
         public async Task ImportLocationsAsync(string fileContents) {
