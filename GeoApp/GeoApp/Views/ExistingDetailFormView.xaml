@@ -82,13 +82,13 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                    <Label Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+                                    <Label Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray" LineBreakMode="TailTruncation"/>
 
                                     <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                    <Label Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                                    <Label Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray" LineBreakMode="TailTruncation"/>
 
                                     <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                    <Label Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
+                                    <Label Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" LineBreakMode="TailTruncation"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
