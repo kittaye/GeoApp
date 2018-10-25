@@ -36,7 +36,6 @@ namespace GeoApp {
 
                 IFile locations = await GetLocationsFile();
 
-                //Debug.WriteLine(await locations.ReadAllTextAsync());
                 var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
                 features = rootobject.features;
 
@@ -47,6 +46,8 @@ namespace GeoApp {
                     if (feature.properties.metadatafields == null || feature.properties.metadatafields.Count == 0) {
                         feature.properties.metadatafields = new Dictionary<string, object>();
                     }
+
+                    Console.WriteLine(feature.properties.date);
 
                     switch (Enum.Parse(typeof(DataType), feature.geometry.type)) {
                         case DataType.Point:
@@ -134,9 +135,9 @@ namespace GeoApp {
             Debug.Write(rootFolder);
             rootFolder.Path.Replace("/../Library", " ");
 
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations8.json");
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations9.json");
             if (result != ExistenceCheckResult.FileExists) {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations8.json", CreationCollisionOption.ReplaceExisting);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations9.json", CreationCollisionOption.ReplaceExisting);
 
                 var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
@@ -149,7 +150,7 @@ namespace GeoApp {
                 return locationsFile;
 
             } else {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations8.json", CreationCollisionOption.OpenIfExists);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations9.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
             }
         }
@@ -158,6 +159,7 @@ namespace GeoApp {
             Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             List<Feature> features = new List<Feature>();
             String text = File.ReadAllText(path);
+            Debug.WriteLine(text);
             var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
             features = rootobject.features;
 

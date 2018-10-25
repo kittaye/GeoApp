@@ -25,12 +25,16 @@ namespace GeoApp {
                             status = results[Permission.Storage];
                         }
                     }
-
+                    Debug.Write("2");
                     if (status == PermissionStatus.Granted) {
                         FileData fileData = await CrossFilePicker.Current.PickFile();
+
+                        //Debug.Write("HELOOOOOOOOOO {0}",fileData.FilePath);
                         if (fileData == null) {
                             return; // user canceled file picking
                         }
+
+
                         string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
                         await App.LocationManager.ImportLocationsAsync(contents);
                     }
