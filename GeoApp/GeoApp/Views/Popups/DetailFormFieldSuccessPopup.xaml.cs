@@ -21,7 +21,7 @@ namespace GeoApp.Views.Popups {
         }
 
         private async void HidePopup() {
-            await Task.Delay(4000);
+            await Task.Delay(6000);
             await PopupNavigation.Instance.RemovePageAsync(this);
         }
     }

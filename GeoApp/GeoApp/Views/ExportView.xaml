@@ -12,13 +12,13 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="I am the export page."
+            <Label Margin="0,0,0,0" Text="Export GeoJSON Data"
                    TextColor="Black"
-                   FontSize="Medium"
+                   FontSize="Large"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
-            <Button Margin="0,20,0,0" Text="Share" Command="{Binding ButtonClickCommand}"/>
+            <Button Margin="20,20,20,150" Text="Export" Command="{Binding ButtonClickCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
