@@ -156,20 +156,32 @@ namespace GeoApp {
         }
 
         public async Task AddLocationsFromFile(string path) {
-            Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            List<Feature> features = new List<Feature>();
-            String text = File.ReadAllText(path);
-            Debug.WriteLine(text);
-            var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
-            features = rootobject.features;
 
-            App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
 
-            App.LocationManager.CurrentLocations.AddRange(features);
+            try
+            {
+                List<Feature> features = new List<Feature>();
+                String text = File.ReadAllText(path);
+                var importedRootObject = JsonConvert.DeserializeObject<RootObject>(text);
+                features = importedRootObject.features;
 
-            //foreach (var feature in features) {
-             //   SaveLocationAsync(feature);
-            //}
+                App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
+
+                App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
+                importedRootObject.features = App.LocationManager.CurrentLocations;
+
+                var json = JsonConvert.SerializeObject(importedRootObject);
+
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFile locations = await GetLocationsFile();
+                await locations.WriteAllTextAsync(json);
+            }
+            catch (Exception ex)
+            {
+                await HomePage.Instance.DisplayAlert("Invalid File Contents!", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                Debug.WriteLine(ex);
+                throw ex;
+            }
         }
 
         public async Task ImportLocationsAsync(string fileContents) {
