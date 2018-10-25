@@ -6,7 +6,6 @@ using System.IO;
 using System.Reflection;
 using PCLStorage;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace GeoApp {
     public class FileService : IDataService {
@@ -200,6 +199,10 @@ namespace GeoApp {
                 };
 
                 var json = JsonConvert.SerializeObject(exportObject);
+                // string cleaning
+                if (json.StartsWith("[")) json = json.Substring(1);
+                
+                if (json.EndsWith("]")) json = json.TrimEnd(']');
 
                 return json;
             } catch (Exception ex) {
