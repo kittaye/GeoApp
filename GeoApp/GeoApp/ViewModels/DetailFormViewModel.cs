@@ -26,7 +26,9 @@ namespace GeoApp
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
         public ICommand OnSaveUpdatedCommand { get; set; }
+
         public ICommand DeleteEntryCommand { get; set; }
+        public ICommand EditEntryCommand { get; set; }
 
         // Popup used for creating new metadata fields.
         private DetailFormFieldPopup _detailFormPopup;
@@ -158,6 +160,8 @@ namespace GeoApp
 
                 DeleteEntryCommand = new Command(async () => await DeleteEntry());
 
+                EditEntryCommand = new Command(() => EditEntry());
+
                 OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
             }
         }
@@ -265,6 +269,16 @@ namespace GeoApp
             }
         }
 
+
+        private void EditEntry() {
+            foreach (var item in App.LocationManager.CurrentLocations) {
+                if(item.Properties.Id == EntryID) {
+                    HomePage.Instance.ShowEditDetailFormPage(item);
+                    break;
+                }
+            }
+        }
+
         async void OnSaveUpdateActivated()
         {
             // Do validation checks here.
@@ -274,37 +288,49 @@ namespace GeoApp
             }
 
             // Create the feature object based on the view-model data of the entry.
-            Feature feature = new Feature();
-            {
-                feature.Type = "Feature";
-                feature.Properties = new Properties();
-                feature.Properties.Name = NameEntry;
-                feature.Properties.Date = DateTime.Parse(DateEntry);
-                feature.Properties.MetadataFields = new Dictionary<string, object>();
-                foreach (var metadataField in MetadataEntries) {
-                    feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);
-                }
+            if (EntryID == 0) {
+                Feature feature = new Feature();
+                {
+                    feature.Type = "Feature";
+                    feature.Properties = new Properties();
+                    feature.Properties.Name = NameEntry;
+                    feature.Properties.Date = DateTime.Parse(DateEntry);
+                    feature.Properties.MetadataFields = new Dictionary<string, object>();
+                    foreach (var metadataField in MetadataEntries) {
+                        feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);
+                    }
 
-                feature.Geometry = new Geometry();
-                feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
-                if (EntryType == "Point") {
-                    feature.Geometry.Coordinates = new List<object>() {
+                    feature.Geometry = new Geometry();
+                    feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
+                    if (EntryType == "Point") {
+                        feature.Geometry.Coordinates = new List<object>() {
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Altitude };
-                } else {
-                    feature.Geometry.Coordinates = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++) {
-                        feature.Geometry.Coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
+                    } else {
+                        feature.Geometry.Coordinates = new List<object>(GeolocationPoints.Count);
+                        for (int i = 0; i < GeolocationPoints.Count; i++) {
+                            feature.Geometry.Coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
-                    } 
+                        }
+                    }
+                }
+
+                // Save the feature and go back to the entry list page.
+                await App.LocationManager.SaveLocationAsync(feature);
+            } else {
+                List<Feature> cacheCurrentLocations = new List<Feature>(App.LocationManager.CurrentLocations);
+                foreach (var item in cacheCurrentLocations) {
+                    if(item.Properties.Id == EntryID) {
+                        await App.LocationManager.EditSaveLocationAsync(item);
+                        break;
+                    }
                 }
             }
 
-            // Save the feature and go back to the entry list page.
-            await App.LocationManager.SaveLocationAsync(feature);
+
             await HomePage.Instance.Navigation.PopAsync();
         }
     }

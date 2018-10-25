@@ -20,13 +20,36 @@ namespace GeoApp {
 
             Title = $"New {type}";
 
-            if (type == "Line" || type == "Polygon")
+            if (type == "LineString" || type == "Polygon")
             {
                 addPointBtn.Text = $"Add to {type}";
                 addPointBtn.IsVisible = true;
             }
             else
             {
+                addPointBtn.IsVisible = false;
+            }
+        }
+
+        public NewDetailFormView(Feature data) {
+            InitializeComponent();
+            ((DetailFormViewModel)BindingContext).EntryType = data.Geometry.Type.ToString();
+            ((DetailFormViewModel)BindingContext).EntryID = data.Properties.Id;
+
+            Title = $"Editing {data.Properties.Name}";
+
+            nameEntry.Text = data.Properties.Name;
+            dateEntry.Date = data.Properties.Date;
+
+            // fill in geo-location data
+            geolocationListView.ItemsSource = data.Geometry.XamarinCoordinates;
+            // assign metadatefileds as itemsource
+            listView.ItemsSource = data.Properties.MetadataFields;
+
+            if (data.Geometry.Type.ToString() == "LineString" || data.Geometry.Type.ToString() == "Polygon") {
+                addPointBtn.Text = $"Add to {data.Geometry.Type.ToString()}";
+                addPointBtn.IsVisible = true;
+            } else {
                 addPointBtn.IsVisible = false;
             }
         }

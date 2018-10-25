@@ -49,10 +49,10 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
-                    <Entry Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Entry x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
-                    <DatePicker Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Cyan"/>
+                    <DatePicker x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Cyan"/>
                 </Grid>
             </StackLayout>
 
