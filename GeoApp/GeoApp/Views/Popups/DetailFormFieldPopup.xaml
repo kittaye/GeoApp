@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -12,8 +12,8 @@
 
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="10, 5" />
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="BackgroundColor" Value="#202225" />
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#e8e8e8" />
             </Style>
         </ResourceDictionary>
     </pages:PopupPage.Resources>
@@ -45,7 +45,7 @@
 
                     <Button HorizontalOptions="Fill" Clicked="OnAdd" x:Name="AddButton" Text="Add">
                         <Button.HeightRequest>
-                            <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="15"/>
+                            <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="30"/>
                         </Button.HeightRequest>
                     </Button>
                     <Button HorizontalOptions="Fill" Clicked="OnCloseButtonTapped" x:Name="CloseButton" Text="Close">
