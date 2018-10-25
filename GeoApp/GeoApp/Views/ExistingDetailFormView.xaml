@@ -48,10 +48,10 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
                     <Label x:Name="itemName" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
 
-                    <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
+                    <Label Text="Date" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
                     <Label x:Name="dateEntry" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
@@ -118,7 +118,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding Path=Key}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding Path=Key}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
                                     <Entry Text="{Binding Path=Value}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
                                 </Grid>
                             </ViewCell>
