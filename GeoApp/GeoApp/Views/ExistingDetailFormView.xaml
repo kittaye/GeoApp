@@ -48,10 +48,10 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
                     <Label x:Name="itemName" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
 
-                    <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
+                    <Label Text="Date" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
                     <Label x:Name="dateEntry" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
