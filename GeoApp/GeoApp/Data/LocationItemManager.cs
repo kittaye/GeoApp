@@ -9,7 +9,7 @@ namespace GeoApp.Data
     {
         IDataService restService;
 
-        public List<Feature> CurrentLocations { get; set; }
+        public List<Feature> CurrentLocations { get; set; } = new List<Feature>();
 
         public LocationItemManager(IDataService service)
         {
@@ -26,9 +26,9 @@ namespace GeoApp.Data
             return restService.SaveLocationAsync(location);
         }
 
-        public Task DeleteLocationAsync(RootObject location)
+        public Task<bool> DeleteLocationAsync(int id)
         {
-            return restService.DeleteLocationAsync(location.Features[0].Properties.Id);
+            return restService.DeleteLocationAsync(id);
         }
 
         public void AddLocationShare(string path)

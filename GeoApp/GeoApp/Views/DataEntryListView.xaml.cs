@@ -15,14 +15,6 @@ namespace GeoApp {
             InitializeComponent();
         }
 
-        protected override void OnAppearing() {
-            base.OnAppearing();
-
-            if (((DataEntryListViewModel)BindingContext).RefreshListCommand.CanExecute(null)){
-                ((DataEntryListViewModel)BindingContext).RefreshListCommand.Execute(null);
-            }
-        }
-
         protected override void OnDisappearing() {
             loadingList.IsRunning = false;
             loadingList.IsVisible = false;

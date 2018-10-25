@@ -12,8 +12,8 @@ namespace GeoApp {
 
         public App() {
             InitializeComponent();
-            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default};
             LocationManager = new LocationItemManager(new FileService());
+            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default};
         }
 
         protected override void OnStart() {
