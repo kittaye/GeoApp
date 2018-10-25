@@ -21,7 +21,7 @@ namespace GeoApp {
             dateEntry.Text = data.Properties.Date.ToShortDateString();
 
             // fill in geo-location data
-            geolocationListView.ItemsSource = new List<Point>(data.Geometry.XamarinCoordinates);
+            geolocationListView.ItemsSource = new List<Point>(data.Properties.XamarinCoordinates);
             // assign metadatefileds as itemsource
             listView.ItemsSource = new Dictionary<string, object>(data.Properties.MetadataFields);
         }

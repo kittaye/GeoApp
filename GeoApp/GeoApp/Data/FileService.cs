@@ -43,7 +43,7 @@ namespace GeoApp {
                 // Determine the icon used for each feature based on it's geometry type.
                 // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
                 foreach (var feature in features) {
-                    feature.Geometry.XamarinCoordinates = new List<Point>();
+                    feature.Properties.XamarinCoordinates = new List<Point>();
 
                     switch (feature.Geometry.Type) {
                         case DataType.Point:
@@ -62,13 +62,13 @@ namespace GeoApp {
                     }
 
                     if (feature.Geometry.Type == DataType.Point) {
-                        feature.Geometry.XamarinCoordinates.Add(new Point(
+                        feature.Properties.XamarinCoordinates.Add(new Point(
                             (double)feature.Geometry.Coordinates[0],
                             (double)feature.Geometry.Coordinates[1],
                             (double)feature.Geometry.Coordinates[2]));
                     } else {
                         for (int i = 0; i < feature.Geometry.Coordinates.Count; i++) {
-                            feature.Geometry.XamarinCoordinates.Add(new Point(
+                            feature.Properties.XamarinCoordinates.Add(new Point(
                                 (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[0]),
                                 (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[1]),
                                 (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[2])));
@@ -131,9 +131,9 @@ namespace GeoApp {
             Debug.Write(rootFolder);
             rootFolder.Path.Replace("/../Library", " ");
 
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations4.json");
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations5.json");
             if (result != ExistenceCheckResult.FileExists) {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations4.json", CreationCollisionOption.ReplaceExisting);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations5.json", CreationCollisionOption.ReplaceExisting);
 
                 var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
                 Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
@@ -146,7 +146,7 @@ namespace GeoApp {
                 return locationsFile;
 
             } else {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations4.json", CreationCollisionOption.OpenIfExists);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations5.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
             }
         }

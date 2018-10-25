@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,10 @@ namespace GeoApp
 
         public int Id { get; set; }
         public Dictionary<string, object> MetadataFields { get; set; }
+        [JsonIgnore]
+        public List<Point> XamarinCoordinates { get; set; }
         public string Name { get; set; }
+        [JsonIgnore]
         public string TypeIconPath { get; set; }
         public DateTime Date { get; set; }
     }
@@ -29,7 +33,6 @@ namespace GeoApp
     public class Geometry {
         public DataType Type { get; set; }
         public List<object> Coordinates { get; set; }
-        public List<Point> XamarinCoordinates { get; set; }
     }
 
     public class RootObject
