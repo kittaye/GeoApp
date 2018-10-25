@@ -22,6 +22,7 @@ namespace GeoApp.iOS {
         App mainForms;
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsMaps.Init();
             Rg.Plugins.Popup.Popup.Init();
             mainForms = new App();
             LoadApplication(new App());
