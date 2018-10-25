@@ -103,6 +103,7 @@ namespace GeoApp {
         public async Task<IFile> GetLocationsFile()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
+            Debug.Write(rootFolder);
 
             ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations3.json");
             if(result != ExistenceCheckResult.FileExists) {
