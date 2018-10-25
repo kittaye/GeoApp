@@ -266,7 +266,7 @@ namespace GeoApp
                     feature.type = "Feature";
                     feature.properties = new Properties();
                     feature.properties.name = NameEntry;
-                    feature.properties.date = DateEntry;
+                    feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
                     feature.properties.metadatafields = new Dictionary<string, object>();
                     foreach (var metadataField in MetadataEntries) {
                         feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
