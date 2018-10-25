@@ -159,6 +159,7 @@ namespace GeoApp {
             Debug.WriteLine("HERE 2222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             List<Feature> features = new List<Feature>();
             String text = File.ReadAllText(path);
+            Debug.WriteLine(text);
             var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
             features = rootobject.features;
 
