@@ -45,7 +45,7 @@ namespace GeoApp {
                 foreach (var feature in features) {
                     feature.Properties.XamarinCoordinates = new List<Point>();
 
-                    switch (feature.Geometry.Type) {
+                    switch (Enum.Parse(typeof(DataType), feature.Geometry.Type)) {
                         case DataType.Point:
                             feature.Properties.TypeIconPath = "point_icon.png";
                             break;
@@ -61,7 +61,7 @@ namespace GeoApp {
                             break;
                     }
 
-                    if (feature.Geometry.Type == DataType.Point) {
+                    if (feature.Geometry.Type == "Point") {
                         feature.Properties.XamarinCoordinates.Add(new Point(
                             (double)feature.Geometry.Coordinates[0],
                             (double)feature.Geometry.Coordinates[1],

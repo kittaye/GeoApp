@@ -287,7 +287,7 @@ namespace GeoApp
                     }
 
                     feature.Geometry = new Geometry();
-                    feature.Geometry.Type = (DataType)Enum.Parse(typeof(DataType), EntryType);
+                    feature.Geometry.Type = EntryType;
                     if (EntryType == "Point") {
                         feature.Geometry.Coordinates = new List<object>() {
                         GeolocationPoints[0].Latitude,

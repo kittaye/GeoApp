@@ -31,7 +31,7 @@ namespace GeoApp
     }
 
     public class Geometry {
-        public DataType Type { get; set; }
+        public string Type { get; set; }
         public List<object> Coordinates { get; set; }
     }
 
