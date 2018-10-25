@@ -19,11 +19,8 @@ namespace GeoApp {
 
                     RootObject rootobject = new RootObject();
                     rootobject.features = App.LocationManager.CurrentLocations;
-                    var json = JsonConvert.SerializeObject(rootobject);
 
-                    IFolder rootFolder = FileSystem.Current.LocalStorage;
-                    IFile locations = await GetLocationsFile();
-                    await locations.WriteAllTextAsync(json);
+                    await SaveToFile(rootobject);
                     return true;
                 }
             }
