@@ -15,21 +15,21 @@ namespace GeoApp {
     {
         public EditDetailFormView(Feature data) {
             InitializeComponent();
-            ((DetailFormViewModel)BindingContext).EntryType = data.Geometry.Type.ToString();
-            ((DetailFormViewModel)BindingContext).EntryID = data.Properties.Id;
+            ((DetailFormViewModel)BindingContext).EntryType = data.geometry.type.ToString();
+            ((DetailFormViewModel)BindingContext).EntryID = data.properties.id;
 
-            Title = $"Editing {data.Properties.Name}";
+            Title = $"Editing {data.properties.name}";
 
-            nameEntry.Text = data.Properties.Name;
-            dateEntry.Date = DateTime.Parse(data.Properties.Date);
+            nameEntry.Text = data.properties.name;
+            dateEntry.Date = DateTime.Parse(data.properties.date);
 
             // fill in geo-location data
-            geolocationListView.ItemsSource = data.Properties.XamarinCoordinates;
+            geolocationListView.ItemsSource = data.properties.xamarincoordinates;
             // assign metadatefileds as itemsource
-            listView.ItemsSource = data.Properties.MetadataFields;
+            listView.ItemsSource = data.properties.metadatafields;
 
-            if (data.Geometry.Type.ToString() == "LineString" || data.Geometry.Type.ToString() == "Polygon") {
-                addPointBtn.Text = $"Add to {data.Geometry.Type.ToString()}";
+            if (data.geometry.type.ToString() == "LineString" || data.geometry.type.ToString() == "Polygon") {
+                addPointBtn.Text = $"Add to {data.geometry.type.ToString()}";
                 addPointBtn.IsVisible = true;
             } else {
                 addPointBtn.IsVisible = false;

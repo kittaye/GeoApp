@@ -46,8 +46,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
-                                <Image Source="{Binding Properties.TypeIconPath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Text="{Binding Properties.Name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                                <Image Source="{Binding properties.typeIconPath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Text="{Binding properties.name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
                                     <Label.TextColor>
                                         <OnPlatform x:TypeArguments="Color">
                                             <OnPlatform.iOS>Black</OnPlatform.iOS>
@@ -55,7 +55,7 @@
                                         </OnPlatform>
                                     </Label.TextColor>
                                 </Label>
-                                <Label Text="{Binding Geometry.Type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                                <Label Text="{Binding geometry.type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
                                     <Label.TextColor>
                                         <OnPlatform x:TypeArguments="Color">
                                             <OnPlatform.iOS>Gray</OnPlatform.iOS>

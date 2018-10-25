@@ -11,37 +11,37 @@ namespace GeoApp
 
     public class Feature
     {
-        public string Type { get; set; }
-        public Properties Properties { get; set; }
-        public Geometry Geometry { get; set; }
+        public string type { get; set; }
+        public Geometry geometry { get; set; }
+        public Properties properties { get; set; }
     }
 
     public class Properties : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public int Id { get; set; }
-        public Dictionary<string, object> MetadataFields { get; set; }
+        public int id { get; set; }
+        public Dictionary<string, object> metadatafields { get; set; }
         [JsonIgnore]
-        public List<Point> XamarinCoordinates { get; set; }
-        public string Name { get; set; }
+        public List<Point> xamarincoordinates { get; set; }
+        public string name { get; set; }
         [JsonIgnore]
-        public string TypeIconPath { get; set; }
-        public string Date { get; set; }
+        public string typeIconPath { get; set; }
+        public string date { get; set; }
     }
 
     public class Geometry {
-        public string Type { get; set; }
-        public List<object> Coordinates { get; set; }
+        public string type { get; set; }
+        public List<object> coordinates { get; set; }
     }
 
     public class RootObject
     {
-        public List<Feature> Features { get; set; }
+        public List<Feature> features { get; set; }
     }
 
     public class ExportModel {
-        public string Type { get; set; }
-        public List<Feature> Features { get; set; }
+        public string type { get; set; }
+        public List<Feature> features { get; set; }
     }
 }

@@ -15,11 +15,11 @@ namespace GeoApp {
 
         public async Task<bool> DeleteLocationAsync(int id) {
             foreach (var feature in App.LocationManager.CurrentLocations) {
-                if (feature.Properties.Id == id) {
+                if (feature.properties.id == id) {
                     App.LocationManager.CurrentLocations.Remove(feature);
 
                     RootObject rootobject = new RootObject();
-                    rootobject.Features = App.LocationManager.CurrentLocations;
+                    rootobject.features = App.LocationManager.CurrentLocations;
                     var json = JsonConvert.SerializeObject(rootobject);
 
                     IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -39,43 +39,43 @@ namespace GeoApp {
 
                 //Debug.WriteLine(await locations.ReadAllTextAsync());
                 var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
-                features = rootobject.Features;
+                features = rootobject.features;
 
                 // Determine the icon used for each feature based on it's geometry type.
                 // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
                 foreach (var feature in features) {
-                    feature.Properties.XamarinCoordinates = new List<Point>();
-                    if (feature.Properties.MetadataFields == null || feature.Properties.MetadataFields.Count == 0) {
-                        feature.Properties.MetadataFields = new Dictionary<string, object>();
+                    feature.properties.xamarincoordinates = new List<Point>();
+                    if (feature.properties.metadatafields == null || feature.properties.metadatafields.Count == 0) {
+                        feature.properties.metadatafields = new Dictionary<string, object>();
                     }
 
-                    switch (Enum.Parse(typeof(DataType), feature.Geometry.Type)) {
+                    switch (Enum.Parse(typeof(DataType), feature.geometry.type)) {
                         case DataType.Point:
-                            feature.Properties.TypeIconPath = "point_icon.png";
+                            feature.properties.typeIconPath = "point_icon.png";
                             break;
                         case DataType.LineString:
-                            feature.Properties.TypeIconPath = "line_icon.png";
+                            feature.properties.typeIconPath = "line_icon.png";
                             break;
                         case DataType.Polygon:
-                            feature.Properties.TypeIconPath = "area_icon.png";
+                            feature.properties.typeIconPath = "area_icon.png";
                             break;
                         default:
-                            Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.Geometry.Type}");
-                            feature.Properties.TypeIconPath = "point_icon.png";
+                            Debug.WriteLine($"::::::::::::::::::::: UNSUPPORTED DATATYPE: {feature.geometry.type}");
+                            feature.properties.typeIconPath = "point_icon.png";
                             break;
                     }
 
-                    if (feature.Geometry.Type == "Point") {
-                        feature.Properties.XamarinCoordinates.Add(new Point(
-                            (double)feature.Geometry.Coordinates[0],
-                            (double)feature.Geometry.Coordinates[1],
-                            (double)feature.Geometry.Coordinates[2]));
+                    if (feature.geometry.type == "Point") {
+                        feature.properties.xamarincoordinates.Add(new Point(
+                            (double)feature.geometry.coordinates[0],
+                            (double)feature.geometry.coordinates[1],
+                            (double)feature.geometry.coordinates[2]));
                     } else {
-                        for (int i = 0; i < feature.Geometry.Coordinates.Count; i++) {
-                            feature.Properties.XamarinCoordinates.Add(new Point(
-                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[0]),
-                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[1]),
-                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.Geometry.Coordinates[i]))[2])));
+                        for (int i = 0; i < feature.geometry.coordinates.Count; i++) {
+                            feature.properties.xamarincoordinates.Add(new Point(
+                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.geometry.coordinates[i]))[0]),
+                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.geometry.coordinates[i]))[1]),
+                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.geometry.coordinates[i]))[2])));
                         }
                     }
                 }
@@ -87,7 +87,7 @@ namespace GeoApp {
             return Task.Run(async () => {
                 int indexToEdit = -1;
                 for (int i = 0; i < App.LocationManager.CurrentLocations.Count; i++) {
-                    if (App.LocationManager.CurrentLocations[i].Properties.Id == location.Properties.Id) {
+                    if (App.LocationManager.CurrentLocations[i].properties.id == location.properties.id) {
                         indexToEdit = i;
                         break;
                     }
@@ -100,7 +100,7 @@ namespace GeoApp {
                 }
 
                 RootObject rootobject = new RootObject();
-                rootobject.Features = App.LocationManager.CurrentLocations;
+                rootobject.features = App.LocationManager.CurrentLocations;
 
                 var json = JsonConvert.SerializeObject(rootobject);
                 IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -116,13 +116,13 @@ namespace GeoApp {
                 List<Feature> existingLocations = await App.LocationManager.GetLocationsAsync();
 
                 RootObject rootobject = new RootObject();
-                rootobject.Features = existingLocations;
+                rootobject.features = existingLocations;
 
-                location.Properties.Id = DateTime.Now.Millisecond.GetHashCode();
-                rootobject.Features.Add(location);
+                location.properties.id = DateTime.Now.Millisecond.GetHashCode();
+                rootobject.features.Add(location);
 
                 var json = JsonConvert.SerializeObject(rootobject);
-                App.LocationManager.CurrentLocations = rootobject.Features;
+                App.LocationManager.CurrentLocations = rootobject.features;
 
                 IFolder rootFolder = FileSystem.Current.LocalStorage;
                 IFile locations = await GetLocationsFile();
@@ -160,7 +160,7 @@ namespace GeoApp {
             List<Feature> features = new List<Feature>();
             String text = File.ReadAllText(path);
             var rootobject = JsonConvert.DeserializeObject<RootObject>(text);
-            features = rootobject.Features;
+            features = rootobject.features;
 
             foreach (var feature in features) {
                 SaveLocationAsync(feature);
@@ -172,11 +172,11 @@ namespace GeoApp {
             try {
                 List<Feature> features = new List<Feature>();
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
-                features = importedRootObject.Features;
+                features = importedRootObject.features;
                 App.LocationManager.CurrentLocations = await App.LocationManager.GetLocationsAsync();
 
-                App.LocationManager.CurrentLocations.AddRange(importedRootObject.Features);
-                importedRootObject.Features = App.LocationManager.CurrentLocations;
+                App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
+                importedRootObject.features = App.LocationManager.CurrentLocations;
 
                 var json = JsonConvert.SerializeObject(importedRootObject);
 
@@ -197,7 +197,7 @@ namespace GeoApp {
 
                 // export object model that matches geojson standard
                 List<ExportModel> exportObject = new List<ExportModel> {
-                    new ExportModel{ Type = "FeatureCollection", Features = storedLocations }
+                    new ExportModel{ type = "FeatureCollection", features = storedLocations }
                 };
 
                 var json = JsonConvert.SerializeObject(exportObject);
