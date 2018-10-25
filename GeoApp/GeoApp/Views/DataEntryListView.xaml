@@ -42,6 +42,7 @@
                                     <ColumnDefinition Width="36" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="36" />
                                 </Grid.ColumnDefinitions>
 
                                 <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
@@ -62,6 +63,7 @@
                                         </OnPlatform>
                                     </Label.TextColor>
                                 </Label>
+                                <Button Image="edit_icon.png" Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

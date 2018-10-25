@@ -28,7 +28,6 @@ namespace GeoApp
         public ICommand OnSaveUpdatedCommand { get; set; }
 
         public ICommand DeleteEntryCommand { get; set; }
-        public ICommand EditEntryCommand { get; set; }
 
         // Popup used for creating new metadata fields.
         private DetailFormFieldPopup _detailFormPopup;
@@ -160,8 +159,6 @@ namespace GeoApp
 
                 DeleteEntryCommand = new Command(async () => await DeleteEntry());
 
-                EditEntryCommand = new Command(() => EditEntry());
-
                 OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
             }
         }
@@ -269,16 +266,6 @@ namespace GeoApp
             }
         }
 
-
-        private void EditEntry() {
-            foreach (var item in App.LocationManager.CurrentLocations) {
-                if(item.Properties.Id == EntryID) {
-                    HomePage.Instance.ShowEditDetailFormPage(item);
-                    break;
-                }
-            }
-        }
-
         async void OnSaveUpdateActivated()
         {
             // Do validation checks here.
@@ -288,7 +275,6 @@ namespace GeoApp
             }
 
             // Create the feature object based on the view-model data of the entry.
-            if (EntryID == 0) {
                 Feature feature = new Feature();
                 {
                     feature.Type = "Feature";
@@ -318,18 +304,14 @@ namespace GeoApp
                     }
                 }
 
+            if (EntryID == 0) {
                 // Save the feature and go back to the entry list page.
                 await App.LocationManager.SaveLocationAsync(feature);
-            } else {
-                List<Feature> cacheCurrentLocations = new List<Feature>(App.LocationManager.CurrentLocations);
-                foreach (var item in cacheCurrentLocations) {
-                    if(item.Properties.Id == EntryID) {
-                        await App.LocationManager.EditSaveLocationAsync(item);
-                        break;
-                    }
-                }
-            }
 
+            } else {
+                feature.Properties.Id = EntryID;
+                await App.LocationManager.EditSaveLocationAsync(feature);
+            }
 
             await HomePage.Instance.Navigation.PopAsync();
         }

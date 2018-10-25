@@ -36,6 +36,7 @@ namespace GeoApp {
 
                 IFile locations = await GetLocationsFile();
 
+                //Debug.WriteLine(await locations.ReadAllTextAsync());
                 var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
                 features = rootobject.Features;
 
@@ -90,6 +91,8 @@ namespace GeoApp {
 
                 if(indexToEdit != -1) {
                     App.LocationManager.CurrentLocations[indexToEdit] = location;
+                    //App.LocationManager.CurrentLocations[indexToEdit].Properties.Name = location.Properties.Name;
+                    //App.LocationManager.CurrentLocations[indexToEdit].Geometry.XamarinCoordinates = location.Geometry.XamarinCoordinates;
                 }
 
                 RootObject rootobject = new RootObject();

@@ -15,8 +15,10 @@ namespace GeoApp
         public Geometry Geometry { get; set; }
     }
 
-    public class Properties
+    public class Properties : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Id { get; set; }
         public Dictionary<string, object> MetadataFields { get; set; }
         public string Name { get; set; }

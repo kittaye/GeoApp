@@ -17,6 +17,8 @@ namespace GeoApp {
         public ICommand ItemTappedCommand { set; get; }
         public ICommand RefreshListCommand { set; get; }
 
+        public ICommand EditEntryCommand { get; set; }
+
         private List<Feature> entryListSource;
         public List<Feature> EntryListSource {
             get { return entryListSource; }
@@ -47,6 +49,8 @@ namespace GeoApp {
             RefreshListCommand = new Command(() => {
                 ExecuteRefreshListCommand();
             });
+
+            EditEntryCommand = new Command<Feature>((feature) => EditEntry(feature));
         }
 
         protected virtual void OnPropertyChanged(string propertyName) {
@@ -64,6 +68,10 @@ namespace GeoApp {
             });
 
             IsRefreshing = false;
+        }
+
+        private void EditEntry(Feature feature) {
+            HomePage.Instance.ShowEditDetailFormPage(feature);
         }
     }
 }

@@ -11,7 +11,6 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="edit_icon" Command="{Binding EditEntryCommand}"/>
         <ToolbarItem Icon="trash_icon" Command="{Binding DeleteEntryCommand}"/>
     </ContentPage.ToolbarItems>
 
@@ -50,7 +49,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0"/>
-                    <Label x:Name="itemName" Text="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
+                    <Label x:Name="itemName" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2"/>
                     <Label x:Name="dateEntry" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
