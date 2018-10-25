@@ -21,7 +21,7 @@ namespace GeoApp {
             Title = $"Editing {data.Properties.Name}";
 
             nameEntry.Text = data.Properties.Name;
-            dateEntry.Date = data.Properties.Date;
+            dateEntry.Date = DateTime.Parse(data.Properties.Date);
 
             // fill in geo-location data
             geolocationListView.ItemsSource = data.Properties.XamarinCoordinates;

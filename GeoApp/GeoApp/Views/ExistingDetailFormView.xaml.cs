@@ -18,7 +18,7 @@ namespace GeoApp {
 
             Title = $"View {data.Geometry.Type}";
             itemName.Text = data.Properties.Name;
-            dateEntry.Text = data.Properties.Date.ToShortDateString();
+            dateEntry.Text = data.Properties.Date;
 
             // fill in geo-location data
             geolocationListView.ItemsSource = new List<Point>(data.Properties.XamarinCoordinates);

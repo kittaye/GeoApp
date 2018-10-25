@@ -280,7 +280,7 @@ namespace GeoApp
                     feature.Type = "Feature";
                     feature.Properties = new Properties();
                     feature.Properties.Name = NameEntry;
-                    feature.Properties.Date = DateTime.Parse(DateEntry);
+                    feature.Properties.Date = DateEntry;
                     feature.Properties.MetadataFields = new Dictionary<string, object>();
                     foreach (var metadataField in MetadataEntries) {
                         feature.Properties.MetadataFields.Add(metadataField.LabelTitle, metadataField.LabelData);

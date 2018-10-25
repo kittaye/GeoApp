@@ -27,7 +27,7 @@ namespace GeoApp
         public string Name { get; set; }
         [JsonIgnore]
         public string TypeIconPath { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 
     public class Geometry {
