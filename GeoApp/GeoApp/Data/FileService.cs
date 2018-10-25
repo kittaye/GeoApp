@@ -13,12 +13,22 @@ namespace GeoApp {
         public FileService() {
         }
 
-        public Task DeleteLocationAsync(string Name) {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> DeleteLocationAsync(int id) {
+            foreach (var feature in App.LocationManager.CurrentLocations) {
+                if(feature.Properties.Id == id) {
+                    App.LocationManager.CurrentLocations.Remove(feature);
 
-        public Task DeleteLocationAsync(int id) {
-            throw new NotImplementedException();
+                    RootObject rootobject = new RootObject();
+                    rootobject.Features = App.LocationManager.CurrentLocations;
+                    var json = JsonConvert.SerializeObject(rootobject);
+
+                    IFolder rootFolder = FileSystem.Current.LocalStorage;
+                    IFile locations = await GetLocationsFile();
+                    await locations.WriteAllTextAsync(json);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public Task<List<Feature>> RefreshDataAsync() {
@@ -93,6 +103,7 @@ namespace GeoApp {
                 }
 
                 var json = JsonConvert.SerializeObject(rootobject);
+                App.LocationManager.CurrentLocations = rootobject.Features;
 
                 IFolder rootFolder = FileSystem.Current.LocalStorage;
                 IFile locations = await GetLocationsFile();

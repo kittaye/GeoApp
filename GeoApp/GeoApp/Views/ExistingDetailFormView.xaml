@@ -12,7 +12,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="edit_icon"/>
-        <ToolbarItem Icon="trash_icon"/>
+        <ToolbarItem Icon="trash_icon" Command="{Binding DeleteEntryCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>

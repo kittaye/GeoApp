@@ -26,6 +26,7 @@ namespace GeoApp
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
         public ICommand OnSaveUpdatedCommand { get; set; }
+        public ICommand DeleteEntryCommand { get; set; }
 
         // Popup used for creating new metadata fields.
         private DetailFormFieldPopup _detailFormPopup;
@@ -62,6 +63,15 @@ namespace GeoApp
             set {
                 _entryType = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryType"));
+            }
+        }
+
+        private int _entryID;
+        public int EntryID {
+            get { return _entryID; }
+            set {
+                _entryID = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryID"));
             }
         }
 
@@ -124,13 +134,16 @@ namespace GeoApp
 
             // Add one geolocation point to the list of points as there must be at least one.
             AddPoint();
-            if (EntryType == "Line") {
-                minPoints = 2;
-                AddPoint();
-            } else if (EntryType == "Polygon") {
-                minPoints = 3;
-                AddPoint();
-                AddPoint();
+            //TODO: This doesn't work because this constructor is called before the type is determined.
+            {
+                if (EntryType == "Line") {
+                    minPoints = 2;
+                    AddPoint();
+                } else if (EntryType == "Polygon") {
+                    minPoints = 3;
+                    AddPoint();
+                    AddPoint();
+                }
             }
 
             // Initialise command bindings.
@@ -142,6 +155,8 @@ namespace GeoApp
 
                 AddPointCommand = new Command(() => AddPoint());
                 DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
+
+                DeleteEntryCommand = new Command(async () => await DeleteEntry());
 
                 OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
             }
@@ -239,6 +254,14 @@ namespace GeoApp
             if (MetadataEntries.Count < 5)
             {
                 AddMetadataFieldsBtnEnabled = true;
+            }
+        }
+
+        private async Task DeleteEntry() {
+            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Entry", "Are you sure you want to delete this entry?", "Yes", "No");
+            if (yesResponse) {
+                await App.LocationManager.DeleteLocationAsync(EntryID);
+                await HomePage.Instance.Navigation.PopAsync();
             }
         }
 

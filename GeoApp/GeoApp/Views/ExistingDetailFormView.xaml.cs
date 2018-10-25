@@ -14,6 +14,8 @@ namespace GeoApp {
     public partial class ExistingDetailFormView : ContentPage {
         public ExistingDetailFormView(Feature data) {
             InitializeComponent();
+            ((DetailFormViewModel)BindingContext).EntryID = data.Properties.Id;
+
             Title = $"View {data.Geometry.Type}";
             itemName.Text = data.Properties.Name;
             dateEntry.Text = data.Properties.Date.ToShortDateString();

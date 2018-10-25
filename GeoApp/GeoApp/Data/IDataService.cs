@@ -7,9 +7,7 @@ namespace GeoApp
     {
         Task<List<Feature>> RefreshDataAsync();
         Task SaveLocationAsync(Feature location);
-
-        Task DeleteLocationAsync(string Name);
-        Task DeleteLocationAsync(int id);
+        Task<bool> DeleteLocationAsync(int id);
         void AddLocationsFromFile(string path);
     }
 }
