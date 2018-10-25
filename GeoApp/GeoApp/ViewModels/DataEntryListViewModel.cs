@@ -36,8 +36,6 @@ namespace GeoApp {
         }
 
         public DataEntryListViewModel() {
-            ExecuteRefreshListCommand();
-
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
             });
