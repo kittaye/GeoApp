@@ -37,10 +37,6 @@ namespace GeoApp
 
     public class RootObject
     {
-        public List<Feature> features { get; set; }
-    }
-
-    public class ExportModel {
         public string type { get; set; }
         public List<Feature> features { get; set; }
     }
