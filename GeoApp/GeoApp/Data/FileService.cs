@@ -198,6 +198,11 @@ namespace GeoApp {
                 var rootobject = new RootObject();
                 rootobject.features = storedLocations;
                 rootobject.type = "FeatureCollection";
+                foreach (var feature in rootobject.features) {
+                    if (feature.geometry.type == "Line") {
+                        feature.geometry.type = "LineString";
+                    }
+                }
                 var json = JsonConvert.SerializeObject(rootobject);
                 // string cleaning
                 if (json.StartsWith("[")) json = json.Substring(1);
