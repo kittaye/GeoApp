@@ -35,6 +35,7 @@ namespace GeoApp {
 
                 var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
                 features = rootobject.features;
+                rootobject.type = "FeatureCollection";
 
                 // Determine the icon used for each feature based on it's geometry type.
                 // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
@@ -196,6 +197,7 @@ namespace GeoApp {
 
                 var rootobject = new RootObject();
                 rootobject.features = storedLocations;
+                rootobject.type = "FeatureCollection";
                 var json = JsonConvert.SerializeObject(rootobject);
                 // string cleaning
                 if (json.StartsWith("[")) json = json.Substring(1);
