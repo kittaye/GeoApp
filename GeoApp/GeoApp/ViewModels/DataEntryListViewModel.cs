@@ -10,30 +10,28 @@ using Xamarin.Forms;
 
 namespace GeoApp {
     // View-model for the page that shows the list of data entries.
-    class DataEntryListViewModel : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
+    class DataEntryListViewModel : ViewModelBase {
 
         public ICommand ButtonClickedCommand { set; get; }
         public ICommand ItemTappedCommand { set; get; }
         public ICommand RefreshListCommand { set; get; }
-
         public ICommand EditEntryCommand { get; set; }
 
-        private List<Feature> entryListSource;
+        private List<Feature> _entryListSource;
         public List<Feature> EntryListSource {
-            get { return entryListSource; }
+            get { return _entryListSource; }
             set {
-                entryListSource = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryListSource"));
+                _entryListSource = value;
+                OnPropertyChanged();
             }
         }
 
-        private bool isRefreshing;
+        private bool _isRefreshing;
         public bool IsRefreshing {
-            get { return isRefreshing; }
+            get { return _isRefreshing; }
             set {
-                isRefreshing = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRefreshing"));
+                _isRefreshing = value;
+                OnPropertyChanged();
             }
         }
 
@@ -51,13 +49,6 @@ namespace GeoApp {
             });
 
             EditEntryCommand = new Command<Feature>((feature) => EditEntry(feature));
-        }
-
-        protected virtual void OnPropertyChanged(string propertyName) {
-            var changed = PropertyChanged;
-            if (changed != null) {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         private void ExecuteRefreshListCommand() {

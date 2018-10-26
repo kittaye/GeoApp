@@ -15,8 +15,7 @@ using System.Diagnostics;
 
 namespace GeoApp {
     // View-model for the page that shows a data entry's details as a form.
-    class DetailFormViewModel : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
+    class DetailFormViewModel : ViewModelBase {
 
         public ICommand GetLocationCommand { get; set; }
         public ICommand AddPointCommand { get; set; }
@@ -24,7 +23,6 @@ namespace GeoApp {
         public ICommand AddMetadataFieldCommand { get; set; }
         public ICommand DeleteMetadataFieldCommand { get; set; }
         public ICommand OnSaveUpdatedCommand { get; set; }
-
         public ICommand DeleteEntryCommand { get; set; }
 
         // Popup used for creating new metadata fields.
@@ -43,7 +41,7 @@ namespace GeoApp {
             get { return _dateEntry; }
             set {
                 _dateEntry = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateEntry"));
+                OnPropertyChanged();
             }
         }
 
@@ -52,7 +50,7 @@ namespace GeoApp {
             get { return _nameEntry; }
             set {
                 _nameEntry = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NameEntry"));
+                OnPropertyChanged();
             }
         }
 
@@ -61,7 +59,7 @@ namespace GeoApp {
             get { return _entryType; }
             set {
                 _entryType = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryType"));
+                OnPropertyChanged();
             }
         }
 
@@ -70,7 +68,7 @@ namespace GeoApp {
             get { return _entryID; }
             set {
                 _entryID = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("EntryID"));
+                OnPropertyChanged();
             }
         }
 
@@ -79,7 +77,7 @@ namespace GeoApp {
             get { return _loadingIconActive; }
             set {
                 _loadingIconActive = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LoadingIconActive"));
+                OnPropertyChanged();
             }
         }
 
@@ -88,7 +86,7 @@ namespace GeoApp {
             get { return _geolocationEntryEnabled; }
             set {
                 _geolocationEntryEnabled = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("GeolocationEntryEnabled"));
+                OnPropertyChanged();
             }
         }
 
@@ -97,8 +95,8 @@ namespace GeoApp {
             get { return _numPointFields; }
             set {
                 _numPointFields = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumPointFields"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ShowPointDeleteBtn"));
+                OnPropertyChanged();
+                OnPropertyChanged("ShowPointDeleteBtn");
             }
         }
 
@@ -107,7 +105,7 @@ namespace GeoApp {
             get { return _addMetadataFieldsBtnEnabled; }
             set {
                 _addMetadataFieldsBtnEnabled = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AddMetadataFieldsBtnEnabled"));
+                OnPropertyChanged();
             }
         }
 
