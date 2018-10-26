@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,10 +8,11 @@ using System.Reflection;
 using PCLStorage;
 using System.Threading.Tasks;
 
+
 namespace GeoApp {
     public class FileService : IDataService {
-        public FileService() {
-        }
+
+        public FileService() { }
 
         public async Task<bool> DeleteLocationAsync(int id) {
             foreach (var feature in App.LocationManager.CurrentLocations) {
@@ -29,47 +31,73 @@ namespace GeoApp {
 
         public Task<List<Feature>> RefreshDataAsync() {
             return Task.Run(async () => {
-                List<Feature> features = new List<Feature>();
-
                 IFile locations = await GetLocationsFile();
 
                 var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
-                features = rootobject.features;
                 rootobject.type = "FeatureCollection";
 
-                // Determine the icon used for each feature based on it's geometry type.
-                // Also properly deserialize the list of coordinates into an app-use-specific list of Points.
-                foreach (var feature in features) {
+                foreach (var feature in rootobject.features) {
+                    // Initialise xamarin coordinates list and metadata fields list.
                     feature.properties.xamarincoordinates = new List<Point>();
                     if (feature.properties.metadatafields == null || feature.properties.metadatafields.Count == 0) {
                         feature.properties.metadatafields = new Dictionary<string, object>();
                     }
 
-                    if(feature.geometry.type == "Point") {
-                        feature.properties.typeIconPath = "point_icon.png";
-                    } else if (feature.geometry.type == "LineString") {
+                    // Immediately convert LineStrings to Line for display purposes. 
+                    // This will be converted back to LineString before serialization to json.
+                    if(feature.geometry.type == "LineString") {
                         feature.geometry.type = "Line";
-                        feature.properties.typeIconPath = "line_icon.png";
-                    } else {
-                        feature.properties.typeIconPath = "area-icon.png";
                     }
 
+                    // Determine the icon used for each feature based on it's geometry type.
                     if (feature.geometry.type == "Point") {
-                        feature.properties.xamarincoordinates.Add(new Point(
-                            (double)feature.geometry.coordinates[0],
-                            (double)feature.geometry.coordinates[1],
-                            (double)feature.geometry.coordinates[2]));
+                        feature.properties.typeIconPath = "point_icon.png";
+                    } else if (feature.geometry.type == "Line") {
+                        feature.properties.typeIconPath = "line_icon.png";
+                    } else if (feature.geometry.type == "Polygon") {
+                        feature.properties.typeIconPath = "area_icon.png";
                     } else {
-                        for (int i = 0; i < feature.geometry.coordinates.Count; i++) {
-                            feature.properties.xamarincoordinates.Add(new Point(
-                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.geometry.coordinates[i]))[0]),
-                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.geometry.coordinates[i]))[1]),
-                                (double)(((Newtonsoft.Json.Linq.JArray)(feature.geometry.coordinates[i]))[2])));
+                        Debug.WriteLine($":::::::::::::::::::::::::::::INVALID TYPE: {feature.geometry.type}");
+                    }
+
+                    // Properly deserialize the list of coordinates into an app-use-specific list of Points (XamarinCoordinates).
+                    {
+                        object[] trueCoords;
+
+                        if (feature.geometry.type == "Point") {
+                            trueCoords = feature.geometry.coordinates.ToArray();
+                            feature.properties.xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
+
+                        } else if (feature.geometry.type == "Line") {
+                            // Iterates the root coordinates (List<object>),
+                            // then casts each element in the list to a Jarray which contain the actual coordinates.
+                            for (int i = 0; i < feature.geometry.coordinates.Count; i++) {
+                                trueCoords = ((JArray)feature.geometry.coordinates[i]).ToObject<object[]>();
+                                feature.properties.xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
+                            }
+                        } else if (feature.geometry.type == "Polygon") {
+                            // Iterates the root coordinates (List<object>), and casts each element in the list to a Jarray, 
+                            // then casts each Jarray's element to another Jarray which contain the actual coordinates.
+                            for (int i = 0; i < feature.geometry.coordinates.Count; i++) {
+                                for (int j = 0; j < ((JArray)feature.geometry.coordinates[i]).Count; j++) {
+                                    trueCoords = ((JArray)(((JArray)feature.geometry.coordinates[i])[j])).ToObject<object[]>();
+                                    feature.properties.xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
+                                }
+                            }
+                        } else {
+                            Debug.WriteLine($":::::::::::::::::::::::::::::INVALID TYPE WHEN PARSING POINTS: {feature.geometry.type}");
                         }
                     }
                 }
-                return features;
+                return rootobject.features;
             });
+        }
+
+        private Point JsonCoordToXamarinPoint(object[] coords) {
+            double latitude = (double)coords[0];
+            double longitude = (double)coords[1];
+            double altitude = (coords.Length == 3) ? (double)coords[2] : 0.0;
+            return new Point(latitude, longitude, altitude);
         }
 
         public Task EditSaveLocationAsync(Feature location) {
@@ -116,12 +144,13 @@ namespace GeoApp {
             Debug.Write(rootFolder);
             rootFolder.Path.Replace("/../Library", " ");
 
-            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations9.json");
+            ExistenceCheckResult result = await rootFolder.CheckExistsAsync("locations10.json");
             if (result != ExistenceCheckResult.FileExists) {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations9.json", CreationCollisionOption.ReplaceExisting);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations10.json", CreationCollisionOption.ReplaceExisting);
 
                 var assembly = IntrospectionExtensions.GetTypeInfo(this.GetType()).Assembly;
-                Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                //Stream stream = assembly.GetManifestResourceStream("GeoApp.locations.json");
+                Stream stream = assembly.GetManifestResourceStream("GeoApp.locationsAutoGenerated.json");
                 string json;
                 using (var reader = new System.IO.StreamReader(stream)) {
                     json = reader.ReadToEnd();
@@ -131,7 +160,7 @@ namespace GeoApp {
                 return locationsFile;
 
             } else {
-                IFile locationsFile = await rootFolder.CreateFileAsync("locations9.json", CreationCollisionOption.OpenIfExists);
+                IFile locationsFile = await rootFolder.CreateFileAsync("locations10.json", CreationCollisionOption.OpenIfExists);
                 return locationsFile;
             }
         }
