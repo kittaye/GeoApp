@@ -15,11 +15,10 @@ namespace GeoApp {
         private const string EMBEDDED_FILENAME = "locations.json";
 
         // Set this to true to delete the current embedded file, remember to set back to false on the next build.
-        private const bool DEBUG_DELETE_EMBEDDED_FILE = true;
+        private bool DEBUG_DELETE_EMBEDDED_FILE = true;
 
         // Determines the source json file to read from when replacing the embedded file after a deletion.
         private const string EMBEDDED_FILE_SOURCE_PATH = "GeoApp.locations_empty.json";
-
 
         public FileService() { }
 
@@ -161,6 +160,7 @@ namespace GeoApp {
 
             // If DEBUG bool set to true, will delete the embedded file and create a new one from the source path.
             if (DEBUG_DELETE_EMBEDDED_FILE) {
+                DEBUG_DELETE_EMBEDDED_FILE = false;
                 if (embeddedFileExists == ExistenceCheckResult.FileExists) {
                     IFile file = await rootFolder.GetFileAsync(EMBEDDED_FILENAME);
                     await file.DeleteAsync();
