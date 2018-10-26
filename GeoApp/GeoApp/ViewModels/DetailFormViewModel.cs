@@ -12,6 +12,7 @@ using Rg.Plugins.Popup.Services;
 using GeoApp.Views.Popups;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Newtonsoft.Json.Linq;
 
 namespace GeoApp {
     // View-model for the page that shows a data entry's details as a form.
@@ -29,9 +30,7 @@ namespace GeoApp {
         private DetailFormFieldPopup _detailFormPopup;
 
         // Property binding to determine if the delete button for metadata fields is visible.
-        public bool ShowPointDeleteBtn { get { return _numPointFields > minPoints; } }
-
-        private int minPoints = 1;
+        public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
 
         public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
@@ -130,17 +129,6 @@ namespace GeoApp {
 
             // Add one geolocation point to the list of points as there must be at least one.
             AddPoint();
-            //TODO: This doesn't work because this constructor is called before the type is determined.
-            {
-                if (EntryType == "Line") {
-                    minPoints = 2;
-                    AddPoint();
-                } else if (EntryType == "Polygon") {
-                    minPoints = 3;
-                    AddPoint();
-                    AddPoint();
-                }
-            }
 
             // Initialise command bindings.
             {
@@ -285,14 +273,27 @@ namespace GeoApp {
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Altitude };
-                } else {
+                } else if (EntryType == "Line") {
                     feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
                     for (int i = 0; i < GeolocationPoints.Count; i++) {
-                        feature.geometry.coordinates.Add(new Newtonsoft.Json.Linq.JArray(new double[3] {
+                        feature.geometry.coordinates.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
                     }
+                } else if(EntryType == "Polygon") {
+                    // This specific method of structuring points means that users will not
+                    // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
+                    // This doesn't matter since our app interface can't allow for it anyway.
+                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                    List<object> innerPoints = new List<object>(GeolocationPoints.Count);
+                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                        innerPoints.Add(new JArray(new double[3] {
+                            GeolocationPoints[i].Latitude,
+                            GeolocationPoints[i].Longitude,
+                            GeolocationPoints[i].Altitude }));
+                    }
+                    feature.geometry.coordinates.Add(innerPoints);
                 }
             }
 
