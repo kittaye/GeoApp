@@ -50,7 +50,7 @@ namespace GeoApp {
                         feature.geometry.type = "Line";
                         feature.properties.typeIconPath = "line_icon.png";
                     } else {
-                        feature.properties.typeIconPath = "area_icon.png";
+                        feature.properties.typeIconPath = "area-icon.png";
                     }
 
                     if (feature.geometry.type == "Point") {

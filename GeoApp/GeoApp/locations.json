@@ -3,86 +3,48 @@
   "features": [
     {
       "type": "Feature",
-      "properties": { "date": "10/28/2018",
-        "id": 1,
-        "name": "S601",
-        "metadataFields": {
-          "myDescription": "Computer lab",
-          "myIntField": 1,
-          "myFloatField": 5.1262
-        }
-      },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          153.02685303627794,
-          -27.477383357498308,
-          -3.78179931640625
-        ]
+        "coordinates": [ -27.4774618572334, 153.027317008313, 6.21347284317017 ]
+      },
+      "properties": {
+        "id": 671,
+        "metadatafields": { "ExtraData": "Hello!" },
+        "name": "Example Point",
+        "date": "10/26/2018"
       }
     },
     {
       "type": "Feature",
-      "properties": { "date": "10/24/2018",
-        "id": 2,
-        "name": "PSM",
-        "float": 0,
-        "int": 2,
-        "string": "",
-        "elevation_m": "13"
-      },
       "geometry": {
-        "type": "LineString",
+        "type": "Line",
         "coordinates": [
-          [
-            153.03132260232513,
-            -27.477310770216842,
-            6.49652099609375
-          ],
-          [
-            123.03132513,
-            -7.47770216842,
-            1.49652099609375
-          ]
+          [ -27.4774246055709, 153.027428429996, 8.49260711669922 ],
+          [ -27.8774246055709, 153.027428429996, 8.49260711669922 ]
         ]
+      },
+      "properties": {
+        "id": 101,
+        "metadatafields": {},
+        "name": "Test Line",
+        "date": "10/26/2018"
       }
     },
     {
       "type": "Feature",
-      "properties": { "date": "10/24/2018",
-        "id": 4,
-        "name": "Ame",
-        "float": 2,
-        "int": 3,
-        "string": "Rubbish bins",
-        "elevation_m": "5.97650146484375"
-      },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          153.0316468143398,
-          -27.476864350053926,
-          5.97650146484375
+          [ -27.4774584770742, 153.02740242877, 9.86631679534912 ],
+          [ -27.4774584770742, 153.02740242888, 9.86631679534912 ],
+          [ -27.4774584770742, 153.02740242877, 0.866316795349121 ]
         ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": { "date": "10/24/2018",
-        "id": 5,
-        "name": "Ame",
-        "float": 1,
-        "int": 4,
-        "string": "Table",
-        "elevation_m": "2.8031005859375"
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          153.0314353389228,
-          -27.4768941477197,
-          2.8031005859375
-        ]
+      "properties": {
+        "id": 88,
+        "metadatafields": {},
+        "name": "Demo Area",
+        "date": "10/26/2018"
       }
     }
   ]
