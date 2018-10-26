@@ -30,7 +30,7 @@ namespace GeoApp {
         private DetailFormFieldPopup _detailFormPopup;
 
         // Property binding to determine if the delete button for metadata fields is visible.
-        public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
+        public bool ShowPointDeleteBtn { get { return _numPointFields > 0; } }
 
         public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
@@ -128,7 +128,7 @@ namespace GeoApp {
             }
 
             // Add one geolocation point to the list of points as there must be at least one.
-            AddPoint();
+            //AddPoint();
 
             // Initialise command bindings.
             {
@@ -256,7 +256,7 @@ namespace GeoApp {
 
             if(EntryType == "Polygon") {
                 if(GeolocationPoints.Count < 4) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A polygon must have at least 4 points.", "OK");
+                    await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 geolocational points.", "OK");
                     return;
                 }
 
@@ -267,7 +267,12 @@ namespace GeoApp {
                 }
             } else if (EntryType == "Line") {
                 if (GeolocationPoints.Count < 2) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A line must have at least 2 points.", "OK");
+                    await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 geolocational points.", "OK");
+                    return;
+                }
+            } else if (EntryType == "Point") {
+                if (GeolocationPoints.Count < 1) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must have 1 geolocational point.", "OK");
                     return;
                 }
             }
