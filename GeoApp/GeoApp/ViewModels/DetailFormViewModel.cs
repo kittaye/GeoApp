@@ -242,14 +242,32 @@ namespace GeoApp {
         async void OnSaveUpdateActivated() {
             // Do validation checks here.
             if (string.IsNullOrEmpty(NameEntry)) {
-                await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty!", "OK");
+                await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty.", "OK");
                 return;
             }
 
             foreach (var item in MetadataEntries) {
                 item.LabelTitle = item.LabelTitle.Trim();
                 if(item.LabelTitle.Contains(" ")) {
-                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces!", "OK");
+                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces.", "OK");
+                    return;
+                }
+            }
+
+            if(EntryType == "Polygon") {
+                if(GeolocationPoints.Count < 4) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A polygon must have at least 4 points.", "OK");
+                    return;
+                }
+
+                if(GeolocationPoints[0].Latitude != GeolocationPoints[GeolocationPoints.Count - 1].Latitude
+                    || GeolocationPoints[0].Longitude != GeolocationPoints[GeolocationPoints.Count - 1].Longitude) {
+                    await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
+                    return;
+                }
+            } else if (EntryType == "Line") {
+                if (GeolocationPoints.Count < 2) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A line must have at least 2 points.", "OK");
                     return;
                 }
             }
