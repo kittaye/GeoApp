@@ -11,7 +11,7 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.BindingContext>
-        <local:EditDetailFormViewModel x:Name="viewModel"/>
+        <local:DetailFormViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>

@@ -15,15 +15,15 @@ namespace GeoApp {
     {
         public EditDetailFormView(Feature data) {
             InitializeComponent();
-            ((EditDetailFormViewModel)BindingContext).EntryType = data.geometry.type.ToString();
-            ((EditDetailFormViewModel)BindingContext).EntryID = data.properties.id;
+            ((DetailFormViewModel)BindingContext).EntryType = data.geometry.type.ToString();
+            ((DetailFormViewModel)BindingContext).EntryID = data.properties.id;
 
             foreach (var item in data.properties.xamarincoordinates) {
-                ((EditDetailFormViewModel)BindingContext).GeolocationPoints.Add(item);
+                ((DetailFormViewModel)BindingContext).GeolocationPoints.Add(item);
             }
 
             foreach (var item in data.properties.metadatafields) {
-                ((EditDetailFormViewModel)BindingContext).MetadataEntries.Add(new MetadataEntry(item.Key, item.Value?.ToString(), Keyboard.Default));
+                ((DetailFormViewModel)BindingContext).MetadataEntries.Add(new MetadataEntry(item.Key, item.Value?.ToString(), Keyboard.Default));
             }
 
             Title = $"Editing {data.properties.name}";
