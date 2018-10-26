@@ -194,12 +194,9 @@ namespace GeoApp {
             try {
                 var storedLocations = await App.LocationManager.GetLocationsAsync();
 
-                // export object model that matches geojson standard
-                List<ExportModel> exportObject = new List<ExportModel> {
-                    new ExportModel{ type = "FeatureCollection", features = storedLocations }
-                };
-
-                var json = JsonConvert.SerializeObject(exportObject);
+                var rootobject = new RootObject();
+                rootobject.features = storedLocations;
+                var json = JsonConvert.SerializeObject(rootobject);
                 // string cleaning
                 if (json.StartsWith("[")) json = json.Substring(1);
                 
