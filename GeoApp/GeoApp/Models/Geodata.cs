@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-//Geodata.cs defines the models for geoJSON data to deserialize into.
+//Geodata.cs defines the models for geoJSON data to serialize into and from.
 namespace GeoApp
 {
-    public enum DataType { Point, Line, Polygon }; //Change Line to LineString? Also potential for Multipart Gemoetries: MultiPoint, MultiLineString and MultiPolygon.
-
     public class Feature
     {
         public string type { get; set; }
