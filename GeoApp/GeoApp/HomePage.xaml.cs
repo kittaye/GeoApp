@@ -26,11 +26,11 @@ namespace GeoApp {
         /// </summary>
         /// <param name="type">Data entry type</param>
         private void ShowNewDetailFormPage(string type) {
-            Navigation.PushAsync(new NewDetailFormView(type));
+            Navigation.PushAsync(new ModifyDetailFormView(type));
         }
 
         public void ShowEditDetailFormPage(Feature entryToEdit) {
-            Navigation.PushAsync(new EditDetailFormView(entryToEdit));
+            Navigation.PushAsync(new ModifyDetailFormView(entryToEdit));
         }
 
         public async Task ShowExistingDetailFormPage(Feature data) {
