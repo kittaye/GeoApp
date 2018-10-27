@@ -165,13 +165,7 @@ namespace GeoApp {
                 if (location != null) {
                     point.Latitude = location.Latitude;
                     point.Longitude = location.Longitude;
-
-                    if (location.Altitude == null) {
-                        point.Altitude = 0;
-                    } else {
-                        point.Altitude = (double)location.Altitude;
-                    }
-
+                    point.Altitude = location.Altitude ?? 0.0;
                 }
             } catch (FeatureNotSupportedException fnsEx) {
                 throw fnsEx;
@@ -239,40 +233,8 @@ namespace GeoApp {
 
         async void OnSaveUpdateActivated() {
             // Do validation checks here.
-            if (string.IsNullOrEmpty(NameEntry)) {
-                await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty.", "OK");
+            if(await EntryIsValid() == false) {
                 return;
-            }
-
-            foreach (var item in MetadataEntries) {
-                item.LabelTitle = item.LabelTitle.Trim();
-                if(item.LabelTitle.Contains(" ")) {
-                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces.", "OK");
-                    return;
-                }
-            }
-
-            if(EntryType == "Polygon") {
-                if(GeolocationPoints.Count < 4) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 geolocational points.", "OK");
-                    return;
-                }
-
-                if(GeolocationPoints[0].Latitude != GeolocationPoints[GeolocationPoints.Count - 1].Latitude
-                    || GeolocationPoints[0].Longitude != GeolocationPoints[GeolocationPoints.Count - 1].Longitude) {
-                    await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
-                    return;
-                }
-            } else if (EntryType == "Line") {
-                if (GeolocationPoints.Count < 2) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 geolocational points.", "OK");
-                    return;
-                }
-            } else if (EntryType == "Point") {
-                if (GeolocationPoints.Count != 1) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 geolocational point.", "OK");
-                    return;
-                }
             }
 
             // Create the feature object based on the view-model data of the entry.
@@ -318,16 +280,55 @@ namespace GeoApp {
                 }
             }
 
+            // A new entry will have an ID of 0, otherwise we are editing a current entry.
             if (EntryID == 0) {
-                // Save the feature and go back to the entry list page.
                 await App.LocationManager.SaveLocationAsync(feature);
-
             } else {
                 feature.properties.id = EntryID;
                 await App.LocationManager.EditSaveLocationAsync(feature);
             }
 
             await HomePage.Instance.Navigation.PopAsync();
+        }
+
+        private async Task<bool> EntryIsValid() {
+            if (string.IsNullOrEmpty(NameEntry)) {
+                await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty.", "OK");
+                return false;
+            }
+
+            foreach (var item in MetadataEntries) {
+                item.LabelTitle = item.LabelTitle.Trim();
+                if (item.LabelTitle.Contains(" ")) {
+                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces.", "OK");
+                    return false;
+                }
+            }
+
+            if (EntryType == "Polygon") {
+                if (GeolocationPoints.Count < 4) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 geolocational points.", "OK");
+                    return false;
+                }
+
+                if (GeolocationPoints[0].Latitude != GeolocationPoints[GeolocationPoints.Count - 1].Latitude
+                    || GeolocationPoints[0].Longitude != GeolocationPoints[GeolocationPoints.Count - 1].Longitude) {
+                    await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
+                    return false;
+                }
+            } else if (EntryType == "Line") {
+                if (GeolocationPoints.Count < 2) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 geolocational points.", "OK");
+                    return false;
+                }
+            } else if (EntryType == "Point") {
+                if (GeolocationPoints.Count != 1) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 geolocational point.", "OK");
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
