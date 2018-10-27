@@ -3,16 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.ModifyDetailFormView"
+             x:Name="ModifyDetailFormViewPage"
              Title=""
              BackgroundColor="Default">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="save_icon" Command="{Binding OnSaveUpdatedCommand}"/>
     </ContentPage.ToolbarItems>
-    
-    <ContentPage.BindingContext>
-        <local:DetailFormViewModel x:Name="viewModel"/>
-    </ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <Style TargetType="Label">
@@ -54,7 +51,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Margin="15,5,15,5">
+                                <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Margin="15,5,15,5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -76,9 +73,9 @@
                                     <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
                                     <Entry Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2"/>
 
-                                    <Button Command="{Binding DeletePointCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding ShowPointDeleteBtn, Source={x:Reference Name=viewModel}}"/>
-                                    <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding LoadingIconActive, Source={x:Reference Name=viewModel}}" IsVisible="{Binding LoadingIconActive, Source={x:Reference Name=viewModel}}"/>
-                                    <Button Command="{Binding GetLocationCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
+                                    <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
+                                    <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
+                                    <Button Command="{Binding Path=BindingContext.GetLocationCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
@@ -110,8 +107,8 @@
                                         <ColumnDefinition Width="36"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding Path=LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                    <Button Command="{Binding DeleteMetadataFieldCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
+                                    <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Button Command="{Binding Path=BindingContext.DeleteMetadataFieldCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
                                     <Entry Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
                                 </Grid>
                             </ViewCell>

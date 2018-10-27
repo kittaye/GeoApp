@@ -3,12 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GeoApp"
              x:Class="GeoApp.ExistingDetailFormView"
+             x:Name="ExistingDetailFormViewPage"
              Title=""
              BackgroundColor="Default">
-
-    <ContentPage.BindingContext>
-        <local:DetailFormViewModel x:Name="viewModel"/>
-    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="trash_icon" Command="{Binding DeleteEntryCommand}"/>
@@ -33,10 +30,10 @@
                     </Grid.RowDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Label x:Name="itemName" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
+                    <Label Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
-                    <Label x:Name="dateEntry" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
+                    <Label Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
@@ -49,7 +46,7 @@
                     <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                 </Grid>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
+                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -89,7 +86,7 @@
                     <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
                 </Grid>
 
-                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
+                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -102,8 +99,8 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Text="{Binding Path=Key}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                    <Entry Text="{Binding Path=Value}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
+                                    <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                    <Entry Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

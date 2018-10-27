@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 namespace GeoApp {
     // View-model for the page that shows a data entry's details as a form.
     class DetailFormViewModel : ViewModelBase {
+        private const int NEW_ENTRY_ID = -1;
 
         public ICommand GetLocationCommand { get; set; }
         public ICommand AddPointCommand { get; set; }
@@ -26,11 +27,15 @@ namespace GeoApp {
         public ICommand OnSaveUpdatedCommand { get; set; }
         public ICommand DeleteEntryCommand { get; set; }
 
-        // Popup used for creating new metadata fields.
-        private DetailFormFieldPopup _detailFormPopup;
+        // Property binding to determine if the delete button for metadata fields is visible, which is based on the type of this entry.
+        public bool ShowPointDeleteBtn { get { return _numPointFields > minPoints; } }
+        private int minPoints = 0;
 
-        // Property binding to determine if the delete button for metadata fields is visible.
-        public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
+        // A reference to this entry's ID.
+        private int thisEntryID;
+
+        // A reference to this entry's type of structure.
+        private string thisEntryType;
 
         public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
@@ -49,24 +54,6 @@ namespace GeoApp {
             get { return _nameEntry; }
             set {
                 _nameEntry = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _entryType;
-        public string EntryType {
-            get { return _entryType; }
-            set {
-                _entryType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _entryID;
-        public int EntryID {
-            get { return _entryID; }
-            set {
-                _entryID = value;
                 OnPropertyChanged();
             }
         }
@@ -109,39 +96,78 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// View-model Constructor
+        /// View-model constructor for adding new entries.
         /// </summary>
-        public DetailFormViewModel() {
-            // Initialise fields.
-            {
-                DateEntry = DateTime.Now.ToShortDateString();
+        public DetailFormViewModel(string entryType) {
+            thisEntryType = entryType;
+            thisEntryID = NEW_ENTRY_ID;
 
-                _detailFormPopup = new DetailFormFieldPopup();
-                MetadataEntries = new ObservableCollection<MetadataEntry>();
+            DateEntry = DateTime.Now.ToShortDateString();
+
+            // Add the minimum number of points necessary for the chosen type.
+            {
+                if (entryType == "Point") {
+                    minPoints = 1;
+                } else if (entryType == "Line") {
+                    minPoints = 2;
+                } else if (entryType == "Polygon") {
+                    minPoints = 4;
+                } else {
+                    Debug.WriteLine($"\n\n:::::::::::::::::::::UNSUPPORTED ENTRY TYPE: {entryType}");
+                }
                 GeolocationPoints = new ObservableCollection<Point>();
-
-                AddMetadataFieldsBtnEnabled = true;
-                GeolocationEntryEnabled = true;
-                LoadingIconActive = false;
-
-                // One default field added from View page code-behind (MVC)
-                NumPointFields = 1;
+                for (int i = 0; i < minPoints; i++) {
+                    AddPoint();
+                }
             }
 
-            // Initialise command bindings.
-            {
-                GetLocationCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
+            MetadataEntries = new ObservableCollection<MetadataEntry>();
 
-                AddMetadataFieldCommand = new Command(async () => { await AddMetadataField(); });
-                DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
+            AddMetadataFieldsBtnEnabled = true;
+            GeolocationEntryEnabled = true;
+            LoadingIconActive = false;
 
-                AddPointCommand = new Command(() => AddPoint());
-                DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
+            InitCommandBindings();
+        }
 
-                DeleteEntryCommand = new Command(async () => await DeleteEntry());
+        /// <summary>
+        /// View-model constructor for viewing/editing existing entries.
+        /// </summary>
+        public DetailFormViewModel(Feature data) {
+            thisEntryType = data.geometry.type;
+            thisEntryID = data.properties.id;
 
-                OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
+            NameEntry = data.properties.name;
+            DateEntry = DateTime.Parse(data.properties.date).ToShortDateString();
+
+            GeolocationPoints = new ObservableCollection<Point>(data.properties.xamarincoordinates);
+            MetadataEntries = new ObservableCollection<MetadataEntry>();
+            foreach (var item in data.properties.metadatafields) {
+                MetadataEntries.Add(new MetadataEntry(item.Key, item.Value?.ToString(), Keyboard.Default));
             }
+
+            AddMetadataFieldsBtnEnabled = true;
+            GeolocationEntryEnabled = true;
+            LoadingIconActive = false;
+
+            InitCommandBindings();
+        }
+
+        /// <summary>
+        /// Initialise command bindings.
+        /// </summary>
+        private void InitCommandBindings() {
+            GetLocationCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
+
+            AddMetadataFieldCommand = new Command(async () => { await AddMetadataField(); });
+            DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
+
+            AddPointCommand = new Command(() => AddPoint());
+            DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
+
+            DeleteEntryCommand = new Command(async () => await DeleteEntry());
+
+            OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
         }
 
         /// <summary>
@@ -226,7 +252,7 @@ namespace GeoApp {
         private async Task DeleteEntry() {
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Entry", "Are you sure you want to delete this entry?", "Yes", "No");
             if (yesResponse) {
-                await App.LocationManager.DeleteLocationAsync(EntryID);
+                await App.LocationManager.DeleteLocationAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopAsync();
             }
         }
@@ -250,13 +276,13 @@ namespace GeoApp {
                 }
 
                 feature.geometry = new Geometry();
-                feature.geometry.type = EntryType;
-                if (EntryType == "Point") {
+                feature.geometry.type = thisEntryType;
+                if (thisEntryType == "Point") {
                     feature.geometry.coordinates = new List<object>() {
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Altitude };
-                } else if (EntryType == "Line") {
+                } else if (thisEntryType == "Line") {
                     feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
                     for (int i = 0; i < GeolocationPoints.Count; i++) {
                         feature.geometry.coordinates.Add(new JArray(new double[3] {
@@ -264,7 +290,7 @@ namespace GeoApp {
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
                     }
-                } else if(EntryType == "Polygon") {
+                } else if(thisEntryType == "Polygon") {
                     // This specific method of structuring points means that users will not
                     // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
                     // This doesn't matter since our app interface can't allow for it anyway.
@@ -279,9 +305,9 @@ namespace GeoApp {
                     feature.geometry.coordinates.Add(innerPoints);
                 }
 
-                // A new entry will have an ID of 0, otherwise we are editing a current entry.
-                if (EntryID != 0) {
-                    feature.properties.id = EntryID;
+                // A new entry will have an ID of -1, otherwise we are editing an entry.
+                if (thisEntryID != NEW_ENTRY_ID) {
+                    feature.properties.id = thisEntryID;
                 }
             }
 
@@ -303,7 +329,7 @@ namespace GeoApp {
                 }
             }
 
-            if (EntryType == "Polygon") {
+            if (thisEntryType == "Polygon") {
                 if (GeolocationPoints.Count < 4) {
                     await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 geolocational points.", "OK");
                     return false;
@@ -314,12 +340,12 @@ namespace GeoApp {
                     await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
                     return false;
                 }
-            } else if (EntryType == "Line") {
+            } else if (thisEntryType == "Line") {
                 if (GeolocationPoints.Count < 2) {
                     await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 geolocational points.", "OK");
                     return false;
                 }
-            } else if (EntryType == "Point") {
+            } else if (thisEntryType == "Point") {
                 if (GeolocationPoints.Count != 1) {
                     await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 geolocational point.", "OK");
                     return false;

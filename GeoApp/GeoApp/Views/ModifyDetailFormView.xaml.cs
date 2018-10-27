@@ -5,15 +5,13 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ModifyDetailFormView : ContentPage {
-
         /// <summary>
         /// Detail form constructor for when a new entry is being added.
         /// </summary>
         /// <param name="type">The geoJSON geometry type being added.</param>
         public ModifyDetailFormView(string type) {
             InitializeComponent();
-            ((DetailFormViewModel)BindingContext).EntryType = type;
-            ((DetailFormViewModel)BindingContext).GeolocationPoints.Add(new Point(0, 0, 0));
+            this.BindingContext = new DetailFormViewModel(type);
 
             Title = $"New {type}";
 
@@ -26,21 +24,9 @@ namespace GeoApp {
         /// <param name="data">The entry's data as represented by a feature object.</param>
         public ModifyDetailFormView(Feature data) {
             InitializeComponent();
-            ((DetailFormViewModel)BindingContext).EntryType = data.geometry.type.ToString();
-            ((DetailFormViewModel)BindingContext).EntryID = data.properties.id;
-
-            foreach (var item in data.properties.xamarincoordinates) {
-                ((DetailFormViewModel)BindingContext).GeolocationPoints.Add(item);
-            }
-
-            foreach (var item in data.properties.metadatafields) {
-                ((DetailFormViewModel)BindingContext).MetadataEntries.Add(new MetadataEntry(item.Key, item.Value?.ToString(), Keyboard.Default));
-            }
+            this.BindingContext = new DetailFormViewModel(data);
 
             Title = $"Editing {data.properties.name}";
-
-            nameEntry.Text = data.properties.name;
-            dateEntry.Date = DateTime.Parse(data.properties.date);
 
             DetermineAddPointBtnVisability(data.geometry.type);
         }
