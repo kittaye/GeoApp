@@ -278,16 +278,14 @@ namespace GeoApp {
                     }
                     feature.geometry.coordinates.Add(innerPoints);
                 }
+
+                // A new entry will have an ID of 0, otherwise we are editing a current entry.
+                if (EntryID != 0) {
+                    feature.properties.id = EntryID;
+                }
             }
 
-            // A new entry will have an ID of 0, otherwise we are editing a current entry.
-            if (EntryID == 0) {
-                await App.LocationManager.SaveLocationAsync(feature);
-            } else {
-                feature.properties.id = EntryID;
-                await App.LocationManager.EditSaveLocationAsync(feature);
-            }
-
+            await App.LocationManager.SaveLocationAsync(feature);
             await HomePage.Instance.Navigation.PopAsync();
         }
 

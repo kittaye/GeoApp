@@ -21,10 +21,6 @@ namespace GeoApp.Data {
             return restService.SaveLocationAsync(location);
         }
 
-        public Task EditSaveLocationAsync(Feature location) {
-            return restService.EditSaveLocationAsync(location);
-        }
-
         public Task<bool> DeleteLocationAsync(int id)
         {
             return restService.DeleteLocationAsync(id);
@@ -38,8 +34,8 @@ namespace GeoApp.Data {
             await restService.ImportLocationsAsync(fileContents);
         }
 
-        public async Task<string> ExportLocationsAsync() {
-            return await restService.ExportLocationsAsync();
+        public string ExportLocationsToJson() {
+            return restService.ExportLocationsToJson();
         }
     }
 }
