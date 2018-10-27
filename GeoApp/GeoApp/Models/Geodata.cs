@@ -16,10 +16,8 @@ namespace GeoApp
         public Properties properties { get; set; }
     }
 
-    public class Properties : INotifyPropertyChanged
+    public class Properties
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public int id { get; set; }
         public Dictionary<string, object> metadatafields { get; set; }
         [JsonIgnore]
