@@ -15,11 +15,11 @@ namespace GeoApp {
         public NewDetailFormView(string type) {
             InitializeComponent();
             ((DetailFormViewModel)BindingContext).EntryType = type;
+            ((DetailFormViewModel)BindingContext).GeolocationPoints.Add(new Point(0, 0, 0));
 
             Title = $"New {type}";
 
-            if (type == "Line" || type == "Polygon")
-            {
+            if (type == "Line" || type == "Polygon") {
                 addPointBtn.Text = $"Add to {type}";
                 addPointBtn.IsVisible = true;
             } else {

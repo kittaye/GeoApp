@@ -31,11 +31,6 @@ namespace GeoApp {
             nameEntry.Text = data.properties.name;
             dateEntry.Date = DateTime.Parse(data.properties.date);
 
-            // fill in geo-location data
-            //geolocationListView.ItemsSource = data.Properties.XamarinCoordinates;
-            // assign metadatefileds as itemsource
-            //listView.ItemsSource = data.Properties.MetadataFields;
-
             if (data.geometry.type == "Line" || data.geometry.type == "Polygon") {
                 addPointBtn.Text = $"Add to {data.geometry.type.ToString()}";
                 addPointBtn.IsVisible = true;

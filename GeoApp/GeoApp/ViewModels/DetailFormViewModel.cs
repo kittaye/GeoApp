@@ -30,7 +30,7 @@ namespace GeoApp {
         private DetailFormFieldPopup _detailFormPopup;
 
         // Property binding to determine if the delete button for metadata fields is visible.
-        public bool ShowPointDeleteBtn { get { return _numPointFields > 0; } }
+        public bool ShowPointDeleteBtn { get { return _numPointFields > 1; } }
 
         public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
@@ -124,11 +124,9 @@ namespace GeoApp {
                 GeolocationEntryEnabled = true;
                 LoadingIconActive = false;
 
-                NumPointFields = 0;
+                // One default field added from View page code-behind (MVC)
+                NumPointFields = 1;
             }
-
-            // Add one geolocation point to the list of points as there must be at least one.
-            //AddPoint();
 
             // Initialise command bindings.
             {
@@ -271,8 +269,8 @@ namespace GeoApp {
                     return;
                 }
             } else if (EntryType == "Point") {
-                if (GeolocationPoints.Count < 1) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must have 1 geolocational point.", "OK");
+                if (GeolocationPoints.Count != 1) {
+                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 geolocational point.", "OK");
                     return;
                 }
             }
