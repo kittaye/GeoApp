@@ -16,34 +16,18 @@
 
     <ContentPage.Resources>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="Default" />
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="Style" Value="{StaticResource DetailFormLabel}" />
         </Style>
+        
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="Gray" />
-            <Setter Property="FontSize" Value="Default" />
-            <Setter Property="WidthRequest" Value="200" />
-            <Setter Property="PlaceholderColor" Value="LightGray" />
-            <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+            <Setter Property="Style" Value="{StaticResource DetailFormEntry}" />
         </Style>
-
-        <ResourceDictionary>
-            <Style x:Key="PanelGrid" TargetType="Grid">
-                <Setter Property="ColumnSpacing" Value="10"/>
-                <Setter Property="RowSpacing" Value="0"/>
-                <Setter Property="Margin" Value="15,15,15,15"/>
-            </Style>
-            <Style x:Key="PanelLayout" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="#efefef"/>
-            </Style>
-        </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout Spacing="0">
-            <StackLayout Style="{StaticResource PanelLayout}" Margin="10,10,10,10">
-                <Grid Style="{StaticResource PanelGrid}">
+            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,10,10,10">
+                <Grid Style="{StaticResource DetailFormPanelGrid}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -56,8 +40,8 @@
                 </Grid>
             </StackLayout>
 
-            <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
-                <Grid Style="{StaticResource PanelGrid}" Margin="15,6,15,0">
+            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10">
+                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -70,7 +54,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Style="{StaticResource PanelGrid}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Margin="15,5,15,5">
+                                <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding GeolocationEntryEnabled, Source={x:Reference Name=viewModel}}" Margin="15,5,15,5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -102,8 +86,8 @@
                 </ListView>
             </StackLayout>
 
-            <StackLayout Style="{StaticResource PanelLayout}" Margin="10,0,10,10">
-                <Grid Style="{StaticResource PanelGrid}" Margin="15,6,15,0">
+            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10">
+                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -116,7 +100,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Style="{StaticResource PanelGrid}">
+                                <Grid Style="{StaticResource DetailFormPanelGrid}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
