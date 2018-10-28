@@ -19,7 +19,7 @@ namespace GeoApp {
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.RefreshMap();
+            viewModel.AddGeometry();
         }
 
 
