@@ -115,7 +115,7 @@ namespace GeoApp {
         {
             // If this is a newly added location, create a new pseudo-unqiue ID for it.
             if (location.properties.id == AppConstants.NEW_ENTRY_ID) {
-                location.properties.id = DateTime.Now.Millisecond.GetHashCode();
+                location.properties.id = DateTime.Now.GetHashCode();
                 App.LocationManager.CurrentLocations.Add(location);
             } else {
                 // Otherwise we are saving over an existing location, so override its contents without changing ID.
