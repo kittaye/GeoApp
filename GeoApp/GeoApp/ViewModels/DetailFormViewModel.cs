@@ -305,10 +305,9 @@ namespace GeoApp {
                     feature.geometry.coordinates.Add(innerPoints);
                 }
 
-                // A new entry will have an ID of NEW_ENTRY_ID, otherwise we are editing an entry.
-                if (thisEntryID != AppConstants.NEW_ENTRY_ID) {
-                    feature.properties.id = thisEntryID;
-                }
+                // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
+                // otherwise an ID will already be set for editing entries.
+                feature.properties.id = thisEntryID;
             }
 
             await App.LocationManager.SaveLocationAsync(feature);
