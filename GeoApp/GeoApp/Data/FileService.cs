@@ -48,16 +48,23 @@ namespace GeoApp {
                 rootobject.type = "FeatureCollection";
 
                 foreach (var feature in rootobject.features) {
-                    // Initialise xamarin coordinates list and metadata fields list.
+                    // Immediately convert LineStrings to Line for use in the rest of the codebase. 
+                    // This will be converted back to LineString before serialization back to json.
+                    if(feature.geometry.type == "LineString") {
+                        feature.geometry.type = "Line";
+                    }
+
+                    // If the date field is missing or invalid, convert it into DateTime.Now.
+                    DateTime dummy;
+                    if (feature.properties.date == null || DateTime.TryParse(feature.properties.date, out dummy) == false) {
+                        Debug.WriteLine($"\n\n::::::::::::::::::::::BAD DATE VALUE: {feature.properties.date}, DEFAULTING TO DateTime.Now");
+                        feature.properties.date = DateTime.Now.ToShortDateString();
+                    }
+
+                    // Initialise xamarin coordinates list and metadata fields list if it is not already set.
                     feature.properties.xamarincoordinates = new List<Point>();
                     if (feature.properties.metadatafields == null || feature.properties.metadatafields.Count == 0) {
                         feature.properties.metadatafields = new Dictionary<string, object>();
-                    }
-
-                    // Immediately convert LineStrings to Line for display purposes. 
-                    // This will be converted back to LineString before serialization to json.
-                    if(feature.geometry.type == "LineString") {
-                        feature.geometry.type = "Line";
                     }
 
                     // Determine the icon used for each feature based on it's geometry type.
@@ -69,6 +76,7 @@ namespace GeoApp {
                         feature.properties.typeIconPath = "area_icon.png";
                     } else {
                         Debug.WriteLine($"\n\n::::::::::::::::::::::::INVALID TYPE: {feature.geometry.type}");
+                        throw new Exception();
                     }
 
                     // Properly deserialize the list of coordinates into an app-use-specific list of Points (XamarinCoordinates).
@@ -97,6 +105,7 @@ namespace GeoApp {
                             }
                         } else {
                             Debug.WriteLine($"\n\n::::::::::::::::::::INVALID TYPE WHEN PARSING POINTS: {feature.geometry.type}");
+                            throw new Exception();
                         }
                     }
                 }
