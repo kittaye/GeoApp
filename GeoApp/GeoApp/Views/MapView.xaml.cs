@@ -10,7 +10,6 @@ namespace GeoApp {
         {
             InitializeComponent();
             Map pageMap = viewModel.InitialiseMap();
-
             var stack = new StackLayout { Spacing = 0 };
             stack.Children.Add(pageMap);
             Content = stack;
@@ -20,7 +19,7 @@ namespace GeoApp {
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.Locc();
+            viewModel.RefreshMap();
         }
 
 
