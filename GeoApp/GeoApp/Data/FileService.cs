@@ -185,22 +185,19 @@ namespace GeoApp {
             await locations.WriteAllTextAsync(json);
         }
 
-        public async Task AddLocationsFromFile(string path) {
+        public async Task<bool> AddLocationsFromFile(string path) {
             try {
                 String text = File.ReadAllText(path);
-                var importedRootObject = JsonConvert.DeserializeObject<RootObject>(text);
-
-                App.LocationManager.CurrentLocations.AddRange(importedRootObject?.features);
-
-                await SaveCurrentLocationsToEmbeddedFile();
+                await ImportLocationsAsync(text);
+                return true;
             } catch (Exception ex) {
-                await HomePage.Instance.DisplayAlert("Invalid File Contents!", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                await HomePage.Instance.DisplayAlert("Invalid File", "An unknown error occured when trying to process this file.", "OK");
                 Debug.WriteLine(ex);
-                throw ex;
+                return false;
             }
         }
 
-        public async Task ImportLocationsAsync(string fileContents) {
+        public async Task<bool> ImportLocationsAsync(string fileContents) {
             // Add feature list range to current locations.
             try {
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
@@ -208,10 +205,11 @@ namespace GeoApp {
                 App.LocationManager.CurrentLocations.AddRange(importedRootObject?.features);
                 
                 await SaveCurrentLocationsToEmbeddedFile();
+                return true;
             } catch (Exception ex) {
-                await HomePage.Instance.DisplayAlert("Invalid File Contents!", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                await HomePage.Instance.DisplayAlert("Invalid File Contents", "Please make sure your GeoJSON is formatted correctly.", "OK");
                 Debug.WriteLine(ex);
-                throw ex;
+                return false;
             }
         }
 
