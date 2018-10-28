@@ -24,89 +24,100 @@
     <ContentPage.Content>
         <StackLayout Spacing="0">
             <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,10,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}">
+                <Grid Style="{StaticResource DetailFormPanelGrid}" ColumnSpacing="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Gray"/>
+                    <Label Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
 
-                    <Label Text="Date" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
-                    <Label Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
+                    <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
+                    <Label Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
-            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                </Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.55*"/>
+                    <RowDefinition Height="0.45*"/>
+                </Grid.RowDefinitions>
+                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="0">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,5,15,5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
+                        <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                    </Grid>
 
-                                    <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                    <Label Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray" LineBreakMode="TailTruncation"/>
+                    <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="175">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,5,15,5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                    <Label Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray" LineBreakMode="TailTruncation"/>
+                                        <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                                        <Label Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
 
-                                    <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                    <Label Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" LineBreakMode="TailTruncation"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                                        <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
+                                        <Label Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
 
-            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                </Grid>
+                                        <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
+                                        <Label Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
 
-                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Style="{StaticResource DetailFormPanelGrid}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
+                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="1">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                                    <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                    <Entry Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                    </Grid>
+
+                    <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource DetailFormPanelGrid}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                        <Entry Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

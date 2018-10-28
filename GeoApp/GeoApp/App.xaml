@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <Style x:Key="DetailFormLabel" TargetType="Label">
                 <Setter Property="FontSize" Value="Default" />
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="HorizontalOptions" Value="Start" />
             </Style>

@@ -24,98 +24,109 @@
     <ContentPage.Content>
         <StackLayout Spacing="0">
             <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,10,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}">
+                <Grid Style="{StaticResource DetailFormPanelGrid}" ColumnSpacing="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Entry x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+                    <Entry x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0"/>
 
-                    <Label Text="Date" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
-                    <DatePicker x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="2" TextColor="Gray"/>
+                    <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
+                    <DatePicker x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
-            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                    <Button x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
-                </Grid>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.55*"/>
+                    <RowDefinition Height="0.45*"/>
+                </Grid.RowDefinitions>
+                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="0">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="150">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Margin="15,5,15,5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="36"/>
-                                    </Grid.ColumnDefinitions>
+                        <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                        <Button x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
+                    </Grid>
 
-                                    <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                    <Entry Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"/>
+                    <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="175">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Margin="15,5,15,5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="36"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                    <Entry Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1"/>
+                                        <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                                        <Entry Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"/>
 
-                                    <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                    <Entry Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2"/>
+                                        <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
+                                        <Entry Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1"/>
 
-                                    <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
-                                    <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
-                                    <Button Command="{Binding Path=BindingContext.GetLocationCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                                        <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
+                                        <Entry Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2"/>
 
-            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                    <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
-                </Grid>
+                                        <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
+                                        <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
+                                        <Button Command="{Binding Path=BindingContext.GetLocationCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
 
-                <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Style="{StaticResource DetailFormPanelGrid}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="36"/>
-                                    </Grid.ColumnDefinitions>
+                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="1">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                                    <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                    <Button Command="{Binding Path=BindingContext.DeleteMetadataFieldCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                                    <Entry Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                        <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
+                    </Grid>
+
+                    <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource DetailFormPanelGrid}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="36"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                        <Button Command="{Binding Path=BindingContext.DeleteMetadataFieldCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
+                                        <Entry Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
