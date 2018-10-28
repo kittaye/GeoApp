@@ -113,9 +113,9 @@ namespace GeoApp {
 
         public async Task<bool> SaveLocationAsync(Feature location)
         {
-            // If this is a newly added location, create a new pseudo-unqiue ID for it.
+            // If this is a newly added location, add it immediately.
             if (location.properties.id == AppConstants.NEW_ENTRY_ID) {
-                location.properties.id = DateTime.Now.GetHashCode();
+                location.properties.id = TryGetUniqueFeatureID(location.properties.id);
                 App.LocationManager.CurrentLocations.Add(location);
             } else {
                 // Otherwise we are saving over an existing location, so override its contents without changing ID.
@@ -137,6 +137,34 @@ namespace GeoApp {
 
             await SaveCurrentLocationsToEmbeddedFile();
             return true;
+        }
+
+        /// <summary>
+        /// If necessary, creates a new ID that is unique to all current locations stored.
+        /// </summary>
+        /// <returns>The original ID if no clashes were found, else a new unique ID.</returns>
+        private int TryGetUniqueFeatureID(int currentlyUsedID) {
+            int result = currentlyUsedID;
+            bool validID = false;
+
+            while (validID == false) {
+                validID = true;
+
+                if(result == AppConstants.NEW_ENTRY_ID) {
+                    validID = false;
+                } else {
+                    foreach (var currentLocation in App.LocationManager.CurrentLocations) {
+                        if (result == currentLocation.properties.id) {
+                            validID = false;
+                        }
+                    }
+                }
+
+                if(validID == false) {
+                    result = DateTime.Now.GetHashCode();
+                }
+            }
+            return result;
         }
 
         public async Task<IFile> GetLocationsFile() {
@@ -198,11 +226,18 @@ namespace GeoApp {
         }
 
         public async Task<bool> ImportLocationsAsync(string fileContents) {
-            // Add feature list range to current locations.
             try {
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
+                if(importedRootObject == null) {
+                    Debug.WriteLine($"\n\n:::::::::::::::::DESERIALIZATION FAILED");
+                    return false;
+                }
 
-                App.LocationManager.CurrentLocations.AddRange(importedRootObject?.features);
+                // Loop through all imported features one by one, ensuring there are no ID clashes.
+                foreach (var importedFeature in importedRootObject.features) {
+                    importedFeature.properties.id = TryGetUniqueFeatureID(importedFeature.properties.id);
+                    App.LocationManager.CurrentLocations.Add(importedFeature);
+                }
                 
                 await SaveCurrentLocationsToEmbeddedFile();
                 return true;
