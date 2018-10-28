@@ -190,7 +190,7 @@ namespace GeoApp {
                 String text = File.ReadAllText(path);
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(text);
 
-                App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
+                App.LocationManager.CurrentLocations.AddRange(importedRootObject?.features);
 
                 await SaveCurrentLocationsToEmbeddedFile();
             } catch (Exception ex) {
@@ -205,7 +205,7 @@ namespace GeoApp {
             try {
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
 
-                App.LocationManager.CurrentLocations.AddRange(importedRootObject.features);
+                App.LocationManager.CurrentLocations.AddRange(importedRootObject?.features);
                 
                 await SaveCurrentLocationsToEmbeddedFile();
             } catch (Exception ex) {
