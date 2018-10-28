@@ -5,6 +5,7 @@
       "type": "Feature",
       "properties": {
         "name": "itsamario",
+        "id":  1,
         "date": "10/27/2018"
       },
       "geometry": {
@@ -43,6 +44,7 @@
       "type": "Feature",
       "properties": {
         "name": "itsaluigi",
+        "id": 2,
         "date": "10/27/2018"
       },
       "geometry": {
@@ -63,6 +65,7 @@
       "type": "Feature",
       "properties": {
         "name": "itsapeach",
+        "id": 3,
         "date": "10/27/2018"
       },
       "geometry": {
