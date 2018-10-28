@@ -100,7 +100,7 @@ namespace GeoApp {
         /// </summary>
         public DetailFormViewModel(string entryType) {
             thisEntryType = entryType;
-            thisEntryID = NEW_ENTRY_ID;
+            thisEntryID = AppConstants.NEW_ENTRY_ID;
 
             DateEntry = DateTime.Now.ToShortDateString();
 
@@ -305,8 +305,8 @@ namespace GeoApp {
                     feature.geometry.coordinates.Add(innerPoints);
                 }
 
-                // A new entry will have an ID of -1, otherwise we are editing an entry.
-                if (thisEntryID != NEW_ENTRY_ID) {
+                // A new entry will have an ID of NEW_ENTRY_ID, otherwise we are editing an entry.
+                if (thisEntryID != AppConstants.NEW_ENTRY_ID) {
                     feature.properties.id = thisEntryID;
                 }
             }

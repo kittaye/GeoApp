@@ -113,8 +113,8 @@ namespace GeoApp {
 
         public async Task<bool> SaveLocationAsync(Feature location)
         {
-            // If ID == 0, this is a newly added location, so create a new ID for it.
-            if (location.properties.id == 0) {
+            // If this is a newly added location, create a new pseudo-unqiue ID for it.
+            if (location.properties.id == AppConstants.NEW_ENTRY_ID) {
                 location.properties.id = DateTime.Now.Millisecond.GetHashCode();
                 App.LocationManager.CurrentLocations.Add(location);
             } else {
