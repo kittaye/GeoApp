@@ -3,11 +3,7 @@
              xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListView" Title="Data Entries" BackgroundColor="Default">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="add_icon" Command="{Binding ButtonClickedCommand}">
-            <ToolbarItem.BindingContext>
-                <local:DataEntryListViewModel/>
-            </ToolbarItem.BindingContext>
-        </ToolbarItem>
+        <ToolbarItem Icon="add_icon" Command="{Binding ButtonClickedCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.BindingContext>
@@ -31,7 +27,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!-- Grid definition of 2x3 for each label entry -->
+                            <!-- Grid definition of 2x4 for each label entry -->
                             <Grid 
                                 ColumnSpacing="10" RowSpacing="0" Padding="10,4,10,4">
                                 <Grid.RowDefinitions>
@@ -47,22 +43,8 @@
 
                                 <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
                                 <Image Source="{Binding properties.typeIconPath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Text="{Binding properties.name}" TextColor="White" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-                                    <Label.TextColor>
-                                        <OnPlatform x:TypeArguments="Color">
-                                            <OnPlatform.iOS>Black</OnPlatform.iOS>
-                                            <OnPlatform.Android>Black</OnPlatform.Android>
-                                        </OnPlatform>
-                                    </Label.TextColor>
-                                </Label>
-                                <Label Text="{Binding geometry.type}" TextColor="Cyan" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-                                    <Label.TextColor>
-                                        <OnPlatform x:TypeArguments="Color">
-                                            <OnPlatform.iOS>Gray</OnPlatform.iOS>
-                                            <OnPlatform.Android>Cyan</OnPlatform.Android>
-                                        </OnPlatform>
-                                    </Label.TextColor>
-                                </Label>
+                                <Label Text="{Binding properties.name}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" LineBreakMode="TailTruncation"/>
+                                <Label Text="{Binding geometry.type}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
                                 <Button Image="edit_icon.png" Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" BorderRadius="2" BackgroundColor="Transparent" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="StartAndExpand"/>
                             </Grid>
                         </ViewCell>
