@@ -282,7 +282,7 @@ namespace GeoApp {
         public string ExportLocationsToJson() {
             try {
                 var rootobject = FormatCurrentLocationsIntoGeoJSON();
-                var json = JsonConvert.SerializeObject(rootobject);
+                var json = JsonConvert.SerializeObject(rootobject, Formatting.Indented);
 
                 // String cleaning
                 if (json.StartsWith("[")) json = json.Substring(1);

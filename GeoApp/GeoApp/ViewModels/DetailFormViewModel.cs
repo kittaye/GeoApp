@@ -289,44 +289,45 @@ namespace GeoApp {
             feature.properties.name = NameEntry;
             feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
             feature.properties.metadatafields = new Dictionary<string, object>();
+            // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
+            // otherwise an ID will already be set for editing entries.
+            feature.properties.id = thisEntryID;
             foreach (var metadataField in MetadataEntries) {
                 feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
             }
 
             feature.geometry = new Geometry();
             feature.geometry.type = thisEntryType;
-            if (thisEntryType == "Point") {
-                feature.geometry.coordinates = new List<object>() {
+            // Converts our xamarin coordinate data back into a valid geojson structure.
+            {
+                if (thisEntryType == "Point") {
+                    feature.geometry.coordinates = new List<object>() {
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Altitude };
-            } else if (thisEntryType == "Line") {
-                feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                for (int i = 0; i < GeolocationPoints.Count; i++) {
-                    feature.geometry.coordinates.Add(new JArray(new double[3] {
+                } else if (thisEntryType == "Line") {
+                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                        feature.geometry.coordinates.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
-                }
-            } else if (thisEntryType == "Polygon") {
-                // This specific method of structuring points means that users will not
-                // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
-                // This doesn't matter since our app interface can't allow for it anyway.
-                feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                List<object> innerPoints = new List<object>(GeolocationPoints.Count);
-                for (int i = 0; i < GeolocationPoints.Count; i++) {
-                    innerPoints.Add(new JArray(new double[3] {
+                    }
+                } else if (thisEntryType == "Polygon") {
+                    // This specific method of structuring points means that users will not
+                    // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
+                    // This doesn't matter since our app interface can't allow for it anyway.
+                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                    List<object> innerPoints = new List<object>(GeolocationPoints.Count);
+                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                        innerPoints.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Altitude }));
+                    }
+                    feature.geometry.coordinates.Add(innerPoints);
                 }
-                feature.geometry.coordinates.Add(innerPoints);
             }
-
-            // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
-            // otherwise an ID will already be set for editing entries.
-            feature.properties.id = thisEntryID;
-
             return feature;
         }
 
