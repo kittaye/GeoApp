@@ -165,6 +165,7 @@ namespace GeoApp {
                     foreach (var currentLocation in App.LocationManager.CurrentLocations) {
                         if (result == currentLocation.properties.id) {
                             validID = false;
+                            break;
                         }
                     }
                 }
