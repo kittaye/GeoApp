@@ -257,64 +257,81 @@ namespace GeoApp {
             }
         }
 
+        /// <summary>
+        /// Saves a new or edited feature.
+        /// </summary>
         async void OnSaveUpdateActivated() {
+            // Ensure geolocation points are only accurate up to the specified digit precision.
+            foreach (var point in GeolocationPoints) {
+                AppConstants.RoundGPSPosition(point);
+            }
+
             // Do validation checks here.
-            if(await EntryIsValid() == false) {
+            if (await EntryIsValid() == false) {
                 return;
             }
 
-            // Create the feature object based on the view-model data of the entry.
-            Feature feature = new Feature();
-            {
-                feature.type = "Feature";
-                feature.properties = new Properties();
-                feature.properties.name = NameEntry;
-                feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
-                feature.properties.metadatafields = new Dictionary<string, object>();
-                foreach (var metadataField in MetadataEntries) {
-                    feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
-                }
+            Feature featureToSave = CreateFeatureFromInput();
 
-                feature.geometry = new Geometry();
-                feature.geometry.type = thisEntryType;
-                if (thisEntryType == "Point") {
-                    feature.geometry.coordinates = new List<object>() {
-                        GeolocationPoints[0].Latitude,
-                        GeolocationPoints[0].Longitude,
-                        GeolocationPoints[0].Altitude };
-                } else if (thisEntryType == "Line") {
-                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++) {
-                        feature.geometry.coordinates.Add(new JArray(new double[3] {
-                            GeolocationPoints[i].Latitude,
-                            GeolocationPoints[i].Longitude,
-                            GeolocationPoints[i].Altitude }));
-                    }
-                } else if(thisEntryType == "Polygon") {
-                    // This specific method of structuring points means that users will not
-                    // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
-                    // This doesn't matter since our app interface can't allow for it anyway.
-                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                    List<object> innerPoints = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++) {
-                        innerPoints.Add(new JArray(new double[3] {
-                            GeolocationPoints[i].Latitude,
-                            GeolocationPoints[i].Longitude,
-                            GeolocationPoints[i].Altitude }));
-                    }
-                    feature.geometry.coordinates.Add(innerPoints);
-                }
-
-                // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
-                // otherwise an ID will already be set for editing entries.
-                feature.properties.id = thisEntryID;
-            }
-
-            await App.LocationManager.SaveLocationAsync(feature);
+            await App.LocationManager.SaveLocationAsync(featureToSave);
             await HomePage.Instance.Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// Creates a feature object based on the view-model data of this entry.
+        /// </summary>
+        /// <returns>A feature object formed from input values</returns>
+        private Feature CreateFeatureFromInput() {
+            Feature feature = new Feature();
+
+            feature.type = "Feature";
+            feature.properties = new Properties();
+            feature.properties.name = NameEntry;
+            feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
+            feature.properties.metadatafields = new Dictionary<string, object>();
+            foreach (var metadataField in MetadataEntries) {
+                feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
+            }
+
+            feature.geometry = new Geometry();
+            feature.geometry.type = thisEntryType;
+            if (thisEntryType == "Point") {
+                feature.geometry.coordinates = new List<object>() {
+                        GeolocationPoints[0].Latitude,
+                        GeolocationPoints[0].Longitude,
+                        GeolocationPoints[0].Altitude };
+            } else if (thisEntryType == "Line") {
+                feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                for (int i = 0; i < GeolocationPoints.Count; i++) {
+                    feature.geometry.coordinates.Add(new JArray(new double[3] {
+                            GeolocationPoints[i].Latitude,
+                            GeolocationPoints[i].Longitude,
+                            GeolocationPoints[i].Altitude }));
+                }
+            } else if (thisEntryType == "Polygon") {
+                // This specific method of structuring points means that users will not
+                // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
+                // This doesn't matter since our app interface can't allow for it anyway.
+                feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                List<object> innerPoints = new List<object>(GeolocationPoints.Count);
+                for (int i = 0; i < GeolocationPoints.Count; i++) {
+                    innerPoints.Add(new JArray(new double[3] {
+                            GeolocationPoints[i].Latitude,
+                            GeolocationPoints[i].Longitude,
+                            GeolocationPoints[i].Altitude }));
+                }
+                feature.geometry.coordinates.Add(innerPoints);
+            }
+
+            // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
+            // otherwise an ID will already be set for editing entries.
+            feature.properties.id = thisEntryID;
+
+            return feature;
+        }
+
         private async Task<bool> EntryIsValid() {
+            /// Begin validation checks.
             if (string.IsNullOrEmpty(NameEntry)) {
                 await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty.", "OK");
                 return false;
@@ -334,10 +351,17 @@ namespace GeoApp {
                     return false;
                 }
 
-                if (GeolocationPoints[0].Latitude != GeolocationPoints[GeolocationPoints.Count - 1].Latitude
-                    || GeolocationPoints[0].Longitude != GeolocationPoints[GeolocationPoints.Count - 1].Longitude) {
-                    await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
-                    return false;
+                // Check if first and last points of the polygon have the same lat/long values.
+                {
+                    double firstLatitude = GeolocationPoints[0].Latitude;
+                    double lastLatitude = GeolocationPoints[GeolocationPoints.Count - 1].Latitude;
+                    double firstLongitude = GeolocationPoints[0].Longitude;
+                    double lastLongitude = GeolocationPoints[GeolocationPoints.Count - 1].Longitude;
+
+                    if (firstLatitude != lastLatitude || firstLongitude != lastLongitude) {
+                        await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
+                        return false;
+                    }
                 }
             } else if (thisEntryType == "Line") {
                 if (GeolocationPoints.Count < 2) {

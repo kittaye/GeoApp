@@ -117,7 +117,10 @@ namespace GeoApp {
             double latitude = (double)coords[0];
             double longitude = (double)coords[1];
             double altitude = (coords.Length == 3) ? (double)coords[2] : 0.0;
-            return new Point(latitude, longitude, altitude);
+
+            Point point = new Point(latitude, longitude, altitude);
+            AppConstants.RoundGPSPosition(point);
+            return point;
         }
 
         public async Task<bool> SaveLocationAsync(Feature location)
@@ -248,7 +251,7 @@ namespace GeoApp {
                     importedFeature.properties.id = TryGetUniqueFeatureID(importedFeature.properties.id);
                     App.LocationManager.CurrentLocations.Add(importedFeature);
                 }
-                
+
                 await SaveCurrentLocationsToEmbeddedFile();
                 return true;
             } catch (Exception ex) {
@@ -266,7 +269,9 @@ namespace GeoApp {
             var rootobject = new RootObject();
             rootobject.type = "FeatureCollection";
             rootobject.features = App.LocationManager.CurrentLocations;
+
             foreach (var feature in rootobject.features) {
+                // Convert Lines back into LineStrings for valid geojson.
                 if (feature.geometry.type == "Line") {
                     feature.geometry.type = "LineString";
                 }
