@@ -6,7 +6,9 @@ using Xamarin.Forms;
 
 namespace GeoApp
 {
-    //Defines the model for metadata entries in a listview.
+    /// <summary>
+    /// Defines the model for metadata entries in a listview.
+    /// </summary>
     public class MetadataEntry : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 

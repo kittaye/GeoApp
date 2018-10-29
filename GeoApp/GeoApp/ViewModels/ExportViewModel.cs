@@ -12,6 +12,9 @@ namespace GeoApp {
     class ExportViewModel {
         public ICommand ButtonClickCommand { set; get; }
 
+        /// <summary>
+        /// View-model constructor for the export page.
+        /// </summary>
         public ExportViewModel() {
             if (!CrossShare.IsSupported)
                 return;

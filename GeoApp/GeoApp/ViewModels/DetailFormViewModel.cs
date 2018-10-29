@@ -15,7 +15,9 @@ using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 
 namespace GeoApp {
-    // View-model for the page that shows a data entry's details as a form.
+    /// <summary>
+    /// View-model for the page that shows a data entry's details in a form.
+    /// </summary>
     class DetailFormViewModel : ViewModelBase {
         private const int NEW_ENTRY_ID = -1;
 
@@ -165,7 +167,7 @@ namespace GeoApp {
             AddPointCommand = new Command(() => AddPoint());
             DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
 
-            DeleteEntryCommand = new Command(async () => await DeleteEntry());
+            DeleteEntryCommand = new Command(async () => await DeleteFeatureEntry());
 
             OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
         }
@@ -249,8 +251,12 @@ namespace GeoApp {
             }
         }
 
-        private async Task DeleteEntry() {
-            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Entry", "Are you sure you want to delete this entry?", "Yes", "No");
+        /// <summary>
+        /// Deletes the entire feature from the list of current locations and saves changes to the embedded file.
+        /// </summary>
+        /// <returns></returns>
+        private async Task DeleteFeatureEntry() {
+            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
             if (yesResponse) {
                 await App.LocationManager.DeleteLocationAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopAsync();
@@ -258,7 +264,7 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Saves a new or edited feature.
+        /// Saves a new or edited feature to the embedded file.
         /// </summary>
         async void OnSaveUpdateActivated() {
             // Ensure geolocation points are only accurate up to the specified digit precision.
@@ -267,7 +273,7 @@ namespace GeoApp {
             }
 
             // Do validation checks here.
-            if (await EntryIsValid() == false) {
+            if (await FeatureEntryIsValid() == false) {
                 return;
             }
 
@@ -278,7 +284,7 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Creates a feature object based on the view-model data of this entry.
+        /// Creates a feature object based on the view-model data of this feature entry.
         /// </summary>
         /// <returns>A feature object formed from input values</returns>
         private Feature CreateFeatureFromInput() {
@@ -331,7 +337,11 @@ namespace GeoApp {
             return feature;
         }
 
-        private async Task<bool> EntryIsValid() {
+        /// <summary>
+        /// Performs validation checks on the data in the form.
+        /// </summary>
+        /// <returns>True if the form contains valid data.</returns>
+        private async Task<bool> FeatureEntryIsValid() {
             /// Begin validation checks.
             if (string.IsNullOrEmpty(NameEntry)) {
                 await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty.", "OK");

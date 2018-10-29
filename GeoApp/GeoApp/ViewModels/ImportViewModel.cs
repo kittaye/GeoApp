@@ -11,6 +11,9 @@ namespace GeoApp {
     class ImportViewModel {
         public ICommand ButtonClickCommand { set; get; }
 
+        /// <summary>
+        /// View-model constructor for the import page.
+        /// </summary>
         public ImportViewModel() {
             ButtonClickCommand = new Command(async () => {
                 try {
@@ -39,7 +42,7 @@ namespace GeoApp {
                         await App.LocationManager.ImportLocationsAsync(contents);
                     }
                 } catch (Exception ex) {
-                    Debug.WriteLine("Exception choosing file: " + ex.ToString());
+                    Debug.WriteLine($"\n\n::::::::::::::::::::::Exception choosing file: {ex.ToString()}");
                     throw ex;
                 }
             });

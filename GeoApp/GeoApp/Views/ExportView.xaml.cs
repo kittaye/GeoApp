@@ -13,7 +13,6 @@ namespace GeoApp {
     public partial class ExportView : ContentPage {
         public ExportView() {
             InitializeComponent();
-
         }
     }
 }

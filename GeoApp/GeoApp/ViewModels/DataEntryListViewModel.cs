@@ -9,7 +9,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
-    // View-model for the page that shows the list of data entries.
+    /// <summary>
+    /// View-model for the page that shows the list of data entries.
+    /// </summary>
     class DataEntryListViewModel : ViewModelBase {
 
         public ICommand ButtonClickedCommand { set; get; }
@@ -35,6 +37,9 @@ namespace GeoApp {
             }
         }
 
+        /// <summary>
+        /// View-model constructor for the page that displays the list of current locations.
+        /// </summary>
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
                 await HomePage.Instance.ShowDetailFormOptions();
@@ -48,20 +53,26 @@ namespace GeoApp {
                 ExecuteRefreshListCommand();
             });
 
-            EditEntryCommand = new Command<Feature>((feature) => EditEntry(feature));
+            EditEntryCommand = new Command<Feature>((feature) => EditFeatureEntry(feature));
         }
 
+        /// <summary>
+        /// Refreshes the list of current locations by re-reading the embedded file contents.
+        /// </summary>
         private void ExecuteRefreshListCommand() {
             IsRefreshing = true;
             Device.BeginInvokeOnMainThread(async () => {
                 App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
                 EntryListSource = App.LocationManager.CurrentLocations;
             });
-
             IsRefreshing = false;
         }
 
-        private void EditEntry(Feature feature) {
+        /// <summary>
+        /// Displays the edit page for the selected feature.
+        /// </summary>
+        /// <param name="feature">Feature to edit.</param>
+        private void EditFeatureEntry(Feature feature) {
             HomePage.Instance.ShowEditDetailFormPage(feature);
         }
     }
