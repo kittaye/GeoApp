@@ -27,7 +27,7 @@ namespace GeoApp.Data {
         }
 
         public void AddLocationShare(string path) {
-            restService.AddLocationsFromFile(path);
+            restService.ImportLocationsFromFile(path);
         }
 
         public async Task ImportLocationsAsync(string fileContents) {

@@ -6,7 +6,7 @@ namespace GeoApp {
         Task<List<Feature>> RefreshDataAsync();
         Task<bool> SaveLocationAsync(Feature location);
         Task<bool> DeleteLocationAsync(int id);
-        Task<bool> AddLocationsFromFile(string path);
+        Task<bool> ImportLocationsFromFile(string path);
         Task<bool> ImportLocationsAsync(string fileContents);
         string ExportLocationsToJson();
     }

@@ -22,6 +22,11 @@ namespace GeoApp {
 
         public FileService() { }
 
+        /// <summary>
+        /// Deletes a current feature by ID, and saves the change by writing to the embedded file.
+        /// </summary>
+        /// <param name="id">ID of feature to remove</param>
+        /// <returns></returns>
         public async Task<bool> DeleteLocationAsync(int id) {
             Feature locationToDelete = App.LocationManager.CurrentLocations.Find((feature) => (feature.properties.id == id));
             bool deleteSuccessful = App.LocationManager.CurrentLocations.Remove(locationToDelete);
@@ -35,6 +40,10 @@ namespace GeoApp {
             }
         }
 
+        /// <summary>
+        /// Returns the most current reading of the embedded file containing a list of features.
+        /// </summary>
+        /// <returns></returns>
         public Task<List<Feature>> RefreshDataAsync() {
             return Task.Run(async () => {
                 IFile locations = await GetLocationsFile();
@@ -113,6 +122,11 @@ namespace GeoApp {
             });
         }
 
+        /// <summary>
+        /// Converts raw geojson coordinates for a single point into a Point class (xamarin point).
+        /// </summary>
+        /// <param name="coords">A single point to convert.</param>
+        /// <returns></returns>
         private Point JsonCoordToXamarinPoint(object[] coords) {
             double latitude = (double)coords[0];
             double longitude = (double)coords[1];
@@ -123,9 +137,14 @@ namespace GeoApp {
             return point;
         }
 
+        /// <summary>
+        /// Saves a new or edited location, determined by whether the ID already exists or not.
+        /// </summary>
+        /// <param name="location">The feature to save.</param>
+        /// <returns></returns>
         public async Task<bool> SaveLocationAsync(Feature location)
         {
-            // If this is a newly added location, add it immediately.
+            // If this is a newly added location, generate an ID and add it immediately.
             if (location.properties.id == AppConstants.NEW_ENTRY_ID) {
                 location.properties.id = TryGetUniqueFeatureID(location.properties.id);
                 App.LocationManager.CurrentLocations.Add(location);
@@ -180,6 +199,10 @@ namespace GeoApp {
             return result;
         }
 
+        /// <summary>
+        /// Returns the embedded file from the device's storage if it exists, else returns a new embedded file created from a source file.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IFile> GetLocationsFile() {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             rootFolder.Path.Replace("/../Library", " ");
@@ -216,6 +239,10 @@ namespace GeoApp {
             }
         }
 
+        /// <summary>
+        /// Formats the list of current locations into valid geojson, then writes it to the embedded file.
+        /// </summary>
+        /// <returns></returns>
         private async Task SaveCurrentLocationsToEmbeddedFile() {
             var objToSave = FormatCurrentLocationsIntoGeoJSON();
 
@@ -226,7 +253,12 @@ namespace GeoApp {
             await locations.WriteAllTextAsync(json);
         }
 
-        public async Task<bool> AddLocationsFromFile(string path) {
+        /// <summary>
+        /// Imports features from a specified filepath.
+        /// </summary>
+        /// <param name="path">path to file.</param>
+        /// <returns></returns>
+        public async Task<bool> ImportLocationsFromFile(string path) {
             try {
                 String text = File.ReadAllText(path);
                 await ImportLocationsAsync(text);
@@ -238,6 +270,11 @@ namespace GeoApp {
             }
         }
 
+        /// <summary>
+        /// Imports features from the contents of a file.
+        /// </summary>
+        /// <param name="fileContents">The string of geojson to import from.</param>
+        /// <returns></returns>
         public async Task<bool> ImportLocationsAsync(string fileContents) {
             try {
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
@@ -279,6 +316,10 @@ namespace GeoApp {
             return rootobject;
         }
 
+        /// <summary>
+        /// Exports the current list of locations by serializing to geojson.
+        /// </summary>
+        /// <returns></returns>
         public string ExportLocationsToJson() {
             try {
                 var rootobject = FormatCurrentLocationsIntoGeoJSON();
