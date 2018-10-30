@@ -18,8 +18,8 @@ namespace GeoApp {
 
         protected override void OnAppearing()
         {
+            viewModel.RefreshMap();
             base.OnAppearing();
-            viewModel.AddGeometry();
         }
 
 
