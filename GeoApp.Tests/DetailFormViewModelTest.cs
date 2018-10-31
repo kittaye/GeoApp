@@ -106,3 +106,5 @@ namespace GeoApp.Tests {
             Assert.AreEqual(viewModelLine.MetadataEntries.Count, 0);
             Assert.AreEqual(viewModelPoly.MetadataEntries.Count, 1);
         }
+    }
+}
