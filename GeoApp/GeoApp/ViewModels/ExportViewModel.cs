@@ -9,7 +9,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
-    class ExportViewModel {
+    public class ExportViewModel {
         public ICommand ButtonClickCommand { set; get; }
 
         /// <summary>

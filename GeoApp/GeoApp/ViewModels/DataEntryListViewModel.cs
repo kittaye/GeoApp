@@ -12,7 +12,7 @@ namespace GeoApp {
     /// <summary>
     /// View-model for the page that shows the list of data entries.
     /// </summary>
-    class DataEntryListViewModel : ViewModelBase {
+    public class DataEntryListViewModel : ViewModelBase {
 
         public ICommand ButtonClickedCommand { set; get; }
         public ICommand ItemTappedCommand { set; get; }

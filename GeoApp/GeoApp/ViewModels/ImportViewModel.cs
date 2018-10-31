@@ -8,7 +8,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
-    class ImportViewModel {
+    public class ImportViewModel {
         public ICommand ButtonClickCommand { set; get; }
 
         /// <summary>
