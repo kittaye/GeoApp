@@ -62,4 +62,22 @@ namespace GeoApp.Tests {
             Assert.AreEqual(viewModelPoly.GeolocationPoints.Count, 4);
         }
 
-}
+        /// <summary>
+        /// Tests adding metadatafield 
+        /// </summary>
+        [Test]
+        public void TestAddMetadataField() {
+            MetadataEntry item = new MetadataEntry("Test", "mytest", Keyboard.Default);
+
+            viewModelPoint.MetadataEntries.Add(item);
+            viewModelPoint.MetadataEntries.Add(item);
+            viewModelLine.MetadataEntries.Add(item);
+            viewModelPoly.MetadataEntries.Add(item);
+            viewModelPoly.MetadataEntries.Add(item);
+            viewModelPoly.MetadataEntries.Add(item);
+
+            Assert.AreEqual(viewModelPoint.MetadataEntries.Count, 2);
+            Assert.AreEqual(viewModelLine.MetadataEntries.Count, 1);
+            Assert.AreEqual(viewModelPoly.MetadataEntries.Count, 3);
+        }
+
