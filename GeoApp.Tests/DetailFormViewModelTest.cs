@@ -44,5 +44,22 @@ namespace GeoApp.Tests {
             Assert.AreEqual(viewModelPoly.GeolocationPoints.Count, 5);
         }
 
-    }
+        /// <summary>
+        /// Tests deleting geolocation points in line and polygon viewmodels
+        /// </summary>
+        [Test]
+        public void TestDeletePoint() {
+            var testPoint = new Point(10, 10, 10);
+
+            viewModelLine.GeolocationPoints.Add(testPoint);
+            viewModelLine.GeolocationPoints.Add(testPoint);
+            viewModelPoly.GeolocationPoints.Add(testPoint);
+
+            viewModelLine.GeolocationPoints.Remove(testPoint);
+            viewModelPoly.GeolocationPoints.Remove(testPoint);
+
+            Assert.AreEqual(viewModelLine.GeolocationPoints.Count, 3);
+            Assert.AreEqual(viewModelPoly.GeolocationPoints.Count, 4);
+        }
+
 }
