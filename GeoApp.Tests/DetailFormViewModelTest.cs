@@ -35,6 +35,14 @@ namespace GeoApp.Tests {
         /// <summary>
         /// Tests adding geolocation points in the line and polygon viewmodels
         /// </summary>
+        [Test]
+        public void TestAddPoint() {
+            viewModelLine.GeolocationPoints.Add(new Point(10, 10, 10));
+            viewModelPoly.GeolocationPoints.Add(new Point(10, 10, 10));
+            // 2 as the 'Point' entry type starts
+            Assert.AreEqual(viewModelLine.GeolocationPoints.Count, 3);
+            Assert.AreEqual(viewModelPoly.GeolocationPoints.Count, 5);
         }
+
     }
 }
