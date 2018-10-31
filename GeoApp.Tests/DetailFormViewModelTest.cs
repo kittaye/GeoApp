@@ -23,11 +23,10 @@ namespace GeoApp.Tests {
         }
 
         /// <summary>
-        /// Tests viewmodel constructor for adding new entries
-        /// The minimum number of points necessary for the chosen entry type
+        /// Tests the minimum number of points necessary for the chosen entry type
         /// </summary>
         [Test]
-        public void TestNewEntries() {
+        public void TestNewEntriesNumDefaultPoints() {
             Assert.AreEqual(viewModelPoint.GeolocationPoints.Count, 1);
             Assert.AreEqual(viewModelLine.GeolocationPoints.Count, 2);
             Assert.AreEqual(viewModelPoly.GeolocationPoints.Count, 4);
