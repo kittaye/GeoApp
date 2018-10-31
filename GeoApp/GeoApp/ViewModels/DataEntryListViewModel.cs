@@ -38,7 +38,7 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// View-model constructor for the page that displays the list of current locations.
+        /// View-model constructor.
         /// </summary>
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
