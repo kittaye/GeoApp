@@ -18,7 +18,19 @@ namespace GeoApp {
             ButtonClickCommand = new Command(async () => {
                 try {
                     var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-                    if (status != PermissionStatus.Granted) {
+
+                    // If permissions allowed, prompt the user to pick a file.
+                    if (status == PermissionStatus.Granted) {
+                        FileData fileData = await CrossFilePicker.Current.PickFile();
+
+                        // If the user didn't cancel, import the contents of the file they selected.
+                        if (fileData != null) {
+                            string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
+                            await App.LocationManager.ImportLocationsAsync(contents);
+                        }
+                    } else {
+                        // What's happening here...
+
                         if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage)) {
                             await HomePage.Instance.DisplayAlert("File", "Need that file", "OK");
                         }
@@ -27,19 +39,6 @@ namespace GeoApp {
                         if (results.ContainsKey(Permission.Storage)) {
                             status = results[Permission.Storage];
                         }
-                    }
-                    Debug.Write("2");
-                    if (status == PermissionStatus.Granted) {
-                        FileData fileData = await CrossFilePicker.Current.PickFile();
-
-                        //Debug.Write("HELOOOOOOOOOO {0}",fileData.FilePath);
-                        if (fileData == null) {
-                            return; // user canceled file picking
-                        }
-
-
-                        string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
-                        await App.LocationManager.ImportLocationsAsync(contents);
                     }
                 } catch (Exception ex) {
                     Debug.WriteLine($"\n\n::::::::::::::::::::::Exception choosing file: {ex.ToString()}");

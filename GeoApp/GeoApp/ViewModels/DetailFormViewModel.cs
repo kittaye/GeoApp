@@ -19,7 +19,6 @@ namespace GeoApp {
     /// View-model for the page that shows a data entry's details in a form.
     /// </summary>
     public class DetailFormViewModel : ViewModelBase {
-        private const int NEW_ENTRY_ID = -1;
 
         public ICommand GetLocationCommand { get; set; }
         public ICommand AddPointCommand { get; set; }
