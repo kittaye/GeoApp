@@ -33,7 +33,7 @@ namespace GeoApp.iOS {
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
             Debug.WriteLine("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            App.LocationManager.AddLocationShare(url.Path);
+            App.FeaturesManager.ImportFeaturesFromFile(url.Path);
             return true;
         }
     }
