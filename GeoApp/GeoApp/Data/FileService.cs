@@ -14,13 +14,22 @@ namespace GeoApp {
         // Do NOT change this!
         private const string EMBEDDED_FILENAME = "locations.json";
 
-        // Set this to true to delete the current embedded file, remember to set back to false on the next build.
-        private bool DEBUG_DELETE_EMBEDDED_FILE = true;
+        // Set this to true in the constructor to delete the current embedded file, remember to set back to false on the next build.
+        private readonly bool DEBUG_DELETE_EMBEDDED_FILE;
 
         // Determines the source json file to read from when replacing the embedded file after a deletion.
-        private const string EMBEDDED_FILE_SOURCE_PATH = "GeoApp.locations_empty.json";
+        private readonly string EMBEDDED_FILE_SOURCE_PATH;
 
-        public FileService() { }
+
+        /// <summary>
+        /// Constructor for FileService. Edit the default parameters here if you want to adjust the initial behaviour of the embedded file.
+        /// </summary>
+        /// <param name="delete_file">Bool to delete the current embedded file or not</param>
+        /// <param name="source_file">Source json file to replace the contents of the embedded file after deletion</param>
+        public FileService(bool delete_file = false, string source_file = "GeoApp.locations_empty.json") {
+            this.DEBUG_DELETE_EMBEDDED_FILE = delete_file;
+            this.EMBEDDED_FILE_SOURCE_PATH = source_file;
+        }
 
         /// <summary>
         /// Deletes a current feature by ID, and saves the change by writing to the embedded file.
