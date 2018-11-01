@@ -15,7 +15,7 @@ namespace GeoApp {
         private const string EMBEDDED_FILENAME = "locations.json";
 
         // Set this to true in the constructor to delete the current embedded file, remember to set back to false on the next build.
-        private readonly bool DEBUG_DELETE_EMBEDDED_FILE;
+        private bool DEBUG_DELETE_EMBEDDED_FILE;
 
         // Determines the source json file to read from when replacing the embedded file after a deletion.
         private readonly string EMBEDDED_FILE_SOURCE_PATH;
