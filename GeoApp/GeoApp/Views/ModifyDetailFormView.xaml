@@ -35,10 +35,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Entry x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0"/>
+                    <Entry AutomationId="nameEntry" x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
-                    <DatePicker x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                    <DatePicker AutomationId="dateEntry" x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
@@ -54,10 +54,10 @@
                         </Grid.RowDefinitions>
 
                         <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                        <Button x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
+                        <Button AutomationId="addGeoPoint" x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1"/>
                     </Grid>
 
-                    <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="175">
+                    <ListView AutomationId="geolocationListView" x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="175">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -75,13 +75,13 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                        <Entry Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"/>
+                                        <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0"/>
 
                                         <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                        <Entry Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1"/>
+                                        <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1"/>
 
                                         <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                        <Entry Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2"/>
+                                        <Entry AutomationId="AltitudeEntry" Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2"/>
 
                                         <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
                                         <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>

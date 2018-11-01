@@ -3,7 +3,7 @@
              xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListView" Title="Data Entries" BackgroundColor="Default">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="add_icon" Command="{Binding ButtonClickedCommand}"/>
+        <ToolbarItem AutomationId="add_item" Icon="add_icon" Command="{Binding ButtonClickedCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.BindingContext>

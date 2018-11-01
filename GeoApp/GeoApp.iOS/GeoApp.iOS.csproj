@@ -244,8 +244,12 @@
     <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon copy.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\area_icon.png" />
+    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\area_icon.imageset\area_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
