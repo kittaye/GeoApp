@@ -20,21 +20,12 @@ namespace GeoApp.Tests
             mapvm.InitialiseMap();
         }
 
-        //[Test]
-        //public void TestNewEntriesNumDefaultPoints()
-        //{
-        //    map.InitialiseMap();
-        //}
-
-
-
         /// <summary>
         /// Test that a pin is created and contains the correct information
         /// </summary>
         [Test]
         public void CreatePinTest()
         {
-
             mapvm.CreatePin("Test", 100, 100, 1);
             Assert.AreEqual(mapvm.GetPins().Count, 1);
             Assert.AreEqual(mapvm.GetPins()[0].Label, "Test");
