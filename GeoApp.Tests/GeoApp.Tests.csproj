@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="DetailFormViewModelTest.cs" />
     <Compile Include="MapViewModelTests.cs" />
-    <Compile Include="Tests.cs" />
+    <Compile Include="GeoAwareUITests.cs" />
     <Compile Include="AppInitializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
