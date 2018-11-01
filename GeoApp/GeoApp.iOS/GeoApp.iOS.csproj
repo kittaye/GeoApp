@@ -100,7 +100,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomMapRenderer.cs" />
     <Compile Include="MyMapDelegate.cs" />
-    <Compile Include="TranslucentNavigationPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

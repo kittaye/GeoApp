@@ -14,8 +14,8 @@ namespace KickassUI.Spotify.iOS.Renderers
             base.OnElementChanged(e);
 
             // Set our basic tab bar colors.
-            UITabBar.Appearance.BarTintColor = Color.FromHex("#adaeb2").ToUIColor();
-            UITabBar.Appearance.TintColor = Color.FromHex("#000000").ToUIColor();
+            UITabBar.Appearance.BarTintColor = UIColor.Clear;
+            UITabBar.Appearance.TintColor = UIColor.Clear;
         }
 
         public override void ViewWillAppear(bool animated)
@@ -40,7 +40,7 @@ namespace KickassUI.Spotify.iOS.Renderers
                 return;
 
             // Set the font for the title.
-            item.SetTitleTextAttributes(new UITextAttributes() { TextColor = Color.FromHex("#adaeb2").ToUIColor() }, UIControlState.Normal);
+            item.SetTitleTextAttributes(new UITextAttributes() { TextColor = Color.Gray.ToUIColor() }, UIControlState.Normal);
             item.SetTitleTextAttributes(new UITextAttributes() { TextColor = Color.Black.ToUIColor() }, UIControlState.Selected);
 
             // Moves the titles up just a bit.

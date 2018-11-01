@@ -19,8 +19,7 @@ namespace GeoApp.iOS
             // Some basic navigationbar styling.
             NavigationBar.TitleTextAttributes = new UIStringAttributes()
             {
-                ForegroundColor = UIColor.White,
-                Font = UIFont.FromName("CircularSpotifyTxt-Med", 16)
+                ForegroundColor = UIColor.Black
             };
 
             // Remove background colors and such to form a completely transparent bar.
@@ -31,12 +30,12 @@ namespace GeoApp.iOS
 
             if (NavigationBar != null && !viewAdded)
             {
-                var effect = UIBlurEffect.FromStyle(UIBlurEffectStyle.Dark);
+                var effect = UIBlurEffect.FromStyle(UIBlurEffectStyle.Light);
                 var visualEffectView = new UIVisualEffectView(effect);
 
                 var bounds = NavigationBar.Bounds;
-                bounds.Offset(0, -10);
-                bounds = bounds.Inset(0, -10);
+                bounds.Offset(0, -30);
+                bounds = bounds.Inset(0, -30);
 
                 visualEffectView.Frame = bounds;
                 visualEffectView.Tag = 74619;
