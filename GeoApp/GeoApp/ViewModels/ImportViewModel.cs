@@ -13,6 +13,7 @@ namespace GeoApp {
 
         /// <summary>
         /// View-model constructor for the import page.
+        /// Based on https://github.com/jamesmontemagno/PermissionsPlugin
         /// </summary>
         public ImportViewModel() {
             ButtonClickCommand = new Command(async () => {
@@ -29,12 +30,13 @@ namespace GeoApp {
                             await App.FeaturesManager.ImportFeaturesAsync(contents);
                         }
                     } else {
-                        // What's happening here...
 
+                        // Display storage permission popup if permission is not be established, display alert if the user declines 
                         if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage)) {
-                            await HomePage.Instance.DisplayAlert("File", "Need that file", "OK");
+                            await HomePage.Instance.DisplayAlert("File", "You need to enable storage permissions to import.", "OK");
                         }
 
+                        // If the user accepts the permission get the resulting value and check the if the key exists
                         var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Storage);
                         if (results.ContainsKey(Permission.Storage)) {
                             status = results[Permission.Storage];
