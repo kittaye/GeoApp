@@ -12,7 +12,7 @@ namespace GeoApp
     public class MapViewModel
     {
         private CustomMap map;
-        public List<Pin> CustomPins { get; set; }
+        //public List<Pin> CustomPins { get; set; }
 
         public MapViewModel()
         {
@@ -48,7 +48,7 @@ namespace GeoApp
             {
                 if(feature.geometry.type == "Point") //Use pins for points
                 { 
-                    CreatePin(feature.properties.name, feature.properties.xamarincoordinates[0].Latitude, feature.properties.xamarincoordinates[0].Longitude);
+                    CreatePin(feature.properties.name, feature.properties.xamarincoordinates[0].Latitude, feature.properties.xamarincoordinates[0].Longitude, feature.properties.xamarincoordinates[0].Altitude);
                 }
                 if (feature.geometry.type == "Line") //
                 {
@@ -77,7 +77,7 @@ namespace GeoApp
         /// <param name="name">point name</param>
         /// <param name="lat">point latitude</param>
         /// <param name="lon">point longitude</param>
-        public void CreatePin(string name, double lat, double lon)
+        public void CreatePin(string name, double lat, double lon, double alt)
         {
             var position = new Position(lat, lon); // Latitude, Longitude
             var pin = new Pin
@@ -85,9 +85,18 @@ namespace GeoApp
                 Type = PinType.Place,
                 Position = position,
                 Label = name,
-                Address = String.Format("{0}, {1}", lat, lon)
+                Address = String.Format("{0}, {1}, {2}", lat, lon, alt)
             };
             map.Pins.Add(pin);
+        }
+
+        /// <summary>
+        /// Method to return the list of pins on the map
+        /// </summary>
+        /// <returns>List of Pins</returns>
+        public IList<Pin> GetPins()
+        {
+            return map.Pins;
         }
     }
 }
