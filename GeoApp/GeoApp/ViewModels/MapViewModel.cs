@@ -47,18 +47,11 @@ namespace GeoApp {
             List<Feature> features = App.FeaturesManager.CurrentFeatures;
             map.Pins.Clear();
 
-<<<<<<< HEAD
             foreach (var feature in features)
             {
                 if(feature.geometry.type == "Point") //Use pins for points
                 { 
                     CreatePin(feature.properties.name, feature.properties.xamarincoordinates[0].Latitude, feature.properties.xamarincoordinates[0].Longitude, feature.properties.xamarincoordinates[0].Altitude);
-=======
-            foreach (var feature in features) {
-                if (feature.geometry.type == "Point") //Use pins for points
-                {
-                    CreatePin(feature.properties.name, feature.properties.xamarincoordinates[0].Latitude, feature.properties.xamarincoordinates[0].Longitude);
->>>>>>> c4c3339c006e1e091dbf05a759df1f744bef7797
                 }
                 if (feature.geometry.type == "Line") //
                 {
@@ -85,13 +78,11 @@ namespace GeoApp {
         /// </summary>
         /// <param name="name">point name</param>
         /// <param name="lat">point latitude</param>
-        /// <param name="lon">point longitude</param>
-<<<<<<< HEAD
+        /// <param name="alt">point altitude</param>
+        /// /// <param name="lon">point longitude</param>
         public void CreatePin(string name, double lat, double lon, double alt)
         {
-=======
-        public void CreatePin(string name, double lat, double lon) {
->>>>>>> c4c3339c006e1e091dbf05a759df1f744bef7797
+
             var position = new Position(lat, lon); // Latitude, Longitude
             var pin = new Pin {
                 Type = PinType.Place,
