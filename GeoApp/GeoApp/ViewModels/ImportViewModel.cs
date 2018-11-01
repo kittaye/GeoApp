@@ -26,7 +26,7 @@ namespace GeoApp {
                         // If the user didn't cancel, import the contents of the file they selected.
                         if (fileData != null) {
                             string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
-                            await App.LocationManager.ImportLocationsAsync(contents);
+                            await App.FeaturesManager.ImportFeaturesAsync(contents);
                         }
                     } else {
                         // What's happening here...

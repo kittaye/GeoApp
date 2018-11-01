@@ -4,38 +4,38 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GeoApp.Data {
-    public class LocationItemManager {
+    public class FeaturesManager {
         IDataService restService;
 
-        public List<Feature> CurrentLocations { get; set; } = new List<Feature>();
+        public List<Feature> CurrentFeatures { get; set; } = new List<Feature>();
 
-        public LocationItemManager(IDataService service) {
+        public FeaturesManager(IDataService service) {
             restService = service;
         }
 
-        public Task<List<Feature>> GetLocationsAsync() {
+        public Task<List<Feature>> GetFeaturesAsync() {
             return restService.RefreshDataAsync();
         }
 
-        public Task SaveLocationAsync(Feature location) {
-            return restService.SaveLocationAsync(location);
+        public Task SaveFeatureAsync(Feature feature) {
+            return restService.SaveFeatureAsync(feature);
         }
 
-        public Task<bool> DeleteLocationAsync(int id)
+        public Task<bool> DeleteFeatureAsync(int id)
         {
-            return restService.DeleteLocationAsync(id);
+            return restService.DeleteFeatureAsync(id);
         }
 
-        public void AddLocationShare(string path) {
-            restService.ImportLocationsFromFile(path);
+        public void ImportFeaturesFromFile(string path) {
+            restService.ImportFeaturesFromFile(path);
         }
 
-        public async Task ImportLocationsAsync(string fileContents) {
-            await restService.ImportLocationsAsync(fileContents);
+        public async Task ImportFeaturesAsync(string fileContents) {
+            await restService.ImportFeaturesAsync(fileContents);
         }
 
-        public string ExportLocationsToJson() {
-            return restService.ExportLocationsToJson();
+        public string ExportFeaturesToJson() {
+            return restService.ExportFeaturesToJson();
         }
     }
 }

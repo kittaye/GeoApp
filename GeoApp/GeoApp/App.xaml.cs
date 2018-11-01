@@ -8,11 +8,11 @@ using System.Diagnostics;
 namespace GeoApp {
     public partial class App : Application {
 
-        public static LocationItemManager LocationManager { get; private set; }
+        public static FeaturesManager FeaturesManager { get; private set; }
 
         public App() {
             InitializeComponent();
-            LocationManager = new LocationItemManager(new FileService());
+            FeaturesManager = new FeaturesManager(new FileService());
             MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default};
         }
 

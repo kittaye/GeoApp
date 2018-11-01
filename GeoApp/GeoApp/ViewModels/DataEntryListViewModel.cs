@@ -62,8 +62,8 @@ namespace GeoApp {
         private void ExecuteRefreshListCommand() {
             IsRefreshing = true;
             Device.BeginInvokeOnMainThread(async () => {
-                App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
-                EntryListSource = App.LocationManager.CurrentLocations;
+                App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+                EntryListSource = App.FeaturesManager.CurrentFeatures;
             });
             IsRefreshing = false;
         }

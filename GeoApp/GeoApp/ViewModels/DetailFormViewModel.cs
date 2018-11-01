@@ -20,7 +20,7 @@ namespace GeoApp {
     /// </summary>
     public class DetailFormViewModel : ViewModelBase {
 
-        public ICommand GetLocationCommand { get; set; }
+        public ICommand GetFeatureCommand { get; set; }
         public ICommand AddPointCommand { get; set; }
         public ICommand DeletePointCommand { get; set; }
         public ICommand AddMetadataFieldCommand { get; set; }
@@ -158,7 +158,7 @@ namespace GeoApp {
         /// Initialise command bindings.
         /// </summary>
         private void InitCommandBindings() {
-            GetLocationCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
+            GetFeatureCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
 
             AddMetadataFieldCommand = new Command(async () => { await AddMetadataField(); });
             DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
@@ -251,13 +251,13 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Deletes the entire feature from the list of current locations and saves changes to the embedded file.
+        /// Deletes the entire feature from the list of current features and saves changes to the embedded file.
         /// </summary>
         /// <returns></returns>
         private async Task DeleteFeatureEntry() {
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
             if (yesResponse) {
-                await App.LocationManager.DeleteLocationAsync(thisEntryID);
+                await App.FeaturesManager.DeleteFeatureAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopAsync();
             }
         }
@@ -278,7 +278,7 @@ namespace GeoApp {
 
             Feature featureToSave = CreateFeatureFromInput();
 
-            await App.LocationManager.SaveLocationAsync(featureToSave);
+            await App.FeaturesManager.SaveFeatureAsync(featureToSave);
             await HomePage.Instance.Navigation.PopAsync();
         }
 
@@ -343,7 +343,7 @@ namespace GeoApp {
         private async Task<bool> FeatureEntryIsValid() {
             /// Begin validation checks.
             if (string.IsNullOrEmpty(NameEntry)) {
-                await HomePage.Instance.DisplayAlert("Alert", "Location name must not be empty.", "OK");
+                await HomePage.Instance.DisplayAlert("Alert", "Feature name must not be empty.", "OK");
                 return false;
             }
 
