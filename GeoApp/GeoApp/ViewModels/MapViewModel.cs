@@ -10,7 +10,6 @@ namespace GeoApp {
     /// </summary>
     public class MapViewModel {
         private CustomMap map;
-        //public List<Pin> CustomPins { get; set; }
 
         public MapViewModel() {
 #if __IOS__
@@ -82,7 +81,6 @@ namespace GeoApp {
         /// /// <param name="lon">point longitude</param>
         public void CreatePin(string name, double lat, double lon, double alt)
         {
-
             var position = new Position(lat, lon); // Latitude, Longitude
             var pin = new Pin {
                 Type = PinType.Place,
@@ -95,7 +93,7 @@ namespace GeoApp {
 
         /// <summary>
         /// Method to return the list of pins on the map
-        /// </summary>
+        /// </summary 
         /// <returns>List of Pins</returns>
         public IList<Pin> GetPins()
         {
