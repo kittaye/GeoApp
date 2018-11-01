@@ -12,7 +12,7 @@ namespace GeoApp {
     /// <summary>
     /// View-model for the page that shows the list of data entries.
     /// </summary>
-    class DataEntryListViewModel : ViewModelBase {
+    public class DataEntryListViewModel : ViewModelBase {
 
         public ICommand ButtonClickedCommand { set; get; }
         public ICommand ItemTappedCommand { set; get; }
@@ -38,7 +38,7 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// View-model constructor for the page that displays the list of current locations.
+        /// View-model constructor.
         /// </summary>
         public DataEntryListViewModel() {
             ButtonClickedCommand = new Command(async () => {
@@ -62,8 +62,8 @@ namespace GeoApp {
         private void ExecuteRefreshListCommand() {
             IsRefreshing = true;
             Device.BeginInvokeOnMainThread(async () => {
-                App.LocationManager.CurrentLocations = await Task.Run(() => App.LocationManager.GetLocationsAsync());
-                EntryListSource = App.LocationManager.CurrentLocations;
+                App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+                EntryListSource = App.FeaturesManager.CurrentFeatures;
             });
             IsRefreshing = false;
         }

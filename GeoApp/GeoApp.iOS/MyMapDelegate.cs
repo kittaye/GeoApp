@@ -4,6 +4,9 @@ using UIKit;
 
 namespace GeoApp
 {
+    /// <summary>
+    /// Allow for the adding of multiple shapes to the map overlay via returning multiple renderers
+    /// </summary>
     public class MyMapDelegate : MKMapViewDelegate
     {
         public override MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)

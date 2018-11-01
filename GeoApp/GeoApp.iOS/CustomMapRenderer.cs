@@ -14,6 +14,9 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: ExportRenderer(typeof(CustomMap), typeof(CustomMapRenderer))]
 namespace GeoApp.iOS
 {
+    /// <summary>
+    /// Custom rendering class to allow for multiple polygons to be overlayed on the iOS map display
+    /// </summary>
     public class CustomMapRenderer : MapRenderer
     {
         MKPolygonRenderer polygonRenderer;

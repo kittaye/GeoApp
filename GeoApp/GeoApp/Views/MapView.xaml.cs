@@ -6,22 +6,19 @@ namespace GeoApp {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapView : ContentPage {
 
-        public MapView()
-        {
+        public MapView() {
             InitializeComponent();
-            Map pageMap = viewModel.InitialiseMap();
             var stack = new StackLayout { Spacing = 0 };
+            Map pageMap = viewModel.InitialiseMap();
             stack.Children.Add(pageMap);
             Content = stack;
-
         }
 
-        protected override void OnAppearing()
-        {
+        protected override void OnAppearing() {
+#if __IOS__
             viewModel.RefreshMap();
             base.OnAppearing();
+#endif
         }
-
-
     }
 }

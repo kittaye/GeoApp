@@ -14,28 +14,37 @@ namespace GeoApp {
         // Do NOT change this!
         private const string EMBEDDED_FILENAME = "locations.json";
 
-        // Set this to true to delete the current embedded file, remember to set back to false on the next build.
-        private bool DEBUG_DELETE_EMBEDDED_FILE = true;
+        // Set this to true in the constructor to delete the current embedded file, remember to set back to false on the next build.
+        private bool DEBUG_DELETE_EMBEDDED_FILE;
 
         // Determines the source json file to read from when replacing the embedded file after a deletion.
-        private const string EMBEDDED_FILE_SOURCE_PATH = "GeoApp.locations_empty.json";
+        private readonly string EMBEDDED_FILE_SOURCE_PATH;
 
-        public FileService() { }
+
+        /// <summary>
+        /// Constructor for FileService. Edit the default parameters here if you want to adjust the initial behaviour of the embedded file.
+        /// </summary>
+        /// <param name="delete_file">Bool to delete the current embedded file or not</param>
+        /// <param name="source_file">Source json file to replace the contents of the embedded file after deletion</param>
+        public FileService(bool delete_file = false, string source_file = "GeoApp.locations_empty.json") {
+            this.DEBUG_DELETE_EMBEDDED_FILE = delete_file;
+            this.EMBEDDED_FILE_SOURCE_PATH = source_file;
+        }
 
         /// <summary>
         /// Deletes a current feature by ID, and saves the change by writing to the embedded file.
         /// </summary>
         /// <param name="id">ID of feature to remove</param>
         /// <returns></returns>
-        public async Task<bool> DeleteLocationAsync(int id) {
-            Feature locationToDelete = App.LocationManager.CurrentLocations.Find((feature) => (feature.properties.id == id));
-            bool deleteSuccessful = App.LocationManager.CurrentLocations.Remove(locationToDelete);
+        public async Task<bool> DeleteFeatureAsync(int id) {
+            Feature featureToDelete = App.FeaturesManager.CurrentFeatures.Find((feature) => (feature.properties.id == id));
+            bool deleteSuccessful = App.FeaturesManager.CurrentFeatures.Remove(featureToDelete);
 
             if (deleteSuccessful) {
-                await SaveCurrentLocationsToEmbeddedFile();
+                await SaveCurrentFeaturesToEmbeddedFile();
                 return true;
             } else {
-                Debug.WriteLine($"\n\n:::::::::::::::::::::::FAILED TO DELETE LOCATION OF ID: {id}");
+                Debug.WriteLine($"\n\n:::::::::::::::::::::::FAILED TO DELETE FEATURE OF ID: {id}");
                 return false;
             }
         }
@@ -46,9 +55,9 @@ namespace GeoApp {
         /// <returns></returns>
         public Task<List<Feature>> RefreshDataAsync() {
             return Task.Run(async () => {
-                IFile locations = await GetLocationsFile();
+                IFile featuresFile = await GetEmbeddedFile();
 
-                var rootobject = JsonConvert.DeserializeObject<RootObject>(await locations.ReadAllTextAsync());
+                var rootobject = JsonConvert.DeserializeObject<RootObject>(await featuresFile.ReadAllTextAsync());
                 if(rootobject == null) {
                     Debug.WriteLine("\n\n::::::::::::::::::::::DESERIALIZATION FAILED");
                     throw new Exception();
@@ -138,40 +147,40 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Saves a new or edited location, determined by whether the ID already exists or not.
+        /// Saves a new or edited feature, determined by whether the ID already exists or not.
         /// </summary>
-        /// <param name="location">The feature to save.</param>
+        /// <param name="feature">The feature to save.</param>
         /// <returns></returns>
-        public async Task<bool> SaveLocationAsync(Feature location)
+        public async Task<bool> SaveFeatureAsync(Feature feature)
         {
-            // If this is a newly added location, generate an ID and add it immediately.
-            if (location.properties.id == AppConstants.NEW_ENTRY_ID) {
-                location.properties.id = TryGetUniqueFeatureID(location.properties.id);
-                App.LocationManager.CurrentLocations.Add(location);
+            // If this is a newly added feature, generate an ID and add it immediately.
+            if (feature.properties.id == AppConstants.NEW_ENTRY_ID) {
+                feature.properties.id = TryGetUniqueFeatureID(feature.properties.id);
+                App.FeaturesManager.CurrentFeatures.Add(feature);
             } else {
-                // Otherwise we are saving over an existing location, so override its contents without changing ID.
+                // Otherwise we are saving over an existing feature, so override its contents without changing ID.
                 int indexToEdit = -1;
-                for (int i = 0; i < App.LocationManager.CurrentLocations.Count; i++) {
-                    if (App.LocationManager.CurrentLocations[i].properties.id == location.properties.id) {
+                for (int i = 0; i < App.FeaturesManager.CurrentFeatures.Count; i++) {
+                    if (App.FeaturesManager.CurrentFeatures[i].properties.id == feature.properties.id) {
                         indexToEdit = i;
                         break;
                     }
                 }
 
                 if (indexToEdit != -1) {
-                    App.LocationManager.CurrentLocations[indexToEdit] = location;
+                    App.FeaturesManager.CurrentFeatures[indexToEdit] = feature;
                 } else {
-                    Debug.WriteLine($"\n\n::::::::::::::::::::::FAILED TO SAVE EDIT FOR FEATURE WITH ID: {location.properties.id}");
+                    Debug.WriteLine($"\n\n::::::::::::::::::::::FAILED TO SAVE EDIT FOR FEATURE WITH ID: {feature.properties.id}");
                     return false;
                 }
             }
 
-            await SaveCurrentLocationsToEmbeddedFile();
+            await SaveCurrentFeaturesToEmbeddedFile();
             return true;
         }
 
         /// <summary>
-        /// If necessary, creates a new ID that is unique to all current locations stored.
+        /// If necessary, creates a new ID that is unique to all current features stored.
         /// </summary>
         /// <returns>The original ID if no clashes were found, else a new unique ID.</returns>
         private int TryGetUniqueFeatureID(int currentlyUsedID) {
@@ -184,8 +193,8 @@ namespace GeoApp {
                 if(result == AppConstants.NEW_ENTRY_ID) {
                     validID = false;
                 } else {
-                    foreach (var currentLocation in App.LocationManager.CurrentLocations) {
-                        if (result == currentLocation.properties.id) {
+                    foreach (var feature in App.FeaturesManager.CurrentFeatures) {
+                        if (result == feature.properties.id) {
                             validID = false;
                             break;
                         }
@@ -202,8 +211,8 @@ namespace GeoApp {
         /// <summary>
         /// Returns the embedded file from the device's storage if it exists, else returns a new embedded file created from a source file.
         /// </summary>
-        /// <returns></returns>
-        public async Task<IFile> GetLocationsFile() {
+        /// <returns>The embedded file containing current features</returns>
+        public async Task<IFile> GetEmbeddedFile() {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             rootFolder.Path.Replace("/../Library", " ");
 
@@ -233,24 +242,24 @@ namespace GeoApp {
                     json = reader.ReadToEnd();
                 }
 
-                IFile locationsFile = await rootFolder.CreateFileAsync(EMBEDDED_FILENAME, CreationCollisionOption.ReplaceExisting);
-                await locationsFile.WriteAllTextAsync(json);
-                return locationsFile;
+                IFile featuresFile = await rootFolder.CreateFileAsync(EMBEDDED_FILENAME, CreationCollisionOption.ReplaceExisting);
+                await featuresFile.WriteAllTextAsync(json);
+                return featuresFile;
             }
         }
 
         /// <summary>
-        /// Formats the list of current locations into valid geojson, then writes it to the embedded file.
+        /// Formats the list of current features into valid geojson, then writes it to the embedded file.
         /// </summary>
         /// <returns></returns>
-        private async Task SaveCurrentLocationsToEmbeddedFile() {
-            var objToSave = FormatCurrentLocationsIntoGeoJSON();
+        private async Task SaveCurrentFeaturesToEmbeddedFile() {
+            var objToSave = FormatCurrentFeaturesIntoGeoJSON();
 
             // Save the rootobject to file.
             var json = JsonConvert.SerializeObject(objToSave);
             IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFile locations = await GetLocationsFile();
-            await locations.WriteAllTextAsync(json);
+            IFile featuresFile = await GetEmbeddedFile();
+            await featuresFile.WriteAllTextAsync(json);
         }
 
         /// <summary>
@@ -258,10 +267,10 @@ namespace GeoApp {
         /// </summary>
         /// <param name="path">path to file.</param>
         /// <returns></returns>
-        public async Task<bool> ImportLocationsFromFile(string path) {
+        public async Task<bool> ImportFeaturesFromFile(string path) {
             try {
                 String text = File.ReadAllText(path);
-                await ImportLocationsAsync(text);
+                await ImportFeaturesAsync(text);
                 return true;
             } catch (Exception ex) {
                 await HomePage.Instance.DisplayAlert("Invalid File", "An unknown error occured when trying to process this file.", "OK");
@@ -275,7 +284,7 @@ namespace GeoApp {
         /// </summary>
         /// <param name="fileContents">The string of geojson to import from.</param>
         /// <returns></returns>
-        public async Task<bool> ImportLocationsAsync(string fileContents) {
+        public async Task<bool> ImportFeaturesAsync(string fileContents) {
             try {
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
                 if(importedRootObject == null) {
@@ -286,10 +295,10 @@ namespace GeoApp {
                 // Loop through all imported features one by one, ensuring there are no ID clashes.
                 foreach (var importedFeature in importedRootObject.features) {
                     importedFeature.properties.id = TryGetUniqueFeatureID(importedFeature.properties.id);
-                    App.LocationManager.CurrentLocations.Add(importedFeature);
+                    App.FeaturesManager.CurrentFeatures.Add(importedFeature);
                 }
 
-                await SaveCurrentLocationsToEmbeddedFile();
+                await SaveCurrentFeaturesToEmbeddedFile();
                 return true;
             } catch (Exception ex) {
                 await HomePage.Instance.DisplayAlert("Invalid File Contents", "Please make sure your GeoJSON is formatted correctly.", "OK");
@@ -299,13 +308,13 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Takes the current list of locations and prepare the contents into a valid geoJSON serializable structure.
+        /// Takes the current list of features and prepare the contents into a valid geoJSON serializable structure.
         /// </summary>
         /// <returns></returns>
-        private RootObject FormatCurrentLocationsIntoGeoJSON() {
+        private RootObject FormatCurrentFeaturesIntoGeoJSON() {
             var rootobject = new RootObject();
             rootobject.type = "FeatureCollection";
-            rootobject.features = App.LocationManager.CurrentLocations;
+            rootobject.features = App.FeaturesManager.CurrentFeatures;
 
             foreach (var feature in rootobject.features) {
                 // Convert Lines back into LineStrings for valid geojson.
@@ -317,12 +326,12 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Exports the current list of locations by serializing to geojson.
+        /// Exports the current list of features by serializing to geojson.
         /// </summary>
         /// <returns></returns>
-        public string ExportLocationsToJson() {
+        public string ExportFeaturesToJson() {
             try {
-                var rootobject = FormatCurrentLocationsIntoGeoJSON();
+                var rootobject = FormatCurrentFeaturesIntoGeoJSON();
                 var json = JsonConvert.SerializeObject(rootobject, Formatting.Indented);
 
                 // String cleaning

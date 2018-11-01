@@ -9,7 +9,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
-    class ExportViewModel {
+    public class ExportViewModel {
         public ICommand ButtonClickCommand { set; get; }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace GeoApp {
 
             ButtonClickCommand = new Command(async () => {
                 await CrossShare.Current.Share(new ShareMessage {
-                    Text = App.LocationManager.ExportLocationsToJson(),
+                    Text = App.FeaturesManager.ExportFeaturesToJson(),
                     Title = "Share"
                 });
             });
