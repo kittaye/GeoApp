@@ -85,7 +85,7 @@
 
                                         <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
                                         <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
-                                        <Button Command="{Binding Path=BindingContext.GetLocationCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
+                                        <Button Command="{Binding Path=BindingContext.GetFeatureCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4"/>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>

@@ -21,7 +21,7 @@ namespace GeoApp {
 
             ButtonClickCommand = new Command(async () => {
                 await CrossShare.Current.Share(new ShareMessage {
-                    Text = App.LocationManager.ExportLocationsToJson(),
+                    Text = App.FeaturesManager.ExportFeaturesToJson(),
                     Title = "Share"
                 });
             });
