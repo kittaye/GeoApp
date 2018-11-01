@@ -16,7 +16,8 @@ namespace GeoApp.Tests
         [SetUp]
         public void SetUp()
         {
-            
+            mapvm = new MapViewModel();
+            mapvm.InitialiseMap();
         }
 
         //[Test]
@@ -31,15 +32,17 @@ namespace GeoApp.Tests
         /// Test that a pin is created and contains the correct information
         /// </summary>
         [Test]
-        public void CreatePin()
+        public void CreatePinTest()
         {
-            mapvm = new MapViewModel();
-            mapvm.InitialiseMap();
+
             mapvm.CreatePin("Test", 100, 100, 1);
             Assert.AreEqual(mapvm.GetPins().Count, 1);
             Assert.AreEqual(mapvm.GetPins()[0].Label, "Test");
             Assert.AreEqual(mapvm.GetPins()[0].Position, new Position(100,100));
         }
+
+
+
     }
 
 
