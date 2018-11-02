@@ -48,9 +48,7 @@ namespace GeoApp.Tests {
         /// </summary>
         [Test]
         public void TestNavToAddDataEntryDialogBox() {
-            AppResult[] res = app.Query(x => x.Class("ActionMenuItemView"));
-
-            app.TapCoordinates(res[0].Rect.X, res[0].Rect.Y); // tap the add data entry icon (top right)
+            TapUpperRightButton();
             Assert.AreEqual((app.Query(x => x.Id("alertTitle")))[0].Text, "Select a Data Type"); // check if the add button displays an alertbox
         }
 
@@ -74,7 +72,7 @@ namespace GeoApp.Tests {
         /// </summary>
         [Test]
         public void TestAddLineDataEntry() {
-            AddDataEntry(1,"LineTest");
+            AddDataEntry(1, "LineTest");
 
             // Verify entry has been saved
             // Note that app.Query stores an array of AppResult[] since theres only one entry we use index of 0
@@ -115,9 +113,12 @@ namespace GeoApp.Tests {
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[5].Text, "Polygon");
         }
 
+        /// <summary>
+        /// Tests viewing a recently crated data entry
+        /// </summary>
         [Test]
         public void TestViewDataEntry() {
-            AddDataEntry(0, "MyEditTest");
+            AddDataEntry(0, "MyViewTest");
 
             app.TapCoordinates((app.Query(c => c.Class("FormsTextView")))[0].Rect.X, (app.Query(c => c.Class("FormsTextView")))[0].Rect.Y);
 
@@ -125,13 +126,16 @@ namespace GeoApp.Tests {
             Assert.AreEqual(app.Query(c => c.Class("AppCompatTextView"))[0].Text, $"View Point");
         }
 
+        /// <summary>
+        /// Tests deleting data entry
+        /// </summary>
         [Test]
         public void TestDeleteDataEntry() {
             TestViewDataEntry();
 
             AppResult[] res = app.Query(x => x.Class("ActionMenuItemView"));
 
-            app.TapCoordinates(res[0].Rect.X, res[0].Rect.Y); // tap the add data entry icon (top right)
+            app.TapCoordinates(res[0].Rect.X, res[0].Rect.Y); // tap the delete data entry icon (top right)
             Assert.AreEqual((app.Query(x => x.Id("alertTitle")))[0].Text, "Delete Data Entry"); // check if the add button displays an alertbox
 
             // Perform query on the current page to identify the dialogoptions
@@ -139,8 +143,39 @@ namespace GeoApp.Tests {
             // Select Point data type
             app.TapCoordinates(dialogBtns[0].Rect.CenterX, dialogBtns[0].Rect.CenterY);
 
-            // verify that there are no more data entries
+            // Verify that there are no more data entries
             Assert.AreEqual(app.Query(c => c.Class("FormsTextView")).Length, 0);
+        }
+
+        /// <summary>
+        /// Tests editing a created data entry 
+        /// </summary>
+        [Test]
+        public void TestEditDataEntry() {
+            AddDataEntry(0, "MyEditTest");
+
+            AppResult[] res = app.Query(x => x.Class("AppCompatButton"));
+            app.TapCoordinates(res[0].Rect.CenterX, res[0].Rect.CenterY);
+            app.TapCoordinates(0, 0);
+
+            app.Tap("nameEntry_Container"); // tap name entry container
+            app.ClearText(); // clear text input
+            app.EnterText("NewEditTest"); // input new title
+            app.Back(); // close keyboard
+
+            TapUpperRightButton();
+
+            // Verify edit has been made
+            Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[0].Text, "NewEditTest");
+            Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[1].Text, "Point");
+        }
+
+        /// <summary>
+        /// Tests dialog box displaying when trying to save a data entry with no set name
+        /// </summary>
+        [Test]
+        public void TestDenySaveDialog() {
+
         }
 
         /// <summary>
@@ -149,6 +184,13 @@ namespace GeoApp.Tests {
         [Test]
         public void Repl() {
             app.Repl();
+        }
+
+        private void TapUpperRightButton() {
+            AppResult[] save = app.Query(x => x.Class("ActionMenuItemView"));
+
+            app.TapCoordinates(save[0].Rect.X, save[0].Rect.Y); // tap the save data entry icon (top right)
+            app.TapCoordinates(0, 0);
         }
 
         /// <summary>
@@ -160,7 +202,7 @@ namespace GeoApp.Tests {
             TestNavToAddDataEntryDialogBox();
 
             // Perform query on the current page to identify the dialogoptions
-            var dialogOptions = app.Query("text1"); 
+            var dialogOptions = app.Query("text1");
             // Select Point data type
             app.TapCoordinates(dialogOptions[type].Rect.CenterX, dialogOptions[type].Rect.CenterY);
         }
