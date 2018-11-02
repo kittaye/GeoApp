@@ -125,6 +125,24 @@ namespace GeoApp.Tests {
             Assert.AreEqual(app.Query(c => c.Class("AppCompatTextView"))[0].Text, $"View Point");
         }
 
+        [Test]
+        public void TestDeleteDataEntry() {
+            TestViewDataEntry();
+
+            AppResult[] res = app.Query(x => x.Class("ActionMenuItemView"));
+
+            app.TapCoordinates(res[0].Rect.X, res[0].Rect.Y); // tap the add data entry icon (top right)
+            Assert.AreEqual((app.Query(x => x.Id("alertTitle")))[0].Text, "Delete Data Entry"); // check if the add button displays an alertbox
+
+            // Perform query on the current page to identify the dialogoptions
+            var dialogBtns = app.Query("button1");
+            // Select Point data type
+            app.TapCoordinates(dialogBtns[0].Rect.CenterX, dialogBtns[0].Rect.CenterY);
+
+            // verify that there are no more data entries
+            Assert.AreEqual(app.Query(c => c.Class("FormsTextView")).Length, 0);
+        }
+
         /// <summary>
         /// Remove after unit testing
         /// </summary>
