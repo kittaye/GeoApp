@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "itsamario",
+        "name": "Example Polygon",
         "date": "10/27/2018"
       },
       "geometry": {
@@ -42,7 +42,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "itsaluigi",
+        "name": "Test Line",
         "date": "10/27/2018"
       },
       "geometry": {
@@ -62,7 +62,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "itsapeach",
+        "name": "Sample Point",
         "date": "10/27/2018"
       },
       "geometry": {
