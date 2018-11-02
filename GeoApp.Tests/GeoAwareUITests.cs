@@ -180,6 +180,29 @@ namespace GeoApp.Tests {
             Assert.AreEqual((app.Query(x => x.Id("alertTitle")))[0].Text, "Alert");
         }
 
+        [Test]
+        public void TestAddMetadataField() {
+            DataEntryDialogNav(0); // select point option
+            app.Tap("nameEntry_Container"); // tap name entry field
+            app.EnterText("MetadataTest"); // input test ot the field
+            app.Back(); // close keyboard
+
+            app.TapCoordinates((app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterX, (app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterY);
+            app.TapCoordinates(0 , 0);
+
+            app.Tap("entryTitle_Container");
+            app.EnterText("TestMetadata");
+            app.Back();
+            app.Tap("picker_Container");
+            // index 0 = string, 1 = integer, 2 = float
+            app.TapCoordinates((app.Query("text1"))[0].Rect.CenterX, (app.Query("text1"))[0].Rect.CenterY); // select String
+
+            app.Tap("AddButtonMeta_Container");
+            app.TapCoordinates(0, 0);
+
+            Assert.AreEqual(app.Query("MetadataLabel")[0].Text, "TestMetadata");
+        }
+
         /// <summary>
         /// Remove after unit testing
         /// </summary>
