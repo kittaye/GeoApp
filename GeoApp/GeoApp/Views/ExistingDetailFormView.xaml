@@ -35,10 +35,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Label Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+                    <Label AutomationId="NameEntry" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
-                    <Label Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                    <Label AutomationId="DateEntry" Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 
@@ -72,14 +72,14 @@
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                        <Label Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+                                        <Label AutomationId="LatLabel" Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                                        <Label AutomationId="LatLabelVal" Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
 
-                                        <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                        <Label Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                                        <Label AutomationId="LongLabel" Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
+                                        <Label AutomationId="LongLabelVal" Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
 
-                                        <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                        <Label Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" />
+                                        <Label AutomationId="AltLabel" Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
+                                        <Label AutomationId="AltLabelVal" Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" />
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
@@ -109,8 +109,8 @@
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                        <Entry Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
+                                        <Label AutomationId="MetadataLabelTitle" Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                        <Entry AutomationId="MetadataLabelData" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>

@@ -18,7 +18,7 @@
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
-            <Button Margin="20,20,20,150" Text="Export" Command="{Binding ButtonClickCommand}"/>
+            <Button AutomationId="ExportButton" Margin="20,20,20,150" Text="Export" Command="{Binding ButtonClickCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
