@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -54,16 +55,31 @@ namespace GeoApp.Tests {
         /// Tests navigation to detail form view (using POINT as an example)
         /// </summary>
         [Test]
-        public void TestNavtoDetailFormView() {
+        public void TestAddPointDataEntry() {
 
             TestNavToAddDataEntryDialogBox();
 
-            //perform query on the current page to identify the dialogoptions
+            // Perform query on the current page to identify the dialogoptions
             var dialogOptions = app.Query("text1"); // 0 = Point , 1 = Line , 2 = Polygon
-            //select Point data type
+            // Select Point data type
             app.TapCoordinates(dialogOptions[0].Rect.CenterX, dialogOptions[0].Rect.CenterY);
-            //Verify that we're in New Point page
+
+            app.Tap("nameEntry_Container"); // tap name entry field
+            app.EnterText("TEST"); // input test ot the field
+            app.Back(); // close keyboard
+            // Verify that we're in New Point page
             Assert.AreEqual(app.Query(c => c.Class("AppCompatTextView"))[0].Text, "New Point");
+            // tap the save entry icon (top right)
+            app.TapCoordinates((app.Query(x => x.Class("ActionMenuItemView")))[0].Rect.X,
+                (app.Query(x => x.Class("ActionMenuItemView")))[0].Rect.Y);
+
+            app.TapCoordinates(0, 0); // tap somewhere on the screen to update the view hierarchy...(this is a hack)
+
+            // Verify entry has been saved
+            // Note that app.Query stores an array of AppResult[] since theres only one entry we use index of 0
+            // index of 1 is the data type of the data entry
+            Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[0].Text, "TEST");
+            Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[1].Text, "Point");
         }
 
         /// <summary>
