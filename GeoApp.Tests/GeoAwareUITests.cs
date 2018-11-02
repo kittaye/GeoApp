@@ -190,6 +190,7 @@ namespace GeoApp.Tests {
             app.TapCoordinates((app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterX, (app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterY);
             app.TapCoordinates(0 , 0);
 
+            // meta data
             app.Tap("entryTitle_Container");
             app.EnterText("TestMetadata");
             app.Back();
@@ -201,6 +202,30 @@ namespace GeoApp.Tests {
             app.TapCoordinates(0, 0);
 
             Assert.AreEqual(app.Query("MetadataLabel")[0].Text, "TestMetadata");
+        }
+
+        [Test]
+        public void TestBadAddMetadataField() {
+            DataEntryDialogNav(0); // select point option
+            app.Tap("nameEntry_Container"); // tap name entry field
+            app.EnterText("BadMetadataTest"); // input test ot the field
+            app.Back(); // close keyboard
+
+            app.TapCoordinates((app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterX, (app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterY);
+            app.TapCoordinates(0, 0);
+
+            // meta data
+            app.Tap("entryTitle_Container");
+            app.EnterText("Bad TestMetadata");
+            app.Back();
+            app.Tap("picker_Container");
+            // index 0 = string, 1 = integer, 2 = float
+            app.TapCoordinates((app.Query("text1"))[0].Rect.CenterX, (app.Query("text1"))[0].Rect.CenterY); // select String
+
+            app.Tap("AddButtonMeta_Container");
+            app.TapCoordinates(0, 0);
+
+            Assert.AreEqual(app.Query("message")[0].Text, "Title must not have spaces!");
         }
 
         /// <summary>
