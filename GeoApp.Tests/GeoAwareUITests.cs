@@ -175,7 +175,9 @@ namespace GeoApp.Tests {
         /// </summary>
         [Test]
         public void TestDenySaveDialog() {
-
+            DataEntryDialogNav(0); // select point option
+            TapUpperRightButton();
+            Assert.AreEqual((app.Query(x => x.Id("alertTitle")))[0].Text, "Alert");
         }
 
         /// <summary>
