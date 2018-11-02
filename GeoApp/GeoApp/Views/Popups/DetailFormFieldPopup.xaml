@@ -32,8 +32,8 @@
                 <StackLayout IsClippedToBounds="True" Padding="10, 5" Spacing="3">
                     
                     <Label Text="Configure Field Details" FontSize="Large"/>
-                    <Entry x:Name="entryTitle" Placeholder="Enter Field Title"/>
-                    <Picker x:Name="picker" Title="Select a data type">
+                    <Entry AutomationId="entryTitle" x:Name="entryTitle" Placeholder="Enter Field Title"/>
+                    <Picker AutomationId="picker" x:Name="picker" Title="Select a data type">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>String</x:String>
@@ -43,12 +43,12 @@
                         </Picker.ItemsSource>
                     </Picker>
 
-                    <Button HorizontalOptions="Fill" Clicked="OnAdd" x:Name="AddButton" Text="Add">
+                    <Button HorizontalOptions="Fill" Clicked="OnAdd" AutomationId="AddButtonMeta" x:Name="AddButton" Text="Add">
                         <Button.HeightRequest>
                             <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="30"/>
                         </Button.HeightRequest>
                     </Button>
-                    <Button HorizontalOptions="Fill" Clicked="OnCloseButtonTapped" x:Name="CloseButton" Text="Close">
+                    <Button HorizontalOptions="Fill" Clicked="OnCloseButtonTapped" AutomationId="CloseButtonMeta" x:Name="CloseButton" Text="Close">
                         <Button.HeightRequest>
                             <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="30"/>
                         </Button.HeightRequest>
