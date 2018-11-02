@@ -183,59 +183,22 @@ namespace GeoApp.Tests {
         [Test]
         public void TestAddMetadataField() {
             DataEntryDialogNav(0); // select point option
-            app.Tap("nameEntry_Container"); // tap name entry field
-            app.EnterText("MetadataTest"); // input test ot the field
-            app.Back(); // close keyboard
-
-            app.TapCoordinates((app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterX, (app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterY);
-            app.TapCoordinates(0 , 0);
-
-            // meta data
-            app.Tap("entryTitle_Container");
-            app.EnterText("TestMetadata");
-            app.Back();
-            app.Tap("picker_Container");
-            // index 0 = string, 1 = integer, 2 = float
-            app.TapCoordinates((app.Query("text1"))[0].Rect.CenterX, (app.Query("text1"))[0].Rect.CenterY); // select String
-
-            app.Tap("AddButtonMeta_Container");
-            app.TapCoordinates(0, 0);
-
+            FillNameEntryField("MetadataTest");
+            AddMetadataField("TestMetadata", 0); // select string
             Assert.AreEqual(app.Query("MetadataLabel")[0].Text, "TestMetadata");
         }
 
         [Test]
         public void TestBadAddMetadataField() {
             DataEntryDialogNav(0); // select point option
-            app.Tap("nameEntry_Container"); // tap name entry field
-            app.EnterText("BadMetadataTest"); // input test ot the field
-            app.Back(); // close keyboard
-
-            app.TapCoordinates((app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterX, (app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterY);
-            app.TapCoordinates(0, 0);
-
-            // meta data
-            app.Tap("entryTitle_Container");
-            app.EnterText("Bad TestMetadata");
-            app.Back();
-            app.Tap("picker_Container");
-            // index 0 = string, 1 = integer, 2 = float
-            app.TapCoordinates((app.Query("text1"))[0].Rect.CenterX, (app.Query("text1"))[0].Rect.CenterY); // select String
-
-            app.Tap("AddButtonMeta_Container");
-            app.TapCoordinates(0, 0);
-
+            FillNameEntryField("BadMetadataTest");
+            AddMetadataField("Bad TestMetadata", 0); // select string
             Assert.AreEqual(app.Query("message")[0].Text, "Title must not have spaces!");
         }
 
         /// <summary>
-        /// Remove after unit testing
+        /// Helper function used to tap the menu item on the top right corner
         /// </summary>
-        [Test]
-        public void Repl() {
-            app.Repl();
-        }
-
         private void TapUpperRightButton() {
             AppResult[] save = app.Query(x => x.Class("ActionMenuItemView"));
 
@@ -258,6 +221,38 @@ namespace GeoApp.Tests {
         }
 
         /// <summary>
+        /// Helper function that creates a metadatafield
+        /// </summary>
+        /// <param name="fieldTitle">Text input for field title</param>
+        /// <param name="option"> 0 = string, 1 = integer, 2 = float</param>
+        private void AddMetadataField(string fieldTitle, int option) {
+            // tap add field button
+            app.TapCoordinates((app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterX, (app.Query(c => c.Class("AppCompatButton")))[0].Rect.CenterY);
+            app.TapCoordinates(0, 0);
+
+            // fill meta data
+            app.Tap("entryTitle_Container");
+            app.EnterText($"{fieldTitle}");
+            app.Back();
+            app.Tap("picker_Container");
+            // index 0 = string, 1 = integer, 2 = float
+            app.TapCoordinates((app.Query("text1"))[option].Rect.CenterX, (app.Query("text1"))[option].Rect.CenterY); // select String
+
+            app.Tap("AddButtonMeta_Container");
+            app.TapCoordinates(0, 0);
+        }
+
+        /// <summary>
+        /// Helper function that fillers the name entry field of data entry
+        /// </summary>
+        /// <param name="text"></param>
+        private void FillNameEntryField(string text) {
+            app.Tap("nameEntry_Container"); // tap name entry field
+            app.EnterText($"{text}"); // input test ot the field
+            app.Back(); // close keyboard
+        }
+
+        /// <summary>
         /// Helper function to create a data entry
         /// </summary>
         /// <param name="type"> 0 = Point , 1 = Line , 2 = Polygon </param>
@@ -267,6 +262,10 @@ namespace GeoApp.Tests {
 
             DataEntryDialogNav(type); // select point option
 
+            app.Tap("nameEntry_Container"); // tap name entry field
+            app.EnterText($"{title}"); // input test ot the field
+            app.Back(); // close keyboard
+
             if (type == 0) {
                 header = "Point";
             } else if (type == 1) {
@@ -275,9 +274,6 @@ namespace GeoApp.Tests {
                 header = "Polygon";
             }
 
-            app.Tap("nameEntry_Container"); // tap name entry field
-            app.EnterText($"{title}"); // input test ot the field
-            app.Back(); // close keyboard
             // Verify that we're in New Point page
             Assert.AreEqual(app.Query(c => c.Class("AppCompatTextView"))[0].Text, $"New {header}");
             // tap the save entry icon (top right)
