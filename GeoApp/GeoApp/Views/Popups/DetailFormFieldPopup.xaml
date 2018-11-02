@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="GeoApp.Views.Popups.DetailFormFieldPopup">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="LightGray"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10, 5" />
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="#e8e8e8" />
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7"
+            DurationIn="300"
+            EasingIn="Linear"/>
+    </pages:PopupPage.Animation>
+    <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+        <AbsoluteLayout>
+            <Frame Margin="15" HorizontalOptions="Center" BackgroundColor="White" HeightRequest="-1">
+                <StackLayout IsClippedToBounds="True" Padding="10, 5" Spacing="3">
+                    
+                    <Label Text="Configure Field Details" FontSize="Large"/>
+                    <Entry AutomationId="entryTitle" x:Name="entryTitle" Placeholder="Enter Field Title"/>
+                    <Picker AutomationId="picker" x:Name="picker" Title="Select a data type">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>String</x:String>
+                                <x:String>Integer</x:String>
+                                <x:String>Float</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <Button HorizontalOptions="Fill" Clicked="OnAdd" AutomationId="AddButtonMeta" x:Name="AddButton" Text="Add">
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="30"/>
+                        </Button.HeightRequest>
+                    </Button>
+                    <Button HorizontalOptions="Fill" Clicked="OnCloseButtonTapped" AutomationId="CloseButtonMeta" x:Name="CloseButton" Text="Close">
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="30"/>
+                        </Button.HeightRequest>
+                    </Button>
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ScrollView>
+</pages:PopupPage>

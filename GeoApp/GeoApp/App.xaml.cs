@@ -1,14 +1,19 @@
+using GeoApp.Data;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GeoApp {
     public partial class App : Application {
+
+        public static FeaturesManager FeaturesManager { get; private set; }
+
         public App() {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            FeaturesManager = new FeaturesManager(new FileService());
+            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default};
         }
 
         protected override void OnStart() {
@@ -22,5 +27,6 @@ namespace GeoApp {
         protected override void OnResume() {
             // Handle when your app resumes
         }
+
     }
 }

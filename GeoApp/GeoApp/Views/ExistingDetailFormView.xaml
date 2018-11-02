@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoApp"
+             x:Class="GeoApp.ExistingDetailFormView"
+             x:Name="ExistingDetailFormViewPage"
+             Title=""
+             BackgroundColor="Default">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="trash_icon" Command="{Binding DeleteEntryCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Style" Value="{StaticResource DetailFormLabel}" />
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="Style" Value="{StaticResource DetailFormEntry}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,10,10,10">
+                <Grid Style="{StaticResource DetailFormPanelGrid}" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
+                    <Label AutomationId="NameEntry" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+
+                    <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
+                    <Label AutomationId="DateEntry" Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                </Grid>
+            </StackLayout>
+
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.55*"/>
+                    <RowDefinition Height="0.45*"/>
+                </Grid.RowDefinitions>
+                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="0">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                    </Grid>
+
+                    <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="175">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,5,15,5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label AutomationId="LatLabel" Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                                        <Label AutomationId="LatLabelVal" Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+
+                                        <Label AutomationId="LongLabel" Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
+                                        <Label AutomationId="LongLabelVal" Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+
+                                        <Label AutomationId="AltLabel" Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
+                                        <Label AutomationId="AltLabelVal" Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" />
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="1">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
+                    </Grid>
+
+                    <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Style="{StaticResource DetailFormPanelGrid}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label AutomationId="MetadataLabelTitle" Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                                        <Entry AutomationId="MetadataLabelData" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small" IsEnabled="False"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

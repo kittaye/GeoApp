@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [ -27.4774618572334, 153.027317008313, 6.21347284317017 ]
+      },
+      "properties": {
+        "id": 671,
+        "metadatafields": { "ExtraData": "Hello!" },
+        "name": "Example Point",
+        "date": "10/26/2018"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Line",
+        "coordinates": [
+          [ -27.4774246055709, 153.027428429996, 8.49260711669922 ],
+          [ -27.8774246055709, 153.027428429996, 8.49260711669922 ]
+        ]
+      },
+      "properties": {
+        "id": 101,
+        "metadatafields": {},
+        "name": "Test Line",
+        "date": "10/26/2018"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [ -27.4774584770742, 153.02740242877, 9.86631679534912 ],
+            [ -27.4774584770742, 153.02740242888, 9.86631679534912 ],
+            [ -27.4774584770742, 153.02740242877, 0.866316795349121 ]
+          ]
+        ]
+      },
+      "properties": {
+        "id": 88,
+        "metadatafields": {},
+        "name": "Demo Area",
+        "date": "10/26/2018"
+      }
+    }
+  ]
+}

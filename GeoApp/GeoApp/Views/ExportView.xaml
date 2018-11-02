@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeoApp.ExportView"
+             xmlns:local="clr-namespace:GeoApp"
+             Title = "Export"
+             BackgroundColor="Default">
+    
+    <ContentPage.BindingContext>
+        <local:ExportViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Margin="0,0,0,0" Text="Export GeoJSON Data"
+                   TextColor="Black"
+                   FontSize="Large"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Button AutomationId="ExportButton" Margin="20,20,20,150" Text="Export" Command="{Binding ButtonClickCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -2,7 +2,34 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GeoApp.App">
-	<Application.Resources>
     
-	</Application.Resources>
+	<Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DetailFormLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+            </Style>
+            
+            <Style x:Key="DetailFormEntry" TargetType="Entry">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+            </Style>
+
+            <Style x:Key="DetailFormPanelGrid" TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="10"/>
+                <Setter Property="RowSpacing" Value="0"/>
+                <Setter Property="Margin" Value="15,15,15,15"/>
+            </Style>
+            
+            <Style x:Key="DetailFormPanelLayout" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="#efefef"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+    
 </Application>
