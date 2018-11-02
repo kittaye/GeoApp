@@ -2,10 +2,15 @@
 Customised GeoApp for QUT Environmental, Earth, and Biological Science students.
 
 Visual Studio
+
 -	Community 2017 Version 15.7.5
+
 Microsoft .NET Framework
+
 -	Version 4.7.03056
+
 Nuget Packages:
+
 -	GeoJSON.Net - 1.1.70
 -	NETStandard.Library - 2.03
 -	Newtonsoft.Json - 12.0.1-beta1
