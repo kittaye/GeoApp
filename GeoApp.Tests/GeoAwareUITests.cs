@@ -101,17 +101,28 @@ namespace GeoApp.Tests {
         /// Tests adding multiple different types of data entries
         /// </summary>
         [Test]
-        public void TestMultiAddDateEntry() {
+        public void TestMultiAddDataEntry() {
             AddDataEntry(0, "MyPointTest");
             AddDataEntry(1, "MyLineTest");
             AddDataEntry(2, "MyPolyTest");
 
+            // Verify entries has been saved
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[0].Text, "MyPointTest");
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[1].Text, "Point");
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[2].Text, "MyLineTest");
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[3].Text, "Line");
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[4].Text, "MyPolyTest");
             Assert.AreEqual((app.Query(c => c.Class("FormsTextView")))[5].Text, "Polygon");
+        }
+
+        [Test]
+        public void TestViewDataEntry() {
+            AddDataEntry(0, "MyEditTest");
+
+            app.TapCoordinates((app.Query(c => c.Class("FormsTextView")))[0].Rect.X, (app.Query(c => c.Class("FormsTextView")))[0].Rect.Y);
+
+            // Verify that we're in "View" page
+            Assert.AreEqual(app.Query(c => c.Class("AppCompatTextView"))[0].Text, $"View Point");
         }
 
         /// <summary>
