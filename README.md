@@ -31,3 +31,5 @@ Nuget Packages:
 -	Xamarin.Forms.Maps - 3.4.0.925479-pre1
 -	Xamarin.Plugin.FilePicker - 2.0.121
 -	Xamarin.UITest - 2.2.6.1906-dev
+
+NOTE: When building/deploying select the Release configuration. (This is mainly for the UI testing to work.)
