@@ -260,6 +260,9 @@ namespace GeoApp {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFile featuresFile = await GetEmbeddedFile();
             await featuresFile.WriteAllTextAsync(json);
+
+            // Mark the features list as dirty so it can refresh.
+            DataEntryListViewModel.isDirty = true;
         }
 
         /// <summary>

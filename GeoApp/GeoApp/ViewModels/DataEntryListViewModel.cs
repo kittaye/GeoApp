@@ -13,6 +13,8 @@ namespace GeoApp {
     /// View-model for the page that shows the list of data entries.
     /// </summary>
     public class DataEntryListViewModel : ViewModelBase {
+        // Static flag that determines whether the features list should be updated or not.
+        public static bool isDirty = true;
 
         public ICommand ButtonClickedCommand { set; get; }
         public ICommand ItemTappedCommand { set; get; }
@@ -60,11 +62,17 @@ namespace GeoApp {
         /// Refreshes the list of current locations by re-reading the embedded file contents.
         /// </summary>
         private void ExecuteRefreshListCommand() {
-            IsRefreshing = true;
-            Device.BeginInvokeOnMainThread(async () => {
-                App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
-                EntryListSource = App.FeaturesManager.CurrentFeatures;
-            });
+            // Only update the list if it has changed as indicated by the dirty flag.
+            if (isDirty) {
+                isDirty = false;
+
+                // Do a full re-read of the embedded file to get the most current list of features.
+                Device.BeginInvokeOnMainThread(async () => {
+                    App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+                    EntryListSource = App.FeaturesManager.CurrentFeatures;
+                });
+            }
+
             IsRefreshing = false;
         }
 
