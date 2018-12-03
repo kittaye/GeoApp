@@ -59,34 +59,5 @@ namespace GeoApp
             Polygons.Add(polygon);
         }
 
-        public static async Task UpdateRegionToUserLocation(MapSpan region)
-        {
-            try
-            {
-                // Gets current location of device (MORE ACCURATE, but slower)
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                var location = await Geolocation.GetLocationAsync(request);
-
-                if (location != null)
-                {
-                    region = MapSpan.FromCenterAndRadius(
-                        new Position( location.Latitude, location.Longitude),
-                        Distance.FromKilometers(2)
-                    );
-                }
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
-                throw fnsEx;
-            }
-            catch (PermissionException pEx)
-            {
-                throw pEx;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

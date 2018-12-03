@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
@@ -13,18 +14,6 @@ namespace GeoApp
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<Polygon> Polygons { get; set; }
         public ObservableCollection<Polyline> Polylines { get; set; }
-
-        public ICommand RefreashGeoDataCommand { set; get; }
-        public ICommand ReDirectMapCommand { set; get; }
-
-        public GoogleMapViewModel()
-        {
-            RefreashGeoDataCommand = new Command( () => {
-                DrawAllGeoDataOnTheMap();
-            });
-
-            ReDirectMapCommand = new Command(async () => await GoogleMapManager.UpdateRegionToUserLocation(Region) );
-        }
 
         // Initialize the map position to Brisbane City at the beginning
         private MapSpan _region = MapSpan.FromCenterAndRadius(
@@ -42,12 +31,18 @@ namespace GeoApp
             }
         }
 
-        public Command<MyLocationButtonClickedEventArgs> LocationBtnClickedCommand =>
-            new Command<MyLocationButtonClickedEventArgs>(async args =>
-            {
-               await GoogleMapManager.UpdateRegionToUserLocation(Region);
+        public ICommand RefreashGeoDataCommand { set; get; }
+        public ICommand LocationBtnClickedCommand { set; get; }
+
+        public GoogleMapViewModel()
+        {
+            RefreashGeoDataCommand = new Command( () => {
+                DrawAllGeoDataOnTheMap();
             });
-            
+
+            LocationBtnClickedCommand = new Command(async () => await RedirectMap() );
+        }
+
         public void DrawAllGeoDataOnTheMap() 
         {
             // Using CurrentFeature to draw the geodata on the map
@@ -68,7 +63,6 @@ namespace GeoApp
                 }
             });
         }
-
         // use it when you need to implement any function need to click the map
 
         public Command<MapClickedEventArgs> MapClickedCommand =>
@@ -76,5 +70,33 @@ namespace GeoApp
         {
             Application.Current.MainPage.DisplayAlert("Coordinate", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
         });
+
+        public async Task RedirectMap()
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location != null)
+                {
+                    Region = MapSpan.FromCenterAndRadius(
+                        new Position(location.Latitude, location.Longitude),
+                        Distance.FromKilometers(2)
+                    );
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                throw fnsEx;
+            }
+            catch (PermissionException pEx)
+            {
+                throw pEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

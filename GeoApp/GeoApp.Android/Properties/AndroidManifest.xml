@@ -3,16 +3,16 @@
 	<uses-sdk android:targetSdkVersion="27" android:minSdkVersion="15" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-feature android:name="android.hardware.location" android:required="false" />
-	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
-	<uses-feature android:name="android.hardware.location.network" android:required="false" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-feature android:name="android.hardware.location" android:required="true" />
+	<uses-feature android:name="android.hardware.location.gps" android:required="true" />
+	<uses-feature android:name="android.hardware.location.network" android:required="true" />
 	<application android:label="GeoAware" android:icon="@drawable/icon">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyDaeurrZExaOrUGhn5Q9_g447PSC7DOfHM" />
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />

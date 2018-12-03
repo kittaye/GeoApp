@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace GeoApp
 {
@@ -17,9 +16,10 @@ namespace GeoApp
         {
             base.OnAppearing();
 
-            if ( ( (GoogleMapViewModel) BindingContext).RefreashGeoDataCommand.CanExecute(null))
+            if ( viewModel.RefreashGeoDataCommand.CanExecute(null))
             {
-                ((GoogleMapViewModel) BindingContext).RefreashGeoDataCommand.Execute(null);
+                viewModel.RefreashGeoDataCommand.Execute(null);
+                viewModel.LocationBtnClickedCommand.Execute(null);
             }
         }
     }

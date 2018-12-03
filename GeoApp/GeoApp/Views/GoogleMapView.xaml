@@ -10,10 +10,14 @@
              >
     
      <ContentPage.BindingContext>
-        <local:GoogleMapViewModel/>
+        <local:GoogleMapViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
     
-    <googleMaps:Map x:name="myMap" MyLocationEnabled="true" x:Name="myMap">
+    <googleMaps:Map x:name="myMap" 
+                    IsShowingUser="true"
+                    MyLocationEnabled="true" 
+                    x:Name="myMap">
+        
         <googleMaps:Map.Behaviors>
             <bindings:BindingPinsBehavior 
                 Value="{Binding Pins}"/>
