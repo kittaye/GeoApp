@@ -65,10 +65,9 @@ namespace GeoApp
         }
         // use it when you need to implement any function need to click the map
 
-        public Command<MapClickedEventArgs> MapClickedCommand =>
-        new Command<MapClickedEventArgs>(args =>
+        public Command<MapClickedEventArgs> MapClickedCommand = new Command<MapClickedEventArgs>( async (args) =>
         {
-            Application.Current.MainPage.DisplayAlert("Coordinate", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
+            await Application.Current.MainPage.DisplayAlert("Coordinate", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
         });
 
         public async Task RedirectMap()
@@ -98,5 +97,6 @@ namespace GeoApp
                 throw ex;
             }
         }
+
     }
 }

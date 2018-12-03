@@ -6,8 +6,7 @@
              xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
              BackgroundColor="Default"
-             Title = "Maps"
-             >
+             Title = "Maps">
     
      <ContentPage.BindingContext>
         <local:GoogleMapViewModel x:Name="viewModel"/>
