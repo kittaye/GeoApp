@@ -10,6 +10,9 @@ using Xamarin.Essentials;
 
 using Debug = System.Diagnostics.Debug;
 using Plugin.Permissions;
+using Android.Support.V4.Content;
+using Android.Support.V4.App;
+using Android;
 
 namespace GeoApp.Droid {
     [Activity(Label = "GeoAware", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
@@ -24,7 +27,8 @@ namespace GeoApp.Droid {
             Xamarin.Essentials.Platform.Init(this, bundle); // initialise xamarin essentials
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
-
+            Xamarin.FormsGoogleMaps.Init(this, bundle);
+            Xamarin.FormsGoogleMapsBindings.Init();
             Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) => {
                 if (!string.IsNullOrWhiteSpace(e.View.AutomationId)) {
                     e.NativeView.ContentDescription = e.View.AutomationId;

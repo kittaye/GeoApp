@@ -23,6 +23,10 @@ namespace GeoApp.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
+
+            Xamarin.FormsGoogleMaps.Init("AIzaSyDaeurrZExaOrUGhn5Q9_g447PSC7DOfHM");
+            Xamarin.FormsGoogleMapsBindings.Init();
+
             Rg.Plugins.Popup.Popup.Init();
             mainForms = new App();
             LoadApplication(new App());

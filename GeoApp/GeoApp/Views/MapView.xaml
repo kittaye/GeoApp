@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:GeoApp"
              Title = "Maps"
              BackgroundColor="Default">
+    
     <ContentPage.BindingContext>
         <local:MapViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
