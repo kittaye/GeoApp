@@ -10,5 +10,10 @@ namespace GeoApp
             myMap.UiSettings.MyLocationButtonEnabled = true;
             myMap.UiSettings.ZoomControlsEnabled = false;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
     }
 }

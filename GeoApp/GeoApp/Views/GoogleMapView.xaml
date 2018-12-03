@@ -16,10 +16,21 @@
     <googleMaps:Map x:name="myMap" MyLocationEnabled="true" x:Name="myMap">
         <googleMaps:Map.Behaviors>
             <bindings:BindingPinsBehavior 
-            Value="{Binding Pins}"/>
+                Value="{Binding Pins}"/>
+            
+            <bindings:BindingPolylinesBehavior 
+                Value="{Binding Polylines}"/>
+            
+            <bindings:BindingPolygonsBehavior
+                Value="{Binding Polygons}"/>
             
             <bindings:MapClickedToCommandBehavior
-            Command="{Binding MapClickedCommand}"/>
+                Command="{Binding MapClickedCommand}"/>
+            
+            <bindings:MyLocationButtonClickedToCommandBehavior 
+                Command="{Binding LocationBtnClickedCommand}"/>
+            
+            <bindings:UpdateRegionBehavior Region="{Binding Region}" />
            
         </googleMaps:Map.Behaviors>
     </googleMaps:Map>
