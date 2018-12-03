@@ -1,9 +1,11 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GeoApp
 {
     public partial class GoogleMapView : ContentPage
     {
+
         public GoogleMapView()
         {
             InitializeComponent();
@@ -14,6 +16,11 @@ namespace GeoApp
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if ( ( (GoogleMapViewModel) BindingContext).RefreashGeoDataCommand.CanExecute(null))
+            {
+                ((GoogleMapViewModel) BindingContext).RefreashGeoDataCommand.Execute(null);
+            }
         }
     }
 }

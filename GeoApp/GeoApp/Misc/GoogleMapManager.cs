@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace GeoApp
 {
@@ -58,7 +59,7 @@ namespace GeoApp
             Polygons.Add(polygon);
         }
 
-        public static async void UpdateRegionToUserLocation(MapSpan region)
+        public static async Task UpdateRegionToUserLocation(MapSpan region)
         {
             try
             {

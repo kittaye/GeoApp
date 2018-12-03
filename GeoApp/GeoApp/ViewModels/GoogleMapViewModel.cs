@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
@@ -8,13 +9,21 @@ namespace GeoApp
 {
     public class GoogleMapViewModel: ViewModelBase
     {
+
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<Polygon> Polygons { get; set; }
         public ObservableCollection<Polyline> Polylines { get; set; }
 
+        public ICommand RefreashGeoDataCommand { set; get; }
+        public ICommand ReDirectMapCommand { set; get; }
+
         public GoogleMapViewModel()
         {
-            DrawAllGeoDataOnTheMap();
+            RefreashGeoDataCommand = new Command( () => {
+                DrawAllGeoDataOnTheMap();
+            });
+
+            ReDirectMapCommand = new Command(async () => await GoogleMapManager.UpdateRegionToUserLocation(Region) );
         }
 
         // Initialize the map position to Brisbane City at the beginning
@@ -34,10 +43,9 @@ namespace GeoApp
         }
 
         public Command<MyLocationButtonClickedEventArgs> LocationBtnClickedCommand =>
-            new Command<MyLocationButtonClickedEventArgs>( args =>
+            new Command<MyLocationButtonClickedEventArgs>(async args =>
             {
-                GoogleMapManager.UpdateRegionToUserLocation(Region);
-                DrawAllGeoDataOnTheMap();
+               await GoogleMapManager.UpdateRegionToUserLocation(Region);
             });
             
         public void DrawAllGeoDataOnTheMap() 
