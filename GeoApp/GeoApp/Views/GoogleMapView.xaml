@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="GeoApp.GoogleMapView"
+             xmlns:local="clr-namespace:GeoApp"
+             xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
+             BackgroundColor="Default"
+             Title = "Maps">
+    
+     <ContentPage.BindingContext>
+        <local:GoogleMapViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+    
+    <googleMaps:Map x:name="myMap" 
+                    IsShowingUser="true"
+                    MyLocationEnabled="true" 
+                    x:Name="myMap">
+        
+        <googleMaps:Map.Behaviors>
+            <bindings:BindingPinsBehavior 
+                Value="{Binding Pins}"/>
+            
+            <bindings:BindingPolylinesBehavior 
+                Value="{Binding Polylines}"/>
+            
+            <bindings:BindingPolygonsBehavior
+                Value="{Binding Polygons}"/>
+            
+            <bindings:MapClickedToCommandBehavior
+                Command="{Binding MapClickedCommand}"/>
+            
+            <bindings:MyLocationButtonClickedToCommandBehavior 
+                Command="{Binding LocationBtnClickedCommand}"/>
+            
+            <bindings:UpdateRegionBehavior Region="{Binding Region}" />
+           
+        </googleMaps:Map.Behaviors>
+    </googleMaps:Map>
+    
+</ContentPage>
