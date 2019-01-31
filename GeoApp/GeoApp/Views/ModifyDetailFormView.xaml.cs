@@ -46,7 +46,6 @@ namespace GeoApp {
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e) {
             geolocationListView.SelectedItem = null;
-            listView.SelectedItem = null;
         }
     }
 }

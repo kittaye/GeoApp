@@ -38,7 +38,6 @@ namespace GeoApp {
         // A reference to this entry's type of structure.
         private string thisEntryType;
 
-        public ObservableCollection<MetadataEntry> MetadataEntries { get; set; }
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
         private string _dateEntry;
@@ -87,11 +86,29 @@ namespace GeoApp {
             }
         }
 
-        private bool _addMetadataFieldsBtnEnabled;
-        public bool AddMetadataFieldsBtnEnabled {
-            get { return _addMetadataFieldsBtnEnabled; }
+        private string _metadataStringEntry;
+        public string MetadataStringEntry {
+            get { return _metadataStringEntry; }
             set {
-                _addMetadataFieldsBtnEnabled = value;
+                _metadataStringEntry = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _metadataIntegerEntry;
+        public int MetadataIntegerEntry {
+            get { return _metadataIntegerEntry; }
+            set {
+                _metadataIntegerEntry = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private float _metadataFloatEntry;
+        public float MetadataFloatEntry {
+            get { return _metadataFloatEntry; }
+            set {
+                _metadataFloatEntry = value;
                 OnPropertyChanged();
             }
         }
@@ -122,9 +139,6 @@ namespace GeoApp {
                 }
             }
 
-            MetadataEntries = new ObservableCollection<MetadataEntry>();
-
-            AddMetadataFieldsBtnEnabled = true;
             GeolocationEntryEnabled = true;
             LoadingIconActive = false;
 
@@ -142,13 +156,12 @@ namespace GeoApp {
             DateEntry = DateTime.Parse(data.properties.date).ToShortDateString();
 
             GeolocationPoints = new ObservableCollection<Point>(data.properties.xamarincoordinates);
-            MetadataEntries = new ObservableCollection<MetadataEntry>();
-            foreach (var item in data.properties.metadatafields) {
-                MetadataEntries.Add(new MetadataEntry(item.Key, item.Value?.ToString(), Keyboard.Default));
-            }
-
-            AddMetadataFieldsBtnEnabled = true;
             GeolocationEntryEnabled = true;
+
+            MetadataStringEntry = data.properties.metadataStringValue;
+            MetadataIntegerEntry = data.properties.metadataIntegerValue;
+            MetadataFloatEntry = data.properties.metadataFloatValue;
+
             LoadingIconActive = false;
 
             InitCommandBindings();
@@ -159,9 +172,6 @@ namespace GeoApp {
         /// </summary>
         private void InitCommandBindings() {
             GetFeatureCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
-
-            AddMetadataFieldCommand = new Command(async () => { await AddMetadataField(); });
-            DeleteMetadataFieldCommand = new Command<MetadataEntry>((item) => DeleteMetadataField(item));
 
             AddPointCommand = new Command(() => AddPoint());
             DeletePointCommand = new Command<Point>((item) => DeletePoint(item));
@@ -222,35 +232,6 @@ namespace GeoApp {
         }
 
         /// <summary>
-        /// Adds a new metadata field to the list.
-        /// </summary>
-        /// <returns></returns>
-        private async Task AddMetadataField() {
-            // Waits for the user to fill in a popup form describing the metadata field.
-            var result = await DetailFormFieldPopup.GetResultAsync();
-
-            if (result != null) {
-                MetadataEntries.Add(result);
-
-                // Maximum of 5 metadata entries.
-                if (MetadataEntries.Count == 5) {
-                    AddMetadataFieldsBtnEnabled = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deletes a metadata entry from the list.
-        /// </summary>
-        /// <param name="item">Item to delete.</param>
-        private void DeleteMetadataField(MetadataEntry item) {
-            MetadataEntries.Remove(item);
-            if (MetadataEntries.Count < 5) {
-                AddMetadataFieldsBtnEnabled = true;
-            }
-        }
-
-        /// <summary>
         /// Deletes the entire feature from the list of current features and saves changes to the embedded file.
         /// </summary>
         /// <returns></returns>
@@ -291,18 +272,24 @@ namespace GeoApp {
 
             feature.type = "Feature";
             feature.properties = new Properties();
-            feature.properties.name = NameEntry;
-            feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
-            feature.properties.metadatafields = new Dictionary<string, object>();
+
             // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
             // otherwise an ID will already be set for editing entries.
             feature.properties.id = thisEntryID;
-            foreach (var metadataField in MetadataEntries) {
-                feature.properties.metadatafields.Add(metadataField.LabelTitle, metadataField.LabelData);
-            }
 
+            // Name and date of the feature.
+            feature.properties.name = NameEntry;
+            feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
+
+            // Metadata fields.
+            feature.properties.metadataStringValue = MetadataStringEntry;
+            feature.properties.metadataIntegerValue = MetadataIntegerEntry;
+            feature.properties.metadataFloatValue = MetadataFloatEntry;
+
+            // Feature type (Point, Line, Polygon).
             feature.geometry = new Geometry();
             feature.geometry.type = thisEntryType;
+
             // Converts our xamarin coordinate data back into a valid geojson structure.
             {
                 if (thisEntryType == "Point") {
@@ -345,14 +332,6 @@ namespace GeoApp {
             if (string.IsNullOrEmpty(NameEntry)) {
                 await HomePage.Instance.DisplayAlert("Alert", "Feature name must not be empty.", "OK");
                 return false;
-            }
-
-            foreach (var item in MetadataEntries) {
-                item.LabelTitle = item.LabelTitle.Trim();
-                if (item.LabelTitle.Contains(" ")) {
-                    await HomePage.Instance.DisplayAlert("Alert", "Metadata labels must not have spaces.", "OK");
-                    return false;
-                }
             }
 
             if (thisEntryType == "Polygon") {

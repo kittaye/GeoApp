@@ -79,12 +79,6 @@ namespace GeoApp {
                         feature.properties.date = DateTime.Now.ToShortDateString();
                     }
 
-                    // Initialise xamarin coordinates list and metadata fields list if it is not already set.
-                    feature.properties.xamarincoordinates = new List<Point>();
-                    if (feature.properties.metadatafields == null || feature.properties.metadatafields.Count == 0) {
-                        feature.properties.metadatafields = new Dictionary<string, object>();
-                    }
-
                     // Determine the icon used for each feature based on it's geometry type.
                     if (feature.geometry.type == "Point") {
                         feature.properties.typeIconPath = "point_icon.png";
@@ -96,6 +90,9 @@ namespace GeoApp {
                         Debug.WriteLine($"\n\n::::::::::::::::::::::::INVALID TYPE: {feature.geometry.type}");
                         throw new Exception();
                     }
+
+                    // Initialise xamarin coordinates list.
+                    feature.properties.xamarincoordinates = new List<Point>();
 
                     // Properly deserialize the list of coordinates into an app-use-specific list of Points (XamarinCoordinates).
                     {

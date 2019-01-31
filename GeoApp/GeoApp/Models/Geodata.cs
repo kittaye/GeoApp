@@ -17,7 +17,9 @@ namespace GeoApp
     public class Properties
     {
         public int id { get; set; }
-        public Dictionary<string, object> metadatafields { get; set; }
+        public string metadataStringValue { get; set; }
+        public int metadataIntegerValue { get; set; }
+        public float metadataFloatValue { get; set; }
         [JsonIgnore]
         public List<Point> xamarincoordinates { get; set; }
         public string name { get; set; }

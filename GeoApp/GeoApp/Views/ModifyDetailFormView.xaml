@@ -100,31 +100,28 @@
                         </Grid.RowDefinitions>
 
                         <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                        <Button Text="Add Field" Command="{Binding AddMetadataFieldCommand}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding AddMetadataFieldsBtnEnabled}"/>
                     </Grid>
 
-                    <ListView x:Name="listView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding MetadataEntries}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5"  Margin="15,0,15,10" HeightRequest="170">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Style="{StaticResource DetailFormPanelGrid}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="36"/>
-                                        </Grid.ColumnDefinitions>
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Padding="10,4,10,4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.25*"/>
+                            <ColumnDefinition Width="0.75*"/>
+                        </Grid.ColumnDefinitions>
 
-                                        <Label AutomationId="MetadataLabel" Text="{Binding LabelTitle}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
-                                        <Button AutomationId="DeleteMetadata" Command="{Binding Path=BindingContext.DeleteMetadataFieldCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" Text="X" Grid.Row="0" Grid.Column="1" WidthRequest="36" HeightRequest="36"/>
-                                        <Entry AutomationId="MetadataEntry" Keyboard="{Binding EntryType}" Text="{Binding LabelData}" TextColor="Gray" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" FontSize="Small"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        <Label Text="String: " FontAttributes="Bold" Grid.Row="0" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
+                        <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+
+                        <Label Text="Integer: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
+                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Telephone" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+
+                        <Label Text="Float: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
+                        <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+                    </Grid>
                 </StackLayout>
             </Grid>
         </StackLayout>
