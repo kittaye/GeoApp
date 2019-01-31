@@ -117,7 +117,7 @@
                         <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
 
                         <Label Text="Integer: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
-                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Telephone" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
 
                         <Label Text="Float: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
                         <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" FontSize="Small"/>
