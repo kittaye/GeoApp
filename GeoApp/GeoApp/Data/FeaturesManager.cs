@@ -21,6 +21,10 @@ namespace GeoApp.Data {
             return restService.SaveFeatureAsync(feature);
         }
 
+        public Task SaveAllCurrentFeaturesAsync() {
+            return restService.SaveAllCurrentFeaturesAsync();
+        }
+
         public Task<bool> DeleteFeatureAsync(int id)
         {
             return restService.DeleteFeatureAsync(id);

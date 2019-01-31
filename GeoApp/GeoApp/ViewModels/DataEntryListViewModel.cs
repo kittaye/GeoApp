@@ -21,6 +21,8 @@ namespace GeoApp {
         public ICommand RefreshListCommand { set; get; }
         public ICommand EditEntryCommand { get; set; }
 
+        private bool firstRefreshOccured = false;
+
         private List<Feature> _entryListSource;
         public List<Feature> EntryListSource {
             get { return _entryListSource; }
@@ -66,9 +68,27 @@ namespace GeoApp {
             if (isDirty) {
                 isDirty = false;
 
-                // Do a full re-read of the embedded file to get the most current list of features.
                 Device.BeginInvokeOnMainThread(async () => {
+                    // Do a full re-read of the embedded file to get the most current list of features.
                     App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+
+                    // This double-checks that the source embedded file doesn't start off with feature IDs that are already clashing.
+                    // All other operations within the app (adding/editing/deleting/importing) have ID clash logic implemented already.
+                    // TODO: When we publish the app, we should remove this slow code and clear out the source data file to avoid this issue entirely.
+                    // Meaning the user starts with a blank list of features when they first download the app (which is reasonable).
+                    if (firstRefreshOccured == false) {
+                        firstRefreshOccured = true;
+
+                        foreach (var feature in App.FeaturesManager.CurrentFeatures) {
+                            FileService.TryGetUniqueFeatureID(feature);
+                        }
+
+                        await App.FeaturesManager.SaveAllCurrentFeaturesAsync();
+
+                        // After saving the new clash-free IDs, we need to get the features again to fix the LineString save conversion.
+                        App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+                    }
+
                     EntryListSource = App.FeaturesManager.CurrentFeatures;
                 });
             }

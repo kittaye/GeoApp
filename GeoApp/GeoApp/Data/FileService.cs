@@ -152,7 +152,7 @@ namespace GeoApp {
         {
             // If this is a newly added feature, generate an ID and add it immediately.
             if (feature.properties.id == AppConstants.NEW_ENTRY_ID) {
-                feature.properties.id = TryGetUniqueFeatureID(feature.properties.id);
+                TryGetUniqueFeatureID(feature);
                 App.FeaturesManager.CurrentFeatures.Add(feature);
             } else {
                 // Otherwise we are saving over an existing feature, so override its contents without changing ID.
@@ -176,22 +176,25 @@ namespace GeoApp {
             return true;
         }
 
+        public async Task SaveAllCurrentFeaturesAsync() {
+            await SaveCurrentFeaturesToEmbeddedFile();
+        }
+
         /// <summary>
         /// If necessary, creates a new ID that is unique to all current features stored.
         /// </summary>
         /// <returns>The original ID if no clashes were found, else a new unique ID.</returns>
-        private int TryGetUniqueFeatureID(int currentlyUsedID) {
-            int result = currentlyUsedID;
+        public static void TryGetUniqueFeatureID(Feature featureToCheck) {
             bool validID = false;
 
             while (validID == false) {
                 validID = true;
 
-                if(result == AppConstants.NEW_ENTRY_ID) {
+                if(featureToCheck.properties.id == AppConstants.NEW_ENTRY_ID) {
                     validID = false;
                 } else {
                     foreach (var feature in App.FeaturesManager.CurrentFeatures) {
-                        if (result == feature.properties.id) {
+                        if (featureToCheck.properties.id == feature.properties.id && featureToCheck != feature) {
                             validID = false;
                             break;
                         }
@@ -199,10 +202,9 @@ namespace GeoApp {
                 }
 
                 if(validID == false) {
-                    result = DateTime.Now.GetHashCode();
+                    featureToCheck.properties.id = DateTime.Now.GetHashCode();
                 }
             }
-            return result;
         }
 
         /// <summary>
@@ -294,7 +296,7 @@ namespace GeoApp {
 
                 // Loop through all imported features one by one, ensuring there are no ID clashes.
                 foreach (var importedFeature in importedRootObject.features) {
-                    importedFeature.properties.id = TryGetUniqueFeatureID(importedFeature.properties.id);
+                    TryGetUniqueFeatureID(importedFeature);
                     App.FeaturesManager.CurrentFeatures.Add(importedFeature);
                 }
 
