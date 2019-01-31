@@ -322,6 +322,11 @@ namespace GeoApp {
                     feature.geometry.type = "LineString";
                 }
             }
+
+            // Mark the features list as being modified, since the feature types had to be converted to LineStrings for export.
+            // The dirty flag will make sure the line features in the list are refreshed back to "Line" types next time that page is viewed.
+            DataEntryListViewModel.isDirty = true;
+
             return rootobject;
         }
 
