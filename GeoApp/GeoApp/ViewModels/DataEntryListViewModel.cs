@@ -23,6 +23,8 @@ namespace GeoApp {
 
         private bool firstRefreshOccured = false;
 
+        private bool _isBusy = false;
+
         private List<Feature> _entryListSource;
         public List<Feature> EntryListSource {
             get { return _entryListSource; }
@@ -45,19 +47,37 @@ namespace GeoApp {
         /// View-model constructor.
         /// </summary>
         public DataEntryListViewModel() {
-            ButtonClickedCommand = new Command(async () => {
-                await HomePage.Instance.ShowDetailFormOptions();
-            });
-
-            ItemTappedCommand = new Command<Feature> (async (data) => {
-                await HomePage.Instance.ShowExistingDetailFormPage(data);
-            });
-
-            RefreshListCommand = new Command(() => {
-                ExecuteRefreshListCommand();
-            });
-
+            ButtonClickedCommand = new Command(async () => await ExecuteButtonClickedCommand());
+            ItemTappedCommand = new Command<Feature> (async (data) => await ExecuteItemTappedCommand(data));
+            RefreshListCommand = new Command(() => ExecuteRefreshListCommand());
             EditEntryCommand = new Command<Feature>((feature) => EditFeatureEntry(feature));
+        }
+
+        /// <summary>
+        /// Opens the ExistingDetailFormView page showing more detail about the feature the user tapped on in the list.
+        /// </summary>
+        /// <param name="data">Feature tapped on.</param>
+        /// <returns></returns>
+        private async Task ExecuteItemTappedCommand(Feature data) {
+            if (_isBusy) return;
+            _isBusy = true;
+
+            await HomePage.Instance.ShowExistingDetailFormPage(data);
+
+            _isBusy = false;
+        }
+
+        /// <summary>
+        /// Opens up the dialog box where the user can select between Point, Line, and Polygon feature types to add.
+        /// </summary>
+        /// <returns></returns>
+        private async Task ExecuteButtonClickedCommand() {
+            if (_isBusy) return;
+            _isBusy = true;
+
+            await HomePage.Instance.ShowDetailFormOptions();
+
+            _isBusy = false;
         }
 
         /// <summary>
@@ -101,7 +121,12 @@ namespace GeoApp {
         /// </summary>
         /// <param name="feature">Feature to edit.</param>
         private void EditFeatureEntry(Feature feature) {
+            if (_isBusy) return;
+            _isBusy = true;
+
             HomePage.Instance.ShowEditDetailFormPage(feature);
+
+            _isBusy = false;
         }
     }
 }
