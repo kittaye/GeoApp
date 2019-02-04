@@ -37,6 +37,7 @@ namespace GeoApp
         public GoogleMapViewModel()
         {
             RefreashGeoDataCommand = new Command( () => {
+                CleanFeaturesOnMap();
                 DrawAllGeoDataOnTheMap();
             });
 
@@ -96,6 +97,13 @@ namespace GeoApp
             {
                 throw ex;
             }
+        }
+
+        public void CleanFeaturesOnMap() 
+        {
+            Pins.Clear();
+            Polygons.Clear();
+            Polylines.Clear();
         }
 
     }

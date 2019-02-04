@@ -16,8 +16,10 @@ namespace GeoApp
         {
             base.OnAppearing();
 
+            // If refreash GeoDataCommand is available to Execute
             if ( viewModel.RefreashGeoDataCommand.CanExecute(null))
             {
+                // Refreash GeoData
                 viewModel.RefreashGeoDataCommand.Execute(null);
                 viewModel.LocationBtnClickedCommand.Execute(null);
             }
