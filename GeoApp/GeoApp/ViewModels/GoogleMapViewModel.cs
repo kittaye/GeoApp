@@ -14,6 +14,17 @@ namespace GeoApp
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<Polygon> Polygons { get; set; }
         public ObservableCollection<Polyline> Polylines { get; set; }
+        private string shape_filter = "All";
+
+        public string Shape_filter
+        {
+            get { return shape_filter; }
+            set
+            {
+                shape_filter = value;
+                OnPropertyChanged();
+            }
+        }
 
         // Initialize the map position to Brisbane City at the beginning
         private MapSpan _region = MapSpan.FromCenterAndRadius(
@@ -37,7 +48,6 @@ namespace GeoApp
         public GoogleMapViewModel()
         {
             RefreashGeoDataCommand = new Command( () => {
-                CleanFeaturesOnMap();
                 DrawAllGeoDataOnTheMap();
             });
 
@@ -46,26 +56,29 @@ namespace GeoApp
 
         public void DrawAllGeoDataOnTheMap() 
         {
+            // Clean all the data on the map first
+            CleanFeaturesOnMap();
             // Using CurrentFeature to draw the geodata on the map
             App.FeaturesManager.CurrentFeatures.ForEach((Feature feature) =>
             {
                 var points = feature.properties.xamarincoordinates;
-                switch (feature.geometry.type)
+
+                if ( feature.geometry.type.Equals("Point") && (shape_filter.Equals("Point") || shape_filter.Equals("All") ) )
                 {
-                    case "Point":
-                        GoogleMapManager.DropPins(Pins, feature.properties.name, points);
-                        break;
-                    case "Line":
-                        GoogleMapManager.DrawLine(Polylines, points);
-                        break;
-                    case "Polygon":
-                        GoogleMapManager.DrawPolygon(Polygons, points);
-                        break;
+                    GoogleMapManager.DropPins(Pins, feature.properties.name, points);
+                }
+                else if (feature.geometry.type.Equals("Line") && (shape_filter.Equals("Line") || shape_filter.Equals("All")) )
+                {
+                    GoogleMapManager.DrawLine(Polylines, points);
+                }
+                else if (feature.geometry.type.Equals("Polygon") && (shape_filter.Equals("Polygon") || shape_filter.Equals("All")))
+                {
+                    GoogleMapManager.DrawPolygon(Polygons, points);
                 }
             });
         }
-        // use it when you need to implement any function need to click the map
 
+        // use it when you need to implement any function need to click the map
         public Command<MapClickedEventArgs> MapClickedCommand = new Command<MapClickedEventArgs>( async (args) =>
         {
             await Application.Current.MainPage.DisplayAlert("Coordinate", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
