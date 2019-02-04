@@ -15,19 +15,11 @@
     
     <StackLayout Orientation="Vertical">
         
-      <StackLayout Orientation="Horizontal" >
+      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
             
         <Label Text="Shape: "/>
-        <Picker SelectedItem="{Binding Shape_filter}">
-                
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                  <x:String>All</x:String>
-                  <x:String>Point</x:String>
-                  <x:String>Line</x:String>
-                  <x:String>Polygon</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
+        <Picker ItemsSource="{Binding Shape_options}"
+                SelectedItem="{Binding Shape_filter}">
                 
         <Picker.Behaviors>
               <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">

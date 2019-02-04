@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,6 +15,24 @@ namespace GeoApp
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<Polygon> Polygons { get; set; }
         public ObservableCollection<Polyline> Polylines { get; set; }
+
+        // Shape Options for the Shape Picker
+        private List<string> shape_options = new List<string>
+        {
+            "All", "Point","Line","Polygon"
+        };
+
+        public List<string> Shape_options
+        {
+            get { return shape_options; }
+            set
+            {
+                shape_options = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Filter Currently selected item
         private string shape_filter = "All";
 
         public string Shape_filter
@@ -32,6 +51,7 @@ namespace GeoApp
                 Distance.FromKilometers(2)
             );
 
+        // Variable for changing the map position
         public MapSpan Region
         {
             get => _region;
@@ -47,14 +67,13 @@ namespace GeoApp
 
         public GoogleMapViewModel()
         {
-            RefreashGeoDataCommand = new Command( () => {
-                DrawAllGeoDataOnTheMap();
-            });
+            RefreashGeoDataCommand = new Command( () => DrawGeoDataOnTheMap());
 
             LocationBtnClickedCommand = new Command(async () => await RedirectMap() );
+
         }
 
-        public void DrawAllGeoDataOnTheMap() 
+        public void DrawGeoDataOnTheMap() 
         {
             // Clean all the data on the map first
             CleanFeaturesOnMap();
