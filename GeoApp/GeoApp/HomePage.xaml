@@ -9,7 +9,7 @@
             xmlns:local="clr-namespace:GeoApp;assembly=GeoApp"
             x:Class="GeoApp.HomePage">
     <local:DataEntryListView Icon="data_icon" AutomationId="data_icon"/>
-    <local:GoogleMapView Icon="map_icon" AutomationId="map_icon"/>
+    <local:MapView Icon="map_icon" AutomationId="map_icon"/>
     <local:ImportView Icon="import_icon" AutomationId="import_icon"/>
     <local:ExportView Icon="export_icon" AutomationId="export_icon"/>
 </TabbedPage>
