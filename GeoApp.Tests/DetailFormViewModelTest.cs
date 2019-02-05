@@ -61,49 +61,5 @@ namespace GeoApp.Tests {
             Assert.AreEqual(viewModelLine.GeolocationPoints.Count, 3);
             Assert.AreEqual(viewModelPoly.GeolocationPoints.Count, 4);
         }
-
-        /// <summary>
-        /// Tests adding metadatafield 
-        /// </summary>
-        [Test]
-        public void TestAddMetadataField() {
-            MetadataEntry item = new MetadataEntry("Test", "mytest", Keyboard.Default);
-
-            viewModelPoint.MetadataEntries.Add(item);
-            viewModelPoint.MetadataEntries.Add(item);
-            viewModelLine.MetadataEntries.Add(item);
-            viewModelPoly.MetadataEntries.Add(item);
-            viewModelPoly.MetadataEntries.Add(item);
-            viewModelPoly.MetadataEntries.Add(item);
-
-            Assert.AreEqual(viewModelPoint.MetadataEntries.Count, 2);
-            Assert.AreEqual(viewModelLine.MetadataEntries.Count, 1);
-            Assert.AreEqual(viewModelPoly.MetadataEntries.Count, 3);
-        }
-
-
-        /// <summary>
-        /// Tests deletion of metadata entry from the list
-        /// </summary>
-        [Test]
-        public void TestDeleteMetaDataField() {
-            MetadataEntry item = new MetadataEntry("Test", "mytest", Keyboard.Default);
-
-            viewModelPoint.MetadataEntries.Add(item);
-            viewModelPoint.MetadataEntries.Add(item);
-            viewModelLine.MetadataEntries.Add(item);
-            viewModelPoly.MetadataEntries.Add(item);
-            viewModelPoly.MetadataEntries.Add(item);
-            viewModelPoly.MetadataEntries.Add(item);
-
-            viewModelPoly.MetadataEntries.Remove(item);
-            viewModelPoly.MetadataEntries.Remove(item);
-            viewModelLine.MetadataEntries.Remove(item);
-            viewModelPoint.MetadataEntries.Remove(item);
-
-            Assert.AreEqual(viewModelPoint.MetadataEntries.Count, 1);
-            Assert.AreEqual(viewModelLine.MetadataEntries.Count, 0);
-            Assert.AreEqual(viewModelPoly.MetadataEntries.Count, 1);
-        }
     }
 }

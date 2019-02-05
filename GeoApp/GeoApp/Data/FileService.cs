@@ -79,12 +79,6 @@ namespace GeoApp {
                         feature.properties.date = DateTime.Now.ToShortDateString();
                     }
 
-                    // Initialise xamarin coordinates list and metadata fields list if it is not already set.
-                    feature.properties.xamarincoordinates = new List<Point>();
-                    if (feature.properties.metadatafields == null || feature.properties.metadatafields.Count == 0) {
-                        feature.properties.metadatafields = new Dictionary<string, object>();
-                    }
-
                     // Determine the icon used for each feature based on it's geometry type.
                     if (feature.geometry.type == "Point") {
                         feature.properties.typeIconPath = "point_icon.png";
@@ -96,6 +90,9 @@ namespace GeoApp {
                         Debug.WriteLine($"\n\n::::::::::::::::::::::::INVALID TYPE: {feature.geometry.type}");
                         throw new Exception();
                     }
+
+                    // Initialise xamarin coordinates list.
+                    feature.properties.xamarincoordinates = new List<Point>();
 
                     // Properly deserialize the list of coordinates into an app-use-specific list of Points (XamarinCoordinates).
                     {
@@ -155,7 +152,7 @@ namespace GeoApp {
         {
             // If this is a newly added feature, generate an ID and add it immediately.
             if (feature.properties.id == AppConstants.NEW_ENTRY_ID) {
-                feature.properties.id = TryGetUniqueFeatureID(feature.properties.id);
+                TryGetUniqueFeatureID(feature);
                 App.FeaturesManager.CurrentFeatures.Add(feature);
             } else {
                 // Otherwise we are saving over an existing feature, so override its contents without changing ID.
@@ -179,22 +176,25 @@ namespace GeoApp {
             return true;
         }
 
+        public async Task SaveAllCurrentFeaturesAsync() {
+            await SaveCurrentFeaturesToEmbeddedFile();
+        }
+
         /// <summary>
         /// If necessary, creates a new ID that is unique to all current features stored.
         /// </summary>
         /// <returns>The original ID if no clashes were found, else a new unique ID.</returns>
-        private int TryGetUniqueFeatureID(int currentlyUsedID) {
-            int result = currentlyUsedID;
+        public static void TryGetUniqueFeatureID(Feature featureToCheck) {
             bool validID = false;
 
             while (validID == false) {
                 validID = true;
 
-                if(result == AppConstants.NEW_ENTRY_ID) {
+                if(featureToCheck.properties.id == AppConstants.NEW_ENTRY_ID) {
                     validID = false;
                 } else {
                     foreach (var feature in App.FeaturesManager.CurrentFeatures) {
-                        if (result == feature.properties.id) {
+                        if (featureToCheck.properties.id == feature.properties.id && featureToCheck != feature) {
                             validID = false;
                             break;
                         }
@@ -202,10 +202,9 @@ namespace GeoApp {
                 }
 
                 if(validID == false) {
-                    result = DateTime.Now.GetHashCode();
+                    featureToCheck.properties.id = DateTime.Now.GetHashCode();
                 }
             }
-            return result;
         }
 
         /// <summary>
@@ -260,6 +259,9 @@ namespace GeoApp {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFile featuresFile = await GetEmbeddedFile();
             await featuresFile.WriteAllTextAsync(json);
+
+            // Mark the features list as dirty so it can refresh.
+            DataEntryListViewModel.isDirty = true;
         }
 
         /// <summary>
@@ -294,7 +296,7 @@ namespace GeoApp {
 
                 // Loop through all imported features one by one, ensuring there are no ID clashes.
                 foreach (var importedFeature in importedRootObject.features) {
-                    importedFeature.properties.id = TryGetUniqueFeatureID(importedFeature.properties.id);
+                    TryGetUniqueFeatureID(importedFeature);
                     App.FeaturesManager.CurrentFeatures.Add(importedFeature);
                 }
 
@@ -322,6 +324,11 @@ namespace GeoApp {
                     feature.geometry.type = "LineString";
                 }
             }
+
+            // Mark the features list as being modified, since the feature types had to be converted to LineStrings for export.
+            // The dirty flag will make sure the line features in the list are refreshed back to "Line" types next time that page is viewed.
+            DataEntryListViewModel.isDirty = true;
+
             return rootobject;
         }
 
