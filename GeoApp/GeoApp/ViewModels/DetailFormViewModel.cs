@@ -38,6 +38,8 @@ namespace GeoApp {
         // A reference to this entry's type of structure.
         private string thisEntryType;
 
+        private bool _isBusy = false;
+
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
         private string _dateEntry;
@@ -218,8 +220,13 @@ namespace GeoApp {
         /// </summary>
         /// <returns></returns>
         private void AddPoint() {
+            if (_isBusy) return;
+            _isBusy = true;
+
             GeolocationPoints.Add(new Point(0, 0, 0));
             NumPointFields++;
+
+            _isBusy = false;
         }
 
         /// <summary>
@@ -227,8 +234,13 @@ namespace GeoApp {
         /// </summary>
         /// <param name="item">Item to delete</param>
         private void DeletePoint(Point item) {
+            if (_isBusy) return;
+            _isBusy = true;
+
             GeolocationPoints.Remove(item);
             NumPointFields--;
+
+            _isBusy = false;
         }
 
         /// <summary>
@@ -236,17 +248,25 @@ namespace GeoApp {
         /// </summary>
         /// <returns></returns>
         private async Task DeleteFeatureEntry() {
+            if (_isBusy) return;
+            _isBusy = true;
+
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
             if (yesResponse) {
                 await App.FeaturesManager.DeleteFeatureAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopAsync();
             }
+
+            _isBusy = false;
         }
 
         /// <summary>
         /// Saves a new or edited feature to the embedded file.
         /// </summary>
         async void OnSaveUpdateActivated() {
+            if (_isBusy) return;
+            _isBusy = true;
+
             // Ensure geolocation points are only accurate up to the specified digit precision.
             foreach (var point in GeolocationPoints) {
                 AppConstants.RoundGPSPosition(point);
@@ -261,6 +281,8 @@ namespace GeoApp {
 
             await App.FeaturesManager.SaveFeatureAsync(featureToSave);
             await HomePage.Instance.Navigation.PopAsync();
+
+            _isBusy = false;
         }
 
         /// <summary>
