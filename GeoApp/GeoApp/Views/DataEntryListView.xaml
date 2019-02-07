@@ -44,8 +44,9 @@
                                 <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
                                 <Image Source="{Binding properties.typeIconPath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <Label Text="{Binding properties.name}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" LineBreakMode="TailTruncation"/>
-                                <Label Text="{Binding geometry.type}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-                                <Button Image="edit_icon.png" Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" BorderRadius="2" BackgroundColor="Transparent" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="StartAndExpand"/>
+                                <Label Text="{Binding geometry.type}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" LineBreakMode="TailTruncation"/>
+                                <Label Text="{Binding properties.authorId, StringFormat='Author: {0}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="2" LineBreakMode="TailTruncation"/>
+                                <Button Image="edit_icon.png" Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" BorderRadius="2" BackgroundColor="Transparent" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="StartAndExpand"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

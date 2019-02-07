@@ -19,6 +19,14 @@ namespace GeoApp {
             InitializeComponent();
             FeaturesManager = new FeaturesManager(new FileService());
             MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default };
+
+            // Uncomment this to clear your set user ID.
+            //Application.Current.Properties.Clear();
+
+            // If the user ID hasn't been set yet, prompt the user to create one upon app launch.
+            if (Application.Current.Properties.ContainsKey("UserID") == false) {
+                MainPage.Navigation.PushModalAsync(new IDFormView());
+            }
         }
 
         private async Task CheckLocationPermission() {
