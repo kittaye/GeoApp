@@ -42,6 +42,9 @@
     <Compile Update="Views\ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\IDFormView.xaml.cs">
+      <DependentUpon>IDFormView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ImportView.xaml.cs">
       <DependentUpon>ImportView.xaml</DependentUpon>
     </Compile>

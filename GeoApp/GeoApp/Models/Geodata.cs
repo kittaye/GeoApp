@@ -17,6 +17,7 @@ namespace GeoApp
     public class Properties
     {
         public int id { get; set; }
+        public string authorId { get; set; }
         public string metadataStringValue { get; set; }
         public int metadataIntegerValue { get; set; }
         public float metadataFloatValue { get; set; }

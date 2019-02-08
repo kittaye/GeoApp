@@ -299,6 +299,13 @@ namespace GeoApp {
             // otherwise an ID will already be set for editing entries.
             feature.properties.id = thisEntryID;
 
+            if (Application.Current.Properties.ContainsKey("UserID")) {
+                feature.properties.authorId = Application.Current.Properties["UserID"] as string;
+            } else {
+                Debug.Print("=======================This should never happen!=========================");
+                feature.properties.authorId = string.Empty;
+            }
+
             // Name and date of the feature.
             feature.properties.name = NameEntry;
             feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
