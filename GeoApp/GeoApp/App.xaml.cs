@@ -17,15 +17,15 @@ namespace GeoApp {
             Task.Run(async () => { await CheckLocationPermission(); });
 
             InitializeComponent();
+            FeaturesManager = new FeaturesManager(new FileService());
+            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default };
 
             // Uncomment this to clear your set user ID.
             //Application.Current.Properties.Clear();
 
             // If the user ID hasn't been set yet, prompt the user to create one upon app launch.
             if (Application.Current.Properties.ContainsKey("UserID") == false) {
-                LoadUserIdInputPage();
-            } else {
-                LoadMainPage();
+                MainPage.Navigation.PushModalAsync(new IDFormView());
             }
         }
 
@@ -43,16 +43,6 @@ namespace GeoApp {
             } catch (Exception ex) {
                 throw ex;
             }
-        }
-
-        private void LoadUserIdInputPage() {
-            LoadMainPage();
-            MainPage.Navigation.PushModalAsync(new IDFormView());
-        }
-
-        private void LoadMainPage() {
-            FeaturesManager = new FeaturesManager(new FileService());
-            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default };
         }
 
         protected override void OnStart() {
