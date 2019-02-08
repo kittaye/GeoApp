@@ -38,6 +38,14 @@ namespace GeoApp.Droid {
             LoadApplication(new App());
         }
 
+        protected override void OnResume() {
+            base.OnResume();
+
+            Android.Support.V7.Widget.Toolbar toolbar = this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
+                SetSupportActionBar(toolbar);
+        }
+
         /// <summary>
         /// Handle runtime permissions
         /// https://docs.microsoft.com/en-us/xamarin/essentials/get-started?context=xamarin%2Fxamarin-forms&tabs=windows%2Candroid
@@ -51,11 +59,14 @@ namespace GeoApp.Droid {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public override void OnBackPressed() {
-            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed)) {
-                Debug.WriteLine("Android back button: There are some pages in the PopupStack");
+        public override bool OnOptionsItemSelected(IMenuItem item) {
+            // Check if the selected toolbar button's id equals the back button id.
+            if (item.ItemId == Android.Resource.Id.Home) {
+                // If so, override it so it always takes the user straight back to the main page.
+                HomePage.Instance.Navigation.PopToRootAsync();
+                return false;
             } else {
-                Debug.WriteLine("Android back button: There are not any pages in the PopupStack");
+                return base.OnOptionsItemSelected(item);
             }
         }
     }

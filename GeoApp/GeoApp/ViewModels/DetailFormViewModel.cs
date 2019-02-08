@@ -254,7 +254,7 @@ namespace GeoApp {
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
             if (yesResponse) {
                 await App.FeaturesManager.DeleteFeatureAsync(thisEntryID);
-                await HomePage.Instance.Navigation.PopAsync();
+                await HomePage.Instance.Navigation.PopToRootAsync();
             }
 
             _isBusy = false;
@@ -280,7 +280,7 @@ namespace GeoApp {
             Feature featureToSave = CreateFeatureFromInput();
 
             await App.FeaturesManager.SaveFeatureAsync(featureToSave);
-            await HomePage.Instance.Navigation.PopAsync();
+            await HomePage.Instance.Navigation.PopToRootAsync();
 
             _isBusy = false;
         }
