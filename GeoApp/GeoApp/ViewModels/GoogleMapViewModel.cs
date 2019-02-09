@@ -12,22 +12,19 @@ namespace GeoApp
     public class GoogleMapViewModel: ViewModelBase
     {
 
+        // Variables
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<Polygon> Polygons { get; set; }
         public ObservableCollection<Polyline> Polylines { get; set; }
 
-        // Shape Options for the Shape Picker
-        private List<string> shape_options = new List<string>
-        {
-            "All", "Point","Line","Polygon"
-        };
-
+        // Related to Shape Filter
         public List<string> Shape_options
         {
-            get { return shape_options; }
+            get { return new List<string> { "All", "Point","Line","Polygon" }; }
+
             set
             {
-                shape_options = value;
+                Shape_options = value;
                 OnPropertyChanged();
             }
         }
@@ -41,6 +38,31 @@ namespace GeoApp
             set
             {
                 shape_filter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Related to Shape Filter
+        public List<string> Date_options
+        {
+            get { return new List<string> { "All", "Today", "Last 7 days", "Last month" }; }
+
+            set
+            {
+                Date_options = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Filter Currently selected item
+        private string date_filter = "All";
+
+        public string Date_filter
+        {
+            get { return date_filter; }
+            set
+            {
+                date_filter = value;
                 OnPropertyChanged();
             }
         }
@@ -68,7 +90,6 @@ namespace GeoApp
         public GoogleMapViewModel()
         {
             RefreashGeoDataCommand = new Command( () => DrawGeoDataOnTheMap());
-
             LocationBtnClickedCommand = new Command(async () => await RedirectMap() );
 
         }
@@ -82,17 +103,32 @@ namespace GeoApp
             {
                 var points = feature.properties.xamarincoordinates;
 
-                if ( feature.geometry.type.Equals("Point") && (shape_filter.Equals("Point") || shape_filter.Equals("All") ) )
+                // One day before the feature, so it works for showing all feature
+                DateTime beforeDate = DateTime.Parse(feature.properties.date).AddDays(-1);
+
+                if (Date_filter.Equals("Today"))
+                    beforeDate = DateTime.Today.AddDays(-1);
+                else if (Date_filter.Equals("Last 7 days"))
+                    beforeDate = DateTime.Now.AddDays(-7);
+                else if (Date_filter.Equals("Last month"))
+                    beforeDate = DateTime.Now.AddDays(-30);
+ 
+                // feature is earily than before date
+                if (DateTime.Compare(beforeDate, DateTime.Parse(feature.properties.date)) < 0)
                 {
-                    GoogleMapManager.DropPins(Pins, feature.properties.name, points);
-                }
-                else if (feature.geometry.type.Equals("Line") && (shape_filter.Equals("Line") || shape_filter.Equals("All")) )
-                {
-                    GoogleMapManager.DrawLine(Polylines, points);
-                }
-                else if (feature.geometry.type.Equals("Polygon") && (shape_filter.Equals("Polygon") || shape_filter.Equals("All")))
-                {
-                    GoogleMapManager.DrawPolygon(Polygons, points);
+                    if (feature.geometry.type.Equals("Point") && (shape_filter.Equals("Point") || shape_filter.Equals("All")))
+                    {
+                        GoogleMapManager.DropPins(Pins, feature.properties.name, points);
+                    }
+                    else if (feature.geometry.type.Equals("Line") && (shape_filter.Equals("Line") || shape_filter.Equals("All")))
+                    {
+                        GoogleMapManager.DrawLine(Polylines, points);
+                    }
+                    else if (feature.geometry.type.Equals("Polygon") && (shape_filter.Equals("Polygon") || shape_filter.Equals("All")))
+                    {
+                        GoogleMapManager.DrawPolygon(Polygons, points);
+                    }
+
                 }
             });
         }
