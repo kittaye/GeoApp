@@ -33,6 +33,9 @@ namespace GeoApp {
                         myMap.UiSettings.MyLocationButtonEnabled = true;
                         myMap.UiSettings.ZoomControlsEnabled = false;
                     });
+                } else {
+                    // I don't think this is ideal.
+                    await InitGoogleMaps();
                 }
             } catch (Exception ex) {
                 throw ex;
