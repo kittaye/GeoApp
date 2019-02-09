@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -6,10 +8,8 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
-namespace GeoApp
-{
-    public class GoogleMapViewModel: ViewModelBase
-    {
+namespace GeoApp {
+    public class GoogleMapViewModel : ViewModelBase {
 
         public ObservableCollection<Pin> Pins { get; set; }
         public ObservableCollection<Polygon> Polygons { get; set; }
@@ -21,11 +21,9 @@ namespace GeoApp
                 Distance.FromKilometers(2)
             );
 
-        public MapSpan Region
-        {
+        public MapSpan Region {
             get => _region;
-            set
-            {
+            set {
                 _region = value;
                 OnPropertyChanged();
             }
@@ -34,23 +32,19 @@ namespace GeoApp
         public ICommand RefreashGeoDataCommand { set; get; }
         public ICommand LocationBtnClickedCommand { set; get; }
 
-        public GoogleMapViewModel()
-        {
-            RefreashGeoDataCommand = new Command( () => {
+        public GoogleMapViewModel() {
+            RefreashGeoDataCommand = new Command(() => {
                 DrawAllGeoDataOnTheMap();
             });
 
-            LocationBtnClickedCommand = new Command(async () => await RedirectMap() );
+            LocationBtnClickedCommand = new Command(async () => await RedirectMap());
         }
 
-        public void DrawAllGeoDataOnTheMap() 
-        {
+        public void DrawAllGeoDataOnTheMap() {
             // Using CurrentFeature to draw the geodata on the map
-            App.FeaturesManager.CurrentFeatures.ForEach((Feature feature) =>
-            {
+            App.FeaturesManager.CurrentFeatures.ForEach((Feature feature) => {
                 var points = feature.properties.xamarincoordinates;
-                switch (feature.geometry.type)
-                {
+                switch (feature.geometry.type) {
                     case "Point":
                         GoogleMapManager.DropPins(Pins, feature.properties.name, points);
                         break;
@@ -65,35 +59,25 @@ namespace GeoApp
         }
         // use it when you need to implement any function need to click the map
 
-        public Command<MapClickedEventArgs> MapClickedCommand = new Command<MapClickedEventArgs>( async (args) =>
-        {
+        public Command<MapClickedEventArgs> MapClickedCommand = new Command<MapClickedEventArgs>(async (args) => {
             await Application.Current.MainPage.DisplayAlert("Coordinate", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
         });
 
-        public async Task RedirectMap()
-        {
-            try
-            {
+        public async Task RedirectMap() {
+            try {
                 var location = await Geolocation.GetLastKnownLocationAsync();
 
-                if (location != null)
-                {
+                if (location != null) {
                     Region = MapSpan.FromCenterAndRadius(
                         new Position(location.Latitude, location.Longitude),
                         Distance.FromKilometers(2)
                     );
                 }
-            }
-            catch (FeatureNotSupportedException fnsEx)
-            {
+            } catch (FeatureNotSupportedException fnsEx) {
                 throw fnsEx;
-            }
-            catch (PermissionException pEx)
-            {
+            } catch (PermissionException pEx) {
                 throw pEx;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 throw ex;
             }
         }
