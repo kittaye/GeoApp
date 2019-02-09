@@ -39,7 +39,7 @@ namespace GeoApp.Droid {
         }
 
         protected override void OnResume() {
-            //base.OnResume();
+            base.OnResume();
 
             //Android.Support.V7.Widget.Toolbar toolbar = this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             //if (toolbar != null)
