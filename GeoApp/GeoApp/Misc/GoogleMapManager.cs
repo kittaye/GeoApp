@@ -18,6 +18,7 @@ namespace GeoApp
                 Pins.Add(new Pin
                 {
                     Label = $"{name}",
+                    Address = $"Lat: {point.Latitude} \nLong:{point.Longitude}",
                     Position = new Position(point.Latitude, point.Longitude)
                 });
             });
@@ -35,11 +36,13 @@ namespace GeoApp
             };
 
             var message = "";
+            var index = 0;
 
             points.ForEach((Point point) =>
             {
+                index++;
                 line.Positions.Add(new Position(point.Latitude, point.Longitude));
-                message += $"Coordinate : Lat {point.Latitude} , Long {point.Longitude} \n";
+                message += $"Coordinate{index} : Lat {point.Latitude} , Long {point.Longitude} \n";
             });
 
             line.Clicked += (sender, e) => {
@@ -62,11 +65,13 @@ namespace GeoApp
             };
 
             var message = "";
+            var index = 0;
 
             points.ForEach((Point point) =>
             {
+                index++;
                 polygon.Positions.Add(new Position(point.Latitude, point.Longitude));
-                message += $"Coordinate : Lat {point.Latitude} , Long {point.Longitude} \n";
+                message += $"Coordinate{index} : Lat {point.Latitude} , Long {point.Longitude} \n";
             });
 
             polygon.Clicked += (sender, e) => {
