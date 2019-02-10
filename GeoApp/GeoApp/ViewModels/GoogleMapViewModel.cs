@@ -122,11 +122,11 @@ namespace GeoApp
                     }
                     else if (feature.geometry.type.Equals("Line") && (shape_filter.Equals("Line") || shape_filter.Equals("All")))
                     {
-                        GoogleMapManager.DrawLine(Polylines, points);
+                        GoogleMapManager.DrawLine(Polylines, feature.properties.name, points);
                     }
                     else if (feature.geometry.type.Equals("Polygon") && (shape_filter.Equals("Polygon") || shape_filter.Equals("All")))
                     {
-                        GoogleMapManager.DrawPolygon(Polygons, points);
+                        GoogleMapManager.DrawPolygon(Polygons, feature.properties.name, points);
                     }
 
                 }
