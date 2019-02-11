@@ -38,7 +38,7 @@
                     <Entry AutomationId="nameEntry" x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
-                    <DatePicker AutomationId="dateEntry" x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                    <DatePicker Format="dd/MM/yyyy" AutomationId="dateEntry" x:Name="dateEntry" Date="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
                 </Grid>
             </StackLayout>
 

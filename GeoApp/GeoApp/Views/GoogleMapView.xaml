@@ -18,19 +18,32 @@
       <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
             
         <Label Text="Shape: "/>
+            
         <Picker ItemsSource="{Binding Shape_options}"
-                SelectedItem="{Binding Shape_filter}">
-                
-        <Picker.Behaviors>
-              <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-                  <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
-              </behaviors:EventHandlerBehavior>
-        </Picker.Behaviors>
-                
+                SelectedItem="{Binding Shape_filter}">   
+            <Picker.Behaviors>
+                  <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                      <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
+                  </behaviors:EventHandlerBehavior>
+            </Picker.Behaviors>
         </Picker>
             
       </StackLayout>
         
+      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+            
+        <Label Text="Date: "/>
+            
+        <Picker ItemsSource="{Binding Date_options}"
+                SelectedItem="{Binding Date_filter}">   
+            <Picker.Behaviors>
+                  <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                      <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
+                  </behaviors:EventHandlerBehavior>
+            </Picker.Behaviors>
+        </Picker>
+            
+      </StackLayout>       
       <googleMaps:Map x:name="myMap" 
                     IsShowingUser="true"
                     MyLocationEnabled="true" 

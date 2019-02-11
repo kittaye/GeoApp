@@ -72,9 +72,13 @@ namespace GeoApp {
                         feature.geometry.type = "Line";
                     }
 
-                    // If author ID hasn't been set, default it to an empty string.
+                    // If author ID hasn't been set on the feature, default it to the user's ID.
                     if (string.IsNullOrWhiteSpace(feature.properties.authorId)) {
-                        feature.properties.authorId = string.Empty;
+                        if (App.Current.Properties.ContainsKey("UserID")) {
+                            feature.properties.authorId = App.Current.Properties["UserID"] as string;
+                        } else {
+                            feature.properties.authorId = string.Empty;
+                        }
                     }
 
                     // If the date field is missing or invalid, convert it into DateTime.Now.
