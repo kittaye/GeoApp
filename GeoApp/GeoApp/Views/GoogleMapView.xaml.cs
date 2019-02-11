@@ -7,11 +7,11 @@ using Xamarin.Forms;
 namespace GeoApp {
     public partial class GoogleMapView : ContentPage {
 
-        public GoogleMapView()
-        {
-            InitializeComponent();
-            myMap.UiSettings.MyLocationButtonEnabled = true;
-            myMap.UiSettings.ZoomControlsEnabled = false;
+        private bool locationPermissionEnabled;
+
+        public GoogleMapView() {
+            locationPermissionEnabled = false;
+            Task.Run(async () => { await InitGoogleMaps(); });
         }
 
         /// <summary>
@@ -22,33 +22,6 @@ namespace GeoApp {
             try {
                 var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
 
-            if ( viewModel.RefreashGeoDataCommand.CanExecute(null))
-            {
-                viewModel.RefreashGeoDataCommand.Execute(null);
-                viewModel.LocationBtnClickedCommand.Execute(null);
-            }
-        }
-
-        protected override void OnAppearing() {
-            base.OnAppearing();
-            // Maps must be initialised 
-            if (locationPermissionEnabled == true) {
-                if (viewModel.RefreashGeoDataCommand.CanExecute(null)) {
-                    viewModel.RefreashGeoDataCommand.Execute(null);
-                    viewModel.LocationBtnClickedCommand.Execute(null);
-                }
-            } else {
-                HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise the map feature", "Ok");
-            }
-        }
-    }
-}
-
-        private bool locationPermissionEnabled;
-
-        public GoogleMapView() {
-            locationPermissionEnabled = false;
-            Task.Run(async () => { await InitGoogleMaps(); });
                 if (status != PermissionStatus.Granted) {
                     // If the user accepts the permission get the resulting value and check the if the key exists
                     var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
@@ -71,3 +44,21 @@ namespace GeoApp {
                 }
             } catch (Exception ex) {
                 throw ex;
+            }
+        }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+            // Maps must be initialised 
+            if (locationPermissionEnabled == true) {
+                if (viewModel.RefreashGeoDataCommand.CanExecute(null)) {
+                    viewModel.RefreashGeoDataCommand.Execute(null);
+                    viewModel.LocationBtnClickedCommand.Execute(null);
+                }
+            } else {
+                HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise the map feature", "Ok");
+            }
+        }
+    }
+}
+
