@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:GeoApp"
              xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              BackgroundColor="Default"
              Title = "Maps">
     
@@ -12,7 +13,38 @@
         <local:GoogleMapViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
     
-    <googleMaps:Map x:name="myMap" 
+    <StackLayout Orientation="Vertical">
+        
+      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+            
+        <Label Text="Shape: "/>
+            
+        <Picker ItemsSource="{Binding Shape_options}"
+                SelectedItem="{Binding Shape_filter}">   
+            <Picker.Behaviors>
+                  <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                      <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
+                  </behaviors:EventHandlerBehavior>
+            </Picker.Behaviors>
+        </Picker>
+            
+      </StackLayout>
+        
+      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+            
+        <Label Text="Date: "/>
+            
+        <Picker ItemsSource="{Binding Date_options}"
+                SelectedItem="{Binding Date_filter}">   
+            <Picker.Behaviors>
+                  <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                      <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
+                  </behaviors:EventHandlerBehavior>
+            </Picker.Behaviors>
+        </Picker>
+            
+      </StackLayout>       
+      <googleMaps:Map x:name="myMap" 
                     IsShowingUser="true"
                     MyLocationEnabled="true" 
                     x:Name="myMap">
@@ -36,6 +68,9 @@
             <bindings:UpdateRegionBehavior Region="{Binding Region}" />
            
         </googleMaps:Map.Behaviors>
-    </googleMaps:Map>
+        </googleMaps:Map>   
+    </StackLayout>
+    
+
     
 </ContentPage>

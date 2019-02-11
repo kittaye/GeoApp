@@ -29,6 +29,7 @@
     <PackageReference Include="Xamarin.Forms.Maps" Version="3.3.0.912540" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.0.4" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.2.0" />
+    <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
