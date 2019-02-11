@@ -16,12 +16,10 @@ namespace GeoApp {
         public ObservableCollection<Polyline> Polylines { get; set; }
 
         // Related to Shape Filter
-        public List<string> Shape_options
-        {
-            get { return new List<string> { "All", "Point","Line","Polygon" }; }
+        public List<string> Shape_options {
+            get { return new List<string> { "All", "Point", "Line", "Polygon" }; }
 
-            set
-            {
+            set {
                 Shape_options = value;
                 OnPropertyChanged();
             }
@@ -30,23 +28,19 @@ namespace GeoApp {
         // Filter Currently selected item
         private string shape_filter = "All";
 
-        public string Shape_filter
-        {
+        public string Shape_filter {
             get { return shape_filter; }
-            set
-            {
+            set {
                 shape_filter = value;
                 OnPropertyChanged();
             }
         }
 
         // Related to Shape Filter
-        public List<string> Date_options
-        {
+        public List<string> Date_options {
             get { return new List<string> { "All", "Today", "Last 7 days", "Last month" }; }
 
-            set
-            {
+            set {
                 Date_options = value;
                 OnPropertyChanged();
             }
@@ -55,11 +49,9 @@ namespace GeoApp {
         // Filter Currently selected item
         private string date_filter = "All";
 
-        public string Date_filter
-        {
+        public string Date_filter {
             get { return date_filter; }
-            set
-            {
+            set {
                 date_filter = value;
                 OnPropertyChanged();
             }
@@ -90,8 +82,9 @@ namespace GeoApp {
             LocationBtnClickedCommand = new Command(async () => await RedirectMap());
         }
 
-        public void DrawAllGeoDataOnTheMap() 
-        {
+        public void DrawAllGeoDataOnTheMap() {
+            // Clean all the data on the map first
+            CleanFeaturesOnMap();
             // Using CurrentFeature to draw the geodata on the map
             App.FeaturesManager.CurrentFeatures.ForEach((Feature feature) => {
                 var points = feature.properties.xamarincoordinates;
@@ -105,20 +98,14 @@ namespace GeoApp {
                     beforeDate = DateTime.Now.AddDays(-7);
                 else if (Date_filter.Equals("Last month"))
                     beforeDate = DateTime.Now.AddDays(-30);
- 
+
                 // feature is earily than before date
-                if (DateTime.Compare(beforeDate, DateTime.Parse(feature.properties.date)) < 0)
-                {
-                    if (feature.geometry.type.Equals("Point") && (shape_filter.Equals("Point") || shape_filter.Equals("All")))
-                    {
+                if (DateTime.Compare(beforeDate, DateTime.Parse(feature.properties.date)) < 0) {
+                    if (feature.geometry.type.Equals("Point") && (shape_filter.Equals("Point") || shape_filter.Equals("All"))) {
                         GoogleMapManager.DropPins(Pins, feature.properties.name, points);
-                    }
-                    else if (feature.geometry.type.Equals("Line") && (shape_filter.Equals("Line") || shape_filter.Equals("All")))
-                    {
+                    } else if (feature.geometry.type.Equals("Line") && (shape_filter.Equals("Line") || shape_filter.Equals("All"))) {
                         GoogleMapManager.DrawLine(Polylines, feature.properties.name, points);
-                    }
-                    else if (feature.geometry.type.Equals("Polygon") && (shape_filter.Equals("Polygon") || shape_filter.Equals("All")))
-                    {
+                    } else if (feature.geometry.type.Equals("Polygon") && (shape_filter.Equals("Polygon") || shape_filter.Equals("All"))) {
                         GoogleMapManager.DrawPolygon(Polygons, feature.properties.name, points);
                     }
 
@@ -151,12 +138,10 @@ namespace GeoApp {
             }
         }
 
-        public void CleanFeaturesOnMap() 
-        {
+        public void CleanFeaturesOnMap() {
             Pins.Clear();
             Polygons.Clear();
             Polylines.Clear();
         }
-
     }
 }
