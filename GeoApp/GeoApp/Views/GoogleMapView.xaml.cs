@@ -7,7 +7,10 @@ using Xamarin.Forms;
 namespace GeoApp {
     public partial class GoogleMapView : ContentPage {
 
+        private bool locationPermissionEnabled;
+
         public GoogleMapView() {
+            locationPermissionEnabled = false;
             Task.Run(async () => { await InitGoogleMaps(); });
         }
 
@@ -32,10 +35,13 @@ namespace GeoApp {
                         InitializeComponent();
                         myMap.UiSettings.MyLocationButtonEnabled = true;
                         myMap.UiSettings.ZoomControlsEnabled = false;
+                        locationPermissionEnabled = true;
                     });
                 } else {
-                    // I don't think this is ideal.
-                    await InitGoogleMaps();
+                    Device.BeginInvokeOnMainThread(() => {
+                        HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise some features in the applcation", "Ok");
+                        locationPermissionEnabled = false;
+                    });
                 }
             } catch (Exception ex) {
                 throw ex;
@@ -44,10 +50,14 @@ namespace GeoApp {
 
         protected override void OnAppearing() {
             base.OnAppearing();
-
-            if (viewModel.RefreashGeoDataCommand.CanExecute(null)) {
-                viewModel.RefreashGeoDataCommand.Execute(null);
-                viewModel.LocationBtnClickedCommand.Execute(null);
+            // Maps must be initialised 
+            if (locationPermissionEnabled == true) {
+                if (viewModel.RefreashGeoDataCommand.CanExecute(null)) {
+                    viewModel.RefreashGeoDataCommand.Execute(null);
+                    viewModel.LocationBtnClickedCommand.Execute(null);
+                }
+            } else {
+                HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise the map feature", "Ok");
             }
         }
     }

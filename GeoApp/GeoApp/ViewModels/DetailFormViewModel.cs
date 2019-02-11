@@ -13,6 +13,8 @@ using GeoApp.Views.Popups;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
 namespace GeoApp {
     /// <summary>
@@ -189,27 +191,31 @@ namespace GeoApp {
         /// <param name="point">Point to set GPS data to.</param>
         private async Task GetGeoLocation(Point point) {
             try {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
                 // Disable interaction with entries to prevent errors.
                 GeolocationEntryEnabled = false;
                 LoadingIconActive = true;
 
-                // Gets current location of device (MORE ACCURATE, but slower)
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                var location = await Geolocation.GetLocationAsync(request);
+                if (status == PermissionStatus.Granted) {
+                    // Gets current location of device (MORE ACCURATE, but slower)
+                    var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                    var location = await Geolocation.GetLocationAsync(request);
 
-                // Re-enable interaction.
-                LoadingIconActive = false;
-                GeolocationEntryEnabled = true;
+                    // Re-enable interaction.
+                    LoadingIconActive = false;
+                    GeolocationEntryEnabled = true;
 
-                if (location != null) {
-                    point.Latitude = location.Latitude;
-                    point.Longitude = location.Longitude;
-                    point.Altitude = location.Altitude ?? 0.0;
+                    if (location != null) {
+                        point.Latitude = location.Latitude;
+                        point.Longitude = location.Longitude;
+                        point.Altitude = location.Altitude ?? 0.0;
+                    }
+                } else {
+                    await HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise this feature", "Ok");
+                    // Re-enable interaction.
+                    LoadingIconActive = false;
+                    GeolocationEntryEnabled = true;
                 }
-            } catch (FeatureNotSupportedException fnsEx) {
-                throw fnsEx;
-            } catch (PermissionException pEx) {
-                throw pEx;
             } catch (Exception ex) {
                 throw ex;
             }
