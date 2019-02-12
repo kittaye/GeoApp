@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace GeoApp {
+namespace GeoApp
+{
     /// <summary>
     /// View-model for the page that shows the list of data entries.
     /// </summary>
-    public class DataEntryListViewModel : ViewModelBase {
+    public class DataEntryListViewModel : ViewModelBase
+    {
         // Static flag that determines whether the features list should be updated or not.
         public static bool isDirty = true;
 
@@ -20,24 +22,29 @@ namespace GeoApp {
         public ICommand ItemTappedCommand { set; get; }
         public ICommand RefreshListCommand { set; get; }
         public ICommand EditEntryCommand { get; set; }
+        public ICommand DeleteEntryCommand { get; set; }
 
         private bool firstRefreshOccured = false;
 
         private bool _isBusy = false;
 
         private List<Feature> _entryListSource;
-        public List<Feature> EntryListSource {
+        public List<Feature> EntryListSource
+        {
             get { return _entryListSource; }
-            set {
+            set
+            {
                 _entryListSource = value;
                 OnPropertyChanged();
             }
         }
 
         private bool _isRefreshing;
-        public bool IsRefreshing {
+        public bool IsRefreshing
+        {
             get { return _isRefreshing; }
-            set {
+            set
+            {
                 _isRefreshing = value;
                 OnPropertyChanged();
             }
@@ -46,11 +53,13 @@ namespace GeoApp {
         /// <summary>
         /// View-model constructor.
         /// </summary>
-        public DataEntryListViewModel() {
+        public DataEntryListViewModel()
+        {
             ButtonClickedCommand = new Command(async () => await ExecuteButtonClickedCommand());
-            ItemTappedCommand = new Command<Feature> (async (data) => await ExecuteItemTappedCommand(data));
+            ItemTappedCommand = new Command<Feature>(async (data) => await ExecuteItemTappedCommand(data));
             RefreshListCommand = new Command(() => ExecuteRefreshListCommand());
             EditEntryCommand = new Command<Feature>((feature) => EditFeatureEntry(feature));
+            DeleteEntryCommand = new Command<Feature>(async (feature) => await DeleteFeatureEntry(feature));
         }
 
         /// <summary>
@@ -58,7 +67,8 @@ namespace GeoApp {
         /// </summary>
         /// <param name="data">Feature tapped on.</param>
         /// <returns></returns>
-        private async Task ExecuteItemTappedCommand(Feature data) {
+        private async Task ExecuteItemTappedCommand(Feature data)
+        {
             if (_isBusy) return;
             _isBusy = true;
 
@@ -71,7 +81,8 @@ namespace GeoApp {
         /// Opens up the dialog box where the user can select between Point, Line, and Polygon feature types to add.
         /// </summary>
         /// <returns></returns>
-        private async Task ExecuteButtonClickedCommand() {
+        private async Task ExecuteButtonClickedCommand()
+        {
             if (_isBusy) return;
             _isBusy = true;
 
@@ -83,12 +94,15 @@ namespace GeoApp {
         /// <summary>
         /// Refreshes the list of current locations by re-reading the embedded file contents.
         /// </summary>
-        private void ExecuteRefreshListCommand() {
+        private void ExecuteRefreshListCommand()
+        {
             // Only update the list if it has changed as indicated by the dirty flag.
-            if (isDirty) {
+            if (isDirty)
+            {
                 isDirty = false;
 
-                Device.BeginInvokeOnMainThread(async () => {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
                     // Do a full re-read of the embedded file to get the most current list of features.
                     App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
 
@@ -96,10 +110,12 @@ namespace GeoApp {
                     // All other operations within the app (adding/editing/deleting/importing) have ID clash logic implemented already.
                     // TODO: When we publish the app, we should remove this slow code and clear out the source data file to avoid this issue entirely.
                     // Meaning the user starts with a blank list of features when they first download the app (which is reasonable).
-                    if (firstRefreshOccured == false) {
+                    if (firstRefreshOccured == false)
+                    {
                         firstRefreshOccured = true;
 
-                        foreach (var feature in App.FeaturesManager.CurrentFeatures) {
+                        foreach (var feature in App.FeaturesManager.CurrentFeatures)
+                        {
                             FileService.TryGetUniqueFeatureID(feature);
                         }
 
@@ -120,11 +136,27 @@ namespace GeoApp {
         /// Displays the edit page for the selected feature.
         /// </summary>
         /// <param name="feature">Feature to edit.</param>
-        private void EditFeatureEntry(Feature feature) {
+        private void EditFeatureEntry(Feature feature)
+        {
             if (_isBusy) return;
             _isBusy = true;
 
             HomePage.Instance.ShowEditDetailFormPage(feature);
+
+            _isBusy = false;
+        }
+
+        private async Task DeleteFeatureEntry(Feature feature)
+        {
+            if (_isBusy) return;
+            _isBusy = true;
+
+            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
+            if (yesResponse)
+            {
+                await App.FeaturesManager.DeleteFeatureAsync(feature.properties.id);
+            }
+            ExecuteRefreshListCommand();
 
             _isBusy = false;
         }
