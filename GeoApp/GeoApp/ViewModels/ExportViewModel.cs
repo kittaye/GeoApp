@@ -8,14 +8,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-/// Mine
+/// Export libs
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
-using Plugin.FilePicker;
-using Xamarin.Forms.PlatformConfiguration;
-using Plugin.FilePicker.Abstractions;
-
 
 namespace GeoApp {
     public class ExportViewModel: ViewModelBase {
@@ -41,16 +37,12 @@ namespace GeoApp {
 
             ButtonClickCommand = new Command(async () => {
 
-
+                // Checks validity of email
                 if (string.IsNullOrWhiteSpace(EmailEntry) == false)
                 {
                     try
                     {
-
-                        //JSON_attachment = App.FeaturesManager.ExportFeaturesToJson();
-
-                        string testString = App.FeaturesManager.ExportFeaturesToJson();
-
+                        string JSONfile = App.FeaturesManager.ExportFeaturesToJson();
                         string email_Address = EmailEntry;
 
 
@@ -59,28 +51,30 @@ namespace GeoApp {
 
                         mail.From = new MailAddress("GeoApp@gmail.com");
 
+                        // Reciever's entered email address
                         mail.To.Add(email_Address);
 
                         mail.Subject = "Your requested Geo Application CSV dataset";
                         mail.Body = "The following attachment is your request dataset contained into a GEO JSON format";
 
-
-                        // Attaching attachment files into mails
-                        mail.Attachments.Add(Attachment.CreateAttachmentFromString(testString, "GeoAware.json"));
-                        // mail.Attachments.Add(JSON_attachment);
+                        // Add the Json attachment int othe email
+                        mail.Attachments.Add(Attachment.CreateAttachmentFromString(JSONfile, "GeoAware.json"));
 
 
                         SmtpServer.Port = 587;
                         SmtpServer.Credentials = new System.Net.NetworkCredential("geoapplicationqut@gmail.com", "Geoapplication123");
                         SmtpServer.EnableSsl = true;
 
+                        // Some security bypasses (if you remove this, email won't be sent and get rejected)
                         ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
                         {
                             return true;
                         };
 
+                        // Send the mail
                         SmtpServer.Send(mail);
 
+                        // Confirmation alert
                         await HomePage.Instance.DisplayAlert("Status", "Email sent successfully", "OK");
                     }
 
@@ -92,7 +86,7 @@ namespace GeoApp {
 
                 else
                 {
-                    await HomePage.Instance.DisplayAlert("Invalid ID", "The ID cannot be empty.", "OK");
+                    await HomePage.Instance.DisplayAlert("Invalid Email", "Email Address cannot be empty.", "OK");
                 }
 
                
