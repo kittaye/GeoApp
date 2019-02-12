@@ -250,6 +250,11 @@
     <ImageAsset Include="Assets.xcassets\area_icon.imageset\area_icon.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\welcome.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splashsmall.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -306,6 +311,8 @@
     <Folder Include="Assets.xcassets\save_icon.imageset\" />
     <Folder Include="Assets.xcassets\trash_icon.imageset\" />
     <Folder Include="Assets.xcassets\area_icon.imageset\" />
+    <Folder Include="Assets.xcassets\splash.imageset\" />
+    <Folder Include="Assets.xcassets\welcome.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ezgif.com-gif-maker-5.png" />

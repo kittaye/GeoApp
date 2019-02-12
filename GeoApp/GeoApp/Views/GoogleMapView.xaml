@@ -15,9 +15,10 @@
     
     <StackLayout Orientation="Vertical">
         
+      <StackLayout Orientation="Horizontal" Padding="5,5,0,0">
       <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
             
-        <Label Text="Shape: "/>
+        <Label Text="Shape: " Margin="0,4,0,0"/>
             
         <Picker ItemsSource="{Binding Shape_options}"
                 SelectedItem="{Binding Shape_filter}">   
@@ -30,9 +31,9 @@
             
       </StackLayout>
         
-      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
             
-        <Label Text="Date: "/>
+        <Label Text="Date: " Margin="0,4,0,0"/>
             
         <Picker ItemsSource="{Binding Date_options}"
                 SelectedItem="{Binding Date_filter}">   
@@ -42,7 +43,7 @@
                   </behaviors:EventHandlerBehavior>
             </Picker.Behaviors>
         </Picker>
-            
+      </StackLayout>          
       </StackLayout>       
       <googleMaps:Map x:name="myMap" 
                     IsShowingUser="true"
