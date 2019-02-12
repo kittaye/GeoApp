@@ -111,6 +111,16 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\drawable-hdpi\splash.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_round_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_round_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_round_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_round_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_round_launcher.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xxxhdpi\" />

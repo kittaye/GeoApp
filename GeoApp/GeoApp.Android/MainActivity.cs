@@ -12,7 +12,13 @@ using Plugin.Permissions;
 
 
 namespace GeoApp.Droid {
-    [Activity(Label = "GeoAware", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
+    [Activity(Label = "GeoGo",
+        Icon = "@mipmap/ic_launcher",
+        RoundIcon = "@mipmap/ic_round_launcher",
+        Theme = "@style/MainTheme",
+        MainLauncher = true,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+        ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 
         protected override void OnCreate(Bundle bundle) {

@@ -106,34 +106,7 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon.png">
@@ -255,6 +228,10 @@
     <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splashsmall.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\GeoappAppStoreIcon.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
