@@ -16,7 +16,9 @@ using System.Security.Cryptography.X509Certificates;
 namespace GeoApp {
     public class ExportViewModel: ViewModelBase {
 
-        public ICommand ButtonClickCommand { set; get; }
+        public ICommand ExportButtonClickCommand { set; get; }
+
+        public ICommand ShareButtonClickCommand { set; get; }
 
 
         private string _EmailEntry;
@@ -35,7 +37,8 @@ namespace GeoApp {
         /// </summary>
         public ExportViewModel() {
 
-            ButtonClickCommand = new Command(async () => {
+            // If export button clicked
+            ExportButtonClickCommand = new Command(async () => {
 
                 // Checks validity of email
                 if (string.IsNullOrWhiteSpace(EmailEntry) == false)
@@ -92,6 +95,18 @@ namespace GeoApp {
                
             });
 
+
+            // If share button clicked
+            if (!CrossShare.IsSupported)
+                return;
+
+            ShareButtonClickCommand = new Command(async () => {
+                await CrossShare.Current.Share(new ShareMessage
+                {
+                    Text = App.FeaturesManager.ExportFeaturesToJson(),
+                    Title = "Share"
+                });
+            });
 
         }
     }
