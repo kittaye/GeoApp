@@ -12,7 +12,7 @@ using Plugin.Permissions;
 
 
 namespace GeoApp.Droid {
-    [Activity(Label = "GeoGo",
+    [Activity(Label = "Groundsman",
         Icon = "@mipmap/ic_launcher",
         RoundIcon = "@mipmap/ic_round_launcher",
         Theme = "@style/MainTheme",
