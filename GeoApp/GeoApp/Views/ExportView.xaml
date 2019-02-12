@@ -18,6 +18,8 @@
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand" />
 
+            <Entry Text="{Binding EmailEntry}" AutomationId="emailEntered" Margin="50,20,50,30" Placeholder="e.g. myemail123@example.com"/>
+
             <Button AutomationId="ExportButton" Margin="20,20,20,150" Text="Export" Command="{Binding ButtonClickCommand}"/>
         </StackLayout>
     </ContentPage.Content>
