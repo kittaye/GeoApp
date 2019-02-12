@@ -25,12 +25,12 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
-    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.0.81-beta" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="3.3.0.912540" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.2.0" />
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.0.4" />
     <PackageReference Include="Xamarin.Build.Download" Version="0.4.6" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.0.121" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,5 +72,6 @@
     <Reference Include="Xamarin.iOS">
       <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="mscorlib" />
   </ItemGroup>
 </Project>
