@@ -20,6 +20,8 @@ namespace GeoApp {
 
         public ICommand ShareButtonClickCommand { set; get; }
 
+        public ICommand BackupButtonClickCommand { set; get; }
+
 
         private string _EmailEntry;
         public string EmailEntry
@@ -104,9 +106,27 @@ namespace GeoApp {
                 await CrossShare.Current.Share(new ShareMessage
                 {
                     Text = App.FeaturesManager.ExportFeaturesToJson(),
-                    Title = "Share"
+                    Title = "My Features"
                 });
+
             });
+
+            BackupButtonClickCommand = new Command(async () =>
+            {
+                string name = string.Format("My Features - {0}-{1}-{2} {3}-{4}-{5}.json", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), name);
+                try
+                {
+                    System.IO.File.WriteAllText(filename, App.FeaturesManager.ExportFeaturesToJson());
+                }
+                catch
+                {
+                    await HomePage.Instance.DisplayAlert("Backup Failure", "Backup unable to complete. Try removing previous backup files.", "OK");
+
+                }
+                await HomePage.Instance.DisplayAlert("Backup Success", "File now saved in app documents. on iOS, this document can be found in the Groundsman folder in your Files app or through iTunes file sharing. On Android, this document can be accessed through your file explorer.", "OK");
+            });
+
 
         }
     }
