@@ -42,10 +42,10 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>GeoJSON</string>
+			<string>JSON</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.file.geojson</string>
+				<string>public.json</string>
 			</array>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
