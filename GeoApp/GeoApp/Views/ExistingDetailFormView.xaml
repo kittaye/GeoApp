@@ -35,10 +35,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Label AutomationId="NameEntry" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+                    <Label AutomationId="NameEntry" Text="{Binding NameEntry}" Grid.Row="1" Grid.Column="0" TextColor="Gray" FontSize="Small"/>
 
                     <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
-                    <Label AutomationId="DateEntry" Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                    <Label AutomationId="DateEntry" Text="{Binding DateEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray" FontSize="Small"/>
                 </Grid>
             </StackLayout>
 
@@ -72,14 +72,14 @@
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Label AutomationId="LatLabel" Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                                        <Label AutomationId="LatLabelVal" Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray"/>
+                                        <Label AutomationId="LatLabel" Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9" FontSize="Small"/>
+                                        <Label AutomationId="LatLabelVal" Text="{Binding Latitude}" Grid.Row="1" Grid.Column="0" TextColor="Gray" FontSize="Small" />
 
-                                        <Label AutomationId="LongLabel" Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9"/>
-                                        <Label AutomationId="LongLabelVal" Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray"/>
+                                        <Label AutomationId="LongLabel" Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small"/>
+                                        <Label AutomationId="LongLabelVal" Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray" FontSize="Small"/>
 
-                                        <Label AutomationId="AltLabel" Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9"/>
-                                        <Label AutomationId="AltLabelVal" Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" />
+                                        <Label AutomationId="AltLabel" Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small"/>
+                                        <Label AutomationId="AltLabelVal" Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" FontSize="Small" />
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
@@ -88,15 +88,7 @@
                 </StackLayout>
 
                 <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="1">
-                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                    </Grid>
-
-                    <Grid Style="{StaticResource DetailFormPanelGrid}" Padding="7,4,7,4" RowSpacing="10">
+                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="10,5,10,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -107,15 +99,16 @@
                             <ColumnDefinition Width="0.75*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="String: " FontAttributes="Bold" Grid.Row="0" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
-                        <Label Text="{Binding MetadataStringEntry}" Grid.Row="0" Grid.Column="1" TextColor="Gray" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+                        <Label Text="Metadata" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
 
-                        <Label Text="Integer: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
-                        <Label Text="{Binding MetadataIntegerEntry}" Grid.Row="1" Grid.Column="1" TextColor="Gray" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+                        <Label Text="String: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                        <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="1" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" />
 
-                        <Label Text="Float: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Small"/>
-                        <Label Text="{Binding MetadataFloatEntry}" Grid.Row="2" Grid.Column="1" TextColor="Gray" HorizontalOptions="FillAndExpand" FontSize="Small"/>
+                        <Label Text="Integer: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" />
 
+                        <Label Text="Float: " FontAttributes="Bold" Grid.Row="3" Grid.Column="0" TextColor="Black" FontSize="Small"  HorizontalOptions="Start" VerticalTextAlignment="Center"/>
+                        <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill"/>
                     </Grid>
                 </StackLayout>
             </Grid>
