@@ -8,13 +8,29 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GeoApp {
-    public class ImportViewModel {
+    public class ImportViewModel : ViewModelBase
+    {
         public ICommand ButtonClickCommand { set; get; }
+        public ICommand TextButtonClickCommand { set; get; }
 
         /// <summary>
         /// View-model constructor for the import page.
         /// Based on https://github.com/jamesmontemagno/PermissionsPlugin
         /// </summary>
+        /// 
+
+        private string _textEntry;
+
+        public string TextEntry
+        {
+            get { return _textEntry; }
+            set
+            {
+                _textEntry = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ImportViewModel() {
             ButtonClickCommand = new Command(async () => {
                 try {
@@ -44,6 +60,23 @@ namespace GeoApp {
                     }
                 } catch (Exception ex) {
                     Debug.WriteLine($"\n\n::::::::::::::::::::::Exception choosing file: {ex.ToString()}");
+                    throw ex;
+                }
+            });
+
+            TextButtonClickCommand = new Command(async () =>
+            {
+                try
+                {
+                    string contents = TextEntry;
+                    Debug.WriteLine("Contents: {0}", contents);
+                    await App.FeaturesManager.ImportFeaturesAsync(contents);
+                    // If the user accepts the permission get the resulting value and check the if the key exists
+                }
+
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"\n\n::::::::::::::::::::::Exception importing from text: {ex.ToString()}");
                     throw ex;
                 }
             });

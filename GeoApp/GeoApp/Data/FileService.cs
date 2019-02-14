@@ -305,6 +305,7 @@ namespace GeoApp {
 
                 // Loop through all imported features one by one, ensuring there are no ID clashes.
                 foreach (var importedFeature in importedRootObject.features) {
+                    Debug.WriteLine($"\n\n:::::::::::::::::DESERIALIZING NOW");
                     TryGetUniqueFeatureID(importedFeature);
                     App.FeaturesManager.CurrentFeatures.Add(importedFeature);
                 }

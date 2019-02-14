@@ -1,10 +1,4 @@
-﻿using Plugin.FilePicker;
-using Plugin.FilePicker.Abstractions;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
