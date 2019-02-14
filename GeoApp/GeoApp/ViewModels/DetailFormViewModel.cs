@@ -1,15 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
-using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Services;
-using GeoApp.Views.Popups;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
