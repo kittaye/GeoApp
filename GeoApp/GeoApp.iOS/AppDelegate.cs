@@ -24,6 +24,15 @@ namespace GeoApp.iOS {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
 
+            var shouldPerformAdditionalDelegateHandling = true;
+
+            // Get possible shortcut item
+            if (options != null)
+            {
+                LaunchedShortcutItem = options[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
+                shouldPerformAdditionalDelegateHandling = (LaunchedShortcutItem == null);
+            }
+
             Xamarin.FormsGoogleMaps.Init("AIzaSyDaeurrZExaOrUGhn5Q9_g447PSC7DOfHM");
             Xamarin.FormsGoogleMapsBindings.Init();
 
@@ -40,5 +49,45 @@ namespace GeoApp.iOS {
             App.FeaturesManager.ImportFeaturesFromFile(url.Path);
             return true;
         }
+
+        public UIApplicationShortcutItem LaunchedShortcutItem { get; set; }
+
+        public bool HandleShortcutItem(UIApplicationShortcutItem shortcutItem)
+        {
+            var handled = false;
+
+            // Anything to process?
+            if (shortcutItem == null) return false;
+
+            // Take action based on the shortcut type
+            switch (shortcutItem.Type)
+            {
+                case ShortcutIdentifier.First:
+                    Console.WriteLine("First shortcut selected");
+                    HomePage.Instance.ShowDetailFormOptions();
+                    handled = true;
+                    break;
+            }
+
+            // Return results
+            return handled;
+        }
+
+        public override void OnActivated(UIApplication application)
+        {
+            // Handle any shortcut item being selected
+            HandleShortcutItem(LaunchedShortcutItem);
+
+            // Clear shortcut after it's been handled
+            LaunchedShortcutItem = null;
+        }
+
+        public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
+        {
+            // Perform action
+            completionHandler(HandleShortcutItem(shortcutItem));
+        }
+
+
     }
 }

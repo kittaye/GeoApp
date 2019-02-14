@@ -67,5 +67,16 @@
 	</array>
 	<key>CFBundleName</key>
 	<string>Groundsman</string>
+	<key>UIApplicationShortcutItems</key>
+<array>
+	<dict>
+		<key>UIApplicationShortcutItemIconType</key>
+		<string>UIApplicationShortcutIconTypeAdd</string>
+		<key>UIApplicationShortcutItemTitle</key>
+		<string>Add a Feature</string>
+		<key>UIApplicationShortcutItemType</key>
+		<string>com.geoapplads.Groundsman.000</string>
+	</dict>
+</array>
 </dict>
 </plist>
