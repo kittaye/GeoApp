@@ -311,6 +311,7 @@ namespace GeoApp {
                 }
 
                 await SaveCurrentFeaturesToEmbeddedFile();
+                await HomePage.Instance.DisplayAlert("File", "Import Success!", "OK");
                 return true;
             } catch (Exception ex) {
                 await HomePage.Instance.DisplayAlert("Invalid File Contents", "Please make sure your GeoJSON is formatted correctly.", "OK");
