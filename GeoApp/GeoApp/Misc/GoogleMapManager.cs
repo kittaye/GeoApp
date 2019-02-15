@@ -29,19 +29,17 @@ namespace GeoApp {
                 ZIndex = 100
             };
 
-            var message = "";
             var index = 0;
 
             if (points != null) {
                 points.ForEach((Point point) => {
                     index++;
                     line.Positions.Add(new Position(point.Latitude, point.Longitude));
-                    message += $"Coordinate{index} : Lat {point.Latitude} , Long {point.Longitude} \n";
                 });
             }
 
             line.Clicked += (sender, e) => {
-                Application.Current.MainPage.DisplayAlert(name, message, "Okay");
+                Application.Current.MainPage.DisplayAlert(name, "", "Okay");
             };
 
             if (Polylines != null) {
@@ -59,19 +57,17 @@ namespace GeoApp {
                 Tag = name
             };
 
-            var message = "";
             var index = 0;
 
             if (points != null) {
                 points.ForEach((Point point) => {
                     index++;
                     polygon.Positions.Add(new Position(point.Latitude, point.Longitude));
-                    message += $"Coordinate{index} : Lat {point.Latitude} , Long {point.Longitude} \n";
                 });
             }
 
             polygon.Clicked += (sender, e) => {
-                Application.Current.MainPage.DisplayAlert(name, message, "Okay");
+                Application.Current.MainPage.DisplayAlert(name, "", "Okay");
             };
 
             if (polygon != null) {
