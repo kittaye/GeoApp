@@ -47,16 +47,20 @@ namespace GeoApp {
             }
         }
 
-        protected override void OnAppearing() {
+        protected override async void OnAppearing() {
             base.OnAppearing();
+
             // Maps must be initialised 
             if (locationPermissionEnabled == true) {
+                // Do a full re-read of the embedded file to get the most current list of features.
+                App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+                // Redraw maps
                 if (viewModel.RefreashGeoDataCommand.CanExecute(null)) {
                     viewModel.RefreashGeoDataCommand.Execute(null);
                     viewModel.LocationBtnClickedCommand.Execute(null);
                 }
             } else {
-                HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise the map feature", "Ok");
+                await HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise the map feature", "Ok");
             }
         }
     }
