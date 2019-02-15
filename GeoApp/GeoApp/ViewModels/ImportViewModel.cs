@@ -64,6 +64,7 @@ namespace GeoApp {
                     string contents = TextEntry;
                     Debug.WriteLine("Contents: {0}", contents);
                     await App.FeaturesManager.ImportFeaturesAsync(contents);
+                    TextEntry = "";
                 } catch (Exception ex) {
                     Debug.WriteLine($"\n\n::::::::::::::::::::::Exception importing from text: {ex.ToString()}");
                     throw ex;
