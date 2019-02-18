@@ -102,13 +102,13 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Text="String: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10"/>
-                        <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="1" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0" />
+                        <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="1" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0" IsEnabled="False"/>
 
                         <Label Text="Integer: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10"/>
-                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0"/>
+                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0" IsEnabled="False"/>
 
                         <Label Text="Float: " FontAttributes="Bold" Grid.Row="3" Grid.Column="0" TextColor="Black" FontSize="Small"  HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10"/>
-                        <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0"/>
+                        <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0" IsEnabled="False"/>
                     </Grid>
                 </StackLayout>
             </Grid>
