@@ -323,15 +323,15 @@ namespace GeoApp {
             {
                 if (thisEntryType == "Point") {
                     feature.geometry.coordinates = new List<object>() {
-                        GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Longitude,
+                        GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Altitude };
                 } else if (thisEntryType == "Line") {
                     feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
                     for (int i = 0; i < GeolocationPoints.Count; i++) {
                         feature.geometry.coordinates.Add(new JArray(new double[3] {
-                            GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
+                            GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
                     }
                 } else if (thisEntryType == "Polygon") {
@@ -342,8 +342,8 @@ namespace GeoApp {
                     List<object> innerPoints = new List<object>(GeolocationPoints.Count);
                     for (int i = 0; i < GeolocationPoints.Count; i++) {
                         innerPoints.Add(new JArray(new double[3] {
-                            GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Longitude,
+                            GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
                     }
                     feature.geometry.coordinates.Add(innerPoints);
