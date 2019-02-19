@@ -143,8 +143,8 @@ namespace GeoApp {
         /// <param name="coords">A single point to convert.</param>
         /// <returns></returns>
         private Point JsonCoordToXamarinPoint(object[] coords) {
-            double latitude = (double)coords[0];
-            double longitude = (double)coords[1];
+            double longitude = (double)coords[0];
+            double latitude = (double)coords[1];
             double altitude = (coords.Length == 3) ? (double)coords[2] : 0.0;
 
             Point point = new Point(latitude, longitude, altitude);
