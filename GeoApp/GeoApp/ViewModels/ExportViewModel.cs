@@ -54,12 +54,12 @@ namespace GeoApp {
                         MailMessage mail = new MailMessage();
                         SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                        mail.From = new MailAddress("GeoApp@gmail.com");
+                        mail.From = new MailAddress("GroundsmanQUTApp@gmail.com");
 
                         // Reciever's entered email address
                         mail.To.Add(email_Address);
 
-                        mail.Subject = "Your requested Geo Application CSV dataset";
+                        mail.Subject = "Your requested Groundsman GeoJson dataset";
                         mail.Body = "The following attachment is your request dataset contained into a GEO JSON format";
 
                         // Add the Json attachment int othe email
@@ -85,7 +85,7 @@ namespace GeoApp {
 
                     catch (Exception mailNotSent)
                     {
-                        await HomePage.Instance.DisplayAlert("Status", "Unable to send email. Error :" + mailNotSent, "OK");
+                        await HomePage.Instance.DisplayAlert("Status", "Unable to send email. Make sure IMAP is enabled in your email address settings!", "OK");
                     }
                 }
 

@@ -54,7 +54,7 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>iOS Team Provisioning Profile: com.geoapplads.Groundsman</CodesignProvision>
-<AssemblyName>Groundsman.iOS</AssemblyName>
+    <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -66,7 +66,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-<AssemblyName>Groundsman.iOS</AssemblyName>
+    <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -80,7 +80,7 @@
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-<AssemblyName>Groundsman.iOS</AssemblyName>
+    <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -93,7 +93,7 @@
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-<AssemblyName>Groundsman.iOS</AssemblyName>
+    <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ColoredTabBarRenderer.cs" />
@@ -228,15 +228,33 @@
     <ImageAsset Include="Assets.xcassets\area_icon.imageset\area_icon.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\welcome.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\GeoappAppStoreIcon.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png" />
-    <ImageAsset Include="Assets.xcassets\splash.imageset\welcomesmall.png" />
-    <ImageAsset Include="Assets.xcassets\splash.imageset\welcome.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\welcome.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\GeoappAppStoreIcon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splash.imageset\welcomesmall.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\splash.imageset\welcome.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
