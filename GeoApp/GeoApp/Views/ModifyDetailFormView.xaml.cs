@@ -53,5 +53,6 @@ namespace GeoApp {
             HomePage.Instance.Navigation.PopToRootAsync();
             return true;
         }
+
     }
 }

@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <Compile Remove="Views\HomePage.cs" />
+    <Compile Remove="FocusEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DataEntryListView.xaml.cs">

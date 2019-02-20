@@ -105,6 +105,7 @@
     <Compile Include="CustomMapRenderer.cs" />
     <Compile Include="MyMapDelegate.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
+    <Compile Include="MinusButtonEntryEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
