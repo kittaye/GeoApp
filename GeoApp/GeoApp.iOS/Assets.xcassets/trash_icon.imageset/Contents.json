@@ -4,19 +4,19 @@
       "idiom": "universal"
     },
     {
-      "filename": "trash_icon.png",
       "scale": "1x",
-      "idiom": "universal"
+      "idiom": "universal",
+      "filename": "trash_icon.png"
     },
     {
-      "filename": "trash_icon copy.png",
       "scale": "2x",
-      "idiom": "universal"
+      "idiom": "universal",
+      "filename": "trash_icon copy.png"
     },
     {
-      "filename": "trash_icon copy.png",
       "scale": "3x",
-      "idiom": "universal"
+      "idiom": "universal",
+      "filename": "trash_icon copy.png"
     },
     {
       "idiom": "iphone"
@@ -30,9 +30,9 @@
       "idiom": "iphone"
     },
     {
-      "subtype": "retina4",
       "scale": "2x",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "subtype": "retina4"
     },
     {
       "scale": "3x",
@@ -48,47 +48,11 @@
     {
       "scale": "2x",
       "idiom": "ipad"
-    },
-    {
-      "idiom": "watch"
-    },
-    {
-      "scale": "2x",
-      "idiom": "watch"
-    },
-    {
-      "screenWidth": "{130,145}",
-      "scale": "2x",
-      "idiom": "watch"
-    },
-    {
-      "screenWidth": "{146,165}",
-      "scale": "2x",
-      "idiom": "watch"
-    },
-    {
-      "idiom": "mac"
-    },
-    {
-      "scale": "1x",
-      "idiom": "mac"
-    },
-    {
-      "scale": "2x",
-      "idiom": "mac"
-    },
-    {
-      "idiom": "car"
-    },
-    {
-      "scale": "2x",
-      "idiom": "car"
-    },
-    {
-      "scale": "3x",
-      "idiom": "car"
     }
   ],
+  "properties": {
+    "template-rendering-intent": ""
+  },
   "info": {
     "version": 1,
     "author": "xcode"

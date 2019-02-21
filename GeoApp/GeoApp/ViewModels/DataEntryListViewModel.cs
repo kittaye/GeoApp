@@ -19,6 +19,7 @@ namespace GeoApp
         public static bool isDirty = true;
 
         public ICommand ButtonClickedCommand { set; get; }
+        public ICommand IDClickedCommand { set; get; }
         public ICommand ItemTappedCommand { set; get; }
         public ICommand RefreshListCommand { set; get; }
         public ICommand EditEntryCommand { get; set; }
@@ -54,6 +55,7 @@ namespace GeoApp
         public DataEntryListViewModel()
         {
             ButtonClickedCommand = new Command(async () => await ExecuteButtonClickedCommand());
+            IDClickedCommand = new Command(() => IDTappedCommand());
             ItemTappedCommand = new Command<Feature>(async (data) => await ExecuteItemTappedCommand(data));
             RefreshListCommand = new Command(() => ExecuteRefreshListCommand());
             EditEntryCommand = new Command<Feature>((feature) => EditFeatureEntry(feature));
@@ -71,6 +73,15 @@ namespace GeoApp
             _isBusy = true;
 
             await HomePage.Instance.ShowExistingDetailFormPage(data);
+
+            _isBusy = false;
+        }
+
+        private void IDTappedCommand() {
+            if (_isBusy) return;
+            _isBusy = true;
+
+            HomePage.Instance.Navigation.PushModalAsync(new IDFormView());
 
             _isBusy = false;
         }
