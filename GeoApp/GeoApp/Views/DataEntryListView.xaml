@@ -3,8 +3,8 @@
              xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListView" Title="My Features" BackgroundColor="Default">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem AutomationId="id_icon" Icon="profile_icon" Command="{Binding IDClickedCommand}"/>
-        <ToolbarItem AutomationId="add_icon" Icon="add_icon" Command="{Binding ButtonClickedCommand}"/>
+        <ToolbarItem AutomationId="id_icon" Icon="profile_icon" Command="{Binding IDClickedCommand}" Order="Primary" Priority="1" />
+        <ToolbarItem AutomationId="add_icon" Icon="add_icon" Command="{Binding ButtonClickedCommand}" Order="Primary" Priority="0"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.BindingContext>
