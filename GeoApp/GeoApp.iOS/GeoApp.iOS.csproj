@@ -106,6 +106,7 @@
     <Compile Include="MyMapDelegate.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
     <Compile Include="CustomEntryRenderer.cs" />
+    <Compile Include="ExtendedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png">
