@@ -38,7 +38,7 @@ namespace GeoApp.iOS
                 if (info == null)
                     return;
 
-                if (info.Priority == 0)
+                if (info.Priority == 1)
                     newLeftButtons.Add(nativeItem);
                 else
                     newRightButtons.Add(nativeItem);
