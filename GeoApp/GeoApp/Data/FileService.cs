@@ -87,6 +87,10 @@ namespace GeoApp {
                 feature.geometry.type = "Line";
             }
 
+            if (string.IsNullOrWhiteSpace(feature.properties.name)) {
+                feature.properties.name = "Unnamed " + feature.geometry.type;
+            }
+
             // If author ID hasn't been set on the feature, default it to the user's ID.
             if (string.IsNullOrWhiteSpace(feature.properties.authorId)) {
                 if (App.Current.Properties.ContainsKey("UserID")) {
