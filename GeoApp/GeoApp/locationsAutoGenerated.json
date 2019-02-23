@@ -54,7 +54,7 @@
       "properties": {
         "id": 1,
         "authorId": "QUT",
-        "metadataStringValue": "This is an example lineString",
+        "metadataStringValue": "This is an example line",
         "metadataIntegerValue": 2,
         "metadataFloatValue": 2.2,
         "name": "Test Line",
