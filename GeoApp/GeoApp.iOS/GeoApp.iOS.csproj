@@ -27,8 +27,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
-    <CodesignProvision>iOS Team Provisioning Profile: com.geoapplads.Groundsman</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -39,6 +38,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,11 +51,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>iOS Team Provisioning Profile: com.geoapplads.Groundsman</CodesignProvision>
     <AssemblyName>Groundsman.iOS</AssemblyName>
+    <CodesignProvision>Groundsman Build Profile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -64,9 +65,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
+    <MtouchSdkVersion>12.1</MtouchSdkVersion>
+    <CodesignProvision>Groundsman Distribution Profile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -77,8 +80,8 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
-    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Groundsman Build Profile</CodesignProvision>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
@@ -90,8 +93,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
@@ -106,7 +109,7 @@
     <Compile Include="MyMapDelegate.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
     <Compile Include="CustomEntryRenderer.cs" />
-    <Compile Include="ExtendedPageRenderer.cs" />
+    <None Include="ExtendedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png">
@@ -254,12 +257,20 @@
     <ImageAsset Include="Assets.xcassets\welcome.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon-1.png" />
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\ezgif.com-gif-maker-5-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Plugin.FilePicker">
+      <HintPath>..\..\..\..\..\Desktop\2.0.135\lib\Xamarin.iOS10\Plugin.FilePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.FilePicker.Abstractions">
+      <HintPath>..\..\..\..\..\Desktop\2.0.135\lib\Xamarin.iOS10\Plugin.FilePicker.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">

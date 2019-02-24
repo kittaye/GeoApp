@@ -31,7 +31,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Groundsman</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.geoapplads.Groundsman</string>
+	<string>com.qutgeodev.groundsman</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -77,6 +77,17 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>com.geoapplads.Groundsman.000</string>
 		</dict>
+	</array>
+	<key>CFBundleShortVersionString</key>
+	<string>3.1.0</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>gamekit</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>

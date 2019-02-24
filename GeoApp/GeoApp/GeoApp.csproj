@@ -37,6 +37,7 @@
     <Compile Remove="Views\HomePage.cs" />
     <Compile Remove="FocusEffect.cs" />
     <Compile Remove="MinusButtonEntryEffect.cs" />
+    <Compile Remove="FilePickerImplementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DataEntryListView.xaml.cs">
