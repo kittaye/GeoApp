@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 using Foundation;
 using UIKit;
+using KeyboardOverlap.Forms.Plugin.iOSUnified;
 
 namespace GeoApp.iOS {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -19,11 +20,12 @@ namespace GeoApp.iOS {
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+
         App mainForms;
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
-
+            KeyboardOverlapRenderer.Init();
             var shouldPerformAdditionalDelegateHandling = true;
 
             // Get possible shortcut item
