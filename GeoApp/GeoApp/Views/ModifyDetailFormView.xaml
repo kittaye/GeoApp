@@ -45,7 +45,7 @@
                             <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" />
                             <Button AutomationId="addGeoPoint" x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1" FontSize="Small" HeightRequest="28" WidthRequest="32" HorizontalOptions="End" />
                         </Grid>
-                        <ListView AutomationId="geolocationListView" x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#efefef" SeparatorColor="Gray">
+                        <ListView AutomationId="geolocationListView" x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#efeefef" SeparatorColor="Gray">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -62,13 +62,13 @@
                                                 <ColumnDefinition Width="32" />
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="LatitudeEntry" Text="" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small">
+                                            <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small">
                                             </Entry>
                                             <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="LongitudeEntry" Text="" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small">
+                                            <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small">
                                             </Entry>
                                             <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="AltitudeEntry" Text="" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small">
+                                            <Entry AutomationId="AltitudeEntry" Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small">
                                             </Entry>
                                             <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Image="trash_icon_blue" Grid.Row="0" Grid.Column="3" WidthRequest="20" HeightRequest="20" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}" FontSize="Small" />
                                             <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" />

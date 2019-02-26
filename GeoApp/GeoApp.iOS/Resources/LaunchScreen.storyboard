@@ -22,7 +22,7 @@
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.27843137254901962" green="1" blue="0" alpha="1"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="401" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="welcome">
-                                <rect key="frame" x="-317" y="-353" width="1656" height="2208"/>
+                                <rect key="frame" x="-137" y="-30" width="1304" height="1437"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="welcome" width="1242" height="2688"/>
+        <image name="welcome" width="3000" height="4000"/>
     </resources>
 </document>

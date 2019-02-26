@@ -112,9 +112,6 @@
     <None Include="ExtendedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\welcome.imageset\splash.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon.png">
       <Visible>false</Visible>
@@ -265,6 +262,7 @@
     <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\trash_icon_blueo-1.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_dblue.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_dblue-1.png" />
+    <ImageAsset Include="Assets.xcassets\welcome.imageset\splash-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
