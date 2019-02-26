@@ -262,7 +262,7 @@
     <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\trash_icon_blueo-1.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_dblue.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_dblue-1.png" />
-    <ImageAsset Include="Assets.xcassets\welcome.imageset\splash-1.png" />
+    <ImageAsset Include="Assets.xcassets\welcome.imageset\SplashScreen.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -1,41 +1,32 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GeoApp.ExportView"
-             xmlns:local="clr-namespace:GeoApp"
-             Title = "Export"
-             BackgroundColor="Default">
-
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GeoApp.ExportView" xmlns:local="clr-namespace:GeoApp" Title="Export" BackgroundColor="Default">
     <ContentPage.BindingContext>
-        <local:ExportViewModel x:Name="viewModel"/>
+        <local:ExportViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
-
-
     <ContentPage.Content>
-        <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
-
-            <StackLayout Margin="10,0,10,0" BackgroundColor="#e5e5e5">
-                <Label  Margin="0,10,0,0" Text="Export my features" TextColor="Black" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                <Button Margin="20,10,20,10" AutomationId="ShareButton" Grid.Row="12" Grid.Column="0" Text="Export" Command="{Binding ShareButtonClickCommand}"/>
-            </StackLayout>
-
-            <StackLayout Margin="10,0,10,0" BackgroundColor="#e5e5e5">
-                <Label Margin="0,10,0,0"
-                   Text="Share my features via email"
-                   TextColor="Black"
-                   FontSize="Large"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
-                <Entry Margin="20,0,20,0" Text="{Binding EmailEntry}" AutomationId="emailEntered" Placeholder="Email" Keyboard="Email"/>
-                <Button Margin="20,0,20,10" AutomationId="ExportButton"  Text="Send" Command="{Binding ExportButtonClickCommand}"/>
-            </StackLayout>
-            <!--<Label  Margin="0,10,0,0" Text="OR" TextColor="Black" FontSize="Default" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />-->
-
-            <StackLayout Margin="10,0,10,0" BackgroundColor="#e5e5e5">
-                <Label  Margin="0,10,0,0" Text="Backup my features" TextColor="Black" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                <Label  Margin="0,0,0,0" Text="(Accessible through app documents)" TextColor="Gray" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                <Button Margin="20,10,20,10" AutomationId="BackupButton" Grid.Row="12" Grid.Column="0" Text="Backup" Command="{Binding BackupButtonClickCommand}"/>
-            </StackLayout>
+        <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" >
+            <Frame Style="{StaticResource FrameStyle}">
+                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
+                    <Label Text="Export Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"  />
+                    <Label Text="Save to file or share your features via another app" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center"  />
+                    <Button AutomationId="ShareButton" Text="Export" Command="{Binding ShareButtonClickCommand}" />
+                </FlexLayout>
+            </Frame>
+            <Frame Style="{StaticResource FrameStyle}">
+                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" HorizontalOptions="Center">
+                    <Label Text="Send Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"  />
+                    <Label Text="Enter an email address to send your features to" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center" />
+                    <Entry Text="{Binding EmailEntry}" AutomationId="emailEntered" Placeholder="Email" Keyboard="Email" />
+                    <Button AutomationId="ExportButton" Text="Send" Command="{Binding ExportButtonClickCommand}" />
+                </FlexLayout>
+            </Frame>
+            <Frame Style="{StaticResource FrameStyle}">
+                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" >
+                    <Label HorizontalTextAlignment="Center" Text="Backup Features" TextColor="Black" FontSize="Large" />
+                    <Label HorizontalTextAlignment="Center" Text="Create snapshot of your features that is backed up to your app documents. These files can be retrieved via iTunes file sharing for iOS or by viewing your app documents on Android" TextColor="Gray" FontSize="Small" />
+                    <Button AutomationId="BackupButton" Text="Backup" Command="{Binding BackupButtonClickCommand}" />
+                </FlexLayout>
+            </Frame>
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
