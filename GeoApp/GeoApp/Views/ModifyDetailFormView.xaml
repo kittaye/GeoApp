@@ -1,128 +1,108 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:GeoApp"
-             x:Class="GeoApp.ModifyDetailFormView"
-             x:Name="ModifyDetailFormViewPage"
-             Title=""
-             BackgroundColor="Default">
-
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:GeoApp" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" x:Class="GeoApp.ModifyDetailFormView" x:Name="ModifyDetailFormViewPage" Title="" BackgroundColor="Default" ios:Page.LargeTitleDisplay="Never">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="save_icon" Command="{Binding OnSaveUpdatedCommand}"/>
+        <ToolbarItem Icon="save_icon" Command="{Binding OnSaveUpdatedCommand}" />
     </ContentPage.ToolbarItems>
-
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="Style" Value="{StaticResource DetailFormLabel}" />
         </Style>
-
         <Style TargetType="Entry">
             <Setter Property="Style" Value="{StaticResource DetailFormEntry}" />
         </Style>
     </ContentPage.Resources>
-
     <ContentPage.Content>
-        <StackLayout Spacing="0">
-            <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,10,10,10">
-                <Grid Style="{StaticResource DetailFormPanelGrid}" ColumnSpacing="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.6*"/>
-                        <ColumnDefinition Width="0.4*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
-                    <Entry AutomationId="nameEntry" x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" FontSize="Small"/>
-
-                    <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
-                    <Label Margin="0,12,0,0" AutomationId="dateEntry" x:Name="dateEntry" Text="{Binding DateEntry, StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" TextColor="Gray" FontSize="Small"/>
-                </Grid>
-            </StackLayout>
-
-            <Grid RowSpacing="0" VerticalOptions="FillAndExpand" Margin="0,0,0,40">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.8*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="0">
-                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,6,15,0">
+        <StackLayout Spacing="0" Margin="0,5,0,0">
+            <Frame Style="{StaticResource FrameStyle}">
+                <StackLayout>
+                    <Grid ColumnSpacing="10">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9"/>
-                        <Button AutomationId="addGeoPoint" x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1" FontSize="Small"/>
-                    </Grid>
-
-                    <ListView AutomationId="geolocationListView" x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#e5e5e5" SeparatorColor="#717171" Margin="15,0,15,10" HeightRequest="175">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Margin="15,5,15,5">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="34"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9" FontSize="Small"/>
-                                        <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small">
-                                               </Entry>
-
-                                        <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small"/>
-                                        <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small">
-                                               </Entry>
-
-                                        <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small"/>
-                                        <Entry AutomationId="AltitudeEntry" Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small">
-                                               </Entry>
-
-                                        <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="X" Grid.Row="0" Grid.Column="3" WidthRequest="36" HeightRequest="36" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}" FontSize="Small"/>
-                                        <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}"/>
-                                        <Button Command="{Binding Path=BindingContext.GetFeatureCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4" FontSize="Small"/>
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-
-                <StackLayout Style="{StaticResource DetailFormPanelLayout}" Margin="10,0,10,10" Grid.Row="1">
-                    
-                    <Label Text="Metadata" FontAttributes="Bold" Margin="15,10,15,0"/>
-
-                    <Grid Style="{StaticResource DetailFormPanelGrid}" Margin="15,0,15,10"  BackgroundColor="#e5e5e5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.25*"/>
-                            <ColumnDefinition Width="0.75*"/>
+                            <ColumnDefinition Width="0.6*" />
+                            <ColumnDefinition Width="0.4*" />
                         </Grid.ColumnDefinitions>
-
-                        <Label Text="String: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10"/>
-                        <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="1" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0" />
-
-                        <Label Text="Integer: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10"/>
-                        <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0"/>
-
-                        <Label Text="Float: " FontAttributes="Bold" Grid.Row="3" Grid.Column="0" TextColor="Black" FontSize="Small"  HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10"/>
-                        <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1" FontSize="Small"  HorizontalOptions="Fill" Margin="0,0,10,0"/>
+                        <Label Text="Name" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
+                        <Entry AutomationId="nameEntry" x:Name="nameEntry" Text="{Binding NameEntry}" Placeholder="Name of item" Grid.Row="1" Grid.Column="0" FontSize="Small" />
+                        <Label Text="Date" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
+                        <Label Margin="0,8,0,0" AutomationId="dateEntry" x:Name="dateEntry" Text="{Binding DateEntry, StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="1" Grid.Column="1" TextColor="Gray" FontSize="Small" />
                     </Grid>
                 </StackLayout>
+            </Frame>
+            <Grid RowSpacing="0" VerticalOptions="FillAndExpand" Margin="0,0,0,40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Frame Style="{StaticResource FrameStyle}" Grid.Row="0">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" />
+                            <Button AutomationId="addGeoPoint" x:Name="addPointBtn" Command="{Binding AddPointCommand}" Grid.Row="0" Grid.Column="1" FontSize="Small" HeightRequest="28" WidthRequest="32" HorizontalOptions="End" />
+                        </Grid>
+                        <ListView AutomationId="geolocationListView" x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#efefef" SeparatorColor="Gray">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Style="{StaticResource DetailFormPanelGrid}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Margin="10,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="32" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
+                                            <Entry AutomationId="LatitudeEntry" Text="" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small">
+                                            </Entry>
+                                            <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
+                                            <Entry AutomationId="LongitudeEntry" Text="" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small">
+                                            </Entry>
+                                            <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
+                                            <Entry AutomationId="AltitudeEntry" Text="" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small">
+                                            </Entry>
+                                            <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Image="trash_icon_blue" Grid.Row="0" Grid.Column="3" WidthRequest="20" HeightRequest="20" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}" FontSize="Small" />
+                                            <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" />
+                                            <Button Command="{Binding Path=BindingContext.GetFeatureCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4" FontSize="Small" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource FrameStyle}" Grid.Row="1">
+                    <StackLayout>
+                        <Label Text="Metadata" FontAttributes="Bold" />
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.25*" />
+                                <ColumnDefinition Width="0.75*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="String: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10" />
+                            <Entry Text="{Binding MetadataStringEntry}" Keyboard="Default" Grid.Row="1" Grid.Column="1" FontSize="Small" HorizontalOptions="Fill" Margin="0,0,10,0" />
+                            <Label Text="Integer: " FontAttributes="Bold" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10" />
+                            <Entry Text="{Binding MetadataIntegerEntry}" Keyboard="Numeric" Grid.Row="2" Grid.Column="1" FontSize="Small" HorizontalOptions="Fill" Margin="0,0,10,0" />
+                            <Label Text="Float: " FontAttributes="Bold" Grid.Row="3" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10" />
+                            <Entry Text="{Binding MetadataFloatEntry}" Keyboard="Numeric" Grid.Row="3" Grid.Column="1" FontSize="Small" HorizontalOptions="Fill" Margin="0,0,10,0" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
             </Grid>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

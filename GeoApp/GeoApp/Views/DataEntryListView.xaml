@@ -21,7 +21,7 @@
         <StackLayout>
             <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="Black" Margin="0,15"/>
 
-            <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" SeparatorColor="Gray" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshListCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" SeparatorColor="LightGray" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshListCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <ListView.Behaviors>
                     <local:ListViewItemTappedBehaviour Command="{Binding ItemTappedCommand}" Converter="{StaticResource TappedItemConverter}" />
                 </ListView.Behaviors>

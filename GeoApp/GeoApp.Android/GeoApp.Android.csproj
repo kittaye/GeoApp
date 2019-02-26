@@ -121,6 +121,8 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_round_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_round_launcher.png" />
+    <AndroidResource Include="Resources\drawable\add_icon_blue.png" />
+    <AndroidResource Include="Resources\drawable\trash_icon_blue.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xxxhdpi\" />
