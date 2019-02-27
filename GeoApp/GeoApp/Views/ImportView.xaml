@@ -36,7 +36,11 @@
                     <Frame Grid.Row="1" Style="{StaticResource FrameStyle}" Margin="0" BackgroundColor="White">
                         <Editor Placeholder="Paste valid GeoJSON here..." Text="{Binding TextEntry}" IsSpellCheckEnabled="false" />
                     </Frame>
-                    <Button Grid.Row="2" AutomationId="ImportButton" Text="Import Text" Command="{Binding TextButtonClickCommand}" />
+                    <Button Grid.Row="2" AutomationId="ImportButton" Text="Import Text" Command="{Binding TextButtonClickCommand}" >
+                        <Button.TextColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="Green" Android="White" />
+                        </Button.TextColor>
+                        </Button>
                 </Grid>
             </Frame>
         </Grid>
