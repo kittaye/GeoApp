@@ -34,7 +34,7 @@
                 </Grid.RowDefinitions>
                     <Label Grid.Row="0" Margin="0,10,0,10" Text="Import GeoJSON from Clipboard" TextColor="Black" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
                     <Frame Grid.Row="1" Style="{StaticResource FrameStyle}" Margin="0" BackgroundColor="White">
-                        <Editor Placeholder="Paste valid GeoJSON here..." Text="{Binding TextEntry}" IsSpellCheckEnabled="false" >
+                        <Editor Placeholder="Paste valid GeoJSON here..." Text="{Binding TextEntry}" IsSpellCheckEnabled="false" FontSize="Micro">
                             <Editor.PlaceholderColor>
                             <OnPlatform x:TypeArguments="Color" iOS="Gray" Android="Gray" />
                         </Editor.PlaceholderColor>

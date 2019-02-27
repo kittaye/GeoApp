@@ -31,7 +31,7 @@
             <Frame Style="{StaticResource FrameStyle}">
                 <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" >
                     <Label HorizontalTextAlignment="Center" Text="Backup Features" TextColor="Black" FontSize="Large" />
-                    <Label HorizontalTextAlignment="Center" Text="Create snapshot of your features that is backed up to your app documents. These files can be retrieved via iTunes file sharing for iOS or by viewing your app documents on Android" TextColor="Gray" FontSize="Small" />
+                    <Label HorizontalTextAlignment="Center" Text="Create snapshot of your features that is backed up to your app documents" TextColor="Gray" FontSize="Small" />
                     <Button AutomationId="BackupButton" Text="Backup" Command="{Binding BackupButtonClickCommand}" >
                         <Button.TextColor>
                             <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />

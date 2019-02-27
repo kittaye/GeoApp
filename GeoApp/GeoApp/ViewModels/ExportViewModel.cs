@@ -83,7 +83,7 @@ namespace GeoApp {
                         await HomePage.Instance.DisplayAlert("Status", "Email sent successfully", "OK");
                     }
 
-                    catch (Exception mailNotSent)
+                    catch (Exception)
                     {
                         await HomePage.Instance.DisplayAlert("Status", "Unable to send email. Make sure IMAP is enabled in your email address settings!", "OK");
                     }
@@ -124,7 +124,7 @@ namespace GeoApp {
                     await HomePage.Instance.DisplayAlert("Backup Failure", "Backup unable to complete. Try removing previous backup files.", "OK");
 
                 }
-                await HomePage.Instance.DisplayAlert("Backup Success", "File now saved in app documents. on iOS, this document can be found in the Groundsman folder in your Files app or through iTunes file sharing. On Android, this document can be accessed through your file explorer.", "OK");
+                await HomePage.Instance.DisplayAlert("Backup Success", "File now saved in app documents. On iOS, this file can be found in the Groundsman App through iTunes file sharing. On Android, this document can be accessed through your file explorer.", "OK");
             });
 
 
