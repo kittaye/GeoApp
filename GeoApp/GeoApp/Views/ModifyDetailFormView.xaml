@@ -53,7 +53,6 @@
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />
                                                 <RowDefinition Height="Auto" />
-                                                <RowDefinition Height="Auto" />
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />
@@ -62,17 +61,17 @@
                                                 <ColumnDefinition Width="32" />
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small">
+                                            <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small" Margin="0,0,0,10">>
                                             </Entry>
                                             <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small">
+                                            <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small" Margin="0,0,0,10">>
                                             </Entry>
                                             <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="AltitudeEntry" Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small">
+                                            <Entry AutomationId="AltitudeEntry" Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small" Margin="0,0,0,10">
                                             </Entry>
                                             <Button Command="{Binding Path=BindingContext.DeletePointCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Image="trash_icon_blue" Grid.Row="0" Grid.Column="3" WidthRequest="20" HeightRequest="20" IsVisible="{Binding Path=BindingContext.ShowPointDeleteBtn, Source={x:Reference Name=ModifyDetailFormViewPage}}" FontSize="Small" />
                                             <ActivityIndicator Grid.Row="1" Grid.Column="3" Color="White" IsRunning="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" IsVisible="{Binding Path=BindingContext.LoadingIconActive, Source={x:Reference Name=ModifyDetailFormViewPage}}" />
-                                            <Button Command="{Binding Path=BindingContext.GetFeatureCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Text="Use Current Location" Grid.Row="3" Grid.ColumnSpan="4" FontSize="Small" />
+                                            <Button Command="{Binding Path=BindingContext.GetFeatureCommand, Source={x:Reference Name=ModifyDetailFormViewPage}}" CommandParameter="{Binding .}" IsEnabled="{Binding Path=BindingContext.GeolocationEntryEnabled, Source={x:Reference Name=ModifyDetailFormViewPage}}" Image="current_location" Grid.Row="1" Grid.Column="3" WidthRequest="20" HeightRequest="20" Margin="0,0,0,10"/>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>

@@ -109,7 +109,7 @@
     <Compile Include="MyMapDelegate.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
     <Compile Include="CustomEntryRenderer.cs" />
-    <None Include="ExtendedPageRenderer.cs" />
+    <Compile Include="ExtendedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -141,9 +141,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\area_icon.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png">
@@ -182,16 +179,10 @@
     <ImageAsset Include="Assets.xcassets\import_icon.imageset\ezgif.com-gif-maker-8.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\line_icon.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\edit_icon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\data_icon.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\map_icon.imageset\ezgif.com-gif-maker-11.png">
@@ -200,13 +191,7 @@
     <ImageAsset Include="Assets.xcassets\map_icon.imageset\ezgif.com-gif-maker-12.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\point_icon.imageset\ezgif.com-gif-maker-5.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\point_icon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\map_icon.imageset\area_icon.png">
@@ -233,9 +218,6 @@
     <ImageAsset Include="Assets.xcassets\trash_icon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -248,8 +230,6 @@
     <ImageAsset Include="Assets.xcassets\welcome.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\point_icon.imageset\ezgif.com-gif-maker-5-1.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Geoapp152v2.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Geoapp2 1024 22.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Geoapp2 167 2.png" />
@@ -258,11 +238,40 @@
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_iconi-2.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\trash_icon_blueo.png" />
-    <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\trash_icon_blueo-1.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_dblue.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_dblue-1.png" />
     <ImageAsset Include="Assets.xcassets\welcome.imageset\SplashScreen.jpg" />
+    <ImageAsset Include="Assets.xcassets\point_icon_old.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\point_icon_old.imageset\ezgif.com-gif-maker-5.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\point_icon_old.imageset\ezgif.com-gif-maker-5-1.png" />
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\location.png" />
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\location-1.png" />
+    <ImageAsset Include="Assets.xcassets\line_icon_old.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\line_icon_old.imageset\line_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\line_icon_old.imageset\line_icon-1.png" />
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\location - Copys.png" />
+    <ImageAsset Include="Assets.xcassets\area_icon_old.imageset\area_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\area_icon_old.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\area_icon.imageset\location -poly Copy rSSasteriseds.png" />
+    <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_green2.png" />
+    <ImageAsset Include="Assets.xcassets\add_icon_blue.imageset\add_icon_green2-1.png" />
+    <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\trash_icon_greeno.png" />
+    <ImageAsset Include="Assets.xcassets\trash_icon_blue.imageset\trash_icon_greeno-1.png" />
+    <ImageAsset Include="Assets.xcassets\current_location.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\current_location.imageset\icons8-target-filled-6e0.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -317,14 +326,11 @@
     <Folder Include="Assets.xcassets\.dataset\" />
     <Folder Include="Assets.xcassets\add_icon.imageset\" />
     <Folder Include="Assets.xcassets\area-icon.imageset\" />
-    <Folder Include="Assets.xcassets\area_icon.imageset\" />
     <Folder Include="Assets.xcassets\data_icon.imageset\" />
     <Folder Include="Assets.xcassets\edit_icon.imageset\" />
     <Folder Include="Assets.xcassets\export_icon.imageset\" />
     <Folder Include="Assets.xcassets\home_icon.imageset\" />
     <Folder Include="Assets.xcassets\import_icon.imageset\" />
-    <Folder Include="Assets.xcassets\line_icon.imageset\" />
-    <Folder Include="Assets.xcassets\point_icon.imageset\" />
     <Folder Include="Assets.xcassets\profile_icon.imageset\" />
     <Folder Include="Assets.xcassets\save_icon.imageset\" />
     <Folder Include="Assets.xcassets\splash.imageset\" />
@@ -332,6 +338,13 @@
     <Folder Include="Assets.xcassets\welcome.imageset\" />
     <Folder Include="Assets.xcassets\add_icon_blue.imageset\" />
     <Folder Include="Assets.xcassets\trash_icon_blue.imageset\" />
+    <Folder Include="Assets.xcassets\point_icon_old.imageset\" />
+    <Folder Include="Assets.xcassets\point_icon.imageset\" />
+    <Folder Include="Assets.xcassets\line_icon_old.imageset\" />
+    <Folder Include="Assets.xcassets\line_icon.imageset\" />
+    <Folder Include="Assets.xcassets\area_icon_old.imageset\" />
+    <Folder Include="Assets.xcassets\area_icon.imageset\" />
+    <Folder Include="Assets.xcassets\current_location.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ezgif.com-gif-maker-5.png" />

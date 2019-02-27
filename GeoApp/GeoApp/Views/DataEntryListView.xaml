@@ -6,7 +6,8 @@
         <ToolbarItem AutomationId="id_icon" Icon="profile_icon" Command="{Binding IDClickedCommand}" Order="Primary" Priority="1" />
         <ToolbarItem AutomationId="add_icon" Icon="add_icon" Command="{Binding ButtonClickedCommand}" Order="Primary" Priority="0"/>
     </ContentPage.ToolbarItems>
-
+   
+    
     <ContentPage.BindingContext>
         <local:DataEntryListViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
