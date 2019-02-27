@@ -140,7 +140,7 @@ namespace GeoApp
             if (_isBusy) return;
             _isBusy = true;
 
-            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
+            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Feature", "Are you sure you want to delete this feature?", "Yes", "No");
             if (yesResponse)
             {
                 await App.FeaturesManager.DeleteFeatureAsync(feature.properties.id);

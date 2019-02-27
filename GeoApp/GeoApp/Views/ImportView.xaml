@@ -12,7 +12,7 @@
             <Frame Style="{StaticResource FrameStyle}" Grid.Row="0" Margin="10,0">
                 <StackLayout>
                     <Label Margin="0,10,0,0" Text="Import GeoJSON from File" TextColor="Black" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                    <Label Margin="10,10,10,10" Text="To import a GeoJSON file, share the file via your share sheet and select the Groundsman icon. Alternatively, paste the file contents below:" TextColor="Gray" FontSize="Small" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Margin="10,10,10,10" Text="To import a GeoJSON file, share the file via your share sheet and select the Groundsman icon. Alternatively, paste the file contents below:" TextColor="Gray" FontSize="Small" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center">
                         <Label.IsVisible>
                             <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" />
                         </Label.IsVisible>
