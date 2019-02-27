@@ -11,7 +11,7 @@
                     <Label Text="Save to file or share your features via another app" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center"  />
                     <Button AutomationId="ShareButton" Text="Export" Command="{Binding ShareButtonClickCommand}" >
                         <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="Green" Android="White" />
+                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
                         </Button>
                 </FlexLayout>
@@ -23,7 +23,7 @@
                     <Entry Text="{Binding EmailEntry}" AutomationId="emailEntered" Placeholder="Email" Keyboard="Email" />
                     <Button AutomationId="ExportButton" Text="Send" Command="{Binding ExportButtonClickCommand}">
                         <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="Green" Android="White" />
+                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
                         </Button>
                 </FlexLayout>
@@ -34,7 +34,7 @@
                     <Label HorizontalTextAlignment="Center" Text="Create snapshot of your features that is backed up to your app documents. These files can be retrieved via iTunes file sharing for iOS or by viewing your app documents on Android" TextColor="Gray" FontSize="Small" />
                     <Button AutomationId="BackupButton" Text="Backup" Command="{Binding BackupButtonClickCommand}" >
                         <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="Green" Android="White" />
+                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
                         </Button>
                 </FlexLayout>

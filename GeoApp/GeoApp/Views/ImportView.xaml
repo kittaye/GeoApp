@@ -34,11 +34,15 @@
                 </Grid.RowDefinitions>
                     <Label Grid.Row="0" Margin="0,10,0,10" Text="Import GeoJSON from Clipboard" TextColor="Black" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
                     <Frame Grid.Row="1" Style="{StaticResource FrameStyle}" Margin="0" BackgroundColor="White">
-                        <Editor Placeholder="Paste valid GeoJSON here..." Text="{Binding TextEntry}" IsSpellCheckEnabled="false" />
+                        <Editor Placeholder="Paste valid GeoJSON here..." Text="{Binding TextEntry}" IsSpellCheckEnabled="false" >
+                            <Editor.PlaceholderColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="Gray" Android="Gray" />
+                        </Editor.PlaceholderColor>
+                            </Editor>
                     </Frame>
                     <Button Grid.Row="2" AutomationId="ImportButton" Text="Import Text" Command="{Binding TextButtonClickCommand}" >
                         <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="Green" Android="White" />
+                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
                         </Button>
                 </Grid>
