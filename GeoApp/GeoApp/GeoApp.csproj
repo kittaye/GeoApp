@@ -19,7 +19,6 @@
   <ItemGroup>
     <PackageReference Include="GeoJSON.Net" Version="1.1.70" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
@@ -29,8 +28,11 @@
     <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.2.0" />
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.0.4" />
-    <PackageReference Include="Xamarin.Build.Download" Version="0.4.6" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.0.135" />
+    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
+    <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
