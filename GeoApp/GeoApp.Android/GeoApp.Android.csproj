@@ -109,7 +109,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\drawable-hdpi\splash.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_round_launcher.png" />
@@ -121,9 +120,10 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_round_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_round_launcher.png" />
-    <AndroidResource Include="Resources\drawable\add_icon_blue.png" />
-    <AndroidResource Include="Resources\drawable\trash_icon_blue.png" />
     <AndroidResource Include="Resources\drawable\current_location.png" />
+    <AndroidResource Include="Resources\drawable\add_icon_color.png" />
+    <AndroidResource Include="Resources\drawable\trash_icon_color.png" />
+    <AndroidResource Include="Resources\drawable\welcome_screen.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xxxhdpi\" />
@@ -133,9 +133,6 @@
       <Project>{E610A925-2B87-48CE-A0CB-45BB375BDEBC}</Project>
       <Name>GeoApp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\edit_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\area_icon.png" />
@@ -148,9 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\add_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\home_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\data_icon.png" />
