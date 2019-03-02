@@ -1,77 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="GeoApp.GoogleMapView"
-             xmlns:local="clr-namespace:GeoApp"
-             xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
-             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
-             BackgroundColor="Default"
-             Title = "Map View">
-
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GeoApp.GoogleMapView" xmlns:local="clr-namespace:GeoApp" xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings" xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors" BackgroundColor="Default" Title="Map View">
     <ContentPage.BindingContext>
-        <local:GoogleMapViewModel x:Name="viewModel"/>
+        <local:GoogleMapViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
-
     <StackLayout Orientation="Vertical">
-
-        <StackLayout Orientation="Horizontal" Padding="20,5,20,0">
-
-            <Label Text="Shape:" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
-
-            <Picker ItemsSource="{Binding Shape_options}"
-                    Grid.Column="1"
-                SelectedItem="{Binding Shape_filter}"
-                FontSize="Small"
-                     WidthRequest="120">
-                <Picker.Behaviors>
-                    <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-                        <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
-                    </behaviors:EventHandlerBehavior>
-                </Picker.Behaviors>
-            </Picker>
-
-            <Label Text="Date:" Margin="20,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
-
-            <Picker ItemsSource="{Binding Date_options}"
-                    Grid.Column="3"
-                SelectedItem="{Binding Date_filter}"
-                FontSize="Small"
-                    WidthRequest="120">
-                <Picker.Behaviors>
-                    <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
-                        <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
-                    </behaviors:EventHandlerBehavior>
-                </Picker.Behaviors>
-            </Picker>
+        <StackLayout Orientation="Horizontal" Padding="20,5,20,0" HorizontalOptions="Center">
+            <Grid HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Shape:" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0" />
+                <Picker ItemsSource="{Binding Shape_options}" Grid.Column="1" SelectedItem="{Binding Shape_filter}" FontSize="Small" WidthRequest="100">
+                    <Picker.Behaviors>
+                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
+                        </behaviors:EventHandlerBehavior>
+                    </Picker.Behaviors>
+                </Picker>
+            </Grid>
+            <Grid HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Date:" Margin="20,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0" />
+                <Picker ItemsSource="{Binding Date_options}" Grid.Column="1" SelectedItem="{Binding Date_filter}" FontSize="Small" WidthRequest="100">
+                    <Picker.Behaviors>
+                        <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding RefreashGeoDataCommand}" />
+                        </behaviors:EventHandlerBehavior>
+                    </Picker.Behaviors>
+                </Picker>
+            </Grid>
         </StackLayout>
-        <googleMaps:Map x:name="myMap" 
-                    IsShowingUser="true"
-                    MyLocationEnabled="true" 
-                    x:Name="myMap">
-
+        <googleMaps:Map x:name="myMap" IsShowingUser="true" MyLocationEnabled="true" x:Name="myMap">
             <googleMaps:Map.Behaviors>
-                <bindings:BindingPinsBehavior 
-                Value="{Binding Pins}"/>
-
-                <bindings:BindingPolylinesBehavior 
-                Value="{Binding Polylines}"/>
-
-                <bindings:BindingPolygonsBehavior
-                Value="{Binding Polygons}"/>
-
-                <bindings:MapClickedToCommandBehavior
-                Command="{Binding MapClickedCommand}"/>
-
-                <bindings:MyLocationButtonClickedToCommandBehavior 
-                Command="{Binding LocationBtnClickedCommand}"/>
-
+                <bindings:BindingPinsBehavior Value="{Binding Pins}" />
+                <bindings:BindingPolylinesBehavior Value="{Binding Polylines}" />
+                <bindings:BindingPolygonsBehavior Value="{Binding Polygons}" />
+                <bindings:MapClickedToCommandBehavior Command="{Binding MapClickedCommand}" />
+                <bindings:MyLocationButtonClickedToCommandBehavior Command="{Binding LocationBtnClickedCommand}" />
                 <bindings:UpdateRegionBehavior Region="{Binding Region}" />
-
             </googleMaps:Map.Behaviors>
         </googleMaps:Map>
     </StackLayout>
-
-
-
 </ContentPage>

@@ -4,41 +4,46 @@
         <local:ExportViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" >
-            <Frame Style="{StaticResource FrameStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".32*" />
+                <RowDefinition Height=".35*" />
+                <RowDefinition Height=".33*" />
+            </Grid.RowDefinitions>
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="0" Margin="10,10,10,0">
                 <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
-                    <Label Text="Export Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"  />
-                    <Label Text="Save to file or share your features via another app" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center"  />
-                    <Button AutomationId="ShareButton" Text="Export" Command="{Binding ShareButtonClickCommand}" >
+                    <Label Text="Export Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
+                    <Label Text="Save to file or share your features via another app" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center" />
+                    <Button AutomationId="ShareButton" Text="Export" Command="{Binding ShareButtonClickCommand}">
                         <Button.TextColor>
                             <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
-                        </Button>
+                    </Button>
                 </FlexLayout>
             </Frame>
-            <Frame Style="{StaticResource FrameStyle}">
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="1" Margin="10,10,10,5">
                 <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" HorizontalOptions="Center">
-                    <Label Text="Send Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"  />
-                    <Label Text="Enter an email address to send your features to" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center" />
+                    <Label Text="Send Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
+                    <Label Text="Enter destination email address" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center" />
                     <Entry Text="{Binding EmailEntry}" AutomationId="emailEntered" Placeholder="Email" Keyboard="Email" />
                     <Button AutomationId="ExportButton" Text="Send" Command="{Binding ExportButtonClickCommand}">
                         <Button.TextColor>
                             <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
-                        </Button>
+                    </Button>
                 </FlexLayout>
             </Frame>
-            <Frame Style="{StaticResource FrameStyle}">
-                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" >
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="2" Margin="10,5,10,10">
+                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
                     <Label HorizontalTextAlignment="Center" Text="Backup Features" TextColor="Black" FontSize="Large" />
                     <Label HorizontalTextAlignment="Center" Text="Create snapshot of your features that is backed up to your app documents" TextColor="Gray" FontSize="Small" />
-                    <Button AutomationId="BackupButton" Text="Backup" Command="{Binding BackupButtonClickCommand}" >
+                    <Button AutomationId="BackupButton" Text="Backup" Command="{Binding BackupButtonClickCommand}">
                         <Button.TextColor>
                             <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>
-                        </Button>
+                    </Button>
                 </FlexLayout>
             </Frame>
-        </FlexLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

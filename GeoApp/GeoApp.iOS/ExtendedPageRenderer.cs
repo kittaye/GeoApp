@@ -18,44 +18,44 @@ namespace GeoApp.iOS
             {
                 NavigationController.NavigationBar.TintColor = UIColor.FromRGB(76, 175, 80);
             }
-                var contentPage = this.Element as ContentPage;
-                if (contentPage == null || NavigationController == null)
+            var contentPage = this.Element as ContentPage;
+            if (contentPage == null || NavigationController == null)
+                return;
+
+            var itemsInfo = contentPage.ToolbarItems;
+
+            var navigationItem = this.NavigationController.TopViewController.NavigationItem;
+            var leftNativeButtons = (navigationItem.LeftBarButtonItems ?? new UIBarButtonItem[] { }).ToList();
+            var rightNativeButtons = (navigationItem.RightBarButtonItems ?? new UIBarButtonItem[] { }).ToList();
+
+            var newLeftButtons = new UIBarButtonItem[] { }.ToList();
+            var newRightButtons = new UIBarButtonItem[] { }.ToList();
+
+            rightNativeButtons.ForEach(nativeItem =>
+            {
+                    // [Hack] Get Xamarin private field "item"
+                    var field = nativeItem.GetType().GetField("_item", BindingFlags.NonPublic | BindingFlags.Instance);
+                if (field == null)
                     return;
 
-                var itemsInfo = contentPage.ToolbarItems;
+                var info = field.GetValue(nativeItem) as ToolbarItem;
+                if (info == null)
+                    return;
 
-                var navigationItem = this.NavigationController.TopViewController.NavigationItem;
-                var leftNativeButtons = (navigationItem.LeftBarButtonItems ?? new UIBarButtonItem[] { }).ToList();
-                var rightNativeButtons = (navigationItem.RightBarButtonItems ?? new UIBarButtonItem[] { }).ToList();
-
-                var newLeftButtons = new UIBarButtonItem[] { }.ToList();
-                var newRightButtons = new UIBarButtonItem[] { }.ToList();
-
-                rightNativeButtons.ForEach(nativeItem =>
-                {
-                // [Hack] Get Xamarin private field "item"
-                var field = nativeItem.GetType().GetField("_item", BindingFlags.NonPublic | BindingFlags.Instance);
-                    if (field == null)
-                        return;
-
-                    var info = field.GetValue(nativeItem) as ToolbarItem;
-                    if (info == null)
-                        return;
-
-                    if (info.Priority == 1)
-                        newLeftButtons.Add(nativeItem);
-                    else
-                        newRightButtons.Add(nativeItem);
-                });
-
-                leftNativeButtons.ForEach(nativeItem =>
-                {
+                if (info.Priority == 1)
                     newLeftButtons.Add(nativeItem);
-                });
+                else
+                    newRightButtons.Add(nativeItem);
+            });
 
-                navigationItem.RightBarButtonItems = newRightButtons.ToArray();
-                navigationItem.LeftBarButtonItems = newLeftButtons.ToArray();
-            }
+            leftNativeButtons.ForEach(nativeItem =>
+            {
+                newLeftButtons.Add(nativeItem);
+            });
+
+            navigationItem.RightBarButtonItems = newRightButtons.ToArray();
+            navigationItem.LeftBarButtonItems = newLeftButtons.ToArray();
+        }
 
         public override void ViewDidDisappear(bool animated)
         {
@@ -70,4 +70,4 @@ namespace GeoApp.iOS
         }
     }
 
-    }
+}

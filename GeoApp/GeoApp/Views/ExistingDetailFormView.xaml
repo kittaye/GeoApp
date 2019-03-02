@@ -64,7 +64,7 @@
                                             <Label AutomationId="LongLabel" FontAttributes="Bold" Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small" />
                                             <Label AutomationId="LongLabelVal" Text="{Binding Longitude}" Grid.Row="1" Grid.Column="1" TextColor="Gray" FontSize="Small" />
                                             <Label AutomationId="AltLabel" FontAttributes="Bold" Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small" />
-                                            <Label AutomationId="AltLabelVal" Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" FontSize="Small" />
+                                            <Label AutomationId="AltLabelVal" Text="{Binding Altitude}" Grid.Row="1" Grid.Column="2" TextColor="Gray" Margin="0, 0, 0, 10" FontSize="Small" />
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
