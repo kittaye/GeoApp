@@ -4,12 +4,12 @@
       "idiom": "universal"
     },
     {
-      "filename": "profile_icon.png",
+      "filename": "welcome_screen_small.png",
       "scale": "1x",
       "idiom": "universal"
     },
     {
-      "filename": "profile_icon-1.png",
+      "filename": "welcome_screen.png",
       "scale": "2x",
       "idiom": "universal"
     },

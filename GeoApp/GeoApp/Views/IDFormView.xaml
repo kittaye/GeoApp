@@ -13,7 +13,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="splash.png"
+            <Image Source="welcome_screen.png"
                           Aspect="AspectFill"
                    ></Image>
 

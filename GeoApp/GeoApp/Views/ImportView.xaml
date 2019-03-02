@@ -21,6 +21,9 @@
                         <Button.IsVisible>
                             <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" />
                         </Button.IsVisible>
+                        <Button.TextColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="white" />
+                        </Button.TextColor>
                     </Button>
                 </StackLayout>
             </Frame>
@@ -42,7 +45,7 @@
                     </Frame>
                     <Button Grid.Row="2" AutomationId="ImportButton" Text="Import Text" Command="{Binding TextButtonClickCommand}" >
                         <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
+                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="white" />
                         </Button.TextColor>
                         </Button>
                 </Grid>

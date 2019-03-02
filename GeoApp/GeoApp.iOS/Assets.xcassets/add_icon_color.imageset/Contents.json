@@ -4,16 +4,17 @@
       "idiom": "universal"
     },
     {
-      "filename": "profile_icon.png",
+      "filename": "add_icon_color.png",
       "scale": "1x",
       "idiom": "universal"
     },
     {
-      "filename": "profile_icon-1.png",
+      "filename": "add_icon_color-1.png",
       "scale": "2x",
       "idiom": "universal"
     },
     {
+      "filename": "add_icon_color-3.png",
       "scale": "3x",
       "idiom": "universal"
     },
@@ -21,10 +22,12 @@
       "idiom": "iphone"
     },
     {
+      "filename": "add_icon_color-2.png",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
+      "filename": "add_icon_color-4.png",
       "scale": "2x",
       "idiom": "iphone"
     },

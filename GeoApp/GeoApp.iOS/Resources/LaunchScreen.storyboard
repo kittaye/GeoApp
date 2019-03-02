@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.27843137254901962" green="1" blue="0" alpha="1"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="401" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="welcome">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="401" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="launch_screen">
                                 <rect key="frame" x="-196" y="-80" width="1416" height="1518"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="welcome" width="1500" height="2000"/>
+        <image name="launch_screen" width="1500" height="2000"/>
     </resources>
 </document>
