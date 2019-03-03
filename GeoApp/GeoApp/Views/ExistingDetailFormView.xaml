@@ -82,8 +82,8 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.25*" />
-                                <ColumnDefinition Width="0.75*" />
+                                <ColumnDefinition Width="0.27*" />
+                                <ColumnDefinition Width="0.72*" />
                             </Grid.ColumnDefinitions>
                             <Label Text="String: " FontAttributes="Bold" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10" />
                             <Label Text="{Binding MetadataStringEntry}" Grid.Row="1" Grid.Column="1" FontSize="Small" TextColor="Gray" HorizontalOptions="Fill" Margin="0,0,10,0" VerticalTextAlignment="Center" />

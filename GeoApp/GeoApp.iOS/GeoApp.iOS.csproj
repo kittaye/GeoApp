@@ -140,7 +140,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color.png" />
     <ImageAsset Include="Assets.xcassets\current_location.imageset\current_location.png" />
     <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png" />
@@ -151,7 +150,6 @@
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\launch_screen.imageset\launch_screen.jpg" />
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon.png" />
-    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon.png" />
     <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon.png" />
     <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color.png" />
     <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen_small.png" />
@@ -169,10 +167,8 @@
     <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon-1.png" />
     <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon-1.png" />
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon-1.png" />
     <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color-1.png" />
     <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon-1.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-1.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-2.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-3.png" />
@@ -197,6 +193,10 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3.png" />
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3-1.png" />
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4.png" />
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
