@@ -73,9 +73,9 @@
                     </StackLayout>
                 </Frame>
                 <Frame Style="{StaticResource FrameStyle}" Grid.Row="1">
-                    <StackLayout >
+                    <StackLayout>
                         <Label Text="Metadata" FontAttributes="Bold" />
-                        <Grid >
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

@@ -1,17 +1,13 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Xamarin.Essentials;
-
 using Plugin.Permissions;
 
-
-namespace GeoApp.Droid {
+namespace GeoApp.Droid
+{
     [Activity(Label = "Groundsman",
         Icon = "@mipmap/ic_launcher",
         RoundIcon = "@mipmap/ic_round_launcher",
@@ -19,9 +15,11 @@ namespace GeoApp.Droid {
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
         ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    {
 
-        protected override void OnCreate(Bundle bundle) {
+        protected override void OnCreate(Bundle bundle)
+        {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -33,8 +31,10 @@ namespace GeoApp.Droid {
             Xamarin.FormsMaps.Init(this, bundle);
             Xamarin.FormsGoogleMaps.Init(this, bundle);
             Xamarin.FormsGoogleMapsBindings.Init();
-            Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) => {
-                if (!string.IsNullOrWhiteSpace(e.View.AutomationId)) {
+            Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) =>
+            {
+                if (!string.IsNullOrWhiteSpace(e.View.AutomationId))
+                {
                     e.NativeView.ContentDescription = e.View.AutomationId;
                 }
             };
@@ -42,7 +42,8 @@ namespace GeoApp.Droid {
             LoadApplication(new App());
         }
 
-        protected override void OnResume() {
+        protected override void OnResume()
+        {
             base.OnResume();
 
             //Android.Support.V7.Widget.Toolbar toolbar = this.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -57,19 +58,24 @@ namespace GeoApp.Droid {
         /// <param name="requestCode"></param>
         /// <param name="permissions"></param>
         /// <param name="grantResults"></param>
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults) {
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
             Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item) {
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
             // Check if the selected toolbar button's id equals the back button id.
-            if (item.ItemId == Android.Resource.Id.Home) {
+            if (item.ItemId == Android.Resource.Id.Home)
+            {
                 // If so, override it so it always takes the user straight back to the main page.
                 HomePage.Instance.Navigation.PopToRootAsync();
                 return false;
-            } else {
+            }
+            else
+            {
                 return base.OnOptionsItemSelected(item);
             }
         }

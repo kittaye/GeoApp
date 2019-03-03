@@ -99,17 +99,17 @@
     <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ColoredTabBarRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CustomMapRenderer.cs" />
     <Compile Include="MyMapDelegate.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
-    <Compile Include="CustomEntryRenderer.cs" />
-    <Compile Include="ExtendedPageRenderer.cs" />
+    <Compile Include="Renderers\ColoredTabBarRenderer.cs" />
+    <Compile Include="Renderers\ExtendedPageRenderer.cs" />
+    <Compile Include="Renderers\CustomEntryRenderer.cs" />
+    <Compile Include="Renderers\CustomMapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -203,12 +203,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Plugin.FilePicker">
-      <HintPath>..\..\..\..\..\Desktop\2.0.135\lib\Xamarin.iOS10\Plugin.FilePicker.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.FilePicker.Abstractions">
-      <HintPath>..\..\..\..\..\Desktop\2.0.135\lib\Xamarin.iOS10\Plugin.FilePicker.Abstractions.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -276,13 +270,10 @@
     <Folder Include="Assets.xcassets\appicon.imageset\" />
     <Folder Include="Assets.xcassets\appIcon.imageset\" />
     <Folder Include="Assets.xcassets\AppIcon.imageset\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ezgif.com-gif-maker-5.png" />
-    <BundleResource Include="Resources\ezgif.com-gif-maker-11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="Resources\iTunesArtwork" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
   </ItemGroup>
 </Project>

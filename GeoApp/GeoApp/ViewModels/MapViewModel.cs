@@ -4,14 +4,17 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using System;
 
-namespace GeoApp {
+namespace GeoApp
+{
     /// <summary>
     /// ViewModel for maps page
     /// </summary>
-    public class MapViewModel {
+    public class MapViewModel
+    {
         private CustomMap map;
 
-        public MapViewModel() {
+        public MapViewModel()
+        {
 #if __IOS__
             InitialiseMap();
 #endif
@@ -22,8 +25,10 @@ namespace GeoApp {
         /// Create map and set starting position
         /// </summary>
         /// <returns></returns>
-        public Map InitialiseMap() {
-            map = new CustomMap() {
+        public Map InitialiseMap()
+        {
+            map = new CustomMap()
+            {
 #if __IOS__
                 IsShowingUser = true,
 #else
@@ -42,14 +47,15 @@ namespace GeoApp {
         /// <summary>
         /// Adds overlays to the map, with different methods for points, lines and perimeters. Currently only points activated
         /// </summary>
-        public void AddGeometry() {
+        public void AddGeometry()
+        {
             List<Feature> features = App.FeaturesManager.CurrentFeatures;
             map.Pins.Clear();
 
             foreach (var feature in features)
             {
-                if(feature.geometry.type == "Point") //Use pins for points
-                { 
+                if (feature.geometry.type == "Point") //Use pins for points
+                {
                     CreatePin(feature.properties.name, feature.properties.xamarincoordinates[0].Latitude, feature.properties.xamarincoordinates[0].Longitude, feature.properties.xamarincoordinates[0].Altitude);
                 }
                 if (feature.geometry.type == "Line") //
@@ -58,7 +64,7 @@ namespace GeoApp {
                     //map.ShapeCoordinates.Add(pos);
                 }
                 if (feature.geometry.type == "Polygon") //Use overlay shapes for perimeters
-            {
+                {
                     //List<Position> posi = new List<Position> { new Position(39.934633, 116.399921), new Position(39.929709, 116.400208), new Position(39.929792, 116.405994), new Position(39.934689, 116.405526) };
                     //map.ShapeCoordinates.Add(posi);
                 }
@@ -68,7 +74,8 @@ namespace GeoApp {
         /// <summary>
         /// Call geometry whenever map comes into view, clearing and readding all data points
         /// </summary>
-        public void RefreshMap() {
+        public void RefreshMap()
+        {
             AddGeometry();
         }
 
@@ -82,7 +89,8 @@ namespace GeoApp {
         public void CreatePin(string name, double lat, double lon, double alt)
         {
             var position = new Position(lat, lon); // Latitude, Longitude
-            var pin = new Pin {
+            var pin = new Pin
+            {
                 Type = PinType.Place,
                 Position = position,
                 Label = name,

@@ -33,8 +33,8 @@ namespace GeoApp.iOS
 
             rightNativeButtons.ForEach(nativeItem =>
             {
-                    // [Hack] Get Xamarin private field "item"
-                    var field = nativeItem.GetType().GetField("_item", BindingFlags.NonPublic | BindingFlags.Instance);
+                // [Hack] Get Xamarin private field "item"
+                var field = nativeItem.GetType().GetField("_item", BindingFlags.NonPublic | BindingFlags.Instance);
                 if (field == null)
                     return;
 

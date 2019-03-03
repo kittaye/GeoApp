@@ -38,7 +38,7 @@ namespace GeoApp {
                     });
                 } else {
                     Device.BeginInvokeOnMainThread(() => {
-                        HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise some features in the applcation", "Ok");
+                        HomePage.Instance.DisplayAlert("Location Permissions", "Location permissions must be enabled to utilise most features in the application", "Ok");
                         locationPermissionEnabled = false;
                     });
                 }
@@ -60,7 +60,7 @@ namespace GeoApp {
                     viewModel.LocationBtnClickedCommand.Execute(null);
                 }
             } else {
-                await HomePage.Instance.DisplayAlert("Permission Error", "Location permission must be enabled to utilise the map feature. If you have allowed permissions and still see this error, please quit and restart the app", "Ok");
+                await HomePage.Instance.DisplayAlert("Location Permissions", "Location permission must be enabled to utilise the map feature. If you have allowed permissions and still see this error, please quit and restart the app", "Ok");
             }
         }
     }

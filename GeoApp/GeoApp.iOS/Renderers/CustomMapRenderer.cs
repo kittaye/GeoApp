@@ -56,15 +56,12 @@ namespace GeoApp.iOS
                         index++;
                     }
 
-
-
                     var blockOverlay = MKPolygon.FromCoordinates(coords);
                     nativeMap.AddOverlay(blockOverlay);
 
                 }
             }
         }
-
 
 
         MKOverlayRenderer GetOverlayRenderer(MKMapView mapView, IMKOverlay overlayWrapper)

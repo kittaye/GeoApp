@@ -1,9 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -77,7 +72,8 @@ namespace GeoApp
             _isBusy = false;
         }
 
-        private void IDTappedCommand() {
+        private void IDTappedCommand()
+        {
             if (_isBusy) return;
             _isBusy = true;
 

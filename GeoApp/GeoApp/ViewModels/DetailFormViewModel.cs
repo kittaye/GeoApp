@@ -5,16 +5,17 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using Newtonsoft.Json.Linq;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 
-namespace GeoApp {
+namespace GeoApp
+{
     /// <summary>
     /// View-model for the page that shows a data entry's details in a form.
     /// </summary>
-    public class DetailFormViewModel : ViewModelBase {
+    public class DetailFormViewModel : ViewModelBase
+    {
 
         public ICommand GetFeatureCommand { get; set; }
         public ICommand AddPointCommand { get; set; }
@@ -39,45 +40,55 @@ namespace GeoApp {
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
         private string _dateEntry;
-        public string DateEntry {
+        public string DateEntry
+        {
             get { return _dateEntry; }
-            set {
+            set
+            {
                 _dateEntry = value;
                 OnPropertyChanged();
             }
         }
 
         private string _nameEntry;
-        public string NameEntry {
+        public string NameEntry
+        {
             get { return _nameEntry; }
-            set {
+            set
+            {
                 _nameEntry = value;
                 OnPropertyChanged();
             }
         }
 
         private bool _loadingIconActive;
-        public bool LoadingIconActive {
+        public bool LoadingIconActive
+        {
             get { return _loadingIconActive; }
-            set {
+            set
+            {
                 _loadingIconActive = value;
                 OnPropertyChanged();
             }
         }
 
         private bool _geolocationEntryEnabled;
-        public bool GeolocationEntryEnabled {
+        public bool GeolocationEntryEnabled
+        {
             get { return _geolocationEntryEnabled; }
-            set {
+            set
+            {
                 _geolocationEntryEnabled = value;
                 OnPropertyChanged();
             }
         }
 
         private int _numPointFields;
-        public int NumPointFields {
+        public int NumPointFields
+        {
             get { return _numPointFields; }
-            set {
+            set
+            {
                 _numPointFields = value;
                 OnPropertyChanged();
                 OnPropertyChanged("ShowPointDeleteBtn");
@@ -85,27 +96,33 @@ namespace GeoApp {
         }
 
         private string _metadataStringEntry;
-        public string MetadataStringEntry {
+        public string MetadataStringEntry
+        {
             get { return _metadataStringEntry; }
-            set {
+            set
+            {
                 _metadataStringEntry = value;
                 OnPropertyChanged();
             }
         }
 
         private int _metadataIntegerEntry;
-        public int MetadataIntegerEntry {
+        public int MetadataIntegerEntry
+        {
             get { return _metadataIntegerEntry; }
-            set {
+            set
+            {
                 _metadataIntegerEntry = value;
                 OnPropertyChanged();
             }
         }
 
         private float _metadataFloatEntry;
-        public float MetadataFloatEntry {
+        public float MetadataFloatEntry
+        {
             get { return _metadataFloatEntry; }
-            set {
+            set
+            {
                 _metadataFloatEntry = value;
                 OnPropertyChanged();
             }
@@ -114,7 +131,8 @@ namespace GeoApp {
         /// <summary>
         /// View-model constructor for adding new entries.
         /// </summary>
-        public DetailFormViewModel(string entryType) {
+        public DetailFormViewModel(string entryType)
+        {
             thisEntryType = entryType;
             thisEntryID = AppConstants.NEW_ENTRY_ID;
 
@@ -122,17 +140,24 @@ namespace GeoApp {
 
             // Add the minimum number of points necessary for the chosen type.
             {
-                if (entryType == "Point") {
+                if (entryType == "Point")
+                {
                     minPoints = 1;
-                } else if (entryType == "Line") {
+                }
+                else if (entryType == "Line")
+                {
                     minPoints = 2;
-                } else if (entryType == "Polygon") {
+                }
+                else if (entryType == "Polygon")
+                {
                     minPoints = 4;
-                } else {
-                    Debug.WriteLine($"\n\n:::::::::::::::::::::UNSUPPORTED ENTRY TYPE: {entryType}");
+                }
+                else
+                {
                 }
                 GeolocationPoints = new ObservableCollection<Point>();
-                for (int i = 0; i < minPoints; i++) {
+                for (int i = 0; i < minPoints; i++)
+                {
                     AddPoint();
                 }
             }
@@ -146,7 +171,8 @@ namespace GeoApp {
         /// <summary>
         /// View-model constructor for viewing/editing existing entries.
         /// </summary>
-        public DetailFormViewModel(Feature data) {
+        public DetailFormViewModel(Feature data)
+        {
             thisEntryType = data.geometry.type;
             thisEntryID = data.properties.id;
 
@@ -168,7 +194,8 @@ namespace GeoApp {
         /// <summary>
         /// Initialise command bindings.
         /// </summary>
-        private void InitCommandBindings() {
+        private void InitCommandBindings()
+        {
             GetFeatureCommand = new Command<Point>(async (point) => { await GetGeoLocation(point); });
 
             AddPointCommand = new Command(() => AddPoint());
@@ -183,14 +210,17 @@ namespace GeoApp {
         /// Queries the current device's location coordinates
         /// </summary>
         /// <param name="point">Point to set GPS data to.</param>
-        private async Task GetGeoLocation(Point point) {
-            try {
+        private async Task GetGeoLocation(Point point)
+        {
+            try
+            {
                 var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
                 // Disable interaction with entries to prevent errors.
                 GeolocationEntryEnabled = false;
                 LoadingIconActive = true;
 
-                if (status == PermissionStatus.Granted) {
+                if (status == PermissionStatus.Granted)
+                {
                     // Gets current location of device (MORE ACCURATE, but slower)
                     var request = new GeolocationRequest(GeolocationAccuracy.Medium);
                     var location = await Geolocation.GetLocationAsync(request);
@@ -199,18 +229,23 @@ namespace GeoApp {
                     LoadingIconActive = false;
                     GeolocationEntryEnabled = true;
 
-                    if (location != null) {
+                    if (location != null)
+                    {
                         point.Latitude = location.Latitude;
                         point.Longitude = location.Longitude;
                         point.Altitude = location.Altitude ?? 0.0;
                     }
-                } else {
+                }
+                else
+                {
                     await HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise this feature", "Ok");
                     // Re-enable interaction.
                     LoadingIconActive = false;
                     GeolocationEntryEnabled = true;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
@@ -219,7 +254,8 @@ namespace GeoApp {
         /// Adds a new geolocation point to the list for line or polygon data types.
         /// </summary>
         /// <returns></returns>
-        private void AddPoint() {
+        private void AddPoint()
+        {
             if (_isBusy) return;
             _isBusy = true;
 
@@ -233,7 +269,8 @@ namespace GeoApp {
         /// Deletes a geolocation point from the list.
         /// </summary>
         /// <param name="item">Item to delete</param>
-        private void DeletePoint(Point item) {
+        private void DeletePoint(Point item)
+        {
             if (_isBusy) return;
             _isBusy = true;
 
@@ -247,12 +284,14 @@ namespace GeoApp {
         /// Deletes the entire feature from the list of current features and saves changes to the embedded file.
         /// </summary>
         /// <returns></returns>
-        private async Task DeleteFeatureEntry() {
+        private async Task DeleteFeatureEntry()
+        {
             if (_isBusy) return;
             _isBusy = true;
 
-            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Data Entry", "Are you sure you want to delete this entry?", "Yes", "No");
-            if (yesResponse) {
+            bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Feature", "Are you sure you want to delete this feature?", "Yes", "No");
+            if (yesResponse)
+            {
                 await App.FeaturesManager.DeleteFeatureAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopToRootAsync();
             }
@@ -263,17 +302,20 @@ namespace GeoApp {
         /// <summary>
         /// Saves a new or edited feature to the embedded file.
         /// </summary>
-        async void OnSaveUpdateActivated() {
+        async void OnSaveUpdateActivated()
+        {
             if (_isBusy) return;
             _isBusy = true;
 
             // Ensure geolocation points are only accurate up to the specified digit precision.
-            foreach (var point in GeolocationPoints) {
+            foreach (var point in GeolocationPoints)
+            {
                 AppConstants.RoundGPSPosition(point);
             }
 
             // Do validation checks here.
-            if (await FeatureEntryIsValid() == false) {
+            if (await FeatureEntryIsValid() == false)
+            {
                 return;
             }
 
@@ -289,7 +331,8 @@ namespace GeoApp {
         /// Creates a feature object based on the view-model data of this feature entry.
         /// </summary>
         /// <returns>A feature object formed from input values</returns>
-        private Feature CreateFeatureFromInput() {
+        private Feature CreateFeatureFromInput()
+        {
             Feature feature = new Feature();
 
             feature.type = "Feature";
@@ -299,10 +342,12 @@ namespace GeoApp {
             // otherwise an ID will already be set for editing entries.
             feature.properties.id = thisEntryID;
 
-            if (Application.Current.Properties.ContainsKey("UserID")) {
+            if (Application.Current.Properties.ContainsKey("UserID"))
+            {
                 feature.properties.authorId = Application.Current.Properties["UserID"] as string;
-            } else {
-                Debug.Print("=======================This should never happen!=========================");
+            }
+            else
+            {
                 feature.properties.authorId = string.Empty;
             }
 
@@ -321,26 +366,33 @@ namespace GeoApp {
 
             // Converts our xamarin coordinate data back into a valid geojson structure.
             {
-                if (thisEntryType == "Point") {
+                if (thisEntryType == "Point")
+                {
                     feature.geometry.coordinates = new List<object>() {
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Altitude };
-                } else if (thisEntryType == "Line") {
+                }
+                else if (thisEntryType == "Line")
+                {
                     feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                    for (int i = 0; i < GeolocationPoints.Count; i++)
+                    {
                         feature.geometry.coordinates.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
                     }
-                } else if (thisEntryType == "Polygon") {
+                }
+                else if (thisEntryType == "Polygon")
+                {
                     // This specific method of structuring points means that users will not
                     // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
                     // This doesn't matter since our app interface can't allow for it anyway.
                     feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
                     List<object> innerPoints = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++) {
+                    for (int i = 0; i < GeolocationPoints.Count; i++)
+                    {
                         innerPoints.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Latitude,
@@ -356,16 +408,20 @@ namespace GeoApp {
         /// Performs validation checks on the data in the form.
         /// </summary>
         /// <returns>True if the form contains valid data.</returns>
-        private async Task<bool> FeatureEntryIsValid() {
+        private async Task<bool> FeatureEntryIsValid()
+        {
             /// Begin validation checks.
-            if (string.IsNullOrEmpty(NameEntry)) {
+            if (string.IsNullOrEmpty(NameEntry))
+            {
                 await HomePage.Instance.DisplayAlert("Alert", "Feature name must not be empty.", "OK");
                 return false;
             }
 
-            if (thisEntryType == "Polygon") {
-                if (GeolocationPoints.Count < 4) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 geolocational points.", "OK");
+            if (thisEntryType == "Polygon")
+            {
+                if (GeolocationPoints.Count < 4)
+                {
+                    await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 data points.", "OK");
                     return false;
                 }
 
@@ -376,19 +432,26 @@ namespace GeoApp {
                     double firstLongitude = GeolocationPoints[0].Longitude;
                     double lastLongitude = GeolocationPoints[GeolocationPoints.Count - 1].Longitude;
 
-                    if (firstLatitude != lastLatitude || firstLongitude != lastLongitude) {
+                    if (firstLatitude != lastLatitude || firstLongitude != lastLongitude)
+                    {
                         await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
                         return false;
                     }
                 }
-            } else if (thisEntryType == "Line") {
-                if (GeolocationPoints.Count < 2) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 geolocational points.", "OK");
+            }
+            else if (thisEntryType == "Line")
+            {
+                if (GeolocationPoints.Count < 2)
+                {
+                    await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 data points.", "OK");
                     return false;
                 }
-            } else if (thisEntryType == "Point") {
-                if (GeolocationPoints.Count != 1) {
-                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 geolocational point.", "OK");
+            }
+            else if (thisEntryType == "Point")
+            {
+                if (GeolocationPoints.Count != 1)
+                {
+                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 data point.", "OK");
                     return false;
                 }
             }

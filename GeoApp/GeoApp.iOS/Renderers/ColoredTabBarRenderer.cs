@@ -1,5 +1,4 @@
-﻿using System;
-using KickassUI.Spotify.iOS.Renderers;
+﻿using KickassUI.Spotify.iOS.Renderers;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

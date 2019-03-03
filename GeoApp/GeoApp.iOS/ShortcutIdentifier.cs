@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GeoApp
+﻿namespace GeoApp
 {
     public static class ShortcutIdentifier
     {

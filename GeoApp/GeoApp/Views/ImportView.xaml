@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <Grid Margin="0,10">
             <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height=".8*" />
-                </Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height=".8*" />
+            </Grid.RowDefinitions>
             <Frame Style="{StaticResource FrameStyle}" Grid.Row="0" Margin="10,0">
                 <StackLayout>
                     <Label Margin="0,10,0,0" Text="Import GeoJSON from File" TextColor="Black" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
@@ -29,25 +29,24 @@
             </Frame>
             <Frame Style="{StaticResource FrameStyle}" Grid.Row="1" Margin="10,10,10,0">
                 <Grid>
-            <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height=".9*" />
-                    <RowDefinition Height="Auto" />
-                        
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height=".9*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
                     <Label Grid.Row="0" Margin="0,10,0,10" Text="Import GeoJSON from Clipboard" TextColor="Black" FontSize="Large" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
                     <Frame Grid.Row="1" Style="{StaticResource FrameStyle}" Margin="0" BackgroundColor="White">
                         <Editor Placeholder="Paste valid GeoJSON here..." Text="{Binding TextEntry}" IsSpellCheckEnabled="false" FontSize="Micro">
                             <Editor.PlaceholderColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="Gray" Android="Gray" />
-                        </Editor.PlaceholderColor>
-                            </Editor>
+                                <OnPlatform x:TypeArguments="Color" iOS="Gray" Android="Gray" />
+                            </Editor.PlaceholderColor>
+                        </Editor>
                     </Frame>
-                    <Button Grid.Row="2" AutomationId="ImportButton" Text="Import Text" Command="{Binding TextButtonClickCommand}" >
+                    <Button Grid.Row="2" AutomationId="ImportButton" Text="Import Text" Command="{Binding TextButtonClickCommand}">
                         <Button.TextColor>
                             <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="white" />
                         </Button.TextColor>
-                        </Button>
+                    </Button>
                 </Grid>
             </Frame>
         </Grid>

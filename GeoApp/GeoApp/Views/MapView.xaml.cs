@@ -2,11 +2,14 @@
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Maps;
 
-namespace GeoApp {
+namespace GeoApp
+{
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MapView : ContentPage {
+    public partial class MapView : ContentPage
+    {
 
-        public MapView() {
+        public MapView()
+        {
             InitializeComponent();
             var stack = new StackLayout { Spacing = 0 };
             Map pageMap = viewModel.InitialiseMap();
@@ -14,7 +17,8 @@ namespace GeoApp {
             Content = stack;
         }
 
-        protected override void OnAppearing() {
+        protected override void OnAppearing()
+        {
 #if __IOS__
             viewModel.RefreshMap();
             base.OnAppearing();

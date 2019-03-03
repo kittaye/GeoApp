@@ -5,8 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace GeoApp {
-    public class ViewModelBase : INotifyPropertyChanged {
+namespace GeoApp
+{
+    public class ViewModelBase : INotifyPropertyChanged
+    {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -25,7 +27,8 @@ namespace GeoApp {
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ViewModelBase() {
+        public ViewModelBase()
+        {
             //Make sure validation is performed on startup
             Validate();
         }
@@ -33,7 +36,8 @@ namespace GeoApp {
         /// <summary>
         /// Returns true if the current state of the ViewModel is valid
         /// </summary>
-        public bool IsValid {
+        public bool IsValid
+        {
             get { return Errors.Count == 0; }
         }
 
@@ -45,8 +49,10 @@ namespace GeoApp {
         /// <summary>
         /// An aggregated error message
         /// </summary>
-        public virtual string Error {
-            get {
+        public virtual string Error
+        {
+            get
+            {
                 return Errors.Aggregate(new StringBuilder(), (b, s) => b.AppendLine(s)).ToString().Trim();
             }
         }
@@ -55,7 +61,8 @@ namespace GeoApp {
         /// Protected method for validating the ViewModel
         /// - Fires PropertyChanged for IsValid and Errors
         /// </summary>
-        protected virtual void Validate() {
+        protected virtual void Validate()
+        {
             OnPropertyChanged("IsValid");
             OnPropertyChanged("Errors");
 
@@ -67,11 +74,15 @@ namespace GeoApp {
         /// </summary>
         /// <param name="validate">Func to determine if a value is valid</param>
         /// <param name="error">The error message to use if not valid</param>
-        protected virtual void ValidateProperty(Func<bool> validate, string error) {
-            if (validate()) {
+        protected virtual void ValidateProperty(Func<bool> validate, string error)
+        {
+            if (validate())
+            {
                 if (!Errors.Contains(error))
                     Errors.Add(error);
-            } else {
+            }
+            else
+            {
                 Errors.Remove(error);
             }
         }
@@ -79,11 +90,14 @@ namespace GeoApp {
         /// <summary>
         /// Value indicating if a spinner should be shown
         /// </summary>
-        public bool IsBusy {
+        public bool IsBusy
+        {
             get { return isBusy; }
 
-            set {
-                if (isBusy != value) {
+            set
+            {
+                if (isBusy != value)
+                {
                     isBusy = value;
 
                     OnPropertyChanged("IsBusy");
@@ -96,11 +110,13 @@ namespace GeoApp {
         /// <summary>
         /// Other viewmodels can override this if something should be done when busy
         /// </summary>
-        protected virtual void OnIsBusyChanged() {
+        protected virtual void OnIsBusyChanged()
+        {
             IsBusyChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string name = "") {
+        protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }

@@ -7,23 +7,29 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GeoApp {
+namespace GeoApp
+{
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DataEntryListView : ContentPage {
+    public partial class DataEntryListView : ContentPage
+    {
 
-        public DataEntryListView() {
+        public DataEntryListView()
+        {
             InitializeComponent();
         }
 
-        protected override void OnAppearing() {
+        protected override void OnAppearing()
+        {
             base.OnAppearing();
 
-            if (((DataEntryListViewModel)BindingContext).RefreshListCommand.CanExecute(null)) {
+            if (((DataEntryListViewModel)BindingContext).RefreshListCommand.CanExecute(null))
+            {
                 ((DataEntryListViewModel)BindingContext).RefreshListCommand.Execute(null);
             }
         }
 
-        protected override void OnDisappearing() {
+        protected override void OnDisappearing()
+        {
             loadingList.IsRunning = false;
             loadingList.IsVisible = false;
             base.OnDisappearing();

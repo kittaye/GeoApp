@@ -21,7 +21,7 @@ namespace GeoApp
 
             if (this.Element.Keyboard == Keyboard.Numeric)
             {
-                 this.AddNegDoneButton();
+                this.AddNegDoneButton();
             }
 
             if (this.Element.Keyboard == Keyboard.Default || this.Element.Keyboard == Keyboard.Text)
@@ -32,15 +32,14 @@ namespace GeoApp
         /// <summary>
         /// Add toolbar with Done button
         /// </summary>
-        /// 
-        /// 
 
         protected void AddDoneButton()
         {
             UIToolbar toolbar = new UIToolbar(new RectangleF(0.0f, 0.0f, 50.0f, 44.0f));
             toolbar.Translucent = true;
 
-            var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate {
+            var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate
+            {
                 this.Control.ResignFirstResponder();
             });
 
@@ -57,10 +56,12 @@ namespace GeoApp
             UIToolbar toolbar = new UIToolbar(new RectangleF(0.0f, 0.0f, 50.0f, 44.0f));
             toolbar.Translucent = true;
 
-            var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate {
+            var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, delegate
+            {
                 this.Control.ResignFirstResponder();
             });
-            var negButton = new UIBarButtonItem("-", UIBarButtonItemStyle.Plain, delegate {
+            var negButton = new UIBarButtonItem("-", UIBarButtonItemStyle.Plain, delegate
+            {
                 this.Control.InsertText("-");
             });
 

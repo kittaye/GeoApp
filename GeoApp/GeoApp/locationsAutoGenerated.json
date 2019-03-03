@@ -33,7 +33,7 @@
         "metadataIntegerValue": 1,
         "metadataFloatValue": 1.1,
         "name": "Example Polygon",
-        "date": "19/02/2019"
+        "date": "01/01/2019"
       }
     },
     {
@@ -58,7 +58,7 @@
         "metadataIntegerValue": 2,
         "metadataFloatValue": 2.2,
         "name": "Test Line",
-        "date": "19/02/2019"
+        "date": "01/01/2019"
       }
     },
     {
@@ -77,7 +77,7 @@
         "metadataIntegerValue": 3,
         "metadataFloatValue": 3.3,
         "name": "Sample Point",
-        "date": "19/02/2019"
+        "date": "01/01/2019"
       }
     }
   ]

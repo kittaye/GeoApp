@@ -1,20 +1,16 @@
-﻿using Newtonsoft.Json;
-using Plugin.Share;
+﻿using Plugin.Share;
 using Plugin.Share.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-
-/// Export libs
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
-namespace GeoApp {
-    public class ExportViewModel: ViewModelBase {
+namespace GeoApp
+{
+    public class ExportViewModel : ViewModelBase
+    {
 
         public ICommand ExportButtonClickCommand { set; get; }
 
@@ -37,10 +33,12 @@ namespace GeoApp {
         /// <summary>
         /// View-model constructor for the export page.
         /// </summary>
-        public ExportViewModel() {
+        public ExportViewModel()
+        {
 
             // If export button clicked
-            ExportButtonClickCommand = new Command(async () => {
+            ExportButtonClickCommand = new Command(async () =>
+            {
 
                 // Checks validity of email
                 if (string.IsNullOrWhiteSpace(EmailEntry) == false)
@@ -59,12 +57,11 @@ namespace GeoApp {
                         // Reciever's entered email address
                         mail.To.Add(email_Address);
 
-                        mail.Subject = "Your requested Groundsman GeoJson dataset";
-                        mail.Body = "The following attachment is your request dataset contained into a GEO JSON format";
+                        mail.Subject = "Groundsman Feature List Export";
+                        mail.Body = "Attached is your requested GeoJSON dataset.";
 
                         // Add the Json attachment int othe email
-                        mail.Attachments.Add(Attachment.CreateAttachmentFromString(JSONfile, "GeoAware.json"));
-
+                        mail.Attachments.Add(Attachment.CreateAttachmentFromString(JSONfile, string.Format("My Features - {0}-{1}-{2}.json", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)));
 
                         SmtpServer.Port = 587;
                         SmtpServer.Credentials = new System.Net.NetworkCredential("geoapplicationqut@gmail.com", "Geoapplication123");
@@ -94,7 +91,6 @@ namespace GeoApp {
                     await HomePage.Instance.DisplayAlert("Invalid Email", "Email Address cannot be empty.", "OK");
                 }
 
-               
             });
 
 
@@ -102,7 +98,8 @@ namespace GeoApp {
             if (!CrossShare.IsSupported)
                 return;
 
-            ShareButtonClickCommand = new Command(async () => {
+            ShareButtonClickCommand = new Command(async () =>
+            {
                 await CrossShare.Current.Share(new ShareMessage
                 {
                     Text = App.FeaturesManager.ExportFeaturesToJson(),
@@ -126,8 +123,6 @@ namespace GeoApp {
                 }
                 await HomePage.Instance.DisplayAlert("Backup Success", "File now saved in app documents. On iOS, this file can be found in the Groundsman App through iTunes file sharing. On Android, this document can be accessed through your file explorer.", "OK");
             });
-
-
         }
     }
 }
