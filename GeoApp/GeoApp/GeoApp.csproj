@@ -39,6 +39,7 @@
     <Compile Remove="FocusEffect.cs" />
     <Compile Remove="MinusButtonEntryEffect.cs" />
     <Compile Remove="FilePickerImplementation.cs" />
+    <Compile Remove="KeyboardResizingAwareContentPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DataEntryListView.xaml.cs">
@@ -77,5 +78,8 @@
       <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="KeyboardResizingAwareContentPage.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>

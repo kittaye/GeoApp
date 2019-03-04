@@ -61,7 +61,7 @@ namespace GeoApp
                         mail.Body = "Attached is your requested GeoJSON dataset.";
 
                         // Add the Json attachment int othe email
-                        mail.Attachments.Add(Attachment.CreateAttachmentFromString(JSONfile, string.Format("My Features - {0}-{1}-{2}.json", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)));
+                        mail.Attachments.Add(Attachment.CreateAttachmentFromString(JSONfile, string.Format("My Features - {0}-{1}-{2}.geojson", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)));
 
                         SmtpServer.Port = 587;
                         SmtpServer.Credentials = new System.Net.NetworkCredential("geoapplicationqut@gmail.com", "Geoapplication123");
@@ -110,7 +110,7 @@ namespace GeoApp
 
             BackupButtonClickCommand = new Command(async () =>
             {
-                string name = string.Format("My Features - {0}-{1}-{2} {3}-{4}-{5}.json", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                string name = string.Format("My Features - {0}-{1}-{2} {3}-{4}-{5}.geojson", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), name);
                 try
                 {
