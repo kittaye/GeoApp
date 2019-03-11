@@ -244,9 +244,14 @@ namespace GeoApp
                     GeolocationEntryEnabled = true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                await HomePage.Instance.DisplayAlert("Location", "Location services must be enabled to utilise this feature", "Ok");
+                point.Latitude = point.Longitude = point.Altitude = 0.0;
+                // Re-enable interaction.
+                LoadingIconActive = false;
+                GeolocationEntryEnabled = true;
+                //throw ex;
             }
         }
 
