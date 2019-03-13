@@ -6,7 +6,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using Foundation;
 using System;
-using System.Diagnostics;
 using CoreGraphics;
 
 [assembly: ExportRenderer(typeof(ContentPage), typeof(ExtendedPageRenderer)), Preserve (AllMembers = true)]
@@ -14,22 +13,11 @@ namespace GeoApp.iOS
 {
     public class ExtendedPageRenderer : PageRenderer
     {
-
-
-
-
-
         NSObject _keyboardShowObserver;
         NSObject _keyboardHideObserver;
         private bool _pageWasShiftedUp;
         private double _activeViewBottom;
         private bool _isKeyboardShown;
-
-        public static void Init()
-        {
-            var now = DateTime.Now;
-            Debug.WriteLine("Keyboard Overlap plugin initialized {0}", now);
-        }
 
         public override void ViewWillAppear(bool animated)
         {
@@ -121,14 +109,19 @@ namespace GeoApp.iOS
 
         private void ShiftPageUp(nfloat keyboardHeight, double activeViewBottom)
         {
-            var pageFrame = Element.Bounds;
 
-            var newY = pageFrame.Y + CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
+            if (Element.AutomationId != "import_icon")
+            {
+                var pageFrame = Element.Bounds;
+                var newY = pageFrame.Y + CalculateShiftByAmount(pageFrame.Height, keyboardHeight, activeViewBottom);
 
-            Element.LayoutTo(new Rectangle(pageFrame.X, newY,
-                pageFrame.Width, pageFrame.Height));
+                Element.LayoutTo(new Rectangle(pageFrame.X, newY,
+                    pageFrame.Width, pageFrame.Height));
 
-            _pageWasShiftedUp = true;
+                _pageWasShiftedUp = true;
+            }
+
+
         }
 
         private void ShiftPageDown(nfloat keyboardHeight, double activeViewBottom)
