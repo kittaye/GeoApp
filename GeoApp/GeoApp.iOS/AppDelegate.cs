@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using KeyboardOverlap.Forms.Plugin.iOSUnified;
@@ -24,7 +24,7 @@ namespace GeoApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
-            KeyboardOverlapRenderer.Init();
+            //KeyboardOverlapRenderer.Init();
             var shouldPerformAdditionalDelegateHandling = true;
 
             // Get possible shortcut item

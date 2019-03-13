@@ -1,4 +1,4 @@
-﻿using Xamarin.Forms;
+using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using System.Drawing;
 using UIKit;
@@ -24,10 +24,6 @@ namespace GeoApp
                 this.AddNegDoneButton();
             }
 
-            if (this.Element.Keyboard == Keyboard.Default || this.Element.Keyboard == Keyboard.Text)
-            {
-                this.AddDoneButton();
-            }
         }
         /// <summary>
         /// Add toolbar with Done button

@@ -110,7 +110,6 @@
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\CustomMapRenderer.cs" />
     <Compile Include="Renderers\ExtendedPageRenderer.cs" />
-    <None Include="KeyboardOverlapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

@@ -1,4 +1,4 @@
-﻿using Plugin.Permissions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -50,7 +50,7 @@ namespace GeoApp
             Device.BeginInvokeOnMainThread(() =>
             {
                 InitializeComponent();
-                myMap.UiSettings.MyLocationButtonEnabled = true;
+                myMap.UiSettings.MyLocationButtonEnabled = false;
             });
         }
 
@@ -67,6 +67,7 @@ namespace GeoApp
 
             if (locationPermissionEnabled == true)
             {
+                myMap.UiSettings.MyLocationButtonEnabled = true;
                 // Do a full re-read of the embedded file to get the most current list of features.
                 App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
                 // Redraw maps
@@ -78,7 +79,7 @@ namespace GeoApp
             }
             else
             {
-
+                myMap.UiSettings.MyLocationButtonEnabled = false;
                 await HomePage.Instance.DisplayAlert("Location Permissions", "Location permission are required to utilise the map feature. Enable location permissions for Groundsman in your device settings to continue.", "Ok");
             }
         }

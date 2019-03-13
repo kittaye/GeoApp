@@ -158,15 +158,15 @@ namespace GeoApp
             }
             catch (FeatureNotSupportedException fnsEx)
             {
-                throw fnsEx;
+                //throw fnsEx;
             }
             catch (PermissionException pEx)
             {
-                throw pEx;
+                //throw pEx;
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
         }
 
