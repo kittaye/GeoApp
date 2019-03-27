@@ -22,6 +22,16 @@ namespace GeoApp
 
         private bool _isBusy = false;
 
+        private int _featureCount;
+        public int FeatureCount{
+            get { return _featureCount; }
+            set
+            {
+                _featureCount = value;
+                OnPropertyChanged();
+            }
+        }
+
         private List<Feature> _entryListSource;
         public List<Feature> EntryListSource
         {
@@ -111,6 +121,7 @@ namespace GeoApp
                     // Do a full re-read of the embedded file to get the most current list of features.
                     App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
                     EntryListSource = App.FeaturesManager.CurrentFeatures;
+                    FeatureCount = EntryListSource.Count;
                 });
             }
 
