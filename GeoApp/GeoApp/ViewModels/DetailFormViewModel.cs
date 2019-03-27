@@ -24,6 +24,7 @@ namespace GeoApp
         public ICommand DeleteMetadataFieldCommand { get; set; }
         public ICommand OnSaveUpdatedCommand { get; set; }
         public ICommand DeleteEntryCommand { get; set; }
+        public ICommand ClosePolyCommand { get; set; }
 
         // Property binding to determine if the delete button for metadata fields is visible, which is based on the type of this entry.
         public bool ShowPointDeleteBtn { get { return _numPointFields > minPoints; } }
@@ -173,8 +174,23 @@ namespace GeoApp
         /// </summary>
         public DetailFormViewModel(Feature data)
         {
+
+
             thisEntryType = data.geometry.type;
             thisEntryID = data.properties.id;
+
+            if (thisEntryType == "Point")
+            {
+                minPoints = 1;
+            }
+            else if (thisEntryType == "Line")
+            {
+                minPoints = 2;
+            }
+            else if (thisEntryType == "Polygon")
+            {
+                minPoints = 4;
+            }
 
             NameEntry = data.properties.name;
             DateEntry = DateTime.Parse(data.properties.date).ToShortDateString();
@@ -187,7 +203,7 @@ namespace GeoApp
             MetadataFloatEntry = data.properties.metadataFloatValue;
 
             LoadingIconActive = false;
-
+            NumPointFields = data.properties.xamarincoordinates.Count;
             InitCommandBindings();
         }
 
@@ -204,6 +220,8 @@ namespace GeoApp
             DeleteEntryCommand = new Command(async () => await DeleteFeatureEntry());
 
             OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
+
+            ClosePolyCommand = new Command(() => ClosePoly());
         }
 
         /// <summary>
@@ -266,9 +284,9 @@ namespace GeoApp
 
             GeolocationPoints.Add(new Point(0, 0, 0));
             NumPointFields++;
-
             _isBusy = false;
         }
+
 
         /// <summary>
         /// Deletes a geolocation point from the list.
@@ -281,7 +299,6 @@ namespace GeoApp
 
             GeolocationPoints.Remove(item);
             NumPointFields--;
-
             _isBusy = false;
         }
 
@@ -321,6 +338,7 @@ namespace GeoApp
             // Do validation checks here.
             if (await FeatureEntryIsValid() == false)
             {
+                _isBusy = false;
                 return;
             }
 
@@ -462,6 +480,21 @@ namespace GeoApp
             }
 
             return true;
+        }
+
+        private void ClosePoly()
+        {
+            double latFist = GeolocationPoints[0].Latitude;
+            double lonFist = GeolocationPoints[0].Longitude;
+            double altFist = GeolocationPoints[0].Altitude;
+
+            if (_isBusy) return;
+            _isBusy = true;
+
+            GeolocationPoints.Add(new Point(latFist, lonFist, altFist));
+            NumPointFields++;
+
+            _isBusy = false;
         }
 
     }

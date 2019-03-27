@@ -40,14 +40,20 @@ namespace GeoApp
         /// <param name="type">The type of the entry.</param>
         private void DetermineAddPointBtnVisability(string type)
         {
-            if (type == "Line" || type == "Polygon")
+            if (type == "Polygon")
             {
                 addPointBtn.Image = "add_icon_color";
                 addPointBtn.IsVisible = true;
+                closePolyBtn.IsVisible = true;
             }
-            else
+            else if (type == "Line"){
+                addPointBtn.Image = "add_icon_color";
+                addPointBtn.IsVisible = true;
+                closePolyBtn.IsVisible = false;
+            } else
             {
                 addPointBtn.IsVisible = false;
+                closePolyBtn.IsVisible = false;
             }
         }
 
