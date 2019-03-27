@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using PCLStorage;
 
 namespace GeoApp.Data {
     public class FeaturesManager {
@@ -36,6 +37,11 @@ namespace GeoApp.Data {
 
         public async Task ImportFeaturesAsync(string fileContents) {
             await restService.ImportFeaturesAsync(fileContents);
+        }
+
+        public async Task<IFile> GetEmbeddedFile()
+        {
+            return await restService.GetEmbeddedFile();
         }
 
         public string ExportFeaturesToJson() {

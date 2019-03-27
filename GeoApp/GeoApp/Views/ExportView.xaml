@@ -35,9 +35,9 @@
             </Frame>
             <Frame Style="{StaticResource FrameStyle}" Grid.Row="2" Margin="10,5,10,10">
                 <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
-                    <Label HorizontalTextAlignment="Center" Text="Backup Features" TextColor="Black" FontSize="Large" />
-                    <Label HorizontalTextAlignment="Center" Text="Create snapshot of your features that is backed up to your app documents" TextColor="Gray" FontSize="Small" />
-                    <Button AutomationId="BackupButton" Text="Backup" Command="{Binding BackupButtonClickCommand}">
+                    <Label HorizontalTextAlignment="Center" Text="Copy Features" TextColor="Black" FontSize="Large" />
+                    <Label HorizontalTextAlignment="Center" Text="Copy feature list to clipboard" TextColor="Gray" FontSize="Small" />
+                    <Button AutomationId="BackupButton" Text="Copy" Command="{Binding BackupButtonClickCommand}">
                         <Button.TextColor>
                             <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                         </Button.TextColor>

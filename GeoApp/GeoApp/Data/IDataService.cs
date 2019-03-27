@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PCLStorage;
 
 namespace GeoApp {
     public interface IDataService {
@@ -10,5 +11,6 @@ namespace GeoApp {
         Task<bool> ImportFeaturesFromFile(string path);
         Task<bool> ImportFeaturesAsync(string fileContents);
         string ExportFeaturesToJson();
+        Task<IFile> GetEmbeddedFile();
     }
 }

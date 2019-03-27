@@ -6,6 +6,8 @@ using Xamarin.Forms;
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using Xamarin.Essentials;
+using PCLStorage;
 
 namespace GeoApp
 {
@@ -18,7 +20,7 @@ namespace GeoApp
 
         public ICommand BackupButtonClickCommand { set; get; }
 
-
+        private FileBase featureList;
         private string _EmailEntry;
         public string EmailEntry
         {
@@ -98,30 +100,24 @@ namespace GeoApp
             if (!CrossShare.IsSupported)
                 return;
 
+            ExperimentalFeatures.Enable("ShareFileRequest_Experimental");
             ShareButtonClickCommand = new Command(async () =>
             {
-                await CrossShare.Current.Share(new ShareMessage
+                IFile featuresFile = await App.FeaturesManager.GetEmbeddedFile();
+                await Share.RequestAsync(new ShareFileRequest
                 {
-                    Text = App.FeaturesManager.ExportFeaturesToJson(),
-                    Title = "My Features"
+                    Title = "Features Export",
+                    File = new ShareFile(featuresFile.Path, "text/plain")
                 });
-
             });
 
             BackupButtonClickCommand = new Command(async () =>
             {
-                string name = string.Format("My Features - {0}-{1}-{2} {3}-{4}-{5}.geojson", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                var filename = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), name);
-                try
-                {
-                    System.IO.File.WriteAllText(filename, App.FeaturesManager.ExportFeaturesToJson());
-                }
-                catch
-                {
-                    await HomePage.Instance.DisplayAlert("Backup Failure", "Backup unable to complete. Try removing previous backup files.", "OK");
+                IFile featuresFile = await App.FeaturesManager.GetEmbeddedFile();
+                string textFile = await featuresFile.ReadAllTextAsync();
+                await Clipboard.SetTextAsync(textFile);
 
-                }
-                await HomePage.Instance.DisplayAlert("Backup Success", "File now saved in app documents. On iOS, this file can be found in the Groundsman App through iTunes file sharing. On Android, this document can be accessed through your file explorer.", "OK");
+                await HomePage.Instance.DisplayAlert("Features Copied", "Paste in any text field", "OK");
             });
         }
     }
