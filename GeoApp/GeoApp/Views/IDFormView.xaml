@@ -8,7 +8,11 @@
             <Image Source="welcome_screen.png" Aspect="AspectFill">
             </Image>
             <Entry Text="{Binding IDEntry}" AutomationId="IDText" Margin="20,20,20,0" Placeholder="e.g. Bob, n1234567, ..." />
-            <Button Text="Submit" AutomationId="IDSubmit" Margin="20,20,20,20" Command="{Binding IDSubmitCommand}" />
+            <Button Text="Submit" AutomationId="IDSubmit" Margin="20,20,20,20" Command="{Binding IDSubmitCommand}">
+                <Button.TextColor>
+                    <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
+                </Button.TextColor>
+                </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

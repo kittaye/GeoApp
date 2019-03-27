@@ -20,7 +20,6 @@ namespace GeoApp
 
         public ICommand BackupButtonClickCommand { set; get; }
 
-        private FileBase featureList;
         private string _EmailEntry;
         public string EmailEntry
         {

@@ -63,8 +63,15 @@ namespace GeoApp.iOS
             switch (shortcutItem.Type)
             {
                 case ShortcutIdentifier.First:
-                    Console.WriteLine("First shortcut selected");
-                    HomePage.Instance.ShowDetailFormOptions();
+                    HomePage.Instance.ShowNewDetailFormPage("Point");
+                    handled = true;
+                    break;
+                case ShortcutIdentifier.Second:
+                    HomePage.Instance.ShowNewDetailFormPage("Line");
+                    handled = true;
+                    break;
+                case ShortcutIdentifier.Third:
+                    HomePage.Instance.ShowNewDetailFormPage("Polygon");
                     handled = true;
                     break;
             }

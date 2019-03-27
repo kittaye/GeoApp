@@ -37,7 +37,7 @@ namespace GeoApp
         /// Asynchronously adds DetailFormView to the top of the navigation stack.
         /// </summary>
         /// <param name="type">Data entry type</param>
-        private void ShowNewDetailFormPage(string type)
+        public void ShowNewDetailFormPage(string type)
         {
             Navigation.PushAsync(new ModifyDetailFormView(type));
         }

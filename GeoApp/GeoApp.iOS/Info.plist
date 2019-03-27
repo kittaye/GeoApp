@@ -33,7 +33,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.qutgeodev.groundsman</string>
 	<key>CFBundleVersion</key>
-	<string>5.2.0</string>
+	<string>5.3.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleDocumentTypes</key>
@@ -95,9 +95,25 @@
 			<key>UIApplicationShortcutItemIconType</key>
 			<string>UIApplicationShortcutIconTypeAdd</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Add a Feature</string>
+			<string>Add a Point</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>com.geoapplads.Groundsman.000</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add a Line</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.geoapplads.Groundsman.001</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add a Polygon</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.geoapplads.Groundsman.002</string>
 		</dict>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -148,7 +164,7 @@
 		</dict>
 	</array>
 	<key>CFBundleShortVersionString</key>
-	<string>5.2.0</string>
+	<string>5.3.0</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
