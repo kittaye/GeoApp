@@ -8,6 +8,7 @@ namespace GeoApp {
         Task<bool> SaveFeatureAsync(Feature feature);
         Task SaveAllCurrentFeaturesAsync();
         Task<bool> DeleteFeatureAsync(int id);
+        Task DeleteAllFeaturesAsync();
         Task<bool> ImportFeaturesFromFile(string path);
         Task<bool> ImportFeaturesAsync(string fileContents);
         string ExportFeaturesToJson();

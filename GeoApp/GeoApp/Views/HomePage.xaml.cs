@@ -52,6 +52,11 @@ namespace GeoApp
             await Navigation.PushAsync(new ExistingDetailFormView(data));
         }
 
+        public void ShowProfileSettingsPage()
+        {
+            Navigation.PushAsync(new ProfileView());
+        }
+
         /// <summary>
         /// Displays a pop-up user interface to navigate to different data entry types
         /// </summary>

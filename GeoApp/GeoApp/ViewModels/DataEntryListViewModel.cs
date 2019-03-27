@@ -87,7 +87,7 @@ namespace GeoApp
             if (_isBusy) return;
             _isBusy = true;
 
-            HomePage.Instance.Navigation.PushModalAsync(new IDFormView());
+            HomePage.Instance.ShowProfileSettingsPage();
 
             _isBusy = false;
         }

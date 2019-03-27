@@ -390,5 +390,11 @@ namespace GeoApp {
                 throw ex;
             }
         }
+
+        public async Task DeleteAllFeaturesAsync()
+        {
+            App.FeaturesManager.CurrentFeatures.Clear();
+            await SaveCurrentFeaturesToEmbeddedFile();
+        }
     }
 }

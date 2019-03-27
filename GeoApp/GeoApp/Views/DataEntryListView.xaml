@@ -48,7 +48,7 @@
                 </ListView.ItemTemplate>
                 <ListView.Footer>
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray"  Margin="10" />
+                        <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray"  Margin="10" FontSize="Small"/>
                     </StackLayout>
                 </ListView.Footer>
             </ListView>

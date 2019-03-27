@@ -31,6 +31,11 @@ namespace GeoApp.Data {
             return restService.DeleteFeatureAsync(id);
         }
 
+        public Task DeleteAllFeatures()
+        {
+            return restService.DeleteAllFeaturesAsync();
+        }
+
         public void ImportFeaturesFromFile(string path) {
             restService.ImportFeaturesFromFile(path);
         }
