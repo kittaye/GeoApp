@@ -1,10 +1,6 @@
 using GeoApp.Data;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
-using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GeoApp {
