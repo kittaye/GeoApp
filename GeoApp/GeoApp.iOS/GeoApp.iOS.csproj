@@ -134,68 +134,180 @@
     <ImageAsset Include="Assets.xcassets\trash_icon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\current_location.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\current_location.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color.png" />
-    <ImageAsset Include="Assets.xcassets\current_location.imageset\current_location.png" />
-    <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png" />
-    <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon.png" />
-    <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon.png" />
+    <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\current_location.imageset\current_location.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\launch_screen.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\launch_screen.imageset\launch_screen.jpg" />
-    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon.png" />
-    <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon.png" />
-    <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color.png" />
-    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen_small.png" />
-    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen.png" />
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\area_icon.imageset\polygon_icon.png" />
-    <ImageAsset Include="Assets.xcassets\map_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\map_icon.imageset\map_icon.png" />
-    <ImageAsset Include="Assets.xcassets\point_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\point_icon.imageset\point_icon.png" />
-    <ImageAsset Include="Assets.xcassets\line_icon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon.png" />
-    <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\map_icon.imageset\map_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color-1.png" />
-    <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon-1.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-1.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-2.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-3.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-4.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
-    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3.png" />
-    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3-1.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4.png" />
-    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4-1.png" />
+    <ImageAsset Include="Assets.xcassets\launch_screen.imageset\launch_screen.jpg">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen_small.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\area_icon.imageset\polygon_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\map_icon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\map_icon.imageset\map_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\point_icon.imageset\point_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\line_icon.imageset\line_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\data_icon.imageset\data_icon-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\map_icon.imageset\map_icon-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\import_icon.imageset\import_icon-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\export_icon.imageset\export_icon-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-4.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -243,33 +355,28 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\.dataset\" />
     <Folder Include="Assets.xcassets\add_icon.imageset\" />
+    <Folder Include="Assets.xcassets\add_icon_color.imageset\" />
+    <Folder Include="Assets.xcassets\appicon.imageset\" />
     <Folder Include="Assets.xcassets\area-icon.imageset\" />
+    <Folder Include="Assets.xcassets\area_icon.imageset\" />
+    <Folder Include="Assets.xcassets\area_icon_old.imageset\" />
+    <Folder Include="Assets.xcassets\current_location.imageset\" />
     <Folder Include="Assets.xcassets\data_icon.imageset\" />
     <Folder Include="Assets.xcassets\edit_icon.imageset\" />
     <Folder Include="Assets.xcassets\export_icon.imageset\" />
     <Folder Include="Assets.xcassets\home_icon.imageset\" />
     <Folder Include="Assets.xcassets\import_icon.imageset\" />
+    <Folder Include="Assets.xcassets\launch_screen.imageset\" />
+    <Folder Include="Assets.xcassets\line_icon.imageset\" />
+    <Folder Include="Assets.xcassets\line_icon_old.imageset\" />
+    <Folder Include="Assets.xcassets\map_icon.imageset\" />
+    <Folder Include="Assets.xcassets\point_icon.imageset\" />
+    <Folder Include="Assets.xcassets\point_icon_old.imageset\" />
     <Folder Include="Assets.xcassets\profile_icon.imageset\" />
     <Folder Include="Assets.xcassets\save_icon.imageset\" />
     <Folder Include="Assets.xcassets\trash_icon.imageset\" />
-    <Folder Include="Assets.xcassets\point_icon_old.imageset\" />
-    <Folder Include="Assets.xcassets\point_icon.imageset\" />
-    <Folder Include="Assets.xcassets\line_icon_old.imageset\" />
-    <Folder Include="Assets.xcassets\line_icon.imageset\" />
-    <Folder Include="Assets.xcassets\area_icon_old.imageset\" />
-    <Folder Include="Assets.xcassets\current_location.imageset\" />
-    <Folder Include="Assets.xcassets\add_icon_color.imageset\" />
-    <Folder Include="Assets.xcassets\welcome_screen.imageset\" />
     <Folder Include="Assets.xcassets\trash_icon_color.imageset\" />
-    <Folder Include="Assets.xcassets\launch_screen.imageset\" />
-    <Folder Include="Assets.xcassets\area_icon.imageset\" />
-    <Folder Include="Assets.xcassets\map_icon.imageset\" />
-    <Folder Include="Assets.xcassets\point_icon.imageset\" />
-    <Folder Include="Assets.xcassets\line_icon.imageset\" />
-    <Folder Include="Assets.xcassets\appicon.imageset\" />
-    <Folder Include="Assets.xcassets\appIcon.imageset\" />
-    <Folder Include="Assets.xcassets\AppIcon.imageset\" />
-    <Folder Include="Renderers\" />
+    <Folder Include="Assets.xcassets\welcome_screen.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />

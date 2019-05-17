@@ -1,86 +1,62 @@
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace GeoApp
-{
-    public partial class GoogleMapView : ContentPage
-    {
+namespace GeoApp {
+    public partial class GoogleMapView : ContentPage {
 
         private bool locationPermissionEnabled;
 
-        public GoogleMapView()
-        {
+        public GoogleMapView() {
             locationPermissionEnabled = false;
-            InitGoogleMaps();
+            Task.Run(async () => { await InitGoogleMaps(); });
         }
-
-        private async Task GetPermission()
-        {
-            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-            if (status != PermissionStatus.Granted)
-            {
-                if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
-                {
-                    await DisplayAlert("Need location", "Gunna need that location", "OK");
-                }
-
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
-                status = results[Permission.Location];
-            }
-            if (status == PermissionStatus.Granted)
-            {
-                locationPermissionEnabled = true;
-            }
-            else if (status != PermissionStatus.Unknown)
-            {
-                locationPermissionEnabled = false;
-            }
-        }
-
-
 
         /// <summary>
         /// Initialises Maps
         /// </summary>
         /// <returns></returns>
-        private void InitGoogleMaps()
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                InitializeComponent();
-                myMap.UiSettings.MyLocationButtonEnabled = false;
-            });
+        private async Task InitGoogleMaps() {
+            try {
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+
+                if (status != PermissionStatus.Granted) {
+                    // If the user accepts the permission get the resulting value and check the if the key exists
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                    if (results.ContainsKey(Permission.Location)) {
+                        status = results[Permission.Location];
+                    }
+                }
+                // Make sure maps is initalised after permission is granted and invoked on the mainthread
+                if (status == PermissionStatus.Granted) {
+                    Device.BeginInvokeOnMainThread(() => {
+                        InitializeComponent();
+                        myMap.UiSettings.MyLocationButtonEnabled = true;
+                        locationPermissionEnabled = true;
+                    });
+                } else {
+                    Device.BeginInvokeOnMainThread(() => {
+                        HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise some features in the applcation", "Ok");
+                        locationPermissionEnabled = false;
+                    });
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
         }
 
-        protected override async void OnAppearing()
-        {
-
+        protected override void OnAppearing() {
             base.OnAppearing();
-
-            // Maps must be initialised
-            //if (locationPermissionEnabled == false)
-            //{
-            await GetPermission();
-            //}
-
-            if (locationPermissionEnabled == true)
-            {
-                myMap.UiSettings.MyLocationButtonEnabled = true;
-                // Do a full re-read of the embedded file to get the most current list of features.
-                App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
-                // Redraw maps
-                if (viewModel.RefreashGeoDataCommand.CanExecute(null))
-                {
+            // Maps must be initialised 
+            if (locationPermissionEnabled == true) {
+                if (viewModel.RefreashGeoDataCommand.CanExecute(null)) {
                     viewModel.RefreashGeoDataCommand.Execute(null);
                     viewModel.LocationBtnClickedCommand.Execute(null);
                 }
-            }
-            else
-            {
-                myMap.UiSettings.MyLocationButtonEnabled = false;
-                await HomePage.Instance.DisplayAlert("Location Permissions", "Location permission are required to utilise the map feature. Enable location permissions for Groundsman in your device settings to continue.", "Ok");
+            } else {
+                HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise the map feature", "Ok");
             }
         }
     }
