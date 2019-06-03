@@ -27,7 +27,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -38,8 +39,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignProvision>Groundsman Distribution Profile</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,11 +52,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
-    <CodesignProvision>Groundsman Build Profile</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -65,11 +66,12 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
     <MtouchSdkVersion>12.1</MtouchSdkVersion>
-    <CodesignProvision>Groundsman Distribution Profile</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -80,8 +82,8 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
-    <CodesignProvision>Groundsman Build Profile</CodesignProvision>
-    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
@@ -196,6 +198,9 @@
     <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3-1.png" />
     <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4.png" />
     <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4-1.png" />
+    <ImageAsset Include="Assets.xcassets\log_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\log_icon.imageset\log_icon.png" />
+    <ImageAsset Include="Assets.xcassets\log_icon.imageset\log_icon-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -270,6 +275,8 @@
     <Folder Include="Assets.xcassets\appIcon.imageset\" />
     <Folder Include="Assets.xcassets\AppIcon.imageset\" />
     <Folder Include="Renderers\" />
+    <Folder Include="Assets.xcassets\log_icon.imageset\" />
+    <Folder Include="Assets.xcassets\log_icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />

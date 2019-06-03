@@ -13,5 +13,6 @@ namespace GeoApp {
         Task<bool> ImportFeaturesAsync(string fileContents);
         string ExportFeaturesToJson();
         Task<IFile> GetEmbeddedFile();
+        Task<IFile> GetLogFile();
     }
 }

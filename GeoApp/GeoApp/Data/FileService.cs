@@ -273,6 +273,29 @@ namespace GeoApp {
             }
         }
 
+
+
+        public async Task<IFile> GetLogFile()
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            rootFolder.Path.Replace("/../Library", " ");
+
+            ExistenceCheckResult embeddedFileExists = await rootFolder.CheckExistsAsync("log.csv");
+
+            // Attempt to open the embedded file on the device. 
+            // If it exists return it, else create a new embedded file from a json source file.
+            if (embeddedFileExists == ExistenceCheckResult.FileExists)
+            {
+                return await rootFolder.GetFileAsync("log.csv");
+            }
+            else
+            {
+                IFile featuresFile = await rootFolder.CreateFileAsync("log.csv", CreationCollisionOption.ReplaceExisting);
+                return featuresFile;
+            }
+        }
+
+
         /// <summary>
         /// Formats the list of current features into valid geojson, then writes it to the embedded file.
         /// </summary>

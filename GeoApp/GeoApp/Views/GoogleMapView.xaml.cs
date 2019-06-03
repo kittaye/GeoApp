@@ -23,7 +23,7 @@ namespace GeoApp
             {
                 if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
                 {
-                    await DisplayAlert("Need location", "Gunna need that location", "OK");
+                    await DisplayAlert("Need location", "Location permissions required.", "OK");
                 }
 
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });

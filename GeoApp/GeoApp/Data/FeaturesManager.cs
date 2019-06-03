@@ -49,6 +49,11 @@ namespace GeoApp.Data {
             return await restService.GetEmbeddedFile();
         }
 
+        public async Task<IFile> GetLogFile()
+        {
+            return await restService.GetLogFile();
+        }
+
         public string ExportFeaturesToJson() {
             return restService.ExportFeaturesToJson();
         }
