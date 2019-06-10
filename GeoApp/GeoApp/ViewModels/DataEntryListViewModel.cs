@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -31,6 +32,25 @@ namespace GeoApp
                 OnPropertyChanged();
             }
         }
+
+
+        public class VeggieModel
+        {
+            public string Name { get; set; }
+            public string Comment { get; set; }
+            public bool IsReallyAVeggie { get; set; }
+            public string Image { get; set; }
+            public VeggieModel()
+            {
+            }
+        }
+
+        public class GroupedVeggieModel : ObservableCollection<VeggieModel>
+        {
+            public string LongName { get; set; }
+            public string ShortName { get; set; }
+        }
+
 
         private List<Feature> _entryListSource;
         public List<Feature> EntryListSource
@@ -109,7 +129,7 @@ namespace GeoApp
         /// <summary>
         /// Refreshes the list of current locations by re-reading the embedded file contents.
         /// </summary>
-        private void ExecuteRefreshListCommand()
+        public void ExecuteRefreshListCommand()
         {
             // Only update the list if it has changed as indicated by the dirty flag.
             if (isDirty)

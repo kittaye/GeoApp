@@ -13,6 +13,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
+
         <StackLayout>
             <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="Black" Margin="0,15" />
             <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" SeparatorColor="LightGray" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshListCommand}" IsRefreshing="{Binding IsRefreshing}">
@@ -48,7 +49,7 @@
                 </ListView.ItemTemplate>
                 <ListView.Footer>
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray"  Margin="10" FontSize="Small"/>
+                        <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray" Margin="10" FontSize="Small" />
                     </StackLayout>
                 </ListView.Footer>
             </ListView>
