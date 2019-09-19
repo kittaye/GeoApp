@@ -34,7 +34,7 @@
                 </Picker>
             </Grid>
         </StackLayout>
-        <googleMaps:Map x:name="myMap" IsShowingUser="true" MyLocationEnabled="true" x:Name="myMap">
+        <googleMaps:Map x:name="myMap" MyLocationEnabled="False" x:Name="myMap">
             <googleMaps:Map.Behaviors>
                 <bindings:BindingPinsBehavior Value="{Binding Pins}" />
                 <bindings:BindingPolylinesBehavior Value="{Binding Polylines}" />

@@ -1,4 +1,6 @@
 using GeoApp.Data;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +14,7 @@ namespace GeoApp {
             InitializeComponent();
             FeaturesManager = new FeaturesManager(new FileService());
             MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default };
+            //var response = CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
 
             // Uncomment this to clear your set user ID.
             //Application.Current.Properties.Clear();
@@ -20,6 +23,7 @@ namespace GeoApp {
             if (Application.Current.Properties.ContainsKey("UserID") == false) {
                 MainPage.Navigation.PushModalAsync(new IDFormView());
             }
+
         }
 
         protected override void OnStart() {

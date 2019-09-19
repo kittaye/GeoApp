@@ -5,6 +5,7 @@ using Android.Views;
 using Android.OS;
 using Xamarin.Essentials;
 using Plugin.Permissions;
+using Plugin.CurrentActivity;
 
 namespace GeoApp.Droid
 {
@@ -24,8 +25,8 @@ namespace GeoApp.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            Xamarin.Essentials.Platform.Init(this, bundle); // initialise xamarin essentials
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
+            Platform.Init(this, bundle); // initialise xamarin essentials
+            CrossCurrentActivity.Current.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
             Xamarin.FormsGoogleMaps.Init(this, bundle);
@@ -57,10 +58,11 @@ namespace GeoApp.Droid
         /// <param name="requestCode"></param>
         /// <param name="permissions"></param>
         /// <param name="grantResults"></param>
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode,
+   string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
-            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult
+                  (requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 

@@ -68,6 +68,8 @@ namespace GeoApp
             if (locationPermissionEnabled == true)
             {
                 myMap.UiSettings.MyLocationButtonEnabled = true;
+                myMap.MyLocationEnabled = true;
+                myMap.IsShowingUser = true;
                 // Do a full re-read of the embedded file to get the most current list of features.
                 App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
                 // Redraw maps
