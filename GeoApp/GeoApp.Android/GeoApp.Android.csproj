@@ -94,7 +94,6 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\launcher_foreground.png" />
@@ -106,7 +105,6 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
@@ -125,6 +123,18 @@
     <AndroidResource Include="Resources\drawable\add_icon_color.png" />
     <AndroidResource Include="Resources\drawable\trash_icon_color.png" />
     <AndroidResource Include="Resources\drawable\welcome_screen.png" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_launcher_background.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_launcher_foreground.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-xxxhdpi\" />

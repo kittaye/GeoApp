@@ -9,8 +9,7 @@ using Plugin.Permissions;
 namespace GeoApp.Droid
 {
     [Activity(Label = "Groundsman",
-        Icon = "@mipmap/ic_launcher",
-        RoundIcon = "@mipmap/ic_round_launcher",
+        //Icon = "@mipmap/ic_launcher",
         Theme = "@style/MainTheme",
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
