@@ -14,6 +14,7 @@
     <AssemblyName>GeoApp.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <ReleaseVersion>6.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,7 +28,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -40,7 +41,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,7 +53,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
@@ -66,7 +67,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
     <MtouchSdkVersion>12.1</MtouchSdkVersion>
@@ -83,7 +84,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <BuildIpa>True</BuildIpa>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
@@ -96,7 +97,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: reilly@mackenzie-cree.net (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
   </PropertyGroup>
@@ -150,12 +151,9 @@
     <ImageAsset Include="Assets.xcassets\launch_screen.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\launch_screen.imageset\launch_screen.jpg" />
     <ImageAsset Include="Assets.xcassets\profile_icon.imageset\profile_icon.png" />
     <ImageAsset Include="Assets.xcassets\trash_icon.imageset\trash_icon.png" />
     <ImageAsset Include="Assets.xcassets\trash_icon_color.imageset\trash_icon_color.png" />
-    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen_small.png" />
-    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome_screen.png" />
     <ImageAsset Include="Assets.xcassets\area_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\area_icon.imageset\polygon_icon.png" />
     <ImageAsset Include="Assets.xcassets\map_icon.imageset\Contents.json" />
@@ -175,25 +173,6 @@
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-2.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-3.png" />
     <ImageAsset Include="Assets.xcassets\add_icon_color.imageset\add_icon_color-4.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
     <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3.png" />
     <ImageAsset Include="Assets.xcassets\save_icon.imageset\save_icon3-1.png" />
     <ImageAsset Include="Assets.xcassets\add_icon.imageset\add_icon4.png" />
@@ -201,6 +180,24 @@
     <ImageAsset Include="Assets.xcassets\log_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\log_icon.imageset\log_icon.png" />
     <ImageAsset Include="Assets.xcassets\log_icon.imageset\log_icon-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ItunesArtwork%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76%401x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\launch_screen.imageset\splash2-1.jpg" />
+    <ImageAsset Include="Assets.xcassets\welcome_screen.imageset\welcome-2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -210,7 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>11.0.2</Version>
+      <Version>12.0.2</Version>
     </PackageReference>
     <PackageReference Include="PCLStorage">
       <Version>1.0.2</Version>
@@ -222,17 +219,17 @@
       <Version>7.1.1</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>1.1.4.168</Version>
+      <Version>1.1.5.188</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
     <PackageReference Include="Xamarin.Plugin.FilePicker">
-      <Version>2.0.81-beta</Version>
+      <Version>2.1.34</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Build.Download">
-      <Version>0.4.6</Version>
+      <Version>0.4.11</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.GoogleMaps">
-      <Version>3.0.4</Version>
+      <Version>3.2.1</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.KeyboardOverlap">
       <Version>1.0.0.4</Version>

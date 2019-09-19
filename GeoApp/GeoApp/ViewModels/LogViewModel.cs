@@ -129,7 +129,7 @@ namespace GeoApp
                 TextEntry = TextEntry + newEntry;
                 Console.WriteLine("Middle 2");
 
-                await Task.Delay(IntervalEntry*1000, ct);
+                await Task.Delay(IntervalEntry*999, ct);
                 Console.WriteLine("After");
 
             }
