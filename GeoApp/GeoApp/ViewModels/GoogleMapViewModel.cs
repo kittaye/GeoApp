@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -158,15 +159,15 @@ namespace GeoApp
             }
             catch (FeatureNotSupportedException fnsEx)
             {
-                //throw fnsEx;
+                Debug.WriteLine(fnsEx);
             }
             catch (PermissionException pEx)
             {
-                //throw pEx;
+                Debug.WriteLine(pEx);
             }
             catch (Exception ex)
             {
-                //throw ex;
+                Debug.WriteLine(ex);
             }
         }
 

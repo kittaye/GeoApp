@@ -61,10 +61,10 @@
                                                 <ColumnDefinition Width="32" />
                                             </Grid.ColumnDefinitions>
                                             <Label Text="Latitude" Grid.Row="0" Grid.Column="0" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small" Margin="0,0,0,10">&gt;
+                                            <Entry AutomationId="LatitudeEntry" Text="{Binding Latitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" FontSize="Small" Margin="0,0,0,10">
                                             </Entry>
                                             <Label Text="Longitude" Grid.Row="0" Grid.Column="1" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
-                                            <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small" Margin="0,0,0,10">&gt;
+                                            <Entry AutomationId="LongitudeEntry" Text="{Binding Longitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="1" FontSize="Small" Margin="0,0,0,10">
                                             </Entry>
                                             <Label Text="Altitude" Grid.Row="0" Grid.Column="2" Margin="0, 9" FontSize="Small" FontAttributes="Bold" />
                                             <Entry AutomationId="AltitudeEntry" Text="{Binding Altitude}" Keyboard="Numeric" Grid.Row="1" Grid.Column="2" FontSize="Small" Margin="0,0,0,10">
