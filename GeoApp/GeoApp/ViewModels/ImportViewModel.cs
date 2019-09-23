@@ -56,7 +56,7 @@ namespace GeoApp
                         // Display storage permission popup if permission is not be established, display alert if the user declines 
                         if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
                         {
-                            await HomePage.Instance.DisplayAlert("Storage Permissions", "You need to enable storage permissions to import a file.", "OK");
+                            await HomePage.Instance.DisplayAlert("Permissions Error", "Storage permissions for Groundsman must be enabled to utilise this feature.", "Ok", "OK");
                         }
 
                         // If the user accepts the permission get the resulting value and check the if the key exists

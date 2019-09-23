@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
-using Xamarin.Essentials;
 
 namespace GeoApp {
     public class GoogleMapManager {
@@ -39,7 +37,7 @@ namespace GeoApp {
             }
 
             line.Clicked += (sender, e) => {
-                Application.Current.MainPage.DisplayAlert(name, "", "Okay");
+                Application.Current.MainPage.DisplayAlert(name, String.Format( "{0} Points", line.Positions.Count) , "Close");
             };
 
             if (Polylines != null) {
@@ -67,7 +65,7 @@ namespace GeoApp {
             }
 
             polygon.Clicked += (sender, e) => {
-                Application.Current.MainPage.DisplayAlert(name, "", "Okay");
+                Application.Current.MainPage.DisplayAlert(name, String.Format("{0} Points", polygon.Positions.Count), "Close");
             };
 
             if (polygon != null) {

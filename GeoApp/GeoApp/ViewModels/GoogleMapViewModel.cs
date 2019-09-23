@@ -140,7 +140,7 @@ namespace GeoApp
 
         public Command<MapClickedEventArgs> MapClickedCommand = new Command<MapClickedEventArgs>(async (args) =>
         {
-            await Application.Current.MainPage.DisplayAlert("Coordinate", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
+            await Application.Current.MainPage.DisplayAlert("Coordinates", $" Latitude {args.Point.Latitude} Longtitude {args.Point.Longitude}", "Okay");
         });
 
         public async Task RedirectMap()

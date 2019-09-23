@@ -77,11 +77,11 @@ namespace GeoApp
 
         private async Task ResetData()
         {
-            bool yesResponse = await HomePage.Instance.DisplayAlert("Reset User Data", "This will permanently erase all saved features. Continue?", "Yes", "No");
+            bool yesResponse = await HomePage.Instance.DisplayAlert("Reset User Data", "This will permanently erase all saved features. Do you wish to continue?", "Yes", "No");
             if (yesResponse)
             {
                 await App.FeaturesManager.DeleteAllFeatures();
-                await HomePage.Instance.DisplayAlert("User Data", "Your user data has been erased.", "Ok");
+                await HomePage.Instance.DisplayAlert("Reset User Data", "Your user data has been erased.", "Ok");
             }
         }
 

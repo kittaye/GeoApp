@@ -77,7 +77,7 @@ namespace GeoApp {
 
             // Ensure the feature has valid GeoJSON fields supplied.
             if(feature == null || feature.type == null || feature.geometry == null || feature.geometry.type == null || feature.geometry.coordinates == null) {
-                await HomePage.Instance.DisplayAlert("Invalid File Contents", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                await HomePage.Instance.DisplayAlert("Invalid File", "Ensure your file only contains data in valid GeoJSON format.", "OK");
                 return false;
             }
 
@@ -115,7 +115,7 @@ namespace GeoApp {
             } else if (feature.geometry.type == "Polygon") {
                 feature.properties.typeIconPath = "area_icon.png";
             } else {
-                await HomePage.Instance.DisplayAlert("Import Error", "Groundsman currently only supports feature types of Point, Line, and Polygon", "OK");
+                await HomePage.Instance.DisplayAlert("Import Error", "Groundsman currently only supports feature types of Point, Line, and Polygon.", "OK");
                 return false;
             }
 
@@ -324,7 +324,7 @@ namespace GeoApp {
                 bool resultStatus = await ImportFeaturesAsync(text);
                 return resultStatus;
             } catch (Exception ex) {
-                await HomePage.Instance.DisplayAlert("Invalid File", "An unknown error occured when trying to process this file.", "OK");
+                await HomePage.Instance.DisplayAlert("Import Error", "An unknown error occured when trying to process this file.", "OK");
                 Debug.WriteLine(ex);
                 return false;
             }
@@ -340,7 +340,7 @@ namespace GeoApp {
                 // Ensure file contents are structured in a valid GeoJSON format.
                 var importedRootObject = JsonConvert.DeserializeObject<RootObject>(fileContents);
                 if(importedRootObject == null) {
-                    await HomePage.Instance.DisplayAlert("Invalid File Contents", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                    await HomePage.Instance.DisplayAlert("Invalid File Contents", "Ensure your file only contains data in valid GeoJSON format.", "OK");
                     return false;
                 }
 
@@ -362,10 +362,10 @@ namespace GeoApp {
                 App.FeaturesManager.CurrentFeatures.AddRange(importedRootObject.features);
 
                 await SaveCurrentFeaturesToEmbeddedFile();
-                await HomePage.Instance.DisplayAlert("File", "Import Success!", "OK");
+                await HomePage.Instance.DisplayAlert("File Import", "File imported successfully. New features have been added to your features list.", "OK");
                 return true;
             } catch (Exception ex) {
-                await HomePage.Instance.DisplayAlert("Invalid File Contents", "Please make sure your GeoJSON is formatted correctly.", "OK");
+                await HomePage.Instance.DisplayAlert("Invalid File Contents", "Ensure your file only contains data in valid GeoJSON format.", "OK");
                 Debug.WriteLine(ex);
                 return false;
             }

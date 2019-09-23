@@ -256,7 +256,7 @@ namespace GeoApp
                 }
                 else
                 {
-                    await HomePage.Instance.DisplayAlert("Permission", "Location permission must be enabled to utilise this feature", "Ok");
+                    await HomePage.Instance.DisplayAlert("Permissions Error", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
                     // Re-enable interaction.
                     LoadingIconActive = false;
                     GeolocationEntryEnabled = true;
@@ -264,7 +264,7 @@ namespace GeoApp
             }
             catch (Exception)
             {
-                await HomePage.Instance.DisplayAlert("Location", "Location services must be enabled to utilise this feature", "Ok");
+                await HomePage.Instance.DisplayAlert("Permissions Error", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
                 point.Latitude = point.Longitude = point.Altitude = 0.0;
                 // Re-enable interaction.
                 LoadingIconActive = false;
@@ -436,7 +436,7 @@ namespace GeoApp
             /// Begin validation checks.
             if (string.IsNullOrEmpty(NameEntry))
             {
-                await HomePage.Instance.DisplayAlert("Alert", "Feature name must not be empty.", "OK");
+                await HomePage.Instance.DisplayAlert("Incomplete Entry", "Feature name must not be empty.", "OK");
                 return false;
             }
 
@@ -444,7 +444,7 @@ namespace GeoApp
             {
                 if (GeolocationPoints.Count < 4)
                 {
-                    await HomePage.Instance.DisplayAlert("Alert", "A polygon structure must have at least 4 data points.", "OK");
+                    await HomePage.Instance.DisplayAlert("Incomplete Entry", "A polygon must contain at least 4 data points.", "OK");
                     return false;
                 }
 
@@ -457,7 +457,7 @@ namespace GeoApp
 
                     if (firstLatitude != lastLatitude || firstLongitude != lastLongitude)
                     {
-                        await HomePage.Instance.DisplayAlert("Alert", "The first and last points of a polygon must match.", "OK");
+                        await HomePage.Instance.DisplayAlert("Incomplete Entry", "The first and last points of a polygon must match.", "OK");
                         return false;
                     }
                 }
@@ -466,7 +466,7 @@ namespace GeoApp
             {
                 if (GeolocationPoints.Count < 2)
                 {
-                    await HomePage.Instance.DisplayAlert("Alert", "A line structure must have at least 2 data points.", "OK");
+                    await HomePage.Instance.DisplayAlert("Incomplete Entry", "A line must contain at least 2 data points.", "OK");
                     return false;
                 }
             }
@@ -474,7 +474,7 @@ namespace GeoApp
             {
                 if (GeolocationPoints.Count != 1)
                 {
-                    await HomePage.Instance.DisplayAlert("Alert", "A point structure must only have 1 data point.", "OK");
+                    await HomePage.Instance.DisplayAlert("Impossible Entry", "A point must only contain 1 data point.", "OK");
                     return false;
                 }
             }

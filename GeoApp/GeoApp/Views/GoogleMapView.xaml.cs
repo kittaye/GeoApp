@@ -23,7 +23,7 @@ namespace GeoApp
             {
                 if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
                 {
-                    await DisplayAlert("Need location", "Location permissions required.", "OK");
+                    await DisplayAlert("Permissions Error", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
                 }
 
                 var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Location });
@@ -82,7 +82,7 @@ namespace GeoApp
             else
             {
                 myMap.UiSettings.MyLocationButtonEnabled = false;
-                await HomePage.Instance.DisplayAlert("Location Permissions", "Location permission are required to utilise the map feature. Enable location permissions for Groundsman in your device settings to continue.", "Ok");
+                await HomePage.Instance.DisplayAlert("Permissions Error", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
             }
         }
     }

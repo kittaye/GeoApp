@@ -78,18 +78,18 @@ namespace GeoApp
                         SmtpServer.Send(mail);
 
                         // Confirmation alert
-                        await HomePage.Instance.DisplayAlert("Status", "Email sent successfully", "OK");
+                        await HomePage.Instance.DisplayAlert("Send Features", "Email sent successfully!", "OK");
                     }
 
                     catch (Exception)
                     {
-                        await HomePage.Instance.DisplayAlert("Status", "Unable to send email. Make sure IMAP is enabled in your email address settings!", "OK");
+                        await HomePage.Instance.DisplayAlert("Send Features", "Unable to send email. Make sure IMAP is enabled in your email address settings.", "OK");
                     }
                 }
 
                 else
                 {
-                    await HomePage.Instance.DisplayAlert("Invalid Email", "Email Address cannot be empty.", "OK");
+                    await HomePage.Instance.DisplayAlert("Invalid Email", "Email address cannot be empty.", "OK");
                 }
 
             });
@@ -116,7 +116,7 @@ namespace GeoApp
                 string textFile = await featuresFile.ReadAllTextAsync();
                 await Clipboard.SetTextAsync(textFile);
 
-                await HomePage.Instance.DisplayAlert("Features Copied", "Paste in any text field", "OK");
+                await HomePage.Instance.DisplayAlert("Copy Features", "Features successfully copied to clipboard.", "OK");
             });
         }
     }

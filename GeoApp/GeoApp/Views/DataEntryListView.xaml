@@ -40,8 +40,8 @@
                                 <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
                                 <Image Source="{Binding properties.typeIconPath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center" />
                                 <Label Text="{Binding properties.name}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding properties.authorId, StringFormat='Author: {0:N}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding properties.date, StringFormat='Date: {0:dd/MM/yyyy}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="2" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding properties.authorId, StringFormat='{0:N}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" LineBreakMode="TailTruncation" />
+                                <Label Text="{Binding properties.date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray" HorizontalTextAlignment="End" FontSize="Small" Grid.Row="1" Grid.Column="2" LineBreakMode="TailTruncation" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
