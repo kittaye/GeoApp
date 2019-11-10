@@ -40,7 +40,12 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/Reilly/Downloads/Groundsman/Groundsman.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>86#Ue^7jQ</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>groundsman</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>86#Ue^7jQ</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />

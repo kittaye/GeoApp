@@ -23,11 +23,10 @@ namespace KickassUI.Spotify.iOS.Renderers
                 return;
 
             // Go through our elements and change the icons
-            var tabs = Element as TabbedPage;
-            if (tabs != null)
+            if (Element is TabbedPage tabs)
             {
                 for (int i = 0; i < TabBar.Items.Length; i++)
-                    UpdateTabBarItem(TabBar.Items[i], tabs.Children[i].Icon);
+                    UpdateTabBarItem(TabBar.Items[i], tabs.Children[i].IconImageSource.ToString());
             }
 
             base.ViewWillAppear(animated);

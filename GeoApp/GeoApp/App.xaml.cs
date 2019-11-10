@@ -1,6 +1,4 @@
 using GeoApp.Data;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,11 +6,11 @@ using Xamarin.Forms.Xaml;
 namespace GeoApp {
     public partial class App : Application {
 
-        public static FeaturesManager FeaturesManager { get; private set; }
+        public static FeatureStore FeatureStore { get; private set; }
 
         public App() {
             InitializeComponent();
-            FeaturesManager = new FeaturesManager(new FileService());
+            FeatureStore = new FeatureStore();
             MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default };
             //var response = CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
 

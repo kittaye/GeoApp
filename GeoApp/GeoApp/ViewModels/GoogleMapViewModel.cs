@@ -102,7 +102,7 @@ namespace GeoApp
             // Clean all the data on the map first
             CleanFeaturesOnMap();
             // Using CurrentFeature to draw the geodata on the map
-            App.FeaturesManager.CurrentFeatures.ForEach((Feature feature) =>
+            App.FeatureStore.CurrentFeatures.ForEach((Feature feature) =>
             {
                 var points = feature.properties.xamarincoordinates;
 

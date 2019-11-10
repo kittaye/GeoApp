@@ -40,7 +40,7 @@ namespace GeoApp
         private async Task<bool> SubmitIDEntry()
         {
             // Make a copy of the feature list to iterate and modify
-            var featureList = App.FeaturesManager.CurrentFeatures.ToList();
+            var featureList = App.FeatureStore.CurrentFeatures.ToList();
 
             if (string.IsNullOrWhiteSpace(IDEntry) == false)
             {
@@ -54,7 +54,7 @@ namespace GeoApp
                         if (feature.properties.authorId == prevID)
                         {
                             feature.properties.authorId = IDEntry;
-                            await App.FeaturesManager.SaveFeatureAsync(feature);
+                            await App.FeatureStore.SaveFeatureAsync(feature);
                         }
                     }
                 }

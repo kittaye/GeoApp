@@ -46,7 +46,10 @@ namespace GeoApp.iOS
 
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
-            App.FeaturesManager.ImportFeaturesFromFile(url.Path);
+            //add confirmation alert
+            {
+                App.FeatureStore.ImportFeaturesFromFile(url.Path);
+            }
             return true;
         }
 

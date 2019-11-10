@@ -119,8 +119,8 @@ namespace GeoApp
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     // Do a full re-read of the embedded file to get the most current list of features.
-                    App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
-                    EntryListSource = App.FeaturesManager.CurrentFeatures;
+                    App.FeatureStore.CurrentFeatures = await Task.Run(() => App.FeatureStore.GetFeaturesAsync());
+                    EntryListSource = App.FeatureStore.CurrentFeatures;
                     FeatureCount = EntryListSource.Count;
                 });
             }
@@ -150,7 +150,7 @@ namespace GeoApp
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Feature", "Are you sure you want to delete this feature?", "Yes", "No");
             if (yesResponse)
             {
-                await App.FeaturesManager.DeleteFeatureAsync(feature.properties.id);
+                App.FeatureStore.DeleteFeatureAsync(feature.properties.id);
             }
             ExecuteRefreshListCommand();
 

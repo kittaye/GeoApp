@@ -71,7 +71,7 @@ namespace GeoApp
                 myMap.MyLocationEnabled = true;
                 myMap.IsShowingUser = true;
                 // Do a full re-read of the embedded file to get the most current list of features.
-                App.FeaturesManager.CurrentFeatures = await Task.Run(() => App.FeaturesManager.GetFeaturesAsync());
+                App.FeatureStore.CurrentFeatures = await Task.Run(() => App.FeatureStore.GetFeaturesAsync());
                 // Redraw maps
                 if (viewModel.RefreashGeoDataCommand.CanExecute(null))
                 {

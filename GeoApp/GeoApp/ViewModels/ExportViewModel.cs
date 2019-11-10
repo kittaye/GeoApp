@@ -8,6 +8,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Xamarin.Essentials;
 using PCLStorage;
+using System.IO;
 
 namespace GeoApp
 {
@@ -19,6 +20,7 @@ namespace GeoApp
         public ICommand ShareButtonClickCommand { set; get; }
 
         public ICommand BackupButtonClickCommand { set; get; }
+        private const string EMBEDDED_FILENAME = "locations.json";
 
         private string _EmailEntry;
         public string EmailEntry
@@ -46,7 +48,7 @@ namespace GeoApp
                 {
                     try
                     {
-                        string JSONfile = App.FeaturesManager.ExportFeaturesToJson();
+                        string JSONfile = App.FeatureStore.ExportFeaturesToJson();
                         string email_Address = EmailEntry;
 
 
@@ -102,18 +104,17 @@ namespace GeoApp
             ExperimentalFeatures.Enable("ShareFileRequest_Experimental");
             ShareButtonClickCommand = new Command(async () =>
             {
-                IFile featuresFile = await App.FeaturesManager.GetEmbeddedFile();
+                string featuresFile =  App.FeatureStore.GetEmbeddedFile();
                 await Share.RequestAsync(new ShareFileRequest
                 {
                     Title = "Features Export",
-                    File = new ShareFile(featuresFile.Path, "text/plain")
+                    File = new ShareFile(Path.Combine(FileSystem.AppDataDirectory, EMBEDDED_FILENAME), "text/plain")
                 });
             });
 
             BackupButtonClickCommand = new Command(async () =>
             {
-                IFile featuresFile = await App.FeaturesManager.GetEmbeddedFile();
-                string textFile = await featuresFile.ReadAllTextAsync();
+                string textFile =  App.FeatureStore.GetEmbeddedFile();
                 await Clipboard.SetTextAsync(textFile);
 
                 await HomePage.Instance.DisplayAlert("Copy Features", "Features successfully copied to clipboard.", "OK");

@@ -8,18 +8,20 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Plugin.Share;
 using PCLStorage;
+using System.IO;
 
 namespace GeoApp
 {
     public class LogViewModel : ViewModelBase
     {
         private CancellationTokenSource cts;
-        private double lat= 0;
+        private double lat = 0;
         private double lon = 0;
         private double alt = 0;
         public ICommand StartButtonClickCommand { set; get; }
         public ICommand ClearButtonClickCommand { set; get; }
         public ICommand ExportButtonClickCommand { set; get; }
+        private const string LOG_FILENAME = "log.csv";
 
         public bool isLogging = false;
 
@@ -82,15 +84,14 @@ namespace GeoApp
 
             async void ExportLog()
             {
-                IFile featuresFile = await App.FeaturesManager.GetLogFile();
                 if (!CrossShare.IsSupported)
                     return;
-                await featuresFile.WriteAllTextAsync(TextEntry);
+                File.WriteAllText(Path.Combine(FileSystem.AppDataDirectory, LOG_FILENAME), TextEntry);
                 ExperimentalFeatures.Enable("ShareFileRequest_Experimental");
                 await Share.RequestAsync(new ShareFileRequest
                 {
                     Title = "Logfile",
-                    File = new ShareFile(featuresFile.Path, "text/csv")
+                    File = new ShareFile(Path.Combine(FileSystem.AppDataDirectory, LOG_FILENAME), "text/csv")
                 });
             }
             ExportButtonClickCommand = new Command(ExportLog);

@@ -49,7 +49,7 @@ namespace GeoApp
         /// </summary>
         public void AddGeometry()
         {
-            List<Feature> features = App.FeaturesManager.CurrentFeatures;
+            List<Feature> features = App.FeatureStore.CurrentFeatures;
             map.Pins.Clear();
 
             foreach (var feature in features)

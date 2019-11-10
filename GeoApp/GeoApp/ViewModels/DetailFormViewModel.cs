@@ -314,7 +314,7 @@ namespace GeoApp
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Feature", "Are you sure you want to delete this feature?", "Yes", "No");
             if (yesResponse)
             {
-                await App.FeaturesManager.DeleteFeatureAsync(thisEntryID);
+                App.FeatureStore.DeleteFeatureAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopToRootAsync();
             }
 
@@ -344,7 +344,7 @@ namespace GeoApp
 
             Feature featureToSave = CreateFeatureFromInput();
 
-            await App.FeaturesManager.SaveFeatureAsync(featureToSave);
+            await App.FeatureStore.SaveFeatureAsync(featureToSave);
             await HomePage.Instance.Navigation.PopToRootAsync();
 
             _isBusy = false;

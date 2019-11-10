@@ -80,7 +80,7 @@ namespace GeoApp
                 {
                     string contents = TextEntry;
                     //Debug.WriteLine("Contents: {0}", contents);
-                    await App.FeaturesManager.ImportFeaturesAsync(contents);
+                    await App.FeatureStore.ImportFeaturesAsync(contents);
                     TextEntry = "";
                 }
                 catch (Exception ex)
