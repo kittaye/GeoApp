@@ -24,16 +24,16 @@
 
   <ItemGroup>
     <PackageReference Include="GeoJSON.Net" Version="1.1.73" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Plugin.Share" Version="7.1.1" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
-    <PackageReference Include="Xamarin.Forms.Maps" Version="4.2.0.778463" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.947036" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.3.0.947036" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps.Bindings" Version="2.2.0" />
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
-    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.2.1" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
     <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
     <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.34" />
     <PackageReference Include="PCLStorage.Abstractions" Version="1.0.3" />
@@ -51,7 +51,6 @@
     <Compile Remove="Views\MyPage.xaml.cs" />
     <Compile Remove="Data\FileService.cs" />
     <Compile Remove="Data\FeaturesManager.cs" />
-    <Compile Remove="Data\IDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DataEntryListView.xaml.cs">
@@ -90,8 +89,5 @@
       <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\IDataService.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>
