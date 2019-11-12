@@ -8,8 +8,13 @@ using Foundation;
 using System;
 using CoreGraphics;
 using GeoApp.Styles;
+using GeoApp;
 
-[assembly: ExportRenderer(typeof(ContentPage), typeof(ExtendedPageRenderer)), Preserve (AllMembers = true)]
+[assembly: ExportRenderer(typeof(DataEntryListView), typeof(ExtendedPageRenderer))]
+[assembly: ExportRenderer(typeof(ExportView), typeof(ExtendedPageRenderer))]
+[assembly: ExportRenderer(typeof(ImportView), typeof(ExtendedPageRenderer))]
+[assembly: ExportRenderer(typeof(LogView), typeof(ExtendedPageRenderer))]
+[assembly: ExportRenderer(typeof(ExistingDetailFormView), typeof(ExtendedPageRenderer))]
 namespace GeoApp.iOS
 {
     public class ExtendedPageRenderer : PageRenderer
@@ -23,16 +28,15 @@ namespace GeoApp.iOS
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
+
+
             NavigationController.NavigationBar.PrefersLargeTitles = true;
             NavigationItem.LargeTitleDisplayMode = UINavigationItemLargeTitleDisplayMode.Automatic;
 
-            var page = Element as ContentPage;
 
-            if (page != null)
+            if (Element is ContentPage page)
             {
-                var contentScrollView = page.Content as ScrollView;
-
-                if (contentScrollView != null)
+                if (page.Content is ScrollView)
                     return;
 
                 RegisterForKeyboardNotifications();
@@ -151,8 +155,7 @@ namespace GeoApp.iOS
             {
                 NavigationController.NavigationBar.TintColor = UIColor.FromRGB(76, 175, 80);
             }
-            var contentPage = this.Element as ContentPage;
-            if (contentPage == null || NavigationController == null)
+            if (!(this.Element is ContentPage contentPage) || NavigationController == null)
                 return;
 
             var itemsInfo = contentPage.ToolbarItems;
@@ -171,13 +174,12 @@ namespace GeoApp.iOS
                 if (field == null)
                     return;
 
-                var info = field.GetValue(nativeItem) as ToolbarItem;
-                if (info == null)
+                if (!(field.GetValue(nativeItem) is ToolbarItem info))
                     return;
 
-                if (info.Priority == 1)
-                    newLeftButtons.Add(nativeItem);
-                else
+                //if (info.Priority == 1)
+                //    newLeftButtons.Add(nativeItem);
+                //else
                     newRightButtons.Add(nativeItem);
             });
 
@@ -194,8 +196,7 @@ namespace GeoApp.iOS
         {
             base.ViewDidDisappear(animated);
 
-            var contentPage = this.Element as ContentPage;
-            if (contentPage == null || NavigationController == null)
+            if (!(this.Element is ContentPage contentPage) || NavigationController == null)
                 return;
 
             var navigationItem = this.NavigationController.TopViewController.NavigationItem;
@@ -226,7 +227,7 @@ namespace GeoApp.iOS
 			base.TraitCollectionDidChange(previousTraitCollection);
 			Console.WriteLine($"TraitCollectionDidChange: {TraitCollection.UserInterfaceStyle} != {previousTraitCollection.UserInterfaceStyle}");
 
-			if (this.TraitCollection.UserInterfaceStyle != previousTraitCollection.UserInterfaceStyle)
+			if (TraitCollection.UserInterfaceStyle != previousTraitCollection.UserInterfaceStyle)
 			{
 				SetAppTheme();
 			}
@@ -237,12 +238,12 @@ namespace GeoApp.iOS
 
 		void SetAppTheme()
 		{
-			if (this.TraitCollection.UserInterfaceStyle == UIUserInterfaceStyle.Dark)
+			if (TraitCollection.UserInterfaceStyle == UIUserInterfaceStyle.Dark)
 			{
 				if (App.AppTheme == "dark")
 					return;
 
-				App.Current.Resources = new DarkTheme();
+                Xamarin.Forms.Application.Current.Resources = new DarkTheme();
 
 				App.AppTheme = "dark";
 			}
@@ -250,11 +251,12 @@ namespace GeoApp.iOS
 			{
 				if (App.AppTheme != "dark")
 					return;
-				App.Current.Resources = new LightTheme();
+                Xamarin.Forms.Application.Current.Resources = new LightTheme();
 				App.AppTheme = "light";
 			}
 		}
     }
+
     public static class ViewExtensions
     {
         /// <summary>

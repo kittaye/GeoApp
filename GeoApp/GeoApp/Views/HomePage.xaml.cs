@@ -22,12 +22,6 @@ namespace GeoApp
         public HomePage()
         {
             InitializeComponent();
-            this.CurrentPageChanged += CurrentPageHasChanged;
-        }
-
-        protected void CurrentPageHasChanged(object sender, EventArgs e)
-        {
-            this.Title = this.CurrentPage.Title;
         }
 
         /// <summary>

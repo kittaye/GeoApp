@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GeoApp.GoogleMapView" xmlns:local="clr-namespace:GeoApp" xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps" xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings" xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors" BackgroundColor="Default" Title="Map View">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeoApp.GoogleMapView"
+             xmlns:local="clr-namespace:GeoApp"
+             xmlns:googleMaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             BackgroundColor="Default"
+             Title="Map">
     <ContentPage.BindingContext>
         <local:GoogleMapViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>

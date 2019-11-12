@@ -12,11 +12,7 @@ namespace GeoApp {
         public App() {
             InitializeComponent();
             FeatureStore = new FeatureStore();
-            MainPage = new NavigationPage(HomePage.Instance) { BarBackgroundColor = Color.Default, BarTextColor = Color.Default };
-            //var response = CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
-
-            // Uncomment this to clear your set user ID.
-            //Application.Current.Properties.Clear();
+            MainPage = new NavigationPage(HomePage.Instance);
 
             // If the user ID hasn't been set yet, prompt the user to create one upon app launch.
             if (Application.Current.Properties.ContainsKey("UserID") == false) {
