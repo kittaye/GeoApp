@@ -1,5 +1,4 @@
 ﻿using Plugin.Share;
-using Plugin.Share.Abstractions;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -7,7 +6,6 @@ using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Xamarin.Essentials;
-using PCLStorage;
 using System.IO;
 
 namespace GeoApp

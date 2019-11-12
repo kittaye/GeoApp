@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Reflection;
-using GeoApp.iOS;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -9,13 +8,14 @@ using System;
 using CoreGraphics;
 using GeoApp.Styles;
 using GeoApp;
+using GeoApp.iOS.Renderers;
 
 [assembly: ExportRenderer(typeof(DataEntryListView), typeof(ExtendedPageRenderer))]
 [assembly: ExportRenderer(typeof(ExportView), typeof(ExtendedPageRenderer))]
 [assembly: ExportRenderer(typeof(ImportView), typeof(ExtendedPageRenderer))]
 [assembly: ExportRenderer(typeof(LogView), typeof(ExtendedPageRenderer))]
 [assembly: ExportRenderer(typeof(ExistingDetailFormView), typeof(ExtendedPageRenderer))]
-namespace GeoApp.iOS
+namespace GeoApp.iOS.Renderers
 {
     public class ExtendedPageRenderer : PageRenderer
     {
@@ -316,5 +316,4 @@ namespace GeoApp.iOS
         }
 
     }
-
 }
