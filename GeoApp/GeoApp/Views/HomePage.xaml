@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage ClassId="TabbedHomePage" xmlns="http://xamarin.com/schemas/2014/forms" Title="My Features" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" android:TabbedPage.ToolbarPlacement="Bottom" android:TabbedPage.BarBackgroundColor="White" android:TabbedPage.BarSelectedItemColor="Black" android:TabbedPage.BarTextColor="Black" xmlns:local="clr-namespace:GeoApp;assembly=GeoApp"
+<TabbedPage ClassId="TabbedHomePage" xmlns="http://xamarin.com/schemas/2014/forms"
+            Title="My Features"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarBackgroundColor="White"
+            android:TabbedPage.BarSelectedItemColor="Black"
+            android:TabbedPage.BarTextColor="Black"
+            ios:Page.LargeTitleDisplay="Always"
+            xmlns:local="clr-namespace:GeoApp;assembly=GeoApp"
     x:Class="GeoApp.HomePage">
     <local:DataEntryListView Icon="data_icon" AutomationId="data_icon" />
     <local:GoogleMapView Icon="map_icon" AutomationId="map_icon" />

@@ -7,6 +7,7 @@ namespace GeoApp {
     public partial class App : Application {
 
         public static FeatureStore FeatureStore { get; private set; }
+        public static string AppTheme { get; set; }
 
         public App() {
             InitializeComponent();

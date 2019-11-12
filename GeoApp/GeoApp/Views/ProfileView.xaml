@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:GeoApp" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" x:Class="GeoApp.ProfileView" Title="Profile Settings" BackgroundColor="Default" ios:NavigationPage.PrefersLargeTitles="true">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoApp"
+             x:Class="GeoApp.ProfileView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.ModalPresentationStyle="FormSheet"
+             Title="Profile Settings">
     <ContentPage.BindingContext>
         <local:ProfileViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
+            <Grid Margin="12, 0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Profile Settings" FontSize="16"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
+                <Button x:Name="dismissButton" Text="Done" FontAttributes="Bold" Clicked="OnDismissButtonClicked" HorizontalOptions="End" Grid.Row="0" Grid.Column="2">
+                </Button>
+            </Grid>
+
             <Entry Text="{Binding IDEntry}" AutomationId="IDText" Margin="20,40,20,0" Placeholder="e.g. Bob, n1234567, ..." />
             <Button Text="Update ID" AutomationId="IDSubmit" Margin="20,20,20,20" Command="{Binding IDSubmitCommand}">
                 <Button.TextColor>

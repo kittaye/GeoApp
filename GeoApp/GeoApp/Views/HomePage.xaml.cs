@@ -51,7 +51,7 @@ namespace GeoApp
 
         public void ShowProfileSettingsPage()
         {
-            Navigation.PushAsync(new ProfileView());
+            Navigation.PushModalAsync(new ProfileView());
         }
 
         /// <summary>
