@@ -1,48 +1,23 @@
-﻿using KickassUI.Spotify.iOS.Renderers;
+﻿using GeoApp;
+using GeoApp.iOS.Renderers;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(TabbedPage), typeof(ColoredTabBarRenderer))]
-namespace KickassUI.Spotify.iOS.Renderers
+[assembly: ExportRenderer(typeof(IDFormView), typeof(ModalPageRenderer))]
+namespace GeoApp.iOS.Renderers
 {
-    public class ColoredTabBarRenderer : TabbedRenderer
+    public class ModalPageRenderer : PageRenderer
     {
-        protected override void OnElementChanged(VisualElementChangedEventArgs e)
+
+
+        public override void WillMoveToParentViewController(UIViewController parent)
         {
-            base.OnElementChanged(e);
-
-            // Set our basic tab bar colors.
-            UITabBar.Appearance.BarTintColor = UIColor.Clear;
-            UITabBar.Appearance.TintColor = UIColor.Clear;
-        }
-
-        public override void ViewWillAppear(bool animated)
-        {
-            if (TabBar?.Items == null)
-                return;
-
-            // Go through our elements and change the icons
-            if (Element is TabbedPage tabs)
+            if (UIDevice.CurrentDevice.CheckSystemVersion(12, 0))
             {
-                for (int i = 0; i < TabBar.Items.Length; i++)
-                    UpdateTabBarItem(TabBar.Items[i], tabs.Children[i].IconImageSource.ToString());
+                parent.ModalInPresentation = true;
             }
-
-            base.ViewWillAppear(animated);
-        }
-
-        private void UpdateTabBarItem(UITabBarItem item, string icon)
-        {
-            if (item == null || icon == null)
-                return;
-
-            // Set the font for the title.
-            item.SetTitleTextAttributes(new UITextAttributes() { TextColor = Color.Gray.ToUIColor() }, UIControlState.Normal);
-            item.SetTitleTextAttributes(new UITextAttributes() { TextColor = Color.Black.ToUIColor() }, UIControlState.Selected);
-
-            // Moves the titles up just a bit.
-            item.TitlePositionAdjustment = new UIOffset(0, -2);
+            base.WillMoveToParentViewController(parent);
         }
     }
 }

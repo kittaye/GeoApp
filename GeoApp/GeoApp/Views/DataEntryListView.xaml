@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListView" Title="My Features" BackgroundColor="Default">
     <ContentPage.ToolbarItems>
-        <ToolbarItem AutomationId="id_icon" Icon="profile_icon" Command="{Binding IDClickedCommand}" Order="Primary" Priority="1" />
-        <ToolbarItem AutomationId="add_icon" Icon="add_icon" Command="{Binding ButtonClickedCommand}" Order="Primary" Priority="0" />
+        <ToolbarItem AutomationId="id_icon" Icon="profile_icon" Command="{Binding IDClickedCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <local:DataEntryListViewModel x:Name="viewModel" />
@@ -12,46 +11,50 @@
             <local:ItemTappedEventArgsToItemTappedConverter x:Key="TappedItemConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout>
-            <ActivityIndicator x:Name="loadingList" IsVisible="False" Color="Black" Margin="0,15" />
-            <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" BackgroundColor="{DynamicResource backgroundColor}" SeparatorColor="LightGray" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshListCommand}" IsRefreshing="{Binding IsRefreshing}">
-                <ListView.Behaviors>
-                    <local:ListViewItemTappedBehaviour Command="{Binding ItemTappedCommand}" Converter="{StaticResource TappedItemConverter}" />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem Command="{Binding DeleteEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
-                            </ViewCell.ContextActions>
-                            <!-- Grid definition of 2x4 for each label entry -->
-                            <Grid ColumnSpacing="10" RowSpacing="0" Padding="10,4,10,4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="36" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
-                                <Image Source="{Binding properties.typeIconPath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center" />
-                                <Label Text="{Binding properties.name}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding properties.authorId, StringFormat='{0:N}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" Grid.Row="1" Grid.Column="1" LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding properties.date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray" HorizontalTextAlignment="End" FontSize="Small" Grid.Row="1" Grid.Column="2" LineBreakMode="TailTruncation" />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Footer>
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray"  Margin="10" FontSize="Small"/>
-                    </StackLayout>
-                </ListView.Footer>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
+
+    <RelativeLayout>
+        <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" BackgroundColor="{DynamicResource backgroundColor}" SeparatorColor="LightGray" >
+            <ListView.Behaviors>
+                <local:ListViewItemTappedBehaviour Command="{Binding ItemTappedCommand}" Converter="{StaticResource TappedItemConverter}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Command="{Binding EditEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="Edit" />
+                            <MenuItem Command="{Binding DeleteEntryCommand, Source={x:Reference Name=viewModel}}" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+                        </ViewCell.ContextActions>
+                        <!-- Grid definition of 2x4 for each label entry -->
+                        <StackLayout Orientation="Horizontal" Padding="10,4,10,4">
+                            <!--Each label is created using the grid layout, with an icon at the front and 2 vertically layered text strings.-->
+                            <Image Source="{Binding properties.typeIconPath}" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding properties.name}" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" LineBreakMode="TailTruncation" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding properties.date, StringFormat='{0:d/M/yy}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding properties.authorId, StringFormat='{0:N}'}" TextColor="DarkGray" HorizontalTextAlignment="Start" FontSize="Small" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Footer>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray"  Margin="10" FontSize="Small"/>
+
+                </StackLayout>
+            </ListView.Footer>
+
+        </ListView>
+        <ContentView BackgroundColor="White" HorizontalOptions="Start" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+            Property=Height,Factor=.92}" WidthRequest="3000" HeightRequest="1000">
+            <Button Text="New Feature" HorizontalOptions="Start" VerticalOptions="Start" Image="add_icon_color" Margin="12,0" Command="{Binding ButtonClickedCommand}">
+                <Button.TextColor>
+                    <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="white" />
+                </Button.TextColor>
+            </Button>
+        </ContentView>
+    </RelativeLayout>
+
 </ContentPage>

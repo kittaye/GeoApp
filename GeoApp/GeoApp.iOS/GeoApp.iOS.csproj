@@ -109,9 +109,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyMapDelegate.cs" />
     <Compile Include="ShortcutIdentifier.cs" />
-    <None Include="Renderers\ColoredTabBarRenderer.cs" />
     <None Include="Renderers\CustomEntryRenderer.cs" />
     <None Include="Renderers\CustomMapRenderer.cs" />
+    <Compile Include="Renderers\ColoredTabBarRenderer.cs" />
     <Compile Include="Renderers\ExtendedPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -30,8 +30,8 @@ namespace GeoApp
 
         protected override void OnDisappearing()
         {
-            loadingList.IsRunning = false;
-            loadingList.IsVisible = false;
+            //loadingList.IsRunning = false;
+            //loadingList.IsVisible = false;
             base.OnDisappearing();
         }
     }

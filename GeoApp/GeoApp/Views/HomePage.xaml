@@ -29,7 +29,7 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Import" Icon="import_icon">
+        <NavigationPage Title="Import" Icon="import_icon" AutomationId="import_page">
             <x:Arguments>
                 <local:ImportView/>
             </x:Arguments>

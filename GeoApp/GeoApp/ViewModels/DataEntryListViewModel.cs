@@ -50,7 +50,7 @@ namespace GeoApp
             set
             {
                 _isRefreshing = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsRefreshing));
             }
         }
 
