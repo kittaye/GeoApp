@@ -22,13 +22,10 @@
                             <OnPlatform x:TypeArguments="x:Boolean" iOS="true" Android="false" />
                         </Label.IsVisible>
                     </Label>
-                    <Button AutomationId="ImportButton" Margin="20,2,20,10" Text="Import File" Command="{Binding ButtonClickCommand}">
+                    <Button AutomationId="ImportButton" Margin="20,2,20,0" TextColor="White" Text="Import File" Command="{Binding ButtonClickCommand}">
                         <Button.IsVisible>
                             <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true" />
                         </Button.IsVisible>
-                        <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="white" />
-                        </Button.TextColor>
                     </Button>
                 </FlexLayout>
             </Frame>
@@ -36,7 +33,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height=".1*" />
-                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1*" />
                         <RowDefinition Height=".2*" />
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource HeaderStyle}" Grid.Row="0" Text="Paste GeoJSON from Clipboard"/>

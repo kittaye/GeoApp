@@ -17,8 +17,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <RelativeLayout>
-        <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" SeparatorColor="LightGray" >
+    <StackLayout>
+        <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" SeparatorColor="LightGray">
             <ListView.Behaviors>
                 <local:ListViewItemTappedBehaviour Command="{Binding ItemTappedCommand}" Converter="{StaticResource TappedItemConverter}" />
             </ListView.Behaviors>
@@ -52,14 +52,13 @@
             </ListView.Footer>
 
         </ListView>
-        <ContentView BackgroundColor="{DynamicResource bgPrimary}" HorizontalOptions="Start" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-            Property=Height,Factor=.92}" WidthRequest="3000" HeightRequest="1000">
+        <ContentView BackgroundColor="{DynamicResource bgPrimary}" HorizontalOptions="End"  WidthRequest="3000" HeightRequest="60">
             <Button Text="New Feature" HorizontalOptions="Start" VerticalOptions="Start" Image="add_icon_color" Margin="12,0" Command="{Binding ButtonClickedCommand}">
                 <Button.TextColor>
                     <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="white" />
                 </Button.TextColor>
             </Button>
         </ContentView>
-    </RelativeLayout>
+    </StackLayout>
 
 </ContentPage>
