@@ -9,44 +9,26 @@
         <local:ExportViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height=".32*" />
-                <RowDefinition Height=".35*" />
-                <RowDefinition Height=".33*" />
-            </Grid.RowDefinitions>
-            <Frame Style="{StaticResource FrameStyle}" Grid.Row="0" Margin="10,10,10,0">
-                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
-                    <Label Text="Export Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
-                    <Label Text="Save to file or share your features via another app" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center" />
-                    <Button AutomationId="ShareButton" Text="Export" Command="{Binding ShareButtonClickCommand}">
-                        <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
-                        </Button.TextColor>
-                    </Button>
+        <Grid Margin="10, 10">
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="0">
+                <FlexLayout Style="{StaticResource ContainerStyle}">
+                    <Label Style="{StaticResource HeaderStyle}" Text="Export Features"/>
+                    <Label Style="{StaticResource SubheaderStyle}" Text="Save to file or share your features via another app"/>
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding ShareButtonClickCommand}" Text="Export"/>
                 </FlexLayout>
             </Frame>
-            <Frame Style="{StaticResource FrameStyle}" Grid.Row="1" Margin="10,10,10,5">
-                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly" HorizontalOptions="Center">
-                    <Label Text="Send Features" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
-                    <Label Text="Enter destination email address" TextColor="Gray" FontSize="Small" HorizontalTextAlignment="Center" />
-                    <Entry Text="{Binding EmailEntry}" AutomationId="emailEntered" Placeholder="Email" Keyboard="Email" />
-                    <Button AutomationId="ExportButton" Text="Send" Command="{Binding ExportButtonClickCommand}">
-                        <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
-                        </Button.TextColor>
-                    </Button>
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="1" >
+                <FlexLayout Style="{StaticResource ContainerStyle}">
+                    <Label Style="{StaticResource HeaderStyle}" Text="Send Features"/>
+                    <Entry Style="{StaticResource EntryStyle}" Text="{Binding EmailEntry}" AutomationId="emailEntered" Placeholder="Email" Keyboard="Email" />
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding ExportButtonClickCommand}" Text="Send"/>
                 </FlexLayout>
             </Frame>
-            <Frame Style="{StaticResource FrameStyle}" Grid.Row="2" Margin="10,5,10,10">
-                <FlexLayout FlexLayout.Grow="1" Direction="Column" JustifyContent="SpaceEvenly">
-                    <Label HorizontalTextAlignment="Center" Text="Copy Features" TextColor="Black" FontSize="Large" />
-                    <Label HorizontalTextAlignment="Center" Text="Copy feature list to clipboard" TextColor="Gray" FontSize="Small" />
-                    <Button AutomationId="BackupButton" Text="Copy" Command="{Binding BackupButtonClickCommand}">
-                        <Button.TextColor>
-                            <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
-                        </Button.TextColor>
-                    </Button>
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="2">
+                <FlexLayout Style="{StaticResource ContainerStyle}">
+                    <Label Style="{StaticResource HeaderStyle}" Text="Copy Features"/>
+                    <Label Style="{StaticResource SubheaderStyle}" Text="Copy feature list to clipboard"/>
+                    <Button Style="{StaticResource ButtonStyle}" Command="{Binding BackupButtonClickCommand}" Text="Copy"/>
                 </FlexLayout>
             </Frame>
         </Grid>

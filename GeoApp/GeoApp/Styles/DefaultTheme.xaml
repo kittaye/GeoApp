@@ -4,30 +4,59 @@
              x:Class="GeoApp.Styles.DefaultTheme">
 
     <Style x:Key="DetailFormLabel" TargetType="Label">
-                <Setter Property="FontSize" Value="Default" />
-                <Setter Property="LineBreakMode" Value="TailTruncation" />
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-            </Style>
-            <Style x:Key="DetailFormEntry" TargetType="Entry">
-                <Setter Property="TextColor" Value="Gray" />
-                <Setter Property="FontSize" Value="Default" />
-                <Setter Property="WidthRequest" Value="200" />
-                <Setter Property="PlaceholderColor" Value="LightGray" />
-                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-            </Style>
-            <Style x:Key="DetailFormPanelGrid" TargetType="Grid">
-                <Setter Property="ColumnSpacing" Value="10" />
-                <Setter Property="RowSpacing" Value="0" />
-            </Style>
-            <Style x:Key="DetailFormPanelLayout" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
-            </Style>
-            <Style x:Key="FrameStyle" TargetType="Frame">
-                <Setter Property="Margin" Value="10" />
-                <Setter Property="Padding" Value="12" />
-                <Setter Property="HasShadow" Value="false" />
-                <Setter Property="CornerRadius" Value="8" />
-                <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
-            </Style>
+        <Setter Property="FontSize" Value="Default" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+    <Style x:Key="DetailFormEntry" TargetType="Entry">
+        <Setter Property="TextColor" Value="Gray" />
+        <Setter Property="FontSize" Value="Default" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="PlaceholderColor" Value="LightGray" />
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+    </Style>
+    <Style x:Key="DetailFormPanelGrid" TargetType="Grid">
+        <Setter Property="ColumnSpacing" Value="10" />
+        <Setter Property="RowSpacing" Value="0" />
+    </Style>
+    <Style x:Key="DetailFormPanelLayout" TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
+    </Style>
+    <Style x:Key="FrameStyle" TargetType="Frame">
+        <Setter Property="Margin" Value="0, 2" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="HasShadow" Value="false" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
+    </Style>
+
+    <!--Modular Styles-->
+    <Style x:Key="ContainerStyle" TargetType="FlexLayout">
+        <Setter Property="FlexLayout.Grow" Value="1" />
+        <Setter Property="Direction" Value="Column" />
+        <Setter Property="JustifyContent" Value="SpaceEvenly" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+    <Style x:Key="HeaderStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource textPrimary}" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="SubheaderStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource textSecondary}" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="TextColor">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="EntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="{DynamicResource textSecondary}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
+    </Style>
 </ResourceDictionary>
