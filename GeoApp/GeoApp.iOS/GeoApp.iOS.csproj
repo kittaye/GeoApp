@@ -40,8 +40,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,12 +66,12 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>Groundsman.iOS</AssemblyName>
-    <MtouchSdkVersion>12.1</MtouchSdkVersion>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <MtouchFloat32>true</MtouchFloat32>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <CodesignProvision>Groundsman App Store Distribution Profile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
