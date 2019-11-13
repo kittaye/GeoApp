@@ -5,7 +5,8 @@
              x:Class="GeoApp.ProfileView"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.ModalPresentationStyle="FormSheet"
-             Title="Profile Settings">
+             Title="Profile Settings"
+             BackgroundColor="{DynamicResource bgPrimary}">
     <ContentPage.BindingContext>
         <local:ProfileViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>

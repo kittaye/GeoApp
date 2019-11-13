@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:GeoApp" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             x:Class="GeoApp.ModifyDetailFormView" x:Name="ModifyDetailFormViewPage" Title="" BackgroundColor="Default" ios:Page.LargeTitleDisplay="Never">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoApp"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="GeoApp.ModifyDetailFormView"
+             x:Name="ModifyDetailFormViewPage"
+             Title=""
+             ios:Page.LargeTitleDisplay="Never"
+             BackgroundColor="{DynamicResource bgPrimary}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="save_icon" Command="{Binding OnSaveUpdatedCommand}" />
     </ContentPage.ToolbarItems>

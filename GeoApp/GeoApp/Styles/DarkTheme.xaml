@@ -4,6 +4,12 @@
              x:Class="GeoApp.Styles.DarkTheme"
              Source="DefaultTheme.xaml">
 
-    <Color x:Key="backgroundColor">#00000f</Color>
+    <Color x:Key="bgPrimary">#000000</Color>
+    <Color x:Key="bgSecondary">#303030</Color>
+    <Color x:Key="fgPrimary">#FFFFFF</Color>
+    <Color x:Key="fgSecondary">#DFDFDF</Color>
+    <Color x:Key="textPrimary">#FFFFFF</Color>
+    <Color x:Key="textSecondary">#ADADAD</Color>
+    <Color x:Key="textTertiary">#6A6A6A</Color>
 
-</ResourceDictionary>
+</ResourceDictionary>   

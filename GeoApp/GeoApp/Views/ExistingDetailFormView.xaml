@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.ExistingDetailFormView" xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" x:Name="ExistingDetailFormViewPage" Title="" BackgroundColor="Default" ios:Page.LargeTitleDisplay="Never">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoApp"
+             x:Class="GeoApp.ExistingDetailFormView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Name="ExistingDetailFormViewPage"
+             Title=""
+             ios:Page.LargeTitleDisplay="Never"
+             BackgroundColor="{DynamicResource bgPrimary}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="trash_icon" Command="{Binding DeleteEntryCommand}" />
     </ContentPage.ToolbarItems>

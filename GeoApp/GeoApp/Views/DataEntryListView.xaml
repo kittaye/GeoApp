@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:GeoApp" x:Class="GeoApp.DataEntryListView" Title="My Features" BackgroundColor="Default">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoApp"
+             x:Class="GeoApp.DataEntryListView"
+             Title="My Features"
+             BackgroundColor="{DynamicResource bgPrimary}">
     <ContentPage.ToolbarItems>
         <ToolbarItem AutomationId="id_icon" Icon="profile_icon" Command="{Binding IDClickedCommand}" />
     </ContentPage.ToolbarItems>
@@ -13,7 +18,7 @@
     </ContentPage.Resources>
 
     <RelativeLayout>
-        <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" BackgroundColor="{DynamicResource backgroundColor}" SeparatorColor="LightGray" >
+        <ListView x:Name="listView" ItemsSource="{Binding EntryListSource, Source={x:Reference Name=viewModel}}" HasUnevenRows="True" SeparatorColor="LightGray" >
             <ListView.Behaviors>
                 <local:ListViewItemTappedBehaviour Command="{Binding ItemTappedCommand}" Converter="{StaticResource TappedItemConverter}" />
             </ListView.Behaviors>
@@ -47,7 +52,7 @@
             </ListView.Footer>
 
         </ListView>
-        <ContentView BackgroundColor="White" HorizontalOptions="Start" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+        <ContentView BackgroundColor="{DynamicResource bgPrimary}" HorizontalOptions="Start" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
             Property=Height,Factor=.92}" WidthRequest="3000" HeightRequest="1000">
             <Button Text="New Feature" HorizontalOptions="Start" VerticalOptions="Start" Image="add_icon_color" Margin="12,0" Command="{Binding ButtonClickedCommand}">
                 <Button.TextColor>
