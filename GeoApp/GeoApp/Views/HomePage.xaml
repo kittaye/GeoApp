@@ -9,6 +9,7 @@
             xmlns:local="clr-namespace:GeoApp;assembly=GeoApp"
             NavigationPage.HasNavigationBar="false"
             x:Class="GeoApp.HomePage"
+            SelectedTabColor="{DynamicResource textPrimary}"
             BarBackgroundColor="{DynamicResource bgPrimary}"
             BarTextColor="{DynamicResource textPrimary}">
     <TabbedPage.Children>

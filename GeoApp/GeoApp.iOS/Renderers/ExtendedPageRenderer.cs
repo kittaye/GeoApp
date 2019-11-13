@@ -1,18 +1,13 @@
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using Foundation;
 using System;
-using CoreGraphics;
 using GeoApp.Styles;
 using GeoApp.iOS.Renderers;
-using System.Diagnostics;
 
 [assembly: ExportRenderer(typeof(ContentPage), typeof(ExtendedPageRenderer))]
-
 namespace GeoApp.iOS.Renderers
 {
-
     public class ExtendedPageRenderer : PageRenderer
     {
         public override void ViewWillAppear(bool animated)
@@ -20,11 +15,9 @@ namespace GeoApp.iOS.Renderers
             base.ViewWillAppear(animated);
             if (NavigationController != null)
             {
-                NavigationController.NavigationBar.TintColor = UIColor.FromRGB(76, 175, 80);
                 if (UIDevice.CurrentDevice.CheckSystemVersion(12, 0))
                 {
                     NavigationController.NavigationBar.PrefersLargeTitles = true;
-
                     NavigationItem.LargeTitleDisplayMode = UINavigationItemLargeTitleDisplayMode.Automatic;
                 }
             }
@@ -69,7 +62,6 @@ namespace GeoApp.iOS.Renderers
                 {
                     SetAppTheme();
                 }
-
             }
         }
 

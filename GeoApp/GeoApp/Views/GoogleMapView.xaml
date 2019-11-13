@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Shape:" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0" />
+                <Label TextColor="{DynamicResource textPrimary}" Text="Shape:" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0" />
                 <Picker ItemsSource="{Binding Shape_options}" Grid.Column="1" SelectedItem="{Binding Shape_filter}" FontSize="Small" WidthRequest="100">
                     <Picker.Behaviors>
                         <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Date:" Margin="20,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0" />
+                <Label TextColor="{DynamicResource textPrimary}" Text="Date:" Margin="20,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0" />
                 <Picker ItemsSource="{Binding Date_options}" Grid.Column="1" SelectedItem="{Binding Date_filter}" FontSize="Small" WidthRequest="100">
                     <Picker.Behaviors>
                         <behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">

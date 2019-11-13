@@ -36,8 +36,8 @@
                             <StackLayout Orientation="Vertical">
                                 <Label Style="{StaticResource ListLabelStyle}" Text="{Binding properties.name}"/>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding properties.date, StringFormat='{0:d/M/yy}'}" TextColor="Gray" HorizontalTextAlignment="Start" FontSize="Small" LineBreakMode="TailTruncation" />
-                                    <Label Text="{Binding properties.authorId, StringFormat='{0:N}'}" TextColor="DarkGray" HorizontalTextAlignment="Start" FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding properties.date, StringFormat='{0:d/M/yy}'}" TextColor="{DynamicResource textSecondary}" HorizontalTextAlignment="Start" FontSize="Small" LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding properties.authorId, StringFormat='{0:N}'}" TextColor="{DynamicResource textTertiary}" HorizontalTextAlignment="Start" FontSize="Small" LineBreakMode="TailTruncation" />
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
@@ -46,7 +46,7 @@
             </ListView.ItemTemplate>
             <ListView.Footer>
                 <StackLayout Orientation="Vertical">
-                    <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="Gray"  Margin="10" FontSize="Small"/>
+                    <Label Text="{Binding FeatureCount, StringFormat='{0} Features', Source={x:Reference Name=viewModel}}" TextColor="{DynamicResource textSecondary}"  Margin="10" FontSize="Small"/>
 
                 </StackLayout>
             </ListView.Footer>

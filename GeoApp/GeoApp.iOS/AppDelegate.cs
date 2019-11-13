@@ -1,7 +1,5 @@
-using System;
 using Foundation;
 using UIKit;
-using KeyboardOverlap.Forms.Plugin.iOSUnified;
 
 namespace GeoApp.iOS
 {
@@ -33,6 +31,9 @@ namespace GeoApp.iOS
                 LaunchedShortcutItem = options[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
                 shouldPerformAdditionalDelegateHandling = (LaunchedShortcutItem == null);
             }
+            UIColor tintColor = UIColor.FromRGB(76, 175, 80);
+            UINavigationBar.Appearance.TintColor = tintColor;
+            UINavigationBar.Appearance.Translucent = true;
 
             Xamarin.FormsGoogleMaps.Init("AIzaSyDaeurrZExaOrUGhn5Q9_g447PSC7DOfHM");
             Xamarin.FormsGoogleMapsBindings.Init();
@@ -40,7 +41,7 @@ namespace GeoApp.iOS
             Rg.Plugins.Popup.Popup.Init();
             mainForms = new App();
             LoadApplication(new App());
-
+            
             return base.FinishedLaunching(app, options);
         }
 

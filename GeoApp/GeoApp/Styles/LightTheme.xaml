@@ -6,10 +6,9 @@
 
     <Color x:Key="bgPrimary">#FFFFFF</Color>
     <Color x:Key="bgSecondary">#eeeeee</Color>
-    <Color x:Key="fgPrimary">#3957FF</Color>
-    <Color x:Key="fgSecondary">#7C90FF</Color>
+
     <Color x:Key="textPrimary">#000000</Color>
-    <Color x:Key="textSecondary">#616161</Color>
-    <Color x:Key="textTertiary">#aaaaaa</Color>
+    <Color x:Key="textSecondary">#606060</Color>
+    <Color x:Key="textTertiary">#909090</Color>
 
 </ResourceDictionary>

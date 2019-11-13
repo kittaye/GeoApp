@@ -5,11 +5,10 @@
              Source="DefaultTheme.xaml">
 
     <Color x:Key="bgPrimary">#000000</Color>
-    <Color x:Key="bgSecondary">#303030</Color>
-    <Color x:Key="fgPrimary">#FFFFFF</Color>
-    <Color x:Key="fgSecondary">#DFDFDF</Color>
+    <Color x:Key="bgSecondary">#111111</Color>
+
     <Color x:Key="textPrimary">#FFFFFF</Color>
-    <Color x:Key="textSecondary">#ADADAD</Color>
-    <Color x:Key="textTertiary">#6A6A6A</Color>
+    <Color x:Key="textSecondary">#a0a0a0</Color>
+    <Color x:Key="textTertiary">#707070</Color>
 
 </ResourceDictionary>   
