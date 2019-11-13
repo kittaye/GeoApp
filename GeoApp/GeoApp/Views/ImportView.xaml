@@ -40,7 +40,7 @@
                         <RowDefinition Height=".2*" />
                     </Grid.RowDefinitions>
                     <Label Style="{StaticResource HeaderStyle}" Grid.Row="0" Text="Paste GeoJSON from Clipboard"/>
-                    <Frame Style="{StaticResource FrameStyle}" Grid.Row="1">
+                    <Frame Style="{StaticResource EditorFrameStyle}" Grid.Row="1">
                         <Editor Style="{StaticResource EditorStyle}" Text="{Binding TextEntry}" Placeholder="Paste valid GeoJSON here..." IsSpellCheckEnabled="false" FontSize="Micro">
                             <Editor.PlaceholderColor>
                                 <OnPlatform x:TypeArguments="Color" iOS="Gray" Android="Gray" />

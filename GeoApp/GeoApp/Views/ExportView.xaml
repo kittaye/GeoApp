@@ -9,7 +9,7 @@
         <local:ExportViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid Margin="10, 10">
+        <Grid Margin="10">
             <Frame Style="{StaticResource FrameStyle}" Grid.Row="0">
                 <FlexLayout Style="{StaticResource ContainerStyle}">
                     <Label Style="{StaticResource HeaderStyle}" Text="Export Features"/>

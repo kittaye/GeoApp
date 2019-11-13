@@ -20,7 +20,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Spacing="0" Margin="0,5,0,0">
+        <StackLayout Margin="10">
             <Frame Style="{StaticResource FrameStyle}">
                 <StackLayout>
                     <Grid ColumnSpacing="10">
@@ -39,7 +39,7 @@
                     </Grid>
                 </StackLayout>
             </Frame>
-            <Grid RowSpacing="0" VerticalOptions="FillAndExpand" Margin="0,0,0,40">
+            <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.8*" />
                     <RowDefinition Height="Auto" />
@@ -52,7 +52,7 @@
                             </Grid.RowDefinitions>
                             <Label Text="Geolocation Data" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0, 9" />
                         </Grid>
-                        <ListView x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" BackgroundColor="#efefef" SeparatorColor="Gray" HeightRequest="175">
+                        <ListView Style="{StaticResource ListViewStyle}" x:Name="geolocationListView" ItemTapped="listView_ItemTapped" ItemsSource="{Binding GeolocationPoints}" HasUnevenRows="True" VerticalOptions="FillAndExpand" SeparatorColor="Gray" HeightRequest="175">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
