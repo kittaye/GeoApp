@@ -9,27 +9,27 @@
         <local:LogViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid Margin="0,10">
+        <Grid Margin="10,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height=".8*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Frame Style="{StaticResource FrameStyle}" Grid.Row="0" Margin="10,0">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Logging Interval (seconds): " FontAttributes="Bold" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10" />
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="0">
+                <FlexLayout Style="{StaticResource ContainerStyleRow}" HeightRequest="40">
+                    <Label Style="{StaticResource InputLabelStyle}" Grid.Row="0" Grid.Column="0" Margin="10" Text="Logging Interval (seconds): " />
                     <Entry Text="{Binding IntervalEntry}" Keyboard="Numeric" Grid.Row="0" Grid.Column="1" FontSize="Small" WidthRequest="70" HorizontalOptions="End" Margin="0,0,10,0" />
-                </StackLayout>
+                </FlexLayout>
             </Frame>
-            <Frame Style="{StaticResource FrameStyle}" Grid.Row="1" Margin="10,10,10,0">
+            <Frame Style="{StaticResource FrameStyle}" Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height=".9*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Label Text="Log File: (Time, Latitude, Longitude, Altitude) " FontAttributes="Bold" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalTextAlignment="Center" Margin="10" />
-                    <Frame Grid.Row="1" Style="{StaticResource FrameStyle}" Margin="0" BackgroundColor="White">
-                        <Editor Placeholder="" Text="{Binding TextEntry}" IsSpellCheckEnabled="false" FontSize="Micro" IsEnabled="true" >
+                    <Label Style="{StaticResource InputLabelStyle}" Text="Log File: (Time, Latitude, Longitude, Altitude) " Grid.Row="0" Grid.Column="0" Margin="10" />
+                    <Frame Style="{StaticResource FrameStyle}" Grid.Row="1" Margin="0">
+                        <Editor Style="{StaticResource EditorStyle}" Text="{Binding TextEntry}" IsSpellCheckEnabled="false" FontSize="Micro" IsEnabled="true" >
                             <Editor.PlaceholderColor>
                                 <OnPlatform x:TypeArguments="Color" iOS="Gray" Android="Gray" />
                             </Editor.PlaceholderColor>

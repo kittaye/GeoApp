@@ -23,6 +23,8 @@
     <Style x:Key="DetailFormPanelLayout" TargetType="StackLayout">
         <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
     </Style>
+    
+    <!--Modular Styles-->
     <Style x:Key="FrameStyle" TargetType="Frame">
         <Setter Property="Margin" Value="0, 2" />
         <Setter Property="Padding" Value="12" />
@@ -30,13 +32,16 @@
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
     </Style>
-
-    <!--Modular Styles-->
     <Style x:Key="ContainerStyle" TargetType="FlexLayout">
         <Setter Property="FlexLayout.Grow" Value="1" />
         <Setter Property="Direction" Value="Column" />
         <Setter Property="JustifyContent" Value="SpaceEvenly" />
         <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+    <Style x:Key="ContainerStyleRow" TargetType="FlexLayout">
+        <Setter Property="FlexLayout.Grow" Value="1" />
+        <Setter Property="Direction" Value="Row" />
+        <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
     <Style x:Key="HeaderStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource textPrimary}" />
@@ -46,6 +51,13 @@
     <Style x:Key="SubheaderStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource textSecondary}" />
         <Setter Property="FontSize" Value="Small" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="InputLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource textPrrimary}" />
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
     </Style>
     <Style x:Key="ButtonStyle" TargetType="Button">
@@ -59,4 +71,9 @@
         <Setter Property="TextColor" Value="{DynamicResource textSecondary}" />
         <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
     </Style>
+    <Style x:Key="EditorStyle" TargetType="Editor">
+        <Setter Property="TextColor" Value="{DynamicResource textSecondary}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource bgSecondary}" />
+    </Style>
+
 </ResourceDictionary>
