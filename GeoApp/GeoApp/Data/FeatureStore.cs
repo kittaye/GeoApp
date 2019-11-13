@@ -305,6 +305,7 @@ namespace GeoApp.Data
 
                 await SaveCurrentFeaturesToEmbeddedFile();
                 await HomePage.Instance.DisplayAlert("File Import", "File imported successfully. New features have been added to your features list.", "OK");
+                DataEntryListViewModel.isDirty = true;
                 return true;
             }
             catch (Exception ex)
@@ -404,6 +405,7 @@ namespace GeoApp.Data
             {
                 string text = File.ReadAllText(path);
                 bool resultStatus = await ImportFeaturesAsync(text);
+                DataEntryListViewModel.isDirty = true;
                 return resultStatus;
             }
             catch (Exception ex)
