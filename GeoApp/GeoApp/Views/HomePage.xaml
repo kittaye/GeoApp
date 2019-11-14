@@ -22,7 +22,7 @@
 
         <NavigationPage Title="Map" Icon="map_icon" BackgroundColor="{DynamicResource bgPrimary}">
             <x:Arguments>
-                <local:GoogleMapView/>
+                <local:MapView/>
             </x:Arguments>
         </NavigationPage>
 
