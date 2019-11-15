@@ -18,7 +18,7 @@ namespace GeoApp
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override void OnAppearing() // make data refresh on android - maybe with willappear
         {
             base.OnAppearing();
 

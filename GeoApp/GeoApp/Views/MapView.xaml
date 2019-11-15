@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:GeoApp" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              Title="Map"
              BackgroundColor="{DynamicResource bgPrimary}">
-    <StackLayout Margin="10">
+    <StackLayout>
         <maps:Map x:Name="map">
             <x:Arguments>
                 <maps:MapSpan>
@@ -21,22 +21,6 @@
                     </x:Arguments>
                 </maps:MapSpan>
             </x:Arguments>
-            <maps:Map.Pins>
-                <maps:Pin Label="Santa Cruz"
-                          Address="The city with a boardwalk"
-                          Type="Place">
-                    <maps:Pin.Position>
-                        <maps:Position>
-                            <x:Arguments>
-                                <x:Double>36.9628066</x:Double>
-                                <x:Double>-122.0194722</x:Double>
-                            </x:Arguments>
-                        </maps:Position>
-                    </maps:Pin.Position>
-                </maps:Pin>
-            </maps:Map.Pins>
         </maps:Map>
-        <Button Text="Add more pins"
-                Clicked="OnButtonClicked" />
     </StackLayout>
 </ContentPage>

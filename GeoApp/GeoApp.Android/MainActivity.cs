@@ -29,8 +29,6 @@ namespace GeoApp.Droid
             CrossCurrentActivity.Current.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
-            Xamarin.FormsGoogleMaps.Init(this, bundle);
-            Xamarin.FormsGoogleMapsBindings.Init();
             Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) =>
             {
                 if (!string.IsNullOrWhiteSpace(e.View.AutomationId))

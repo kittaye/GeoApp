@@ -10,7 +10,6 @@ namespace GeoApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapView : ContentPage
     {
-
         public MapView()
         {
             InitializeComponent();
@@ -47,7 +46,7 @@ namespace GeoApp
                     Pin pin = new Pin
                     {
                         Label = feature.properties.name,
-                        Address = "The city with a boardwalk",
+                        Address = string.Format("{0}, {1}", points[0].Latitude, points[0].Longitude),
                         Type = PinType.Place,
                         Position = new Position(points[0].Latitude, points[0].Longitude)
                     };
@@ -65,11 +64,19 @@ namespace GeoApp
                         polyline.Geopath.Add(new Position(point.Latitude, point.Longitude));
                     });
                     map.MapElements.Add(polyline);
+
+                    Pin pin = new Pin
+                    {
+                        Label = feature.properties.name,
+                        Address = string.Format("{0}, {1}", points[0].Latitude, points[0].Longitude),
+                        Type = PinType.Place,
+                        Position = new Position(points[0].Latitude, points[0].Longitude)
+                    };
+                    map.Pins.Add(pin);
                 }
                 else if (feature.geometry.type.Equals("Polygon"))
                 {
-                    //GoogleMapManager.DrawPolygon(Polygons, feature.properties.name, points);
-                    Debug.WriteLine("--------- {0}", feature.properties.name );
+                    Debug.WriteLine("--------- {0}", feature.properties.name);
 
                     Polygon polygon = new Polygon
                     {
@@ -82,35 +89,26 @@ namespace GeoApp
                         polygon.Geopath.Add(new Position(point.Latitude, point.Longitude));
                     });
                     map.MapElements.Add(polygon);
+                    Pin pin = new Pin
+                    {
+                        Label = feature.properties.name,
+                        Address = string.Format("{0}, {1}", points[0].Latitude, points[0].Longitude),
+                        Type = PinType.Place,
+                        Position = new Position(points[0].Latitude, points[0].Longitude)
+                    };
+                    map.Pins.Add(pin);
+
                 }
                 //}
             });
         }
-        
-        void OnButtonClicked(object sender, EventArgs e)
-        {
-            DrawAllGeoDataOnTheMap();
-        }
-
-        async void OnMarkerClickedAsync(object sender, PinClickedEventArgs e)
-        {
-            e.HideInfoWindow = true;
-            string pinName = ((Pin)sender).Label;
-            await DisplayAlert("Pin Clicked", $"{pinName} was clicked.", "Ok");
-        }
-
-        async void OnInfoWindowClickedAsync(object sender, PinClickedEventArgs e)
-        {
-            string pinName = ((Pin)sender).Label;
-            await DisplayAlert("Info Window Clicked", $"The info window was clicked for {pinName}.", "Ok");
-        }
 
         protected override void OnAppearing()
         {
+            base.OnAppearing();
             CleanFeaturesOnMap();
             DrawAllGeoDataOnTheMap();
-        }
 
-        
+        }
     }
 }

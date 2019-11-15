@@ -35,9 +35,6 @@ namespace GeoApp.iOS
             UINavigationBar.Appearance.TintColor = tintColor;
             UINavigationBar.Appearance.Translucent = true;
 
-            Xamarin.FormsGoogleMaps.Init("AIzaSyDaeurrZExaOrUGhn5Q9_g447PSC7DOfHM");
-            Xamarin.FormsGoogleMapsBindings.Init();
-
             Rg.Plugins.Popup.Popup.Init();
             mainForms = new App();
             LoadApplication(new App());
