@@ -11,15 +11,10 @@ namespace GeoApp
     public partial class MapView : ContentPage
     {
 
-        
-
-
-
         public MapView()
         {
             InitializeComponent();
         }
-
 
         private void CleanFeaturesOnMap()
         {
@@ -27,11 +22,8 @@ namespace GeoApp
             map.Pins.Clear();
         }
 
-
         public void DrawAllGeoDataOnTheMap()
         {
-            // Clean all the data on the map first
-            //CleanFeaturesOnMap();
             // Using CurrentFeature to draw the geodata on the map
             App.FeatureStore.CurrentFeatures.ForEach((Feature feature) =>
             {
@@ -91,34 +83,13 @@ namespace GeoApp
                     });
                     map.MapElements.Add(polygon);
                 }
-
                 //}
             });
         }
-
-
+        
         void OnButtonClicked(object sender, EventArgs e)
         {
-            Pin boardwalkPin = new Pin
-            {
-                Position = new Position(36.9641949, -122.0177232),
-                Label = "Boardwalk",
-                Address = "Santa Cruz",
-                Type = PinType.Place
-            };
-            boardwalkPin.MarkerClicked += OnMarkerClickedAsync;
-
-            Pin wharfPin = new Pin
-            {
-                Position = new Position(36.9571571, -122.0173544),
-                Label = "Wharf",
-                Address = "Santa Cruz",
-                Type = PinType.Place
-            };
-            wharfPin.InfoWindowClicked += OnInfoWindowClickedAsync;
-
-            map.Pins.Add(boardwalkPin);
-            map.Pins.Add(wharfPin);
+            DrawAllGeoDataOnTheMap();
         }
 
         async void OnMarkerClickedAsync(object sender, PinClickedEventArgs e)

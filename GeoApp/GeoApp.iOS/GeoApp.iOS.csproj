@@ -28,8 +28,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Reilly Mackenzie-Cree (ZH63974M2B)</CodesignKey>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Reilly Mackenzie-Cree (E4X6YMFEBV)</CodesignKey>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -41,6 +41,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Groundsman App Store Distribution Profile</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -105,13 +106,12 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyMapDelegate.cs" />
-    <Compile Include="ShortcutIdentifier.cs" />
     <None Include="Renderers\CustomMapRenderer.cs" />
     <Compile Include="Renderers\ColoredTabBarRenderer.cs" />
     <Compile Include="Renderers\ExtendedPageRenderer.cs" />
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\KeyboardOverlayRenderrer.cs" />
+    <Compile Include="Helpers\ShortcutIdentifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -249,6 +249,7 @@
     <Folder Include="Assets.xcassets\log_icon.imageset\" />
     <Folder Include="Assets.xcassets\log_icon.imageset\" />
     <Folder Include="Assets.xcassets\testColour.colorset\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
