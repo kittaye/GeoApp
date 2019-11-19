@@ -13,12 +13,10 @@ namespace GeoApp {
             InitializeComponent();
             FeatureStore = new FeatureStore();
             MainPage = new NavigationPage(HomePage.Instance);
-
             // If the user ID hasn't been set yet, prompt the user to create one upon app launch.
-            if (Application.Current.Properties.ContainsKey("UserID") == false) {
+            if (Current.Properties.ContainsKey("UserID") == false) {
                 MainPage.Navigation.PushModalAsync(new IDFormView());
             }
-
         }
 
         protected override void OnStart() {

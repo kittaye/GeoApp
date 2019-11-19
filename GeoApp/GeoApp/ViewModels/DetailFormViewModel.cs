@@ -219,7 +219,7 @@ namespace GeoApp
 
             DeleteEntryCommand = new Command(async () => await DeleteFeatureEntry());
 
-            OnSaveUpdatedCommand = new Command(() => OnSaveUpdateActivated());
+            OnSaveUpdatedCommand = new Command(async () => await OnSaveUpdateActivated());
 
             ClosePolyCommand = new Command(() => ClosePoly());
         }
@@ -256,7 +256,7 @@ namespace GeoApp
                 }
                 else
                 {
-                    await HomePage.Instance.DisplayAlert("Permissions Required", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
+                    await HomePage.Instance.DisplayAlert("Location Permissions Required", "Enable location permissions for Groundsman in settings to use this feature.", "Ok");
                     // Re-enable interaction.
                     LoadingIconActive = false;
                     GeolocationEntryEnabled = true;
@@ -264,7 +264,7 @@ namespace GeoApp
             }
             catch (Exception)
             {
-                await HomePage.Instance.DisplayAlert("Permissions Error", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
+                await HomePage.Instance.DisplayAlert("Location Permissions Error", "Enable location permissions for Groundsman in settings to use this feature.", "Ok");
                 point.Latitude = point.Longitude = point.Altitude = 0.0;
                 // Re-enable interaction.
                 LoadingIconActive = false;
@@ -314,7 +314,7 @@ namespace GeoApp
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Feature", "Are you sure you want to delete this feature?", "Yes", "No");
             if (yesResponse)
             {
-                App.FeatureStore.DeleteFeatureAsync(thisEntryID);
+                await App.FeatureStore.DeleteFeatureAsync(thisEntryID);
                 await HomePage.Instance.Navigation.PopToRootAsync();
             }
 
@@ -324,7 +324,7 @@ namespace GeoApp
         /// <summary>
         /// Saves a new or edited feature to the embedded file.
         /// </summary>
-        async void OnSaveUpdateActivated()
+        async Task OnSaveUpdateActivated()
         {
             if (_isBusy) return;
             _isBusy = true;
@@ -389,39 +389,40 @@ namespace GeoApp
 
             // Converts our xamarin coordinate data back into a valid geojson structure.
             {
-                if (thisEntryType == "Point")
+                switch (thisEntryType)
                 {
-                    feature.geometry.coordinates = new List<object>() {
+                    case "Point":
+                        feature.geometry.coordinates = new List<object>() {
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Altitude };
-                }
-                else if (thisEntryType == "Line")
-                {
-                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++)
-                    {
-                        feature.geometry.coordinates.Add(new JArray(new double[3] {
+                        break;
+                    case "Line":
+                        feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                        for (int i = 0; i < GeolocationPoints.Count; i++)
+                        {
+                            feature.geometry.coordinates.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
-                    }
-                }
-                else if (thisEntryType == "Polygon")
-                {
-                    // This specific method of structuring points means that users will not
-                    // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
-                    // This doesn't matter since our app interface can't allow for it anyway.
-                    feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
-                    List<object> innerPoints = new List<object>(GeolocationPoints.Count);
-                    for (int i = 0; i < GeolocationPoints.Count; i++)
-                    {
-                        innerPoints.Add(new JArray(new double[3] {
+                        }
+
+                        break;
+                    case "Polygon":
+                        // This specific method of structuring points means that users will not
+                        // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
+                        // This doesn't matter since our app interface can't allow for it anyway.
+                        feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                        List<object> innerPoints = new List<object>(GeolocationPoints.Count);
+                        for (int i = 0; i < GeolocationPoints.Count; i++)
+                        {
+                            innerPoints.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
-                    }
-                    feature.geometry.coordinates.Add(innerPoints);
+                        }
+                        feature.geometry.coordinates.Add(innerPoints);
+                        break;
                 }
             }
             return feature;
@@ -440,43 +441,46 @@ namespace GeoApp
                 return false;
             }
 
-            if (thisEntryType == "Polygon")
+            switch (thisEntryType)
             {
-                if (GeolocationPoints.Count < 4)
-                {
-                    await HomePage.Instance.DisplayAlert("Incomplete Entry", "A polygon must contain at least 4 data points.", "OK");
-                    return false;
-                }
-
-                // Check if first and last points of the polygon have the same lat/long values.
-                {
-                    double firstLatitude = GeolocationPoints[0].Latitude;
-                    double lastLatitude = GeolocationPoints[GeolocationPoints.Count - 1].Latitude;
-                    double firstLongitude = GeolocationPoints[0].Longitude;
-                    double lastLongitude = GeolocationPoints[GeolocationPoints.Count - 1].Longitude;
-
-                    if (firstLatitude != lastLatitude || firstLongitude != lastLongitude)
+                case "Polygon":
+                    if (GeolocationPoints.Count < 4)
                     {
-                        await HomePage.Instance.DisplayAlert("Incomplete Entry", "The first and last points of a polygon must match.", "OK");
+                        await HomePage.Instance.DisplayAlert("Incomplete Entry", "A polygon must contain at least 4 data points.", "OK");
                         return false;
                     }
-                }
-            }
-            else if (thisEntryType == "Line")
-            {
-                if (GeolocationPoints.Count < 2)
-                {
-                    await HomePage.Instance.DisplayAlert("Incomplete Entry", "A line must contain at least 2 data points.", "OK");
-                    return false;
-                }
-            }
-            else if (thisEntryType == "Point")
-            {
-                if (GeolocationPoints.Count != 1)
-                {
-                    await HomePage.Instance.DisplayAlert("Impossible Entry", "A point must only contain 1 data point.", "OK");
-                    return false;
-                }
+
+                    // Check if first and last points of the polygon have the same lat/long values.
+                    {
+                        double firstLatitude = GeolocationPoints[0].Latitude;
+                        double lastLatitude = GeolocationPoints[GeolocationPoints.Count - 1].Latitude;
+                        double firstLongitude = GeolocationPoints[0].Longitude;
+                        double lastLongitude = GeolocationPoints[GeolocationPoints.Count - 1].Longitude;
+
+                        if (firstLatitude != lastLatitude || firstLongitude != lastLongitude)
+                        {
+                            await HomePage.Instance.DisplayAlert("Incomplete Entry", "The first and last points of a polygon must match.", "OK");
+                            return false;
+                        }
+                    }
+
+                    break;
+                case "Line":
+                    if (GeolocationPoints.Count < 2)
+                    {
+                        await HomePage.Instance.DisplayAlert("Incomplete Entry", "A line must contain at least 2 data points.", "OK");
+                        return false;
+                    }
+
+                    break;
+                case "Point":
+                    if (GeolocationPoints.Count != 1)
+                    {
+                        await HomePage.Instance.DisplayAlert("Impossible Entry", "A point must only contain 1 data point.", "OK");
+                        return false;
+                    }
+
+                    break;
             }
 
             return true;

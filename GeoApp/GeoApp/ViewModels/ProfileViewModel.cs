@@ -1,9 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace GeoApp
 {
@@ -48,7 +43,15 @@ namespace GeoApp
         {
             if (string.IsNullOrWhiteSpace(IDEntry) == false)
             {
-                Application.Current.Properties["UserID"] = IDEntry;
+                if (IDEntry.Length <= 30)
+                {
+                    Application.Current.Properties["UserID"] = IDEntry;
+                }
+                else
+                {
+                    Application.Current.Properties["UserID"] = IDEntry.Substring(0, 30);
+                }
+
             }
             else
             {

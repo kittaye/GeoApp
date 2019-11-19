@@ -9,14 +9,9 @@ namespace GeoApp.iOS.Renderers
 {
     public class ModalPageRenderer : PageRenderer
     {
-
-
         public override void WillMoveToParentViewController(UIViewController parent)
         {
-            if (UIDevice.CurrentDevice.CheckSystemVersion(12, 0))
-            {
-                parent.ModalInPresentation = true;
-            }
+            parent.ModalInPresentation |= UIDevice.CurrentDevice.CheckSystemVersion(12, 0);
             base.WillMoveToParentViewController(parent);
         }
     }

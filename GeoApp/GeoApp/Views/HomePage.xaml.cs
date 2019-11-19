@@ -1,5 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
 namespace GeoApp
@@ -22,6 +23,10 @@ namespace GeoApp
         public HomePage()
         {
             InitializeComponent();
+            if (CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location).Result != PermissionStatus.Granted)
+            {
+                CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+            }
         }
 
         /// <summary>

@@ -287,7 +287,7 @@ namespace GeoApp.Data
                 foreach (var importedFeature in importedRootObject.features)
                 {
                     bool parseResult = await TryParseFeature(importedFeature);
-
+                    //TODO: importedFeature.properties.authorId etc - clense data on import
                     if (parseResult == false)
                     {
                         return false;

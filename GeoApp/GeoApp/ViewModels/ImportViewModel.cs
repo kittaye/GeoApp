@@ -69,7 +69,6 @@ namespace GeoApp
                 }
                 catch (Exception ex)
                 {
-                    //Debug.WriteLine($"\n\n::::::::::::::::::::::Exception choosing file: {ex.ToString()}");
                     throw ex;
                 }
             });
@@ -79,13 +78,11 @@ namespace GeoApp
                 try
                 {
                     string contents = TextEntry;
-                    //Debug.WriteLine("Contents: {0}", contents);
                     await App.FeatureStore.ImportFeaturesAsync(contents);
                     TextEntry = "";
                 }
                 catch (Exception ex)
                 {
-                    //Debug.WriteLine($"\n\n::::::::::::::::::::::Exception importing from text: {ex.ToString()}");
                     throw ex;
                 }
             });

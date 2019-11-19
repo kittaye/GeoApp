@@ -22,6 +22,8 @@
 	<string>Location permissions are needed to record and display data based on your location.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location permissions are needed to record and display data based on your location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location permissions are needed to record and display data based on your location.</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -122,8 +124,6 @@
 			<string>com.geoapplads.Groundsman.002</string>
 		</dict>
 	</array>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Groundsman uses your calendar to location points are encoded with the correct metadata</string>
 	<key>UISupportsDocumentBrowser</key>
 	<false/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
