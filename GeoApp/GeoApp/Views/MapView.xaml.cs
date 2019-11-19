@@ -13,12 +13,26 @@ namespace GeoApp
         public MapView()
         {
             InitializeComponent();
+            customMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(-27.47004901089882, 153.021072), Distance.FromMiles(1.0)));
+
+            customMap.Position = new Position(-27.47004901089882, 153.021072);
+
+            Pin pin = new Pin
+            {
+                Type = PinType.Place,
+                Position = new Position(37.79752, -122.40183),
+                Label = "Xamarin San Francisco Office",
+                Address = "394 Pacific Ave, San Francisco CA",
+            };
+
+            customMap.CustomPins = new List<Pin> { pin };
         }
 
         private void CleanFeaturesOnMap()
         {
-            map.MapElements.Clear();
-            map.Pins.Clear();
+            customMap.MapElements.Clear();
+            customMap.Pins.Clear();
+            customMap.CustomPins.Clear();
         }
 
         public void DrawAllGeoDataOnTheMap()
@@ -50,7 +64,8 @@ namespace GeoApp
                         Type = PinType.Place,
                         Position = new Position(points[0].Latitude, points[0].Longitude)
                     };
-                    map.Pins.Add(pin);
+                    customMap.Pins.Add(pin);
+                    customMap.CustomPins.Add(pin);
                 }
                 else if (feature.geometry.type.Equals("Line"))
                 {
@@ -63,7 +78,8 @@ namespace GeoApp
                     {
                         polyline.Geopath.Add(new Position(point.Latitude, point.Longitude));
                     });
-                    map.MapElements.Add(polyline);
+                    customMap.MapElements.Add(polyline);
+                    
 
                     Pin pin = new Pin
                     {
@@ -72,12 +88,10 @@ namespace GeoApp
                         Type = PinType.Place,
                         Position = new Position(points[0].Latitude, points[0].Longitude)
                     };
-                    map.Pins.Add(pin);
+                    //customMap.Pins.Add(pin);
                 }
                 else if (feature.geometry.type.Equals("Polygon"))
                 {
-                    Debug.WriteLine("--------- {0}", feature.properties.name);
-
                     Polygon polygon = new Polygon
                     {
                         StrokeWidth = 8,
@@ -88,7 +102,7 @@ namespace GeoApp
                     {
                         polygon.Geopath.Add(new Position(point.Latitude, point.Longitude));
                     });
-                    map.MapElements.Add(polygon);
+                    customMap.MapElements.Add(polygon);
                     Pin pin = new Pin
                     {
                         Label = feature.properties.name,
@@ -96,7 +110,7 @@ namespace GeoApp
                         Type = PinType.Place,
                         Position = new Position(points[0].Latitude, points[0].Longitude)
                     };
-                    map.Pins.Add(pin);
+                    //customMap.Pins.Add(pin);
 
                 }
                 //}

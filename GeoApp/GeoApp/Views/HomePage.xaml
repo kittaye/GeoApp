@@ -18,17 +18,17 @@
             <x:Arguments>
                 <local:DataEntryListView/>
             </x:Arguments>
+        </NavigationPage>    
+
+        <NavigationPage Title="Logger" Icon="log_icon" BackgroundColor="{DynamicResource bgPrimary}">
+            <x:Arguments>
+                <local:LogView/>
+            </x:Arguments>
         </NavigationPage>
 
         <NavigationPage Title="Map" Icon="map_icon" BackgroundColor="{DynamicResource bgPrimary}">
             <x:Arguments>
                 <local:MapView/>
-            </x:Arguments>
-        </NavigationPage>
-
-        <NavigationPage Title="Logger" Icon="log_icon" BackgroundColor="{DynamicResource bgPrimary}">
-            <x:Arguments>
-                <local:LogView/>
             </x:Arguments>
         </NavigationPage>
 

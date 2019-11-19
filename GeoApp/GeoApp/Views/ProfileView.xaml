@@ -25,8 +25,15 @@
                     </Button.TextColor>
                 </Button>
             </Grid>
-
-            <Entry Text="{Binding IDEntry}" AutomationId="IDText" Margin="20,40,20,0" Placeholder="e.g. Bob, n1234567, ..." />
+            <TableView Intent="Settings">
+                <TableRoot>
+                    <TableSection Title="Profile">
+                        <EntryCell Label="User ID:" Text="{Binding IDEntry}" Placeholder="Enter Your User ID Here" Completed="{Binding IDSubmitCommand}"/>
+                        <SwitchCell Text="Show my name" On="true"/>
+                        <SwitchCell Text="Update app automatically"/>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
             <Button Text="Update ID" AutomationId="IDSubmit" Margin="20,20,20,20" Command="{Binding IDSubmitCommand}">
                 <Button.TextColor>
                     <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />

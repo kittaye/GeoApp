@@ -112,7 +112,7 @@
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\KeyboardOverlayRenderrer.cs" />
     <Compile Include="Helpers\ShortcutIdentifier.cs" />
-    <Compile Include="Renderers\MapRenderer.cs" />
+    <None Include="Renderers\MapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

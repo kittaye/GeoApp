@@ -6,21 +6,8 @@
              Title="Map"
              BackgroundColor="{DynamicResource bgPrimary}">
     <StackLayout>
-        <maps:Map x:Name="map">
-            <x:Arguments>
-                <maps:MapSpan>
-                    <x:Arguments>
-                        <maps:Position>
-                            <x:Arguments>
-                                <x:Double>-27.47004901089882</x:Double>
-                                <x:Double>153.021072</x:Double>
-                            </x:Arguments>
-                        </maps:Position>
-                        <x:Double>0.01</x:Double>
-                        <x:Double>0.01</x:Double>
-                    </x:Arguments>
-                </maps:MapSpan>
-            </x:Arguments>
-        </maps:Map>
+        <local:CustomMap x:Name="customMap">
+
+        </local:CustomMap>
     </StackLayout>
 </ContentPage>
