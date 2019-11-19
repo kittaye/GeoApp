@@ -2,12 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GeoApp.MapView"
-             xmlns:local="clr-namespace:GeoApp" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              Title="Map"
              BackgroundColor="{DynamicResource bgPrimary}">
     <StackLayout>
-        <local:CustomMap x:Name="customMap">
-
-        </local:CustomMap>
+        <maps:Map x:Name="map"/>
     </StackLayout>
 </ContentPage>

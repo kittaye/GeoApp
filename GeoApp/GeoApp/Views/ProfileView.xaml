@@ -6,44 +6,50 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.ModalPresentationStyle="FormSheet"
              Title="Profile Settings"
-             BackgroundColor="{DynamicResource bgPrimary}">
+             BackgroundColor="{DynamicResource bgSecondary}">
     <ContentPage.BindingContext>
         <local:ProfileViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Grid Margin="12, 0" >
+            <Grid Margin="15, 7, 15, 0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Profile Settings" FontSize="16"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
+                <Label Text="Profile Settings" TextColor="{DynamicResource textPrimary}" FontSize="16"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
                 <Button x:Name="dismissButton" Text="Done" FontSize="16" FontAttributes="Bold" Clicked="OnDismissButtonClicked" HorizontalOptions="End" Grid.Row="0" Grid.Column="2">
                     <Button.TextColor>
                         <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
                     </Button.TextColor>
                 </Button>
             </Grid>
-            <TableView Intent="Settings">
+            <TableView BackgroundColor="{DynamicResource bgPrimary}" Intent="Settings">
                 <TableRoot>
                     <TableSection Title="Profile">
-                        <EntryCell Label="User ID:" Text="{Binding IDEntry}" Placeholder="Enter Your User ID Here" Completed="{Binding IDSubmitCommand}"/>
-                        <SwitchCell Text="Show my name" On="true"/>
-                        <SwitchCell Text="Update app automatically"/>
+                        <EntryCell LabelColor="{DynamicResource textPrimary}" Label="User ID:" Text="{Binding IDEntry}" Placeholder="Enter Your User ID Here"/>
+                    </TableSection>
+                    <!--<TableSection>
+                        <SwitchCell Text="Use Apple Maps" On="{Binding UseAppleMaps}"/>
+                    </TableSection>-->
+                    <TableSection>
+                        <ViewCell Tapped="OnViewCellTapped">
+                            <Grid Margin="15,12">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="Reset User Data">
+                                    <Label.TextColor>
+                                        <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
+                                    </Label.TextColor>
+                                </Label>
+                            </Grid>
+                        </ViewCell>
                     </TableSection>
                 </TableRoot>
             </TableView>
-            <Button Text="Update ID" AutomationId="IDSubmit" Margin="20,20,20,20" Command="{Binding IDSubmitCommand}">
-                <Button.TextColor>
-                    <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
-                </Button.TextColor>
-            </Button>
-            <Button Text="Reset User Data" AutomationId="ResetData" Margin="20,50" Command="{Binding ResetDataCommand}" VerticalOptions="EndAndExpand">
-                <Button.TextColor>
-                    <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
-                </Button.TextColor>
-            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

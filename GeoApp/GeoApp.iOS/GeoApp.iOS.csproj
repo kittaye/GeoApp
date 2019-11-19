@@ -106,13 +106,11 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Renderers\CustomMapRenderer.cs" />
-    <Compile Include="Renderers\ColoredTabBarRenderer.cs" />
+    <Compile Include="Helpers\ShortcutIdentifier.cs" />
+    <None Include="Renderers\ColoredTabBarRenderer.cs" />
     <Compile Include="Renderers\ExtendedPageRenderer.cs" />
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\KeyboardOverlayRenderrer.cs" />
-    <Compile Include="Helpers\ShortcutIdentifier.cs" />
-    <None Include="Renderers\MapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -198,10 +196,10 @@
       <Version>1.0.0.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>4.3.0.947036</Version>
+      <Version>4.3.0.991211</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.3.0.947036</Version>
+      <Version>4.3.0.991211</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Build.Download">
       <Version>0.4.11</Version>
