@@ -256,7 +256,7 @@ namespace GeoApp
                 }
                 else
                 {
-                    await HomePage.Instance.DisplayAlert("Permissions Error", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
+                    await HomePage.Instance.DisplayAlert("Permissions Required", "Location permissions for Groundsman must be enabled to utilise this feature.", "Ok");
                     // Re-enable interaction.
                     LoadingIconActive = false;
                     GeolocationEntryEnabled = true;

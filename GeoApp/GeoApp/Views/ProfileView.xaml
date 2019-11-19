@@ -42,7 +42,7 @@
                                 </Grid.RowDefinitions>
                                 <Label Text="Reset User Data">
                                     <Label.TextColor>
-                                        <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="White" />
+                                        <OnPlatform x:TypeArguments="Color" iOS="#4CAF50" Android="#4CAF50" />
                                     </Label.TextColor>
                                 </Label>
                             </Grid>
