@@ -35,7 +35,6 @@ namespace GeoApp
             {
                 await Navigation.PopModalAsync();
             }
-        }
-        
+        } 
     }
 }

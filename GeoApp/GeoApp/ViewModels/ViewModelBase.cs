@@ -22,7 +22,7 @@ namespace GeoApp
         /// </summary>
         public event EventHandler IsValidChanged;
 
-        bool isBusy = false;
+        bool isBusy;
 
         /// <summary>
         /// Default constructor

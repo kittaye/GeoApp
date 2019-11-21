@@ -33,7 +33,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.qutgeodev.groundsman</string>
 	<key>CFBundleVersion</key>
-	<string>6.1.0</string>
+	<string>6.1.1.1</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleDocumentTypes</key>
@@ -161,8 +161,10 @@
 		</dict>
 	</array>
 	<key>CFBundleShortVersionString</key>
-	<string>6.1.0</string>
+	<string>6.1.1</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Groundsman uses APIs that request access to your calendar for app functionality</string>
 </dict>
 </plist>

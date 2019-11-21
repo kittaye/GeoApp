@@ -4,10 +4,10 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(IDFormView), typeof(ModalPageRenderer))]
+[assembly: ExportRenderer(typeof(IDFormView), typeof(ModalPresentationRenderer))]
 namespace GeoApp.iOS.Renderers
 {
-    public class ModalPageRenderer : PageRenderer
+    public class ModalPresentationRenderer : PageRenderer
     {
         public override void WillMoveToParentViewController(UIViewController parent)
         {

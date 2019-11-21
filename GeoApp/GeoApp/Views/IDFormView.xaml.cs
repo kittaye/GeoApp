@@ -9,7 +9,6 @@ namespace GeoApp
         public IDFormView()
         {
             InitializeComponent();
-
             NavigationPage.SetHasNavigationBar(this, false);
             NavigationPage.SetHasBackButton(this, false);
         }

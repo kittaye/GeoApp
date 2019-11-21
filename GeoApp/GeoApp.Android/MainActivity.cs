@@ -14,21 +14,20 @@ namespace GeoApp.Droid
         Theme = "@style/MainTheme",
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
-        ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+        ScreenOrientation = ScreenOrientation.Portrait)]
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-            Platform.Init(this, bundle); // initialise xamarin essentials
-            CrossCurrentActivity.Current.Init(this, bundle);
-            Rg.Plugins.Popup.Popup.Init(this, bundle);
-            Xamarin.FormsMaps.Init(this, bundle);
+            base.OnCreate(savedInstanceState);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Platform.Init(this, savedInstanceState); // initialise xamarin essentials
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) =>
             {
                 if (!string.IsNullOrWhiteSpace(e.View.AutomationId))
@@ -57,7 +56,7 @@ namespace GeoApp.Droid
         /// <param name="permissions"></param>
         /// <param name="grantResults"></param>
         public override void OnRequestPermissionsResult(int requestCode,
-   string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+   string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult
                   (requestCode, permissions, grantResults);
@@ -73,10 +72,7 @@ namespace GeoApp.Droid
                 HomePage.Instance.Navigation.PopToRootAsync();
                 return false;
             }
-            else
-            {
-                return base.OnOptionsItemSelected(item);
-            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

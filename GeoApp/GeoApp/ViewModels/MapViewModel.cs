@@ -3,7 +3,7 @@
     /// <summary>
     /// ViewModel for maps page
     /// </summary>
-    public class MapViewModel
+    public class MapViewModel : ViewModelBase
     {
     }
 }

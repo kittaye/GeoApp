@@ -28,7 +28,7 @@ namespace GeoApp
 
         // Property binding to determine if the delete button for metadata fields is visible, which is based on the type of this entry.
         public bool ShowPointDeleteBtn { get { return _numPointFields > minPoints; } }
-        private int minPoints = 0;
+        private int minPoints;
 
         // A reference to this entry's ID.
         private int thisEntryID;
@@ -36,7 +36,7 @@ namespace GeoApp
         // A reference to this entry's type of structure.
         private string thisEntryType;
 
-        private bool _isBusy = false;
+        private bool _isBusy;
 
         public ObservableCollection<Point> GeolocationPoints { get; set; }
 
@@ -141,21 +141,21 @@ namespace GeoApp
 
             // Add the minimum number of points necessary for the chosen type.
             {
-                if (entryType == "Point")
+                switch (entryType)
                 {
-                    minPoints = 1;
+                    case "Point":
+                        minPoints = 1;
+                        break;
+                    case "Line":
+                        minPoints = 2;
+                        break;
+                    case "Polygon":
+                        minPoints = 4;
+                        break;
+                    default:
+                        break;
                 }
-                else if (entryType == "Line")
-                {
-                    minPoints = 2;
-                }
-                else if (entryType == "Polygon")
-                {
-                    minPoints = 4;
-                }
-                else
-                {
-                }
+
                 GeolocationPoints = new ObservableCollection<Point>();
                 for (int i = 0; i < minPoints; i++)
                 {
@@ -176,34 +176,33 @@ namespace GeoApp
         {
 
 
-            thisEntryType = data.geometry.type;
-            thisEntryID = data.properties.id;
-
-            if (thisEntryType == "Point")
+            thisEntryType = data.Geometry.Type;
+            thisEntryID = data.Properties.Id;
+            switch (thisEntryType)
             {
-                minPoints = 1;
-            }
-            else if (thisEntryType == "Line")
-            {
-                minPoints = 2;
-            }
-            else if (thisEntryType == "Polygon")
-            {
-                minPoints = 4;
+                case "Point":
+                    minPoints = 1;
+                    break;
+                case "Line":
+                    minPoints = 2;
+                    break;
+                case "Polygon":
+                    minPoints = 4;
+                    break;
             }
 
-            NameEntry = data.properties.name;
-            DateEntry = DateTime.Parse(data.properties.date).ToShortDateString();
+            NameEntry = data.Properties.Name;
+            DateEntry = DateTime.Parse(data.Properties.Date).ToShortDateString();
 
-            GeolocationPoints = new ObservableCollection<Point>(data.properties.xamarincoordinates);
+            GeolocationPoints = new ObservableCollection<Point>(data.Properties.Xamarincoordinates);
             GeolocationEntryEnabled = true;
 
-            MetadataStringEntry = data.properties.metadataStringValue;
-            MetadataIntegerEntry = data.properties.metadataIntegerValue;
-            MetadataFloatEntry = data.properties.metadataFloatValue;
+            MetadataStringEntry = data.Properties.MetadataStringValue;
+            MetadataIntegerEntry = data.Properties.MetadataIntegerValue;
+            MetadataFloatEntry = data.Properties.MetadataFloatValue;
 
             LoadingIconActive = false;
-            NumPointFields = data.properties.xamarincoordinates.Count;
+            NumPointFields = data.Properties.Xamarincoordinates.Count;
             InitCommandBindings();
         }
 
@@ -358,50 +357,50 @@ namespace GeoApp
         {
             Feature feature = new Feature();
 
-            feature.type = "Feature";
-            feature.properties = new Properties();
+            feature.Type = "Feature";
+            feature.Properties = new Properties();
 
             // A new entry will have an ID of NEW_ENTRY_ID as assigned from the constructor,
             // otherwise an ID will already be set for editing entries.
-            feature.properties.id = thisEntryID;
+            feature.Properties.Id = thisEntryID;
 
             if (Application.Current.Properties.ContainsKey("UserID"))
             {
-                feature.properties.authorId = Application.Current.Properties["UserID"] as string;
+                feature.Properties.AuthorId = Application.Current.Properties["UserID"] as string;
             }
             else
             {
-                feature.properties.authorId = string.Empty;
+                feature.Properties.AuthorId = string.Empty;
             }
 
             // Name and date of the feature.
-            feature.properties.name = NameEntry;
-            feature.properties.date = DateTime.Parse(DateEntry).ToShortDateString();
+            feature.Properties.Name = NameEntry;
+            feature.Properties.Date = DateTime.Parse(DateEntry).ToShortDateString();
 
             // Metadata fields.
-            feature.properties.metadataStringValue = MetadataStringEntry;
-            feature.properties.metadataIntegerValue = MetadataIntegerEntry;
-            feature.properties.metadataFloatValue = MetadataFloatEntry;
+            feature.Properties.MetadataStringValue = MetadataStringEntry;
+            feature.Properties.MetadataIntegerValue = MetadataIntegerEntry;
+            feature.Properties.MetadataFloatValue = MetadataFloatEntry;
 
             // Feature type (Point, Line, Polygon).
-            feature.geometry = new Geometry();
-            feature.geometry.type = thisEntryType;
+            feature.Geometry = new Geometry();
+            feature.Geometry.Type = thisEntryType;
 
             // Converts our xamarin coordinate data back into a valid geojson structure.
             {
                 switch (thisEntryType)
                 {
                     case "Point":
-                        feature.geometry.coordinates = new List<object>() {
+                        feature.Geometry.Coordinates = new List<object>() {
                         GeolocationPoints[0].Longitude,
                         GeolocationPoints[0].Latitude,
                         GeolocationPoints[0].Altitude };
                         break;
                     case "Line":
-                        feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                        feature.Geometry.Coordinates = new List<object>(GeolocationPoints.Count);
                         for (int i = 0; i < GeolocationPoints.Count; i++)
                         {
-                            feature.geometry.coordinates.Add(new JArray(new double[3] {
+                            feature.Geometry.Coordinates.Add(new JArray(new double[3] {
                             GeolocationPoints[i].Longitude,
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
@@ -412,7 +411,7 @@ namespace GeoApp
                         // This specific method of structuring points means that users will not
                         // be able to create multiple shapes in one polygon (whereas true GEOJSON allows that).
                         // This doesn't matter since our app interface can't allow for it anyway.
-                        feature.geometry.coordinates = new List<object>(GeolocationPoints.Count);
+                        feature.Geometry.Coordinates = new List<object>(GeolocationPoints.Count);
                         List<object> innerPoints = new List<object>(GeolocationPoints.Count);
                         for (int i = 0; i < GeolocationPoints.Count; i++)
                         {
@@ -421,7 +420,7 @@ namespace GeoApp
                             GeolocationPoints[i].Latitude,
                             GeolocationPoints[i].Altitude }));
                         }
-                        feature.geometry.coordinates.Add(innerPoints);
+                        feature.Geometry.Coordinates.Add(innerPoints);
                         break;
                 }
             }

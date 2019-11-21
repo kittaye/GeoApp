@@ -15,22 +15,6 @@ namespace GeoApp
             }
         }
 
-        private bool _UseAppleMaps;
-        public bool UseAppleMaps
-        {
-            get { return _UseAppleMaps; }
-            set
-            {
-                _UseAppleMaps = value;
-                HandleMapSwitchChanged();
-            }
-        }
-
-        private void HandleMapSwitchChanged()
-        {
-            Application.Current.Properties["UseAppleMaps"] = UseAppleMaps;
-        }
-
         public ProfileViewModel()
         {
             if (Application.Current.Properties.ContainsKey("UserID") == true)

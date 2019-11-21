@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace GeoApp {
     /// <summary>
@@ -30,9 +27,9 @@ namespace GeoApp {
         }
 
         public Point(double lat, double lng, double alt) {
-            this.Latitude = lat;
-            this.Longitude = lng;
-            this.Altitude = alt;
+            Latitude = lat;
+            Longitude = lng;
+            Altitude = alt;
         }
     }
 }

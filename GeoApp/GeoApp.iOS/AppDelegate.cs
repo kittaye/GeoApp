@@ -7,7 +7,7 @@ namespace GeoApp.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public class AppDelegate : Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -17,34 +17,29 @@ namespace GeoApp.iOS
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
 
-        App mainForms;
-        public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            global::Xamarin.Forms.Forms.Init();
+            Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
-            //KeyboardOverlapRenderer.Init();
             var shouldPerformAdditionalDelegateHandling = true;
 
             // Get possible shortcut item
-            if (options != null)
+            if (launchOptions != null)
             {
-                LaunchedShortcutItem = options[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
+                LaunchedShortcutItem = launchOptions[UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
                 shouldPerformAdditionalDelegateHandling = (LaunchedShortcutItem == null);
             }
             UIColor tintColor = UIColor.FromRGB(76, 175, 80);
             UINavigationBar.Appearance.TintColor = tintColor;
             UINavigationBar.Appearance.Translucent = true;
 
-            Rg.Plugins.Popup.Popup.Init();
-            mainForms = new App();
             LoadApplication(new App());
             
-            return base.FinishedLaunching(app, options);
+            return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
-            //add confirmation alert
             {
                 App.FeatureStore.ImportFeaturesFromFile(url.Path);
             }
@@ -81,7 +76,7 @@ namespace GeoApp.iOS
             return handled;
         }
 
-        public override void OnActivated(UIApplication application)
+        public override void OnActivated(UIApplication uiApplication)
         {
             // Handle any shortcut item being selected
             HandleShortcutItem(LaunchedShortcutItem);
@@ -95,7 +90,5 @@ namespace GeoApp.iOS
             // Perform action
             completionHandler(HandleShortcutItem(shortcutItem));
         }
-
-
     }
 }

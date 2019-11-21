@@ -71,8 +71,6 @@ namespace GeoApp
                 case "Polygon":
                     ShowNewDetailFormPage("Polygon");
                     break;
-                default:
-                    break;
             }
         }
     }

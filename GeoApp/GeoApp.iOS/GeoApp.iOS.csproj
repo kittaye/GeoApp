@@ -111,7 +111,7 @@
     <Compile Include="Renderers\ExtendedPageRenderer.cs" />
     <Compile Include="Renderers\CustomEntryRenderer.cs" />
     <Compile Include="Renderers\KeyboardOverlayRenderrer.cs" />
-    <Compile Include="Renderers\ColoredTabBarRenderer.cs" />
+    <Compile Include="Renderers\ModalPresentationRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

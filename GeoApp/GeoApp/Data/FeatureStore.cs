@@ -31,14 +31,14 @@ namespace GeoApp.Data
                     throw new Exception();
                 }
 
-                rootobject.type = "FeatureCollection";
+                rootobject.Type = "FeatureCollection";
 
-                foreach (var feature in rootobject.features)
+                foreach (var feature in rootobject.Features)
                 {
                     await TryParseFeature(feature);
                 }
 
-                return rootobject.features;
+                return rootobject.Features;
             });
         }
 
@@ -46,7 +46,7 @@ namespace GeoApp.Data
         {
 
             // Ensure the feature has valid GeoJSON fields supplied.
-            if (feature == null || feature.type == null || feature.geometry == null || feature.geometry.type == null || feature.geometry.coordinates == null)
+            if (feature == null || feature.Type == null || feature.Geometry == null || feature.Geometry.Type == null || feature.Geometry.Coordinates == null)
             {
                 await HomePage.Instance.DisplayAlert("Invalid File", "Ensure your file only contains data in valid GeoJSON format.", "OK");
                 return false;
@@ -54,49 +54,49 @@ namespace GeoApp.Data
 
             // Immediately convert LineStrings to Line for use in the rest of the codebase. 
             // This will be converted back to LineString before serialization back to json.
-            if (feature.geometry.type == "LineString")
+            if (feature.Geometry.Type == "LineString")
             {
-                feature.geometry.type = "Line";
+                feature.Geometry.Type = "Line";
             }
 
-            if (string.IsNullOrWhiteSpace(feature.properties.name))
+            if (string.IsNullOrWhiteSpace(feature.Properties.Name))
             {
-                feature.properties.name = "Unnamed " + feature.geometry.type;
+                feature.Properties.Name = "Unnamed " + feature.Geometry.Type;
             }
 
             // If author ID hasn't been set on the feature, default it to the user's ID.
-            if (string.IsNullOrWhiteSpace(feature.properties.authorId))
+            if (string.IsNullOrWhiteSpace(feature.Properties.AuthorId))
             {
                 if (App.Current.Properties.ContainsKey("UserID"))
                 {
-                    feature.properties.authorId = App.Current.Properties["UserID"] as string;
+                    feature.Properties.AuthorId = App.Current.Properties["UserID"] as string;
                 }
                 else
                 {
-                    feature.properties.authorId = string.Empty;
+                    feature.Properties.AuthorId = string.Empty;
                 }
             }
 
             // If the date field is missing or invalid, convert it into DateTime.Now.
             DateTime dummy;
-            if (feature.properties.date == null || DateTime.TryParse(feature.properties.date, out dummy) == false)
+            if (feature.Properties.Date == null || DateTime.TryParse(feature.Properties.Date, out dummy) == false)
             {
-                Debug.WriteLine($"\n\n::::::::::::::::::::::BAD DATE VALUE: {feature.properties.date}, DEFAULTING TO DateTime.Now");
-                feature.properties.date = DateTime.Now.ToShortDateString();
+                Debug.WriteLine($"\n\n::::::::::::::::::::::BAD DATE VALUE: {feature.Properties.Date}, DEFAULTING TO DateTime.Now");
+                feature.Properties.Date = DateTime.Now.ToShortDateString();
             }
 
             // Determine the icon used for each feature based on it's geometry type.
-            if (feature.geometry.type == "Point")
+            if (feature.Geometry.Type == "Point")
             {
-                feature.properties.typeIconPath = "point_icon.png";
+                feature.Properties.TypeIconPath = "point_icon.png";
             }
-            else if (feature.geometry.type == "Line")
+            else if (feature.Geometry.Type == "Line")
             {
-                feature.properties.typeIconPath = "line_icon.png";
+                feature.Properties.TypeIconPath = "line_icon.png";
             }
-            else if (feature.geometry.type == "Polygon")
+            else if (feature.Geometry.Type == "Polygon")
             {
-                feature.properties.typeIconPath = "area_icon.png";
+                feature.Properties.TypeIconPath = "area_icon.png";
             }
             else
             {
@@ -105,38 +105,38 @@ namespace GeoApp.Data
             }
 
             // Initialise xamarin coordinates list.
-            feature.properties.xamarincoordinates = new List<Point>();
+            feature.Properties.Xamarincoordinates = new List<Point>();
 
             // Properly deserialize the list of coordinates into an app-use-specific list of Points (XamarinCoordinates).
             {
                 object[] trueCoords;
 
-                if (feature.geometry.type == "Point")
+                if (feature.Geometry.Type == "Point")
                 {
-                    trueCoords = feature.geometry.coordinates.ToArray();
-                    feature.properties.xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
+                    trueCoords = feature.Geometry.Coordinates.ToArray();
+                    feature.Properties.Xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
 
                 }
-                else if (feature.geometry.type == "Line")
+                else if (feature.Geometry.Type == "Line")
                 {
                     // Iterates the root coordinates (List<object>),
                     // then casts each element in the list to a Jarray which contain the actual coordinates.
-                    for (int i = 0; i < feature.geometry.coordinates.Count; i++)
+                    for (int i = 0; i < feature.Geometry.Coordinates.Count; i++)
                     {
-                        trueCoords = ((JArray)feature.geometry.coordinates[i]).ToObject<object[]>();
-                        feature.properties.xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
+                        trueCoords = ((JArray)feature.Geometry.Coordinates[i]).ToObject<object[]>();
+                        feature.Properties.Xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
                     }
                 }
-                else if (feature.geometry.type == "Polygon")
+                else if (feature.Geometry.Type == "Polygon")
                 {
                     // Iterates the root coordinates (List<object>), and casts each element in the list to a Jarray, 
                     // then casts each Jarray's element to another Jarray which contain the actual coordinates.
-                    for (int i = 0; i < feature.geometry.coordinates.Count; i++)
+                    for (int i = 0; i < feature.Geometry.Coordinates.Count; i++)
                     {
-                        for (int j = 0; j < ((JArray)feature.geometry.coordinates[i]).Count; j++)
+                        for (int j = 0; j < ((JArray)feature.Geometry.Coordinates[i]).Count; j++)
                         {
-                            trueCoords = ((JArray)(((JArray)feature.geometry.coordinates[i])[j])).ToObject<object[]>();
-                            feature.properties.xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
+                            trueCoords = ((JArray)(((JArray)feature.Geometry.Coordinates[i])[j])).ToObject<object[]>();
+                            feature.Properties.Xamarincoordinates.Add(JsonCoordToXamarinPoint(trueCoords));
                         }
                     }
                 }
@@ -162,7 +162,7 @@ namespace GeoApp.Data
 
         public async Task<bool> DeleteFeatureAsync(int featureID)
         {
-            Feature featureToDelete = App.FeatureStore.CurrentFeatures.Find((feature) => (feature.properties.id == featureID));
+            Feature featureToDelete = App.FeatureStore.CurrentFeatures.Find((feature) => (feature.Properties.Id == featureID));
             bool deleteSuccessful = App.FeatureStore.CurrentFeatures.Remove(featureToDelete);
 
             if (deleteSuccessful)
@@ -180,7 +180,7 @@ namespace GeoApp.Data
         public async Task<bool> SaveFeatureAsync(Feature feature)
         {
             // If this is a newly added feature, generate an ID and add it immediately.
-            if (feature.properties.id == AppConstants.NEW_ENTRY_ID)
+            if (feature.Properties.Id == AppConstants.NEW_ENTRY_ID)
             {
                 TryGetUniqueFeatureID(feature);
                 App.FeatureStore.CurrentFeatures.Add(feature);
@@ -191,7 +191,7 @@ namespace GeoApp.Data
                 int indexToEdit = -1;
                 for (int i = 0; i < App.FeatureStore.CurrentFeatures.Count; i++)
                 {
-                    if (App.FeatureStore.CurrentFeatures[i].properties.id == feature.properties.id)
+                    if (App.FeatureStore.CurrentFeatures[i].Properties.Id == feature.Properties.Id)
                     {
                         indexToEdit = i;
                         break;
@@ -204,7 +204,7 @@ namespace GeoApp.Data
                 }
                 else
                 {
-                    Debug.WriteLine($"\n\n::::::::::::::::::::::FAILED TO SAVE EDIT FOR FEATURE WITH ID: {feature.properties.id}");
+                    Debug.WriteLine($"\n\n::::::::::::::::::::::FAILED TO SAVE EDIT FOR FEATURE WITH ID: {feature.Properties.Id}");
                     return false;
                 }
             }
@@ -241,15 +241,15 @@ namespace GeoApp.Data
         private RootObject FormatCurrentFeaturesIntoGeoJSON()
         {
             var rootobject = new RootObject();
-            rootobject.type = "FeatureCollection";
-            rootobject.features = App.FeatureStore.CurrentFeatures;
+            rootobject.Type = "FeatureCollection";
+            rootobject.Features = App.FeatureStore.CurrentFeatures;
 
-            foreach (var feature in rootobject.features)
+            foreach (var feature in rootobject.Features)
             {
                 // Convert Lines back into LineStrings for valid geojson.
-                if (feature.geometry.type == "Line")
+                if (feature.Geometry.Type == "Line")
                 {
-                    feature.geometry.type = "LineString";
+                    feature.Geometry.Type = "LineString";
                 }
             }
 
@@ -284,7 +284,7 @@ namespace GeoApp.Data
                 }
 
                 // Loop through all imported features and make sure they are valid.
-                foreach (var importedFeature in importedRootObject.features)
+                foreach (var importedFeature in importedRootObject.Features)
                 {
                     bool parseResult = await TryParseFeature(importedFeature);
                     //TODO: importedFeature.properties.authorId etc - clense data on import
@@ -295,13 +295,13 @@ namespace GeoApp.Data
                 }
 
                 // Loop through all imported features one by one, ensuring there are no ID clashes.
-                foreach (var importedFeature in importedRootObject.features)
+                foreach (var importedFeature in importedRootObject.Features)
                 {
                     TryGetUniqueFeatureID(importedFeature);
                 }
 
                 // Finally, add all the imported features to the current features list.
-                App.FeatureStore.CurrentFeatures.AddRange(importedRootObject.features);
+                App.FeatureStore.CurrentFeatures.AddRange(importedRootObject.Features);
 
                 await SaveCurrentFeaturesToEmbeddedFile();
                 await HomePage.Instance.DisplayAlert("File Import", "File imported successfully. New features have been added to your features list.", "OK");
@@ -401,6 +401,7 @@ namespace GeoApp.Data
         /// <returns></returns>
         public async Task<bool> ImportFeaturesFromFile(string path)
         {
+            //TODO: Add confirmation alert
             try
             {
                 string text = File.ReadAllText(path);
@@ -430,7 +431,7 @@ namespace GeoApp.Data
             {
                 validID = true;
 
-                if (featureToCheck.properties.id == AppConstants.NEW_ENTRY_ID)
+                if (featureToCheck.Properties.Id == AppConstants.NEW_ENTRY_ID)
                 {
                     validID = false;
                 }
@@ -438,7 +439,7 @@ namespace GeoApp.Data
                 {
                     foreach (var feature in App.FeatureStore.CurrentFeatures)
                     {
-                        if (featureToCheck.properties.id == feature.properties.id && featureToCheck != feature)
+                        if (featureToCheck.Properties.Id == feature.Properties.Id && featureToCheck != feature)
                         {
                             validID = false;
                             break;
@@ -448,7 +449,7 @@ namespace GeoApp.Data
 
                 if (validID == false)
                 {
-                    featureToCheck.properties.id = DateTime.Now.GetHashCode();
+                    featureToCheck.Properties.Id = DateTime.Now.GetHashCode();
                 }
             }
         }

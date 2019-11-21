@@ -29,9 +29,9 @@ namespace GeoApp
             InitializeComponent();
             this.BindingContext = new DetailFormViewModel(data);
 
-            Title = $"Editing {data.properties.name}";
+            Title = $"Editing {data.Properties.Name}";
 
-            DetermineAddPointBtnVisability(data.geometry.type);
+            DetermineAddPointBtnVisability(data.Geometry.Type);
         }
 
         /// <summary>

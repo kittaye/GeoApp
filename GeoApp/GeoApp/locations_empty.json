@@ -1,4 +1,3 @@
-// Use this file if you want to have the user start the app with a blank list.
 {
   "type": "FeatureCollection",
   "features": []

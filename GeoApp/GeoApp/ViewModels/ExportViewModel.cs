@@ -94,7 +94,6 @@ namespace GeoApp
 
             });
 
-
             // If share button clicked
             if (!CrossShare.IsSupported)
                 return;

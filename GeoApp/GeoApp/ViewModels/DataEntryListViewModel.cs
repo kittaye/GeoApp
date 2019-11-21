@@ -20,10 +20,11 @@ namespace GeoApp
         public ICommand EditEntryCommand { get; set; }
         public ICommand DeleteEntryCommand { get; set; }
 
-        private bool _isBusy = false;
+        private bool _isBusy;
 
         private int _featureCount;
-        public int FeatureCount{
+        public int FeatureCount
+        {
             get { return _featureCount; }
             set
             {
@@ -150,7 +151,7 @@ namespace GeoApp
             bool yesResponse = await HomePage.Instance.DisplayAlert("Delete Feature", "Are you sure you want to delete this feature?", "Yes", "No");
             if (yesResponse)
             {
-                App.FeatureStore.DeleteFeatureAsync(feature.properties.id);
+                await App.FeatureStore.DeleteFeatureAsync(feature.Properties.Id);
             }
             ExecuteRefreshListCommand();
 

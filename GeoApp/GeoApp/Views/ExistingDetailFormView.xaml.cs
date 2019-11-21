@@ -11,7 +11,7 @@ namespace GeoApp
             InitializeComponent();
             BindingContext = new DetailFormViewModel(data);
 
-            Title = $"View {data.geometry.type}";
+            Title = $"View {data.Geometry.Type}";
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)

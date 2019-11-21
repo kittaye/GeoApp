@@ -14,15 +14,15 @@ namespace GeoApp
     public class LogViewModel : ViewModelBase
     {
         private CancellationTokenSource cts;
-        private double lat = 0;
-        private double lon = 0;
-        private double alt = 0;
+        private double lat;
+        private double lon;
+        private double alt;
         public ICommand StartButtonClickCommand { set; get; }
         public ICommand ClearButtonClickCommand { set; get; }
         public ICommand ExportButtonClickCommand { set; get; }
         private const string LOG_FILENAME = "log.csv";
 
-        public bool isLogging = false;
+        public bool isLogging;
 
         private string _textEntry;
 
@@ -98,7 +98,6 @@ namespace GeoApp
 
         public void StartUpdate()
         {
-            Console.WriteLine("Start");
             if (cts != null) cts.Cancel();
             cts = new CancellationTokenSource();
             var ignore = UpdaterAsync(cts.Token);
@@ -107,7 +106,6 @@ namespace GeoApp
 
         public void StopUpdate()
         {
-            Console.WriteLine("Stop");
             if (cts != null) cts.Cancel();
             cts = null;
             isLogging = false;
@@ -117,7 +115,6 @@ namespace GeoApp
         {
             while (!ct.IsCancellationRequested)
             {
-                Console.WriteLine("Log");
                 await GetGeoLocation();
                 string newEntry = string.Format("{0}, {1}, {2}, {3} \n", DateTime.Now, lat, lon, alt);
                 TextEntry += newEntry;

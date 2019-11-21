@@ -51,9 +51,9 @@ namespace GeoApp
 
                     foreach (var feature in featureList)
                     {
-                        if (feature.properties.authorId == prevID)
+                        if (feature.Properties.AuthorId == prevID)
                         {
-                            feature.properties.authorId = IDEntry;
+                            feature.Properties.AuthorId = IDEntry;
                             await App.FeatureStore.SaveFeatureAsync(feature);
                         }
                     }

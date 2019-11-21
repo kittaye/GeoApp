@@ -2,6 +2,8 @@
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.Maps;
 using System;
+using Plugin.Permissions.Abstractions;
+using Plugin.Permissions;
 
 namespace GeoApp
 {
@@ -14,7 +16,6 @@ namespace GeoApp
             InitializeComponent();
             map.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(-27.47004901089882, 153.021072), Distance.FromMiles(1.0)));
             map.MapClicked += OnMapClicked;
-            //map.IsShowingUser = true;
         }
 
         private void CleanFeaturesOnMap()
@@ -28,10 +29,10 @@ namespace GeoApp
             // Using CurrentFeature to draw the geodata on the map
             App.FeatureStore.CurrentFeatures.ForEach((Feature feature) =>
             {
-                var points = feature.properties.xamarincoordinates;
+                var points = feature.Properties.Xamarincoordinates;
 
                 // One day before the feature, so it works for showing all feature
-                DateTime beforeDate = DateTime.Parse(feature.properties.date).AddDays(-1);
+                DateTime beforeDate = DateTime.Parse(feature.Properties.Date).AddDays(-1);
 
                 //if (Date_filter.Equals("Today"))
                 //    beforeDate = DateTime.Today.AddDays(-1);
@@ -43,18 +44,18 @@ namespace GeoApp
                 // feature is earily than before date
                 //if (DateTime.Compare(beforeDate, DateTime.Parse(feature.properties.date)) < 0)
                 //{
-                if (feature.geometry.type.Equals("Point"))
+                if (feature.Geometry.Type.Equals("Point"))
                 {
                     Pin pin = new Pin
                     {
-                        Label = feature.properties.name,
+                        Label = feature.Properties.Name,
                         Address = string.Format("{0}, {1}, {2}", points[0].Latitude, points[0].Longitude, points[0].Altitude),
                         Type = PinType.Place,
                         Position = new Position(points[0].Latitude, points[0].Longitude)
                     };
                     map.Pins.Add(pin);
                 }
-                else if (feature.geometry.type.Equals("Line"))
+                else if (feature.Geometry.Type.Equals("Line"))
                 {
                     Polyline polyline = new Polyline
                     {
@@ -67,7 +68,7 @@ namespace GeoApp
                     });
                     map.MapElements.Add(polyline);
                 }
-                else if (feature.geometry.type.Equals("Polygon"))
+                else if (feature.Geometry.Type.Equals("Polygon"))
                 {
                     Polygon polygon = new Polygon
                     {
@@ -79,7 +80,7 @@ namespace GeoApp
                     {
                         polygon.Geopath.Add(new Position(point.Latitude, point.Longitude));
                     });
-                    
+
                     map.MapElements.Add(polygon);
                 }
                 //}
@@ -88,16 +89,16 @@ namespace GeoApp
 
         void OnMapClicked(object sender, MapClickedEventArgs e)
         {
-            
+
             App.FeatureStore.CurrentFeatures.ForEach((Feature feature) =>
             {
                 bool ItemHit = false;
-                Point[] points = feature.properties.xamarincoordinates.ToArray();
-                if (feature.geometry.type.Equals("Polygon"))
+                Point[] points = feature.Properties.Xamarincoordinates.ToArray();
+                if (feature.Geometry.Type.Equals("Polygon"))
                 {
                     ItemHit |= IsPointInPolygon(new Point(e.Position.Latitude, e.Position.Longitude, 0), points);
                 }
-                else if (feature.geometry.type.Equals("Line"))
+                else if (feature.Geometry.Type.Equals("Line"))
                 {
                     ItemHit |= IsPointOnLine(new Point(e.Position.Latitude, e.Position.Longitude, 0), points);
                 }
@@ -109,9 +110,9 @@ namespace GeoApp
                     {
                         pointString += string.Format("{0}, {1}, {2} \n", points[i].Latitude, points[i].Longitude, points[i].Altitude);
                     }
-                        HomePage.Instance.DisplayAlert(feature.properties.name, pointString, "Dismiss");
+                    HomePage.Instance.DisplayAlert(feature.Properties.Name, pointString, "Dismiss");
                 }
-            });      
+            });
         }
 
         public bool IsPointInPolygon(Point p, Point[] polygon)
@@ -166,6 +167,16 @@ namespace GeoApp
             base.OnAppearing();
             CleanFeaturesOnMap();
             DrawAllGeoDataOnTheMap();
+
+            if (CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location).Result == PermissionStatus.Granted)
+            {
+                map.IsShowingUser = true;
+            }
+            else
+            {
+                map.IsShowingUser = false;
+                CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+            }
         }
     }
 }
